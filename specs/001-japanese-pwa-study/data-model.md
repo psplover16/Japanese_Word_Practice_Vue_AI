@@ -24,8 +24,8 @@
 
 ### 規則
 
-- `isArchaic = true` 的資料預設不顯示，且 `isSelectable = false`
-- `placeholder = true` 的格子不可勾選且不可出題
+- `isArchaic = true` 的資料預設不顯示，且 `isSelectable = false`。
+- `placeholder = true` 的格子不可勾選且不可出題。
 
 ## 2. PracticeSelectionState
 
@@ -49,11 +49,41 @@
 
 ### 規則
 
-- 此狀態由 `AppShell` 建立，重整後回預設
-- `questionCount` 可手動修改，但當勾選集合或題目字體範圍改變時會被重新計算覆蓋
-- 第二頁與第三頁只能拿到 readonly 版本
+- 此狀態由 `AppShell` 建立，重整後回預設。
+- `questionCount` 可手動修改，但當勾選集合或題目字體範圍改變時會被重新計算覆蓋。
+- 第二頁與第三頁只能拿到 readonly 版本。
 
-## 3. ExamQuestion
+## 3. InstructionSection
+
+### 說明
+
+代表字母練習頁下方一個必須獨立製作、獨立驗收的教學功能單元。
+
+### 欄位
+
+| 欄位 | 型別 | 說明 |
+|------|------|------|
+| `id` | `string` | 唯一識別值，例如 `archaic-toggle`、`hatsuon`、`special-syllables` |
+| `type` | `"archaic-toggle" \| "hatsuon" \| "sokuon" \| "seion-yoon" \| "gou-yoon" \| "loanword-extension" \| "choon-rules" \| "special-syllables"` | 區塊種類 |
+| `title` | `string` | 區塊標題 |
+| `layout` | `"toggle" \| "example-table" \| "comparison-table" \| "rule-list"` | 預期呈現樣式 |
+| `examples` | `InstructionExample[]` | 範例資料 |
+| `independentlyTestable` | `boolean` | 是否要求獨立驗收 |
+
+### 規則
+
+- 所有 `InstructionSection` 都必須 `independentlyTestable = true`。
+- `archaic-toggle` 僅控制顯示，不參與出題與題數計算。
+
+## 4. InstructionExample
+
+| 欄位 | 型別 | 說明 |
+|------|------|------|
+| `japanese` | `string` | 範例日文 |
+| `romaji` | `string` | 羅馬拼音 |
+| `translation` | `string` | 翻譯 |
+
+## 5. ExamQuestion
 
 ### 說明
 
@@ -69,8 +99,23 @@
 | `promptText` | `string` | 畫面顯示的假名 |
 | `romaji` | `string` | 答案用羅馬拼音 |
 | `kanaLabel` | `string` | 平假名或片假名提示文字 |
+| `round` | `number` | 第幾輪洗牌產生的題目 |
 
-## 4. ExamSessionState
+## 6. ConfirmationDialogState
+
+### 說明
+
+代表需要使用者確認的流程狀態。
+
+### 欄位
+
+| 欄位 | 型別 | 說明 |
+|------|------|------|
+| `type` | `"clear-results" \| "close-exam" \| null` | 目前對話框種類 |
+| `visible` | `boolean` | 是否顯示 |
+| `message` | `string \| null` | 顯示訊息 |
+
+## 7. ExamSessionState
 
 ### 說明
 
@@ -84,15 +129,18 @@
 | `currentIndex` | `number` | 目前題號索引 |
 | `isAnswerRevealed` | `boolean` | 是否已揭曉答案 |
 | `unknownMarkedIds` | `Record<string, number>` | 本次測驗中按下「我不清楚」的累積次數 |
-| `status` | `"idle" \| "running" \| "closing" \| "completed"` | 測驗流程狀態 |
+| `confirmDialog` | `ConfirmationDialogState` | modal 內的確認對話狀態 |
+| `status` | `"idle" \| "running" \| "confirming-close" \| "aborted" \| "completed"` | 測驗流程狀態 |
 
 ### 狀態轉移
 
-- `idle -> running`：送出並通過驗證
-- `running -> closing`：使用者關閉 modal 或題目完成
-- `closing -> completed`：結果已寫入 `localStorage`
+- `idle -> running`：送出並通過驗證。
+- `running -> confirming-close`：使用者按下關閉按鈕。
+- `confirming-close -> running`：使用者取消結束練習。
+- `confirming-close -> aborted`：使用者確認結束，且不寫入新結算結果。
+- `running -> completed`：題目完成並將結果覆蓋寫入。
 
-## 5. LatestUnknownResult
+## 8. LatestUnknownResult
 
 ### 說明
 
@@ -106,9 +154,7 @@
 | `updatedAt` | `string` | ISO 時間字串 |
 | `version` | `number` | storage schema 版本 |
 
-## 6. UnknownResultItem
-
-### 欄位
+## 9. UnknownResultItem
 
 | 欄位 | 型別 | 說明 |
 |------|------|------|
@@ -120,10 +166,10 @@
 
 ### 規則
 
-- 永遠只保留最近一次測驗結果
-- 若讀取資料損毀或型別不符，整包刪除
+- 永遠只保留最近一次測驗結果。
+- 若讀取資料損毀或型別不符，整包刪除。
 
-## 7. PwaUpdateState
+## 10. PwaUpdateState
 
 ### 說明
 
@@ -134,11 +180,13 @@
 | 欄位 | 型別 | 說明 |
 |------|------|------|
 | `updateAvailable` | `boolean` | 是否有新版可用 |
+| `offlineReady` | `boolean` | 是否已可完整離線使用 |
 | `promptVisible` | `boolean` | 5 秒提示是否仍顯示 |
 | `applyOnNextLaunch` | `boolean` | 下次啟動是否自動套用 |
 | `detectedAt` | `string \| null` | 偵測更新時間 |
+| `lastKnownVersion` | `string \| null` | 最近一次已知版本識別 |
 
 ### 規則
 
-- 5 秒提示結束後若未確認，`applyOnNextLaunch = true`
-- 更新完成後需要清舊快取，但不得清除 `localStorage`
+- 5 秒提示結束後若未確認，`applyOnNextLaunch = true`。
+- 更新完成後需要清舊快取，但不得清除 `localStorage`。

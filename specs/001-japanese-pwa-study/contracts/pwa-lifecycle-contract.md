@@ -2,8 +2,9 @@
 
 ## 首次可離線使用
 
-- 條件：service worker 與 precache 完成
+- 條件：service worker 已啟用，且必要 precache 完成
 - 行為：顯示「已可離線使用」提示
+- 限制：若必要資產尚未快取完成，不得提前顯示離線可用提示
 
 ## 偵測到新版
 
@@ -19,14 +20,15 @@
 - 行為：
   - 自動觸發更新套用
   - 重新載入後清理舊 Cache Storage
-  - 保留 `localStorage` 內仍有效的學習資料
+  - 保留 `localStorage` 內仍有效的學習資料與測驗結果
 
 ## 快取清理邊界
 
 - 可清理：
   - 舊版 precache
   - 舊版 runtime cache
+  - plugin 產生的可回收離線快取
 - 不可清理：
   - `localStorage`
   - 最近一次測驗結果
-  - PWA 延後更新旗標以外的有效本機資料
+  - 仍有效的學習相關本機資料
