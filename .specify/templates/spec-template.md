@@ -5,6 +5,9 @@
 **Status**: Draft  
 **Input**: User description: "$ARGUMENTS"
 
+> Write this specification in Traditional Chinese (zh-TW). The Constitution is
+> the only governance document that remains English-only.
+
 ## User Scenarios & Testing *(mandatory)*
 
 <!--
@@ -113,3 +116,10 @@
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
 - **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
 - **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+
+## Repository Hygiene *(mandatory)*
+
+- Confirm the repository includes a `.gitignore` file before implementation.
+- Do not commit `node_modules/`.
+- Do not commit re-generatable artifacts such as `build/`, `dist/`, or
+  `coverage/` unless the specification explicitly justifies an exception.

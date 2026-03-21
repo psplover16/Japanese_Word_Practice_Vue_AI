@@ -31,7 +31,17 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Specifications, plans, and user-facing documentation must be written in
+  Traditional Chinese (zh-TW). The Constitution itself is the only governance
+  document that remains English-only.
+- The repository must include a `.gitignore` file. `node_modules/`, `build/`,
+  `dist/`, `coverage/`, and other re-generatable artifacts must stay ignored by
+  default.
+- Code changes must define the relevant test strategy before implementation.
+- Performance-sensitive changes must state the expected budget or measurable
+  target before work begins.
+- Any proposed complexity must be justified in writing if it is not the
+  simplest viable approach.
 
 ## Project Structure
 
