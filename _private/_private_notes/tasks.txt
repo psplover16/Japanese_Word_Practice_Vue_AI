@@ -1,0 +1,2 @@
+一個任務盡量不要涵蓋超過3個功能
+有關pwa的 favicon / manifest icon 需要拆成清楚任務

@@ -1,0 +1,70 @@
+$speckit-plan
+
+Please create the implementation plan based on the following technical constraints and project rules.
+
+Project type:
+- This is a pure frontend web application with no backend service.
+- The app should be built with Vue 3 + TypeScript + Vite + Tailwind CSS.
+- SCSS may be used only when necessary.
+- Use Composition API and avoid Options API.
+
+Storage and data:
+- Client-side persistence should use localStorage.
+- Fixed/static content may be extracted into external JSON files.
+
+Paths and assets:
+- Use @ as the project root alias.
+- Prefer relative-path based project organization.
+- The project must support PWA.
+- Use images under @/_private/_private_fileAssets/public/icons for PWA-required icons/images.
+- The website icon may reference @/_private/_private_fileAssets/public/vite.ico.
+
+Coding rules:
+- Avoid var; use let or const instead.
+- Avoid global variables; prefer local scope.
+- Avoid global functions; prefer local/module-scoped functions.
+- Avoid unnecessary third-party packages; prefer native/browser/platform capabilities when feasible.
+- Do not use any; all types must be explicitly defined.
+- Keep code concise and avoid duplicated logic.
+- End statements with semicolons.
+- Avoid ESLint errors.
+
+Naming conventions:
+- Component files must use PascalCase, for example: UserCard.vue, LoginForm.vue.
+- Component names must be semantic and avoid meaningless abbreviations.
+- Modular files should use camelCase, for example: userService.ts, authUtils.ts.
+
+Repository hygiene:
+- Design a proper .gitignore for files not needed by the project.
+
+UI planning requirements:
+- 全部畫面最外層有一個固定的容器，該容器的padding-y 與 padding-x 分別是12px 8px 
+- mobile的UI 可以參考圖片 ./_private/_private_fileAssets/wordPracticeUI.jpg
+- 桌機版的UI可以參考圖片 ./_private/_private_fileAssets/desktopWordPractice.jpg
+- 最外層容器排版如以下，詳細可以參考圖片 @/_private/_private_fileAssets/wordPracticeUI.jpg
+ 該頁標題(該路由的標題，沒有其他東西，置左)    路由切換的按鈕group(靠右)   此處不可斷行
+router-view 區域應佔滿可用寬度
+- 關於日語的字母與字符的練習，該頁具有以下要求(詳細可以參考圖片 ./_private/_private_fileAssets/wordPracticeUI.jpg)
+- model的UI及card的UI可以參考以下圖片
+./_private/_private_fileAssets/modelTest1.jpg
+./_private/_private_fileAssets/modelTest2.jpg
+- 每個區塊的圓弧用0.5rem
+- 按鈕不用橢圓，用方型但是具有弧度 0.25rem，py-1，px-2
+- input 用長方型，弧度為0.25rem，px-2，py則用0.275rem
+- 專案圖標使用 fontawesome
+
+PWA asset implementation:
+- 採用完全離線模式
+- PWA的圖片請用./_private/_private_fileAssets/public/icons 該資料夾內部的圖片
+- 網頁的icon可以參考./_private/_private_fileAssets/public/vite.ico
+
+Please generate a plan that includes:
+1. Technical Context
+2. Architecture Decisions
+3. Project Structure
+4. UI / state / storage strategy
+5. PWA implementation considerations
+6. Code standards
+7. Risks and implementation notes
+
+Focus on implementation planning only. Do not restate product requirements unless needed for technical decisions.

@@ -1,0 +1,69 @@
+1. 擇一
+specify init --ai codex --script ps --here --ai-skills            新版本有bug
+uvx --from git+https://github.com/github/spec-kit.git@v0.3.1 specify init --ai codex --script ps --here --ai-skills --force
+
+copilot版本
+specify init --ai copilot --script ps --here
+2. tree /f
+
+在專案先建立
+# AGENTS.md
+
+
+commit with detailed zh-tw log
+
+步驟一.AI 發想憲法
+/speckit.constitution Create principles focused on code quality, testing standards, user experience consistency,and performance requirements.
+並且要包含以下規則
+- Add a new rule to the Constitution Keep this doc in English Only. All specifications, plans, and user-facing documentation MUST be written in Traditional Chinese (zh-TW).
+- 新生成的所有專案都必須包含 `.gitignore`。
+- `node_modules/` 絕對不可加入 Git 版本控制。
+- 任何可重新安裝或重新生成的檔案（如 build、dist、coverage）預設不得提交。
+
+-後續要怎麼測試，也要寫在這
+
+步驟二. 提供需求，我要做什麼、為什麼做、使用者要得到什麼
+/speckit.specify 
+specify.txt
+功能需求
+使用者故事
+驗收目標
+業務規則
+重要限制
+
+步驟三.補充 spec 裡模糊或容易被誤解的地方
+/speckit.clarify
+clarify.txt
+邊界條件
+驗收細節
+哪些規則不可合併
+UI 行為細節
+特殊例外
+
+步驟四.制定開發計畫，怎麼做
+/speckit.plan
+plan.txt
+
+步驟五. 規劃任務清單
+/speckit.tasks
+tasks.txt
+可以補充限制，比如：
+任務拆解粒度要求
+要不要按 user story 分組
+每個 task 要不要對應 requirement ID
+哪些條目不得合併
+
+步驟六.
+產生規格分析報告 
+/speckit.analyze Save your analyze report to `analyze-01.md` 
+
+步驟七.
+開始實作 
+/speckit.implement 
+
+
+C1的問題我要怎麼補??去哪個文件補?? 給我建議
+C2 你可以幫我改善，有疑問的可以問我，我能配合
+C3 你幫我改善
+C4 要怎麼驗證??  給個建議
+SC-005  我自己也看不懂，你打算怎改??
