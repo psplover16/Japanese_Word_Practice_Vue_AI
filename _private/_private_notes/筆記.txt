@@ -12,7 +12,8 @@ specify init --ai copilot --script ps --here
 AI提交git
 commit with detailed zh-tw log
 AI回復至head狀態(目前git最新提交狀態)
-git restore .
+git reset --hard HEAD
+git clean -fdx
 
 步驟一.AI 發想憲法
 /speckit.constitution Create principles focused on code quality, testing standards, user experience consistency,and performance requirements.
