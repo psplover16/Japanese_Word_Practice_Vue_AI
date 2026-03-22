@@ -1,5 +1,3 @@
-$speckit-plan
-
 Please create the implementation plan based on the following technical constraints and project rules.
 
 Project type:
@@ -66,5 +64,13 @@ Please generate a plan that includes:
 5. PWA implementation considerations
 6. Code standards
 7. Risks and implementation notes
+
+RWD 規劃
+- 支援手機、平板、桌機。
+- 設定主要斷點：<768px、768~1023px、>=1024px。
+- 手機版採單欄排列，避免非必要橫向捲動。
+- 表單、按鈕群、表格、彈窗需分別定義手機版行為。
+- 以 375px作為主要驗收尺寸，需求主要是以375px作為設計。
+- 768px、1024px 為次要驗收尺寸，以不破版為原則，其餘彈性較高。
 
 Focus on implementation planning only. Do not restate product requirements unless needed for technical decisions.
