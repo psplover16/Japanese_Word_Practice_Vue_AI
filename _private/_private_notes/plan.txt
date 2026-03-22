@@ -74,4 +74,8 @@ RWD 規劃
 - 以 375px作為主要驗收尺寸，需求主要是以375px作為設計。
 - 768px、1024px 為次要驗收尺寸，以不破版為原則，其餘彈性較高。
 
+
+Others
+- 有需要製作警告的功能，不需要額外製作UI，純粹使用原生的alert就好
+
 Focus on implementation planning only. Do not restate product requirements unless needed for technical decisions.
