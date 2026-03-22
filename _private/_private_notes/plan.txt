@@ -50,6 +50,7 @@ router-view 區域應佔滿可用寬度
 - 按鈕不用橢圓，用方型但是具有弧度 0.25rem，py-1，px-2
 - input 用長方型，弧度為0.25rem，px-2，py則用0.275rem
 - 專案圖標使用 fontawesome
+- 每個路由的配色要相同
 
 PWA asset implementation:
 - 採用完全離線模式
