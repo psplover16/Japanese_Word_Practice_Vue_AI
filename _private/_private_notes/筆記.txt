@@ -11,9 +11,22 @@ specify init --ai copilot --script ps --here
 
 AI提交git
 commit with detailed zh-tw log
+
 AI回復至head狀態(目前git最新提交狀態)
 git reset --hard HEAD
 git clean -fdx
+
+
+以下功能一次超懶人作法，從步驟二開始，直接到實作，但跳過步驟六
+/speckit.specify
+./_private/_private_notes/specify.txt
+/speckit.clarify
+./_private/_private_notes/clarify.txt
+/speckit.plan
+./_private/_private_notes/plan.txt
+/speckit.tasks
+./_private/_private_notes/tasks.txt
+/speckit.implement 
 
 步驟一.AI 發想憲法
 /speckit.constitution Create principles focused on code quality, testing standards, user experience consistency,and performance requirements.
