@@ -9,8 +9,10 @@ specify init --ai copilot --script ps --here
 在專案先建立
 # AGENTS.md
 
-
+AI提交git
 commit with detailed zh-tw log
+AI回復至head狀態(目前git最新提交狀態)
+git restore .
 
 步驟一.AI 發想憲法
 /speckit.constitution Create principles focused on code quality, testing standards, user experience consistency,and performance requirements.
