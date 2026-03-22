@@ -43,8 +43,8 @@ A. 第一個頁面是關於日語的字母與字符的練習，該頁面名稱�
  2-1.「題目包含：平假名」，預設是勾選，會與上方的 tableA及tableB的checkbox，來決定待會考試的題目
  2-2.「題目包含：片假名」，預設是勾選，會與上方的 tableA及tableB的checkbox，來決定待會考試的題目
  2-3.「全選／全不選」，此處勾選後，會將 tableA及tableB的所有checkbox勾選，取消勾選擇則將tableA與tableB的所有checkbox取消勾選。
-  此checkbox與tableA和tableB的checkbox相關，若tableA和tableB當中有一個checkbox取消勾選，則「全選／全不選」會顯示沒有勾選的狀態，但不會觸發取消勾選，僅狀態樣式改變而已
-  而且與tableA的標頭有關，若此處勾選，tableA的標頭會全部勾選。取消勾選，則tableA的標頭全部會取消勾選。
+  2-3-1.此checkbox與tableA和tableB的checkbox相關，若tableA和tableB當中有一個checkbox取消勾選，則「全選／全不選」會顯示沒有勾選的狀態，但不會觸發取消勾選，僅狀態樣式改變而已
+  2-3-2.而且與tableA的標頭有關，若此處勾選，tableA的標頭會全部勾選。取消勾選，則tableA的標頭全部會取消勾選。tableA的標頭只要有一個取消勾選，則「全選／全不選」會顯示沒有勾選的狀態，但不會觸發取消勾選，僅狀態樣式改變而已。
  2-4.「濁音／半濁音」，此處勾選後，會將 tableB的所有checkbox勾選，取消勾選擇將tableB的所有checkbox取消勾選。
   此checkbox與tableB的checkbox相關，若tableB當中有一個checkbox取消勾選，則「濁音／半濁音」會顯示沒有勾選的狀態，但不會觸發取消勾選，僅狀態樣式改變而已
  2-5.「促音」，此處checkbox會儲存起來，在其他路由可以看到勾選狀態
