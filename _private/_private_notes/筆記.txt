@@ -26,6 +26,8 @@ git clean -fdx
 @/_private/_private_notes/plan.txt
 /speckit.tasks
 @/_private/_private_notes/tasks.txt
+/speckit.analyze Save your analyze report to `analyze-01.md`
+
 /speckit.implement 
 
 步驟一.AI 發想憲法
