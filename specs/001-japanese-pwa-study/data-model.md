@@ -1,192 +1,144 @@
-# 資料模型：日語學習 PWA
+# Data Model: 日語學習 PWA
 
-## 1. KanaEntry
+## 1. KanaCell
 
-### 說明
+### Purpose
 
-代表一個可顯示於表格中的假名單元，可能是一般字母，也可能是古語假名。
+描述 `tableA` 或 `tableB` 中一個可練習的假名單位。
 
-### 欄位
+### Fields
 
-| 欄位 | 型別 | 說明 |
-|------|------|------|
-| `id` | `string` | 唯一識別值，例如 `seion-ka-a`、`dakuon-ga` |
-| `group` | `"seion" \| "dakuon"` | 所屬表格群組 |
-| `rowKey` | `string` | 所屬行，例如 `ka`, `sa`, `ga` |
-| `columnKey` | `string` | 所屬段，例如 `a`, `i`, `u`, `e`, `o` |
-| `hiragana` | `string \| null` | 平假名顯示值 |
-| `katakana` | `string \| null` | 片假名顯示值 |
-| `romaji` | `string \| null` | Hepburn 羅馬拼音 |
-| `isArchaic` | `boolean` | 是否屬於古語假名 |
-| `isSelectable` | `boolean` | 是否可勾選 |
-| `isExamEligible` | `boolean` | 是否可納入考題 |
-| `placeholder` | `boolean` | 是否為 `-` 佔位格 |
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | 穩定識別值，例如 `tableA-ka` |
+| `table` | string | `tableA` 或 `tableB` |
+| `rowKey` | string | 所屬行識別，例如 `k-row` |
+| `columnKey` | string | 所屬段識別，例如 `i-column` |
+| `romaji` | string | Hepburn 羅馬拼音 |
+| `hiragana` | string | 平假名文字 |
+| `katakana` | string | 片假名文字 |
+| `archaic` | boolean | 是否屬於古語假名 |
+| `selectable` | boolean | 是否可勾選 |
 
-### 規則
+### Rules
 
-- `isArchaic = true` 的資料預設不顯示，且 `isSelectable = false`。
-- `placeholder = true` 的格子不可勾選且不可出題。
+- `archaic = true` 的格位在 `古語假名` 未勾選時，仍保留格位但呈現 placeholder。
+- `selectable = false` 的格位不得出現在考試題庫中。
 
-## 2. PracticeSelectionState
+## 2. SelectionState
 
-### 說明
+### Purpose
 
-代表第一頁跨路由共享、但不跨重整保留的勾選狀態。
+描述第一頁共享給全站的勾選狀態。
 
-### 欄位
+### Fields
 
-| 欄位 | 型別 | 說明 |
-|------|------|------|
-| `selectedKanaIds` | `Record<string, boolean>` | 已勾選字母 |
-| `includeHiragana` | `boolean` | 是否納入平假名題目 |
-| `includeKatakana` | `boolean` | 是否納入片假名題目 |
-| `selectAll` | `boolean` | 全選／全不選 UI 狀態 |
-| `selectDakuonGroup` | `boolean` | 濁音／半濁音 UI 狀態 |
-| `showArchaicKana` | `boolean` | 古語假名顯示開關 |
-| `enableSokuon` | `boolean` | 促音開關 |
-| `enableExtendedYoon` | `boolean` | 拗音／合拗音／長音符開關 |
-| `questionCount` | `number` | 目前題數輸入值 |
+| Field | Type | Description |
+|-------|------|-------------|
+| `selectedKanaIds` | string[] | 已勾選的 tableA / tableB 假名 |
+| `includeHiragana` | boolean | 是否將平假名納入題目 |
+| `includeKatakana` | boolean | 是否將片假名納入題目 |
+| `allKanaSelected` | boolean | `全選／全不選` 的衍生狀態 |
+| `dakuonSelected` | boolean | `濁音／半濁音` 的衍生狀態 |
+| `optionSelections` | record | `促音`、`拗音／合拗音／長音符` 的勾選狀態 |
+| `showArchaicKana` | boolean | 是否顯示古語假名 |
+| `questionCountInput` | number | 目前題數欄位值 |
 
-### 規則
+### Rules
 
-- 此狀態由 `AppShell` 建立，重整後回預設。
-- `questionCount` 可手動修改，但當勾選集合或題目字體範圍改變時會被重新計算覆蓋。
-- 第二頁與第三頁只能拿到 readonly 版本。
+- 此狀態跨路由保留，但不跨重新整理保存。
+- 第二頁與第三頁只能讀取，不得修改。
 
-## 3. InstructionSection
+## 3. SelectionDetailItem
 
-### 說明
+### Purpose
 
-代表字母練習頁下方一個必須獨立製作、獨立驗收的教學功能單元。
+供第二頁與第三頁顯示的唯讀明細項目。
 
-### 欄位
+### Fields
 
-| 欄位 | 型別 | 說明 |
-|------|------|------|
-| `id` | `string` | 唯一識別值，例如 `archaic-toggle`、`hatsuon`、`special-syllables` |
-| `type` | `"archaic-toggle" \| "hatsuon" \| "sokuon" \| "seion-yoon" \| "gou-yoon" \| "loanword-extension" \| "choon-rules" \| "special-syllables"` | 區塊種類 |
-| `title` | `string` | 區塊標題 |
-| `layout` | `"toggle" \| "example-table" \| "comparison-table" \| "rule-list"` | 預期呈現樣式 |
-| `examples` | `InstructionExample[]` | 範例資料 |
-| `independentlyTestable` | `boolean` | 是否要求獨立驗收 |
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | 穩定識別值 |
+| `source` | string | `tableA`、`tableB` 或 `checkboxGroupA` |
+| `label` | string | 畫面可閱讀文字 |
+| `kind` | string | `kana` 或 `option` |
 
-### 規則
+### Rules
 
-- 所有 `InstructionSection` 都必須 `independentlyTestable = true`。
-- `archaic-toggle` 僅控制顯示，不參與出題與題數計算。
+- `label` 不得是布林值、id 或 key。
+- 第一頁不得渲染此集合專用的明細 panel。
 
-## 4. InstructionExample
+## 4. ExamQuestionCard
 
-| 欄位 | 型別 | 說明 |
-|------|------|------|
-| `japanese` | `string` | 範例日文 |
-| `romaji` | `string` | 羅馬拼音 |
-| `translation` | `string` | 翻譯 |
+### Purpose
 
-## 5. ExamQuestion
+描述 modal 中一題考題的顯示與流程狀態。
 
-### 說明
+### Fields
 
-代表測驗流程中的單一題目。
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | 題目識別值 |
+| `kanaId` | string | 對應的 `KanaCell.id` |
+| `script` | string | `hiragana` 或 `katakana` |
+| `promptText` | string | 題目區顯示的假名 |
+| `answerText` | string | 答案區顯示的羅馬拼音 |
+| `hintText` | string | 提示區文字 |
+| `answerRevealed` | boolean | 是否已揭曉答案 |
+| `unknownMarked` | boolean | 本題是否已記錄 `我不清楚` |
 
-### 欄位
+### Rules
 
-| 欄位 | 型別 | 說明 |
-|------|------|------|
-| `id` | `string` | 題目唯一識別值 |
-| `kanaId` | `string` | 對應 `KanaEntry.id` |
-| `scriptType` | `"hiragana" \| "katakana"` | 出題字體 |
-| `promptText` | `string` | 畫面顯示的假名 |
-| `romaji` | `string` | 答案用羅馬拼音 |
-| `kanaLabel` | `string` | 平假名或片假名提示文字 |
-| `round` | `number` | 第幾輪洗牌產生的題目 |
+- 同一題不論在答案揭曉前或後按幾次 `我不清楚`，`unknownMarked` 都只允許變成一次。
 
-## 6. ConfirmationDialogState
+## 5. LatestUnknownResultEntry
 
-### 說明
+### Purpose
 
-代表需要使用者確認的流程狀態。
+描述最近一次結算中的單一假名結果。
 
-### 欄位
+### Fields
 
-| 欄位 | 型別 | 說明 |
-|------|------|------|
-| `type` | `"clear-results" \| "close-exam" \| null` | 目前對話框種類 |
-| `visible` | `boolean` | 是否顯示 |
-| `message` | `string \| null` | 顯示訊息 |
+| Field | Type | Description |
+|-------|------|-------------|
+| `kanaId` | string | 對應 `KanaCell.id` |
+| `hiragana` | string | 平假名 |
+| `katakana` | string | 片假名 |
+| `romaji` | string | 羅馬拼音 |
+| `count` | number | 本次考試被標記 `我不清楚` 的次數 |
 
-## 7. ExamSessionState
+## 6. LatestUnknownResultSnapshot
 
-### 說明
+### Purpose
 
-代表一次測驗 modal 的內部狀態。
+描述最近一次完整結算結果。
 
-### 欄位
+### Fields
 
-| 欄位 | 型別 | 說明 |
-|------|------|------|
-| `questions` | `ExamQuestion[]` | 題目序列 |
-| `currentIndex` | `number` | 目前題號索引 |
-| `isAnswerRevealed` | `boolean` | 是否已揭曉答案 |
-| `unknownMarkedIds` | `Record<string, number>` | 本次測驗中按下「我不清楚」的累積次數 |
-| `confirmDialog` | `ConfirmationDialogState` | modal 內的確認對話狀態 |
-| `status` | `"idle" \| "running" \| "confirming-close" \| "aborted" \| "completed"` | 測驗流程狀態 |
+| Field | Type | Description |
+|-------|------|-------------|
+| `updatedAt` | string | ISO 時間字串 |
+| `totalUnknownCount` | number | 全部 `我不清楚` 記錄次數 |
+| `results` | LatestUnknownResultEntry[] | 本次結果清單 |
 
-### 狀態轉移
+### Rules
 
-- `idle -> running`：送出並通過驗證。
-- `running -> confirming-close`：使用者按下關閉按鈕。
-- `confirming-close -> running`：使用者取消結束練習。
-- `confirming-close -> aborted`：使用者確認結束，且不寫入新結算結果。
-- `running -> completed`：題目完成並將結果覆蓋寫入。
+- 每次新結算都覆蓋舊資料。
+- 若解析失敗，資料必須被刪除。
 
-## 8. LatestUnknownResult
+## 7. PwaUpdateNotice
 
-### 說明
+### Purpose
 
-代表最近一次測驗後要在結算區顯示的紀錄。
+描述 PWA 新版本更新提示的畫面狀態。
 
-### 欄位
+### Fields
 
-| 欄位 | 型別 | 說明 |
-|------|------|------|
-| `items` | `UnknownResultItem[]` | 最近一次測驗結果 |
-| `updatedAt` | `string` | ISO 時間字串 |
-| `version` | `number` | storage schema 版本 |
-
-## 9. UnknownResultItem
-
-| 欄位 | 型別 | 說明 |
-|------|------|------|
-| `kanaId` | `string` | 對應字母 ID |
-| `hiragana` | `string \| null` | 平假名 |
-| `katakana` | `string \| null` | 片假名 |
-| `romaji` | `string` | 羅馬拼音 |
-| `count` | `number` | 本次測驗累積次數 |
-
-### 規則
-
-- 永遠只保留最近一次測驗結果。
-- 若讀取資料損毀或型別不符，整包刪除。
-
-## 10. PwaUpdateState
-
-### 說明
-
-代表 PWA 更新提示與延後套用策略。
-
-### 欄位
-
-| 欄位 | 型別 | 說明 |
-|------|------|------|
-| `updateAvailable` | `boolean` | 是否有新版可用 |
-| `offlineReady` | `boolean` | 是否已可完整離線使用 |
-| `promptVisible` | `boolean` | 5 秒提示是否仍顯示 |
-| `applyOnNextLaunch` | `boolean` | 下次啟動是否自動套用 |
-| `detectedAt` | `string \| null` | 偵測更新時間 |
-| `lastKnownVersion` | `string \| null` | 最近一次已知版本識別 |
-
-### 規則
-
-- 5 秒提示結束後若未確認，`applyOnNextLaunch = true`。
-- 更新完成後需要清舊快取，但不得清除 `localStorage`。
+| Field | Type | Description |
+|-------|------|-------------|
+| `visible` | boolean | 是否顯示提示 |
+| `message` | string | 提示文字 |
+| `expiresInMs` | number | 自動消失倒數 |
+| `eligible` | boolean | 是否符合手機獨立 app 顯示條件 |
+| `deferred` | boolean | 是否已延後到下次重開再更新 |

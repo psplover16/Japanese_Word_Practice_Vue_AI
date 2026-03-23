@@ -1,49 +1,20 @@
-# Contract：路由與共享狀態
+# Contract: 路由與共享狀態歸屬
 
-## 路由
+## 路由標題
 
-| Route | View | 頁首標題 | 權限 |
-|-------|------|----------|------|
-| `/practice` | 字母練習頁 | `50音` | 可讀可寫共享勾選狀態 |
-| `/grammar` | 變化規則頁 | `變化規則` | 只讀共享勾選狀態 |
-| `/vocabulary` | 單字練習頁 | `單字練習` | 只讀共享勾選狀態 |
+| Route | Title | 主要責任 | 明確禁止 |
+|-------|-------|----------|----------|
+| `/practice` | `50音` | 勾選假名、教學區塊、考試 modal、結算區 | 不得顯示 `第一頁勾選結果明細` 專屬 panel |
+| `/grammar` | `變化規則` | 顯示共享明細、閱讀規則內容 | 不得修改第一頁共享狀態 |
+| `/vocabulary` | `單字練習` | 顯示共享明細、預留單字練習容器 | 不得修改第一頁共享狀態 |
 
-## 共享狀態介面
+## Shared State
 
-### Writable Contract
+- `SelectionState` 在三個路由間共用，切換路由時保留。
+- 第二頁與第三頁只能讀取 shared state，不得直接寫入。
+- 重新整理網站後，shared state 回到預設值。
 
-只允許 `practice` 路由呼叫：
+## Positive / Negative Ownership
 
-- `toggleKana(id: string): void`
-- `toggleRow(rowKey: string): void`
-- `toggleColumn(columnKey: string): void`
-- `toggleSelectAll(value: boolean): void`
-- `toggleDakuonGroup(value: boolean): void`
-- `setIncludeHiragana(value: boolean): void`
-- `setIncludeKatakana(value: boolean): void`
-- `setQuestionCount(value: number): void`
-- `setShowArchaicKana(value: boolean): void`
-- `setEnableSokuon(value: boolean): void`
-- `setEnableExtendedYoon(value: boolean): void`
-- `resetSelections(): void`
-
-### Readonly Contract
-
-提供所有路由：
-
-- `state.selectedKanaIds`
-- `state.includeHiragana`
-- `state.includeKatakana`
-- `state.showArchaicKana`
-- `state.enableSokuon`
-- `state.enableExtendedYoon`
-- `state.questionCount`
-- `derived.selectedKanaCount`
-- `derived.totalQuestionPool`
-
-## 保證
-
-- 路由切換不重建共享狀態。
-- 頁面重新整理後共享勾選狀態回到預設。
-- `grammar` 與 `vocabulary` 只讀，不得直接寫回共享狀態。
-- 頁首標題必須依當前路由分別顯示 `50音`、`變化規則`、`單字練習`。
+- `SelectionDetailPanel` 只允許出現在 `/grammar` 與 `/vocabulary`。
+- `/practice` 若出現 `SelectionDetailPanel`，視為違反規格。

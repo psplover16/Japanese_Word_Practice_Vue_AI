@@ -1,0 +1,14 @@
+import { createRouter, createWebHistory } from 'vue-router';
+import PracticeView from '@/modules/practice/views/PracticeView.vue';
+import GrammarView from '@/modules/grammar/views/GrammarView.vue';
+import VocabularyView from '@/modules/vocabulary/views/VocabularyView.vue';
+
+export default createRouter({
+  history: createWebHistory(),
+  routes: [
+    { path: '/', redirect: '/practice' },
+    { path: '/practice', component: PracticeView, meta: { title: '50音' } },
+    { path: '/grammar', component: GrammarView, meta: { title: '變化規則' } },
+    { path: '/vocabulary', component: VocabularyView, meta: { title: '單字練習' } }
+  ]
+});
