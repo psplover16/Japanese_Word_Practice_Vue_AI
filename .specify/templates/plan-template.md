@@ -38,6 +38,10 @@
   `dist/`, `coverage/`, and other re-generatable artifacts must stay ignored by
   default.
 - Code changes must define the relevant test strategy before implementation.
+- Legal default states, empty states, hidden states, and placeholder states
+  must be covered by a render-safe strategy. Each primary route and each
+  high-risk interactive component must have at least one planned smoke test for
+  default initial render behavior.
 - Performance-sensitive changes must state the expected budget or measurable
   target before work begins.
 - Any proposed complexity must be justified in writing if it is not the

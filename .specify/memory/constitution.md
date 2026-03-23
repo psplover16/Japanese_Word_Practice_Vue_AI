@@ -1,7 +1,7 @@
 <!--
 Sync Impact Report
-Version change: template -> 1.0.0
-Modified principles: replaced placeholders with five concrete principles
+Version change: 1.0.0 -> 1.1.0
+Modified principles: II. Test-First Verification; V. Documentation & Repository Hygiene
 Added sections: Additional Constraints; Development Workflow
 Removed sections: none
 Templates requiring updates: .specify/templates/plan-template.md (updated), .specify/templates/spec-template.md (updated), .specify/templates/tasks-template.md (updated)
@@ -23,7 +23,11 @@ Changes must be verified by tests before they are considered complete whenever
 automated testing is feasible. Bug fixes must reproduce the failure before the
 fix is applied. New behavior must include the most appropriate test coverage
 for its surface area, and tests must be deterministic enough to run reliably in
-automation.
+automation. Legal default states, empty states, hidden states, and placeholder
+states must never cause runtime errors, render failures, or browser console
+errors. Each primary route and each high-risk interactive component must
+include at least one smoke test that verifies successful initial render under
+default conditions.
 
 ### III. UX Consistency
 User-facing experiences must preserve the product's established terminology,
@@ -75,4 +79,4 @@ wording fixes. Compliance review is mandatory for all specs, plans, and
 implementation changes, and any exception must be documented with a clear
 expiration or remediation path.
 
-**Version**: 1.0.0 | **Ratified**: 2026-03-21 | **Last Amended**: 2026-03-21
+**Version**: 1.1.0 | **Ratified**: 2026-03-21 | **Last Amended**: 2026-03-23
