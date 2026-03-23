@@ -12,7 +12,7 @@
  1-2.其次可以利用偵測不同的寬度，來減少tableA及tableB文字大小來達到需求
  1-3.被勾選的checkbox的所在的td，要變色。取消勾選顏色要變回來。
 2.每個功能外圍的container，padding都是8px，該container稱為containerA
-3.各功能之間的containerA，互相間距，4px
+3.除了考試功能區，其餘各功能之間的containerA，互相間距，4px
 4.撥音、促音、清音拗音、合拗音、外來語擴張、長音規則、特殊音節，這些都要獨立製作與驗收
 5.古語假名
  5-1.是放在checkboxGroupA內部
