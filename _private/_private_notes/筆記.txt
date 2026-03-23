@@ -26,9 +26,11 @@ git clean -fdx
 @/_private/_private_notes/plan.txt
 /speckit.tasks
 @/_private/_private_notes/tasks.txt
+/speckit.implement 
+
+
 /speckit.analyze Save your analyze report to `analyze-01.md`
 
-/speckit.implement 
 
 步驟一.AI 發想憲法
 /speckit.constitution Create principles focused on code quality, testing standards, user experience consistency,and performance requirements.
