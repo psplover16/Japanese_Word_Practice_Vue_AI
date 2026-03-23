@@ -36,6 +36,7 @@ git clean -fdx
 /speckit.constitution Create principles focused on code quality, testing standards, user experience consistency,and performance requirements.
 並且要包含以下規則
 - Add a new rule to the Constitution Keep this doc in English Only. All specifications, plans, and user-facing documentation MUST be written in Traditional Chinese (zh-TW).
+- Legal default states, empty states, hidden states, and placeholder states must never cause runtime errors, render failures, or browser console errors. Each primary route and each high-risk interactive component must include at least one smoke test that verifies successful initial render under default conditions.
 - 新生成的所有專案都必須包含 `.gitignore`。
 - `node_modules/` 絕對不可加入 Git 版本控制。
 - 任何可重新安裝或重新生成的檔案（如 build、dist、coverage）預設不得提交。
