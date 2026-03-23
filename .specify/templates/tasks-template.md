@@ -19,6 +19,11 @@ quickstarts, or user-facing documentation must produce Traditional Chinese
 artifacts. Task planning must include smoke tests for each primary route and
 each high-risk interactive component to prove legal default, empty, hidden, and
 placeholder states render without runtime errors or browser console errors.
+Tasks must encode both positive ownership and negative ownership so assigned
+surfaces are implemented and unassigned surfaces are explicitly verified as not
+rendering the feature. Tasks must also preserve route-specific and
+component-specific layout rules instead of forcing incompatible shared styles or
+reusable abstractions.
 
 ## Format: `[ID] [P?] [Story] Description`
 
@@ -61,6 +66,7 @@ placeholder states render without runtime errors or browser console errors.
 - [ ] T003 [P] Configure linting and formatting tools
 - [ ] T004 [P] Add or verify `.gitignore` entries for dependencies and generated artifacts
 - [ ] T005 [P] Add smoke-test scaffolding for primary routes and high-risk interactive components
+- [ ] T006 [P] Add task scaffolding for positive-ownership and negative-ownership verification
 
 ---
 
@@ -72,12 +78,12 @@ placeholder states render without runtime errors or browser console errors.
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T006 Setup database schema and migrations framework
-- [ ] T007 [P] Implement authentication/authorization framework
-- [ ] T008 [P] Setup API routing and middleware structure
-- [ ] T009 Create base models/entities that all stories depend on
-- [ ] T010 Configure error handling and logging infrastructure
-- [ ] T011 Setup environment configuration management
+- [ ] T007 Setup database schema and migrations framework
+- [ ] T008 [P] Implement authentication/authorization framework
+- [ ] T009 [P] Setup API routing and middleware structure
+- [ ] T010 Create base models/entities that all stories depend on
+- [ ] T011 Configure error handling and logging infrastructure
+- [ ] T012 Setup environment configuration management
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -93,18 +99,19 @@ Examples of foundational tasks (adjust based on your project):
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T012 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T013 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
-- [ ] T014 [P] [US1] Smoke test for default route/component render in tests/[type]/test_[name].py
+- [ ] T013 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
+- [ ] T014 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T015 [P] [US1] Smoke test for default route/component render in tests/[type]/test_[name].py
+- [ ] T016 [P] [US1] Negative-ownership test proving the feature does not render on out-of-scope surfaces
 
 ### Implementation for User Story 1
 
-- [ ] T015 [P] [US1] Create [Entity1] model in src/models/[entity1].py
-- [ ] T016 [P] [US1] Create [Entity2] model in src/models/[entity2].py
-- [ ] T017 [US1] Implement [Service] in src/services/[service].py (depends on T015, T016)
-- [ ] T018 [US1] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T019 [US1] Add validation and error handling
-- [ ] T020 [US1] Add logging for user story 1 operations
+- [ ] T017 [P] [US1] Create [Entity1] model in src/models/[entity1].py
+- [ ] T018 [P] [US1] Create [Entity2] model in src/models/[entity2].py
+- [ ] T019 [US1] Implement [Service] in src/services/[service].py (depends on T017, T018)
+- [ ] T020 [US1] Implement [endpoint/feature] in src/[location]/[file].py
+- [ ] T021 [US1] Add validation and error handling
+- [ ] T022 [US1] Add logging for user story 1 operations
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -118,16 +125,17 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
 
-- [ ] T021 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T022 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
-- [ ] T023 [P] [US2] Smoke test for default route/component render in tests/[type]/test_[name].py
+- [ ] T023 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
+- [ ] T024 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T025 [P] [US2] Smoke test for default route/component render in tests/[type]/test_[name].py
+- [ ] T026 [P] [US2] Negative-ownership test proving the feature does not render on out-of-scope surfaces
 
 ### Implementation for User Story 2
 
-- [ ] T024 [P] [US2] Create [Entity] model in src/models/[entity].py
-- [ ] T025 [US2] Implement [Service] in src/services/[service].py
-- [ ] T026 [US2] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T027 [US2] Integrate with User Story 1 components (if needed)
+- [ ] T027 [P] [US2] Create [Entity] model in src/models/[entity].py
+- [ ] T028 [US2] Implement [Service] in src/services/[service].py
+- [ ] T029 [US2] Implement [endpoint/feature] in src/[location]/[file].py
+- [ ] T030 [US2] Integrate with User Story 1 components (if needed)
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -141,15 +149,16 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
 
-- [ ] T028 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T029 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
-- [ ] T030 [P] [US3] Smoke test for default route/component render in tests/[type]/test_[name].py
+- [ ] T031 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
+- [ ] T032 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T033 [P] [US3] Smoke test for default route/component render in tests/[type]/test_[name].py
+- [ ] T034 [P] [US3] Negative-ownership test proving the feature does not render on out-of-scope surfaces
 
 ### Implementation for User Story 3
 
-- [ ] T031 [P] [US3] Create [Entity] model in src/models/[entity].py
-- [ ] T032 [US3] Implement [Service] in src/services/[service].py
-- [ ] T033 [US3] Implement [endpoint/feature] in src/[location]/[file].py
+- [ ] T035 [P] [US3] Create [Entity] model in src/models/[entity].py
+- [ ] T036 [US3] Implement [Service] in src/services/[service].py
+- [ ] T037 [US3] Implement [endpoint/feature] in src/[location]/[file].py
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -169,6 +178,8 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX Performance optimization across all stories
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
 - [ ] TXXX [P] Re-check smoke tests for primary routes and high-risk interactive components
+- [ ] TXXX [P] Re-check positive-ownership and negative-ownership coverage
+- [ ] TXXX [P] Re-check shared-style usage against explicit route/component layout requirements
 - [ ] TXXX Security hardening
 - [ ] TXXX [P] Re-check `.gitignore` coverage for dependencies and generated artifacts
 - [ ] TXXX Run quickstart.md validation

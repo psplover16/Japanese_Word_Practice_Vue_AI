@@ -42,6 +42,13 @@
   must be covered by a render-safe strategy. Each primary route and each
   high-risk interactive component must have at least one planned smoke test for
   default initial render behavior.
+- Plans must record both positive ownership and negative ownership for route,
+  view, and component scope. If a feature is assigned to specific surfaces, the
+  plan must also state where that feature must not appear.
+- Shared styles, layout primitives, and reusable UI abstractions may only be
+  reused when the visual behavior and layout requirements are materially the
+  same. Route-specific or component-specific layout rules take precedence over
+  reusable abstractions.
 - Performance-sensitive changes must state the expected budget or measurable
   target before work begins.
 - Any proposed complexity must be justified in writing if it is not the

@@ -81,6 +81,11 @@
   hidden, or placeholder state?
 - How does the system avoid runtime errors, render failures, and browser
   console errors during initial render?
+- Which routes, views, or components are explicitly in scope for this feature,
+  and which related surfaces must explicitly remain out of scope?
+- Are there any route-specific, component-specific, or layout-specific rules
+  that must override shared styles, layout primitives, or reusable UI
+  abstractions?
 
 ## Requirements *(mandatory)*
 
@@ -96,6 +101,11 @@
 - **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- If a feature belongs only to specific routes, views, or components, the
+  requirements MUST state both where it appears and where it must not appear.
+- If a screen or component has explicit layout or sizing rules, the
+  requirements MUST call them out so reusable abstractions cannot silently
+  override them.
 
 *Example of marking unclear requirements:*
 
