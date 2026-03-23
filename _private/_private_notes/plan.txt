@@ -40,7 +40,7 @@ UI planning requirements:
 - mobile的UI 可以參考圖片 @/_private/_private_fileAssets/wordPracticeUI.jpg
 - 桌機版的UI可以參考圖片 @/_private/_private_fileAssets/desktopWordPractice.jpg
 - 最外層容器排版如以下，詳細可以參考圖片 @/_private/_private_fileAssets/wordPracticeUI.jpg
- 該頁標題(該路由的標題，沒有其他東西，置左)    路由切換的按鈕group(靠右)   此處不可斷行
+ 該頁標題(該路由的標題，沒有其他東西，置左)    路由切換的按鈕group(靠右)   此處不可斷行，且在 375px狀態下，不出現橫向捲動、不得破版、裁切、重疊，且內容必須仍可正常辨識。
 router-view 區域應佔滿可用寬度
 - 關於日語的字母與字符的練習，該頁具有以下要求(詳細可以參考圖片 @/_private/_private_fileAssets/wordPracticeUI.jpg)
 - model的UI及card的UI可以參考以下圖片
