@@ -12,6 +12,13 @@ specify init --ai copilot --script ps --here
 AI提交git
 commit with detailed zh-tw log
 
+把目前這個功能分支合進 develop
+git switch develop
+git merge 目前分支名稱
+
+從目前分支切出一個新分支
+git switch -c 新分支名稱
+
 AI回復至head狀態(目前git最新提交狀態)
 git reset --hard HEAD
 git clean -fdx
