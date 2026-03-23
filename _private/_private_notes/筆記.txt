@@ -19,6 +19,9 @@ git merge 目前分支名稱
 從目前分支切出一個新分支
 git switch -c 新分支名稱
 
+刪除指定分支
+git branch -D 分支名
+
 AI回復至head狀態(目前git最新提交狀態)
 git reset --hard HEAD
 git clean -fdx
