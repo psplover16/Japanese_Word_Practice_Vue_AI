@@ -40,6 +40,8 @@ git clean -fdx
 - 新生成的所有專案都必須包含 `.gitignore`。
 - `node_modules/` 絕對不可加入 Git 版本控制。
 - 任何可重新安裝或重新生成的檔案（如 build、dist、coverage）預設不得提交。
+- Plans, tasks, and tests must encode both positive ownership and negative ownership: if a feature is assigned to specific routes, implementation must also verify that it does not appear in unassigned routes.
+
 
 -後續要怎麼測試，也要寫在這
 
