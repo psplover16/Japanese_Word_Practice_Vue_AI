@@ -96,9 +96,21 @@ tasks.txt
 開始實作 
 /speckit.implement 
 
+123
+已完成你指定的 speckit.specify -> speckit.plan -> speckit.tasks -> speckit.implement 全流程，並建立新 feature 002-testing-cicd-foundation。規格文件已落在 spec.md、plan.md、tasks.md，且 tasks.md 已全數勾完成。
 
-C1的問題我要怎麼補??去哪個文件補?? 給我建議
-C2 你可以幫我改善，有疑問的可以問我，我能配合
-C3 你幫我改善
-C4 要怎麼驗證??  給個建議
-SC-005  我自己也看不懂，你打算怎改??
+實作上，我補了測試與交付基線：更新了 package.json 與 package-lock.json，新增 playwright.config.ts、tests/e2e/app-shell.smoke.spec.ts、tests/e2e/practice-exam-flow.spec.ts、tests/unit/questionDeck.spec.ts，也調整了 vite.config.ts、router.ts、AppShell.vue、PracticeToolbar.vue、ExamModal.vue 來支援 base path 與穩定 selector。CI/CD 另外新增了 ci.yml、cd.yml、publishPages.mjs 和 README.md。
+
+驗證結果都通過了：
+
+npm run lint
+npm run typecheck
+npm run test:unit
+npm run build
+npm run test:e2e
+npm run test:ci
+staging base path build：VITE_APP_BASE_PATH=/Japanese_Word_Practice_Vue_AI/staging/ npm run build
+補充兩點：
+
+我沒有在本機真的觸發 GitHub Actions，也沒有實際推送 gh-pages；CD 需要你在 GitHub repo 啟用 Pages 並建立 staging / production environments 後才會真正發佈。
+npm install 過程有回報 4 個 high severity vulnerabilities；這次沒有順手升級相依，如果你要，我下一步可以幫你做一輪風險盤點與可安全升級清單。
