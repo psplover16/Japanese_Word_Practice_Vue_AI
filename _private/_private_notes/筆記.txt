@@ -35,7 +35,7 @@ git clean -fdx
 @/_private/_private_notes/v1/plan.txt
 /speckit.tasks
 @/_private/_private_notes/v1/tasks.txt
-/speckit.implement 
+/speckit.implement
 
 /speckit.analyze Save your analyze report to `analyze.md`
 
