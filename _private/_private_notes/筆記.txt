@@ -2,27 +2,26 @@
 specify init --ai codex --script ps --here --ai-skills            新版本有bug
 uvx --from git+https://github.com/github/spec-kit.git@v0.3.1 specify init --ai codex --script ps --here --ai-skills --force
 
-copilot版本
+copilot版本: 
 specify init --ai copilot --script ps --here
 2. tree /f
 
 在專案先建立
-# AGENTS.md
+# AGENTS.md (放置codex的思考限制器)
 
-AI提交git
+git：
+- AI提交git
 commit with detailed zh-tw log
 
-把目前這個功能分支合進 develop
+- 把目前這個功能分支合進 develop
 git switch develop
 git merge 目前分支名稱
-
-從目前分支切出一個新分支
+- 從目前分支切出一個新分支
 git switch -c 新分支名稱
-
-刪除指定分支
+- 刪除指定分支
 git branch -D 分支名
 
-AI回復至head狀態(目前git最新提交狀態)
+- AI回復至head狀態(目前git最新提交狀態)
 git reset --hard HEAD
 git clean -fdx
 
@@ -38,7 +37,7 @@ git clean -fdx
 @/_private/_private_notes/v1/tasks.txt
 /speckit.implement 
 
-/speckit.analyze Save your analyze report to `analyze-01.md`
+/speckit.analyze Save your analyze report to `analyze.md`
 
 
 步驟一.AI 發想憲法
@@ -64,9 +63,12 @@ specify.txt
 業務規則
 重要限制
 
-步驟三.補充 spec 裡模糊或容易被誤解的地方
+步驟三.補充 spec 裡模糊或容易被誤解的地方，官方把 clarify 定位成「找出並解決 specification 裡的模糊點」，本質上是補充與釐清，所以其實可以合併入specify
 /speckit.clarify
 clarify.txt
+功能具體怎麼算對???
+補充規則
+名詞定義
 邊界條件
 驗收細節
 哪些規則不可合併

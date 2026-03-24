@@ -20,3 +20,15 @@
 5.古語假名
  5-1.是放在checkboxGroupA內部
  5-2.但是功能與相關邏輯，與其他checkbox差距比較大
+
+
+// 以上其實放在specify比較好
+
+以下是正確範例：
+
+## Clarifications
+
+### Session 2026-03-24
+- Q: 在 375px 寬度下，tableA/tableB 若空間不足，允許哪些調整方式？
+  A: 先縮減 td 內距，再視需要縮小字體；禁止橫向捲動、裁切、重疊。
+
