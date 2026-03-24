@@ -4,7 +4,7 @@ import GrammarView from '@/modules/grammar/views/GrammarView.vue';
 import VocabularyView from '@/modules/vocabulary/views/VocabularyView.vue';
 
 export default createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', redirect: '/practice' },
     { path: '/practice', component: PracticeView, meta: { title: '50音' } },

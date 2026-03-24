@@ -30,6 +30,16 @@ export default [
       ...tsPlugin.configs.recommended.rules
     }
   },
+  {
+    files: ['scripts/**/*.mjs'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.node
+      }
+    }
+  },
   ...vuePlugin.configs['flat/recommended'],
   {
     files: ['**/*.vue'],

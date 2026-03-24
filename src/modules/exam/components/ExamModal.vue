@@ -54,6 +54,7 @@ onBeforeUnmount(() => {
       class="fixed inset-0 z-[100] flex h-dvh w-screen items-center justify-center bg-ink/45 px-3 py-4"
     >
       <section
+        data-testid="exam-modal"
         class="surface-card flex h-[300px] w-full max-w-[360px] flex-col overflow-hidden"
         aria-modal="true"
         role="dialog"

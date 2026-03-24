@@ -16,9 +16,15 @@ const { toast, confirmUpdate, dismissToast } = usePwaLifecycle();
 </script>
 
 <template>
-  <div class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(180,90,50,0.12),_transparent_40%),linear-gradient(180deg,_#f8f2ea_0%,_#f4ecdf_100%)]">
+  <div
+    data-testid="app-shell"
+    class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(180,90,50,0.12),_transparent_40%),linear-gradient(180deg,_#f8f2ea_0%,_#f4ecdf_100%)]"
+  >
     <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-2 py-3">
-      <header class="mb-1 flex items-center justify-between gap-2 whitespace-nowrap rounded-lg border border-clay/15 bg-white/75 px-2 py-2 shadow-soft backdrop-blur">
+      <header
+        data-testid="app-header"
+        class="mb-1 flex items-center justify-between gap-2 whitespace-nowrap rounded-lg border border-clay/15 bg-white/75 px-2 py-2 shadow-soft backdrop-blur"
+      >
         <AppHeader :title="title" />
         <RouteTabs />
       </header>

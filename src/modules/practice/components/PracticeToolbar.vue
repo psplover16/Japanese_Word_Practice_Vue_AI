@@ -23,16 +23,22 @@ const recommendedQuestionCount = session.recommendedQuestionCount;
 </script>
 
 <template>
-  <section class="section-card space-y-3">
+  <section data-testid="practice-toolbar" class="section-card space-y-3">
     <div class="flex flex-wrap gap-3">
       <BaseCheckbox v-model="includeHiragana" label="題目包含：平假名" />
       <BaseCheckbox v-model="includeKatakana" label="題目包含：片假名" />
-      <BaseCheckbox :model-value="allKanaSelected" label="全選／全不選" @update:model-value="session.toggleAllKana" />
+      <BaseCheckbox
+        data-testid="toggle-all-kana"
+        :model-value="allKanaSelected"
+        label="全選／全不選"
+        @update:model-value="session.toggleAllKana"
+      />
       <BaseCheckbox :model-value="dakuonSelected" label="濁音／半濁音" @update:model-value="session.toggleDakuon" />
     </div>
 
     <div class="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto]">
       <BaseInput
+        data-testid="question-count-input"
         label="題數"
         :model-value="questionCountInput"
         @update:model-value="session.setQuestionCount"
@@ -53,7 +59,7 @@ const recommendedQuestionCount = session.recommendedQuestionCount;
 
     <div class="flex items-center justify-between gap-2">
       <div class="flex flex-wrap gap-2">
-        <BaseButton variant="primary" :disabled="!canStartExam" @click="emit('startExam')">
+        <BaseButton data-testid="start-exam-button" variant="primary" :disabled="!canStartExam" @click="emit('startExam')">
           送出
         </BaseButton>
         <BaseButton variant="secondary" @click="session.resetAll">重置</BaseButton>
