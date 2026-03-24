@@ -14,8 +14,8 @@ Paths and assets:
 - Use @ as the project root alias.
 - Prefer relative-path based project organization.
 - The project must support PWA.
-- Use images under @/_private/_private_fileAssets/public/icons for PWA-required icons/images.
-- The website icon may reference @/_private/_private_fileAssets/public/vite.ico.
+- Use images under @/_private/_private_fileAssets/v1/public/icons for PWA-required icons/images.
+- The website icon may reference @/_private/_private_fileAssets/v1/public/vite.ico.
 
 Coding rules:
 - Avoid var; use let or const instead.
@@ -37,15 +37,15 @@ Repository hygiene:
 
 UI planning requirements:
 - 全部畫面最外層有一個固定的容器，該容器的padding-y 與 padding-x 分別是12px 8px 
-- mobile的UI 可以參考圖片 @/_private/_private_fileAssets/wordPracticeUI.jpg
-- 桌機版的UI可以參考圖片 @/_private/_private_fileAssets/desktopWordPractice.jpg
-- 最外層容器排版如以下，詳細可以參考圖片 @/_private/_private_fileAssets/wordPracticeUI.jpg
+- mobile的UI 可以參考圖片 @/_private/_private_fileAssets/v1/wordPracticeUI.jpg
+- 桌機版的UI可以參考圖片 @/_private/_private_fileAssets/v1/desktopWordPractice.jpg
+- 最外層容器排版如以下，詳細可以參考圖片 @/_private/_private_fileAssets/v1/wordPracticeUI.jpg
  該頁標題(該路由的標題，沒有其他東西，置左)    路由切換的按鈕group(靠右)   此處不可斷行，且在 375px狀態下，不出現橫向捲動、不得破版、裁切、重疊，且內容必須仍可正常辨識。
 router-view 區域應佔滿可用寬度
-- 關於日語的字母與字符的練習，該頁具有以下要求(詳細可以參考圖片 @/_private/_private_fileAssets/wordPracticeUI.jpg)
+- 關於日語的字母與字符的練習，該頁具有以下要求(詳細可以參考圖片 @/_private/_private_fileAssets/v1/wordPracticeUI.jpg)
 - model的UI及card的UI可以參考以下圖片
-@/_private/_private_fileAssets/modelTest1.jpg
-@/_private/_private_fileAssets/modelTest2.jpg
+@/_private/_private_fileAssets/v1/modelTest1.jpg
+@/_private/_private_fileAssets/v1/modelTest2.jpg
 - 每個區塊的圓弧用0.5rem
 - 按鈕不用橢圓，用方型但是具有弧度 0.25rem，py-1，px-2
 - input 用長方型，弧度為0.25rem，px-2，py則用0.275rem
@@ -54,8 +54,8 @@ router-view 區域應佔滿可用寬度
 
 PWA asset implementation:
 - 採用完全離線模式
-- PWA的圖片請用@/_private/_private_fileAssets/public/icons 該資料夾內部的圖片
-- 網頁的icon可以參考@/_private/_private_fileAssets/public/vite.ico
+- PWA的圖片請用@/_private/_private_fileAssets/v1/public/icons 該資料夾內部的圖片
+- 網頁的icon可以參考@/_private/_private_fileAssets/v1/public/vite.ico
 
 Please generate a plan that includes:
 1. Technical Context

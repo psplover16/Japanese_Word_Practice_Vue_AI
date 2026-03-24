@@ -29,15 +29,14 @@ git clean -fdx
 
 以下功能一次超懶人作法，從步驟二開始，直接到實作，但跳過步驟六
 /speckit.specify
-@/_private/_private_notes/specify.txt
+@/_private/_private_notes/v1/specify.txt
 /speckit.clarify
-@/_private/_private_notes/clarify.txt
+@/_private/_private_notes/v1/clarify.txt
 /speckit.plan
-@/_private/_private_notes/plan.txt
+@/_private/_private_notes/v1/plan.txt
 /speckit.tasks
-@/_private/_private_notes/tasks.txt
+@/_private/_private_notes/v1/tasks.txt
 /speckit.implement 
-
 
 /speckit.analyze Save your analyze report to `analyze-01.md`
 
