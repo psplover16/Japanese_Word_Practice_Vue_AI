@@ -11,7 +11,7 @@ specify init --ai copilot --script ps --here
 
 git：
 - AI提交git
-commit with detailed zh-tw log
+commit with detailed zh-tw log，包含目前全部非 ignored 變更
 
 - 把目前這個功能分支合進 develop
 git switch develop
@@ -41,15 +41,8 @@ git clean -fdx
 
 
 步驟一.AI 發想憲法
-/speckit.constitution Create principles focused on code quality, testing standards, user experience consistency,and performance requirements.
-並且要包含以下規則
-- Add a new rule to the Constitution Keep this doc in English Only. All specifications, plans, and user-facing documentation MUST be written in Traditional Chinese (zh-TW).
-- Legal default states, empty states, hidden states, and placeholder states must never cause runtime errors, render failures, or browser console errors. Each primary route and each high-risk interactive component must include at least one smoke test that verifies successful initial render under default conditions.
-- 新生成的所有專案都必須包含 `.gitignore`。
-- `node_modules/` 絕對不可加入 Git 版本控制。
-- 任何可重新安裝或重新生成的檔案（如 build、dist、coverage）預設不得提交。
-- Plans, tasks, and tests must encode both positive ownership and negative ownership: if a feature is assigned to specific routes, implementation must also verify that it does not appear in unassigned routes.
-- Shared styles, layout primitives, and reusable UI abstractions must only be applied where the visual behavior and layout requirements are materially the same. Convenience or implementation speed must not justify forcing a component into a shared style system that contradicts its explicit specification. When a screen or component has explicit layout or sizing rules, those rules take precedence over reusable style abstractions. Reuse must not override route-specific or component-specific requirements.
+/speckit.constitution
+@/_private/_private_notes/done/constitution.txt
 
 
 -後續要怎麼測試，也要寫在這
@@ -95,6 +88,36 @@ tasks.txt
 步驟七.
 開始實作 
 /speckit.implement 
+
+
+
+
+專案目前的env在cicd注入
+-----------------------------------------------------------------------------------------------
+unitTest 維護與測試及使用
+目前專案的 npm test 就等於 npm run test:unit  (package.json)  把資料夾內的 tests/unit 和 tests/component 一起跑完
+
+npm test  一次確認目前 unit/component 測試有沒有壞
+npx vitest  開發中持續 watch，改完檔案會重跑，最適合「真正拿來用」。
+npx vitest run tests/unit/usePracticeSession.spec.ts  只跑單一測試檔，修 bug 時最快。
+npx vitest -t "route ownership"  只跑某個案例。
+npm run test:ci  本機完整模擬 CI，會跑 lint、typecheck、unit、build、e2e，定義在 package.json (line 15)。 要 push 前跑一次
+
+tests/unit 放純邏輯測試，例如工具函式、composable 狀態流轉。 改 utils 或 composables 時，同步更新
+tests/component 放 Vue 元件行為測試，像 route 對應顯示什麼 panel。可參考 RouteOwnership.spec.ts (line 7)。 改畫面條件渲染、互動或 provider/inject 時，同步更新
+tests/e2e 放完整使用流程，不要把 e2e 的責任塞進 unit test。
+
+DOM 選取盡量用穩定 selector，例如現在已有的 data-testid 做法。
+
+Vitest 測試執行工具(一種常見套件)，會抓 *.test.ts 以及 *.spec.ts 當作測試檔
+Vitest 預設是在 Node.js 環境跑。但 Node.js 本身沒有真的瀏覽器畫面，也沒有完整的 DOM。jsdom 就是一個「用 JavaScript 模擬瀏覽器 DOM 的環境」。
+-----------------------------------------------------------------------------------------------
+virtual:pwa-register 是 vite-plugin-pwa 提供的寫法。 registerSW 是由 vite-plugin-pwa 產生並輸出的函式。
+-----------------------------------------------------------------------------------------------
+CI 自動品管 / 自動驗收：一 push 或開 PR，系統自動幫你檢查程式有沒有壞，先擋住有問題的程式碼不要混進主分支
+CD 持續部署 / 持續交付：當程式通過驗證後，自動把它部署到某個環境，讓使用者或測試人員真的可以打開網站
+
+
 
 123
 已完成你指定的 speckit.specify -> speckit.plan -> speckit.tasks -> speckit.implement 全流程，並建立新 feature 002-testing-cicd-foundation。規格文件已落在 spec.md、plan.md、tasks.md，且 tasks.md 已全數勾完成。
