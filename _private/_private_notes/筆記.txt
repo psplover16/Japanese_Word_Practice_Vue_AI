@@ -137,3 +137,5 @@ staging base path build：VITE_APP_BASE_PATH=/Japanese_Word_Practice_Vue_AI/stag
 
 我沒有在本機真的觸發 GitHub Actions，也沒有實際推送 gh-pages；CD 需要你在 GitHub repo 啟用 Pages 並建立 staging / production environments 後才會真正發佈。
 npm install 過程有回報 4 個 high severity vulnerabilities；這次沒有順手升級相依，如果你要，我下一步可以幫你做一輪風險盤點與可安全升級清單。
+
+長音規則要添加翻譯
