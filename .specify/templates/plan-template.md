@@ -37,6 +37,9 @@
 - The repository must include a `.gitignore` file. `node_modules/`, `build/`,
   `dist/`, `coverage/`, and other re-generatable artifacts must stay ignored by
   default.
+- If the planned work changes repository structure, module boundaries, shared
+  infrastructure, route composition, test structure, or deployment structure,
+  the plan must call out the required update to `PROJECT_ARCHITECTURE.md`.
 - Code changes must define the relevant test strategy before implementation.
 - Legal default states, empty states, hidden states, and placeholder states
   must be covered by a render-safe strategy. Each primary route and each
@@ -114,6 +117,10 @@ ios/ or android/
 
 **Structure Decision**: [Document the selected structure and reference the real
 directories captured above]
+
+**Architecture Document Impact**: [State whether `PROJECT_ARCHITECTURE.md`
+requires updates. If yes, describe which directories, modules, or files must be
+reflected.]
 
 ## Complexity Tracking
 

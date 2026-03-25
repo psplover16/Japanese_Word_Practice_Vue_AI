@@ -1,9 +1,8 @@
 <!--
 Sync Impact Report
-Version change: 1.1.0 -> 1.2.0
-Modified principles: II. Test-First Verification; III. UX Consistency;
-V. Documentation & Repository Hygiene
-Added sections: VI. Scope Ownership & Reuse Boundaries
+Version change: 1.2.0 -> 1.3.0
+Modified principles: V. Documentation & Repository Hygiene
+Added sections: none
 Removed sections: none
 Templates requiring updates: .specify/templates/plan-template.md (updated),
 .specify/templates/spec-template.md (updated),
@@ -62,7 +61,15 @@ Every new project must include a `.gitignore` file at creation time.
 re-generatable artifacts such as `build/`, `dist/`, and `coverage/` must be
 excluded from version control by default. Generated files should remain
 untracked unless a strong product reason is documented and approved in the
-specification or maintenance task.
+specification or maintenance task. `PROJECT_ARCHITECTURE.md` is a required
+living document and must always reflect the current repository structure and
+the functional role of each major directory, module, and significant source
+file. Any work that changes the shape of the codebase, including additions,
+removals, renames, file moves, module extraction, introduction of shared
+utilities, route changes, test structure changes, or deployment-related
+structural changes, must update `PROJECT_ARCHITECTURE.md` before the work is
+considered complete. Reviews must treat architecture-document drift as a
+documentation defect.
 
 ### VI. Scope Ownership & Reuse Boundaries
 Features must only appear in the routes, views, components, and surfaces that
@@ -101,4 +108,4 @@ wording fixes. Compliance review is mandatory for all specs, plans, and
 implementation changes, and any exception must be documented with a clear
 expiration or remediation path.
 
-**Version**: 1.2.0 | **Ratified**: 2026-03-21 | **Last Amended**: 2026-03-23
+**Version**: 1.3.0 | **Ratified**: 2026-03-21 | **Last Amended**: 2026-03-25

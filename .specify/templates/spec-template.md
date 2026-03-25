@@ -137,3 +137,6 @@
 - Do not commit `node_modules/`.
 - Do not commit re-generatable artifacts such as `build/`, `dist/`, or
   `coverage/` unless the specification explicitly justifies an exception.
+- If the feature changes repository structure, module boundaries, shared
+  utilities, route structure, test structure, or deployment structure, the
+  specification MUST call out the required update to `PROJECT_ARCHITECTURE.md`.
