@@ -1,0 +1,153 @@
+1. 擇一
+specify init --ai codex --script ps --here --ai-skills            新版本有bug
+uvx --from git+https://github.com/github/spec-kit.git@v0.3.1 specify init --ai codex --script ps --here --ai-skills --force
+
+copilot版本: 
+specify init --ai copilot --script ps --here
+2. tree /f
+
+在專案先建立
+# AGENTS.md (放置codex的思考限制器)
+
+git：
+- AI提交git
+commit with detailed zh-tw log，包含目前全部非 ignored 變更
+
+- 把目前這個功能分支合進 develop
+git switch develop
+git merge 目前分支名稱
+- 從目前分支切出一個新分支
+git switch -c 新分支名稱
+- 刪除指定分支
+git branch -D 分支名
+
+- AI回復至head狀態(目前git最新提交狀態)
+git reset --hard HEAD
+git clean -fdx
+
+
+以下功能一次超懶人作法，從步驟二開始，直接到實作，但跳過步驟六
+/speckit.specify
+@/_private/_private_notes/v1/specify.txt
+/speckit.clarify
+@/_private/_private_notes/v1/clarify.txt
+/speckit.plan
+@/_private/_private_notes/v1/plan.txt
+/speckit.tasks
+@/_private/_private_notes/v1/tasks.txt
+/speckit.implement
+
+/speckit.analyze Save your analyze report to `analyze.md`
+
+
+步驟一.AI 發想憲法
+/speckit.constitution
+@/_private/_private_notes/done/constitution.txt
+
+
+-後續要怎麼測試，也要寫在這
+
+步驟二. 提供需求，我要做什麼、為什麼做、使用者要得到什麼
+/speckit.specify 
+specify.txt
+功能需求
+使用者故事
+驗收目標
+業務規則
+重要限制
+
+步驟三.補充 spec 裡模糊或容易被誤解的地方，官方把 clarify 定位成「找出並解決 specification 裡的模糊點」，本質上是補充與釐清，所以其實可以合併入specify
+/speckit.clarify
+clarify.txt
+功能具體怎麼算對???
+補充規則
+名詞定義
+邊界條件
+驗收細節
+哪些規則不可合併
+UI 行為細節
+特殊例外
+
+步驟四.制定開發計畫，怎麼做
+/speckit.plan
+plan.txt
+
+步驟五. 規劃任務清單
+/speckit.tasks
+tasks.txt
+可以補充限制，比如：
+任務拆解粒度要求
+要不要按 user story 分組
+每個 task 要不要對應 requirement ID
+哪些條目不得合併
+
+步驟六.
+產生規格分析報告 
+/speckit.analyze Save your analyze report to `analyze-01.md` 
+
+步驟七.
+開始實作 
+/speckit.implement 
+
+
+
+
+專案目前的env在cicd注入
+-----------------------------------------------------------------------------------------------
+unitTest 維護與測試及使用
+目前專案的 npm test 就等於 npm run test:unit  (package.json)  把資料夾內的 tests/unit 和 tests/component 一起跑完
+
+npm test  一次確認目前 unit/component 測試有沒有壞
+npx vitest  開發中持續 watch，改完檔案會重跑，最適合「真正拿來用」。
+npx vitest run tests/unit/usePracticeSession.spec.ts  只跑單一測試檔，修 bug 時最快。
+npx vitest -t "route ownership"  只跑某個案例。
+npm run test:ci  本機完整模擬 CI，會跑 lint、typecheck、unit、build、e2e，定義在 package.json (line 15)。 要 push 前跑一次
+
+tests/unit 放純邏輯測試，例如工具函式、composable 狀態流轉。 改 utils 或 composables 時，同步更新
+tests/component 放 Vue 元件行為測試，像 route 對應顯示什麼 panel。可參考 RouteOwnership.spec.ts (line 7)。 改畫面條件渲染、互動或 provider/inject 時，同步更新
+tests/e2e 放完整使用流程，不要把 e2e 的責任塞進 unit test。
+
+DOM 選取盡量用穩定 selector，例如現在已有的 data-testid 做法。
+
+Vitest 測試執行工具(一種常見套件)，會抓 *.test.ts 以及 *.spec.ts 當作測試檔
+Vitest 預設是在 Node.js 環境跑。但 Node.js 本身沒有真的瀏覽器畫面，也沒有完整的 DOM。jsdom 就是一個「用 JavaScript 模擬瀏覽器 DOM 的環境」。
+-----------------------------------------------------------------------------------------------
+virtual:pwa-register 是 vite-plugin-pwa 提供的寫法。 registerSW 是由 vite-plugin-pwa 產生並輸出的函式。
+-----------------------------------------------------------------------------------------------
+E2E 是 End-to-End 測試，意思是「站在使用者角度，從最外層真的把整條流程跑一次」。
+
+安裝 (npm ci 把 @playwright/test 安裝進 node_modules。 npx playwright install chromium：安裝「Playwright 要拿來開的瀏覽器」)
+npm ci
+npx playwright install chromium
+平常執行：
+npm run test:e2e
+只跑單一檔案：
+npx playwright test tests/e2e/practice-exam-flow.spec.ts
+想看互動式除錯介面：
+npx playwright test --ui
+想看報告：
+npx playwright show-report
+列出幾隻E2E
+npm run test:e2e -- --list
+
+Playwright 會自動啟動網站 (playwright.config.ts裡面的webServer)
+
+後續維護與新增
+1. 挑「值得用 E2E 保護」的情境，不要先想元件，要先想使用者流程。
+2. 確認這個流程有沒有穩定 selector；能用 getByRole 就用，會常變的元素就補 data-testid。
+getByRole 是 Playwright 用來「用無障礙語意找元素」的方法。 ex. page.getByRole('button', { name: '開始測驗' })
+3. 在 tests/e2e 新增一支 *.spec.ts，命名直接反映流程，例如 unknown-result-flow.spec.ts。
+4. 共用進站、切頁、常用操作，盡量抽到 tests/e2e/testUtils.ts，不要每支測試都重寫。
+
+-----------------------------------------------------------------------------------------------
+CI 自動品管 / 自動驗收：一 push 或開 PR，系統自動幫你檢查程式有沒有壞，先擋住有問題的程式碼不要混進主分支
+CI.yml 內部validate.steps 有好多個stage(驗證階段)
+-------------
+CD 持續部署 / 持續交付：當程式通過驗證後，自動把它部署到某個環境，讓使用者或測試人員真的可以打開網站
+CD workflow 要成功，而且 GitHub Pages 也要正確設定成從 gh-pages branch 提供內容。
+push 到 dev >> staging(測試站) >> https://psplover16.github.io/Japanese_Word_Practice_Vue_AI/staging/
+push 到 main >> production >> https://psplover16.github.io/Japanese_Word_Practice_Vue_AI/
+-----------------------------------------------------------------------------------------------
+
+
+長音規則要添加翻譯
