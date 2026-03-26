@@ -114,28 +114,40 @@ Vitest 預設是在 Node.js 環境跑。但 Node.js 本身沒有真的瀏覽器�
 -----------------------------------------------------------------------------------------------
 virtual:pwa-register 是 vite-plugin-pwa 提供的寫法。 registerSW 是由 vite-plugin-pwa 產生並輸出的函式。
 -----------------------------------------------------------------------------------------------
-CI 自動品管 / 自動驗收：一 push 或開 PR，系統自動幫你檢查程式有沒有壞，先擋住有問題的程式碼不要混進主分支
-CD 持續部署 / 持續交付：當程式通過驗證後，自動把它部署到某個環境，讓使用者或測試人員真的可以打開網站
+E2E 是 End-to-End 測試，意思是「站在使用者角度，從最外層真的把整條流程跑一次」。
 
-
-
-123
-已完成你指定的 speckit.specify -> speckit.plan -> speckit.tasks -> speckit.implement 全流程，並建立新 feature 002-testing-cicd-foundation。規格文件已落在 spec.md、plan.md、tasks.md，且 tasks.md 已全數勾完成。
-
-實作上，我補了測試與交付基線：更新了 package.json 與 package-lock.json，新增 playwright.config.ts、tests/e2e/app-shell.smoke.spec.ts、tests/e2e/practice-exam-flow.spec.ts、tests/unit/questionDeck.spec.ts，也調整了 vite.config.ts、router.ts、AppShell.vue、PracticeToolbar.vue、ExamModal.vue 來支援 base path 與穩定 selector。CI/CD 另外新增了 ci.yml、cd.yml、publishPages.mjs 和 README.md。
-
-驗證結果都通過了：
-
-npm run lint
-npm run typecheck
-npm run test:unit
-npm run build
+安裝 (npm ci 把 @playwright/test 安裝進 node_modules。 npx playwright install chromium：安裝「Playwright 要拿來開的瀏覽器」)
+npm ci
+npx playwright install chromium
+平常執行：
 npm run test:e2e
-npm run test:ci
-staging base path build：VITE_APP_BASE_PATH=/Japanese_Word_Practice_Vue_AI/staging/ npm run build
-補充兩點：
+只跑單一檔案：
+npx playwright test tests/e2e/practice-exam-flow.spec.ts
+想看互動式除錯介面：
+npx playwright test --ui
+想看報告：
+npx playwright show-report
+列出幾隻E2E
+npm run test:e2e -- --list
 
-我沒有在本機真的觸發 GitHub Actions，也沒有實際推送 gh-pages；CD 需要你在 GitHub repo 啟用 Pages 並建立 staging / production environments 後才會真正發佈。
-npm install 過程有回報 4 個 high severity vulnerabilities；這次沒有順手升級相依，如果你要，我下一步可以幫你做一輪風險盤點與可安全升級清單。
+Playwright 會自動啟動網站 (playwright.config.ts裡面的webServer)
+
+後續維護與新增
+1. 挑「值得用 E2E 保護」的情境，不要先想元件，要先想使用者流程。
+2. 確認這個流程有沒有穩定 selector；能用 getByRole 就用，會常變的元素就補 data-testid。
+getByRole 是 Playwright 用來「用無障礙語意找元素」的方法。 ex. page.getByRole('button', { name: '開始測驗' })
+3. 在 tests/e2e 新增一支 *.spec.ts，命名直接反映流程，例如 unknown-result-flow.spec.ts。
+4. 共用進站、切頁、常用操作，盡量抽到 tests/e2e/testUtils.ts，不要每支測試都重寫。
+
+-----------------------------------------------------------------------------------------------
+CI 自動品管 / 自動驗收：一 push 或開 PR，系統自動幫你檢查程式有沒有壞，先擋住有問題的程式碼不要混進主分支
+CI.yml 內部validate.steps 有好多個stage(驗證階段)
+-------------
+CD 持續部署 / 持續交付：當程式通過驗證後，自動把它部署到某個環境，讓使用者或測試人員真的可以打開網站
+CD workflow 要成功，而且 GitHub Pages 也要正確設定成從 gh-pages branch 提供內容。
+push 到 dev >> staging(測試站) >> https://psplover16.github.io/Japanese_Word_Practice_Vue_AI/staging/
+push 到 main >> production >> https://psplover16.github.io/Japanese_Word_Practice_Vue_AI/
+-----------------------------------------------------------------------------------------------
+
 
 長音規則要添加翻譯
