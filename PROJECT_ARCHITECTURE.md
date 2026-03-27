@@ -49,7 +49,7 @@ Japanese_Word_Practice_Vue_AI/
 ```text
 src/
 ├─ app/ (應用程式入口層：啟動 Vue、切路由、提供全域殼層)
-│  ├─ AppShell.vue (整個網站的外框；建立 PracticeSession、提供 RouterView、頁首、分頁導覽與 PWA Toast)
+│  ├─ AppShell.vue (整個網站的外框；建立 PracticeSession、提供 RouterView、頁首、分頁導覽與 PWA Toast，並處理 375px 頁首/route tabs 的單列可讀性)
 │  ├─ main.ts (Vue 啟動入口；createApp(AppShell).use(router).mount('#app'))
 │  └─ router.ts (路由表；定義 /practice、/grammar、/vocabulary 與頁面標題)
 │
@@ -76,26 +76,26 @@ src/
 │  │
 │  ├─ practice/ (主練習頁模組：假名選擇、練習設定、規則說明)
 │  │  ├─ components/
-│  │  │  ├─ ChoonRuleSection.vue (長音規則說明區塊)
+│  │  │  ├─ ChoonRuleSection.vue (長音規則單一大表格；以規則列與例字三段資訊列呈現長音閱讀規則)
 │  │  │  ├─ DakuonTable.vue (濁音 / 半濁音表格)
-│  │  │  ├─ DakuonYoonSection.vue (濁音拗音示例區塊)
+│  │  │  ├─ DakuonYoonSection.vue (合拗音矩陣區塊；列標頭與內容格都顯示羅馬音)
 │  │  │  ├─ HatsuonSection.vue (撥音規則說明區塊)
-│  │  │  ├─ LoanwordSection.vue (外來語 / 特殊拼寫示例區塊)
+│  │  │  ├─ LoanwordSection.vue (外來語擴張矩陣；第一列為母音、第一欄為基底音，內容格以上假名下羅馬音顯示)
 │  │  │  ├─ PracticeToolbar.vue (練習頁控制列；切換平假名/片假名、全選、題數、開始測驗、重設)
 │  │  │  ├─ SeionTable.vue (清音表格)
 │  │  │  ├─ SelectionDetailPanel.vue (顯示目前已選假名與選項摘要的側邊/明細面板)
-│  │  │  ├─ SeionYoonSection.vue (清音拗音示例區塊)
+│  │  │  ├─ SeionYoonSection.vue (清音拗音矩陣區塊；標頭列、列標頭與內容格都顯示羅馬音)
 │  │  │  ├─ SokuonSection.vue (促音規則說明區塊)
 │  │  │  └─ SpecialSyllableSection.vue (特殊音節 / 補充說明區塊)
 │  │  ├─ composables/
 │  │  │  └─ usePracticeSession.ts (練習頁最核心狀態；管理選字、題數、自動計算、全選、provide/inject)
 │  │  ├─ data/
 │  │  │  ├─ kanaData.ts (五十音、濁音、列欄位與所有 Kana cell 的主資料)
-│  │  │  └─ specialSyllableData.ts (促音、撥音、拗音、長音、特殊拼音等靜態說明資料)
+│  │  │  └─ specialSyllableData.ts (促音、撥音、拗音、長音與外來語矩陣的結構化靜態說明資料)
 │  │  ├─ types/
-│  │  │  └─ practice.ts (練習模組的型別定義，例如 KanaCell、表格列、明細項目)
+│  │  │  └─ practice.ts (練習模組的型別定義，例如 KanaCell、長音規則列、拗音格、外來語矩陣列與明細項目)
 │  │  └─ views/
-│  │     └─ PracticeView.vue (主練習頁；組裝 toolbar、表格、規則區塊、最近結果與 ExamModal)
+│  │     └─ PracticeView.vue (主練習頁；組裝 toolbar、表格、規則區塊、最近結果與 ExamModal，並確保下半部靜態區塊首屏同步渲染)
 │  │
 │  ├─ pwa/ (PWA 安裝 / 更新體驗模組)
 │  │  ├─ composables/
@@ -115,7 +115,7 @@ src/
 │  │  ├─ BaseButton.vue (全站共用按鈕元件)
 │  │  ├─ BaseCheckbox.vue (全站共用核取方塊元件)
 │  │  ├─ BaseInput.vue (全站共用輸入框元件)
-│  │  ├─ RouteTabs.vue (頁面分頁切換導覽列)
+│  │  ├─ RouteTabs.vue (頁面分頁切換導覽列；在 375px 下維持 route tabs 單列可辨識)
 │  │  └─ ToastBanner.vue (全站共用 Toast 提示；主要用於 PWA 更新 / 離線提示)
 │  └─ utils/
 │     ├─ questionCount.ts (依已選假名數與是否包含平假名/片假名，計算建議題數)
@@ -124,7 +124,7 @@ src/
 │     └─ storageGuard.ts (localStorage 讀寫保護工具；含 JSON parse 驗證與移除壞資料)
 │
 ├─ styles/ (全域樣式層)
-│  └─ main.css (全域 CSS 與 Tailwind / 主題樣式入口)
+│  └─ main.css (全域 CSS 與 Tailwind / 主題樣式入口；含 `/practice` 專用表格與 375px 密度退讓樣式)
 │
 └─ env.d.ts (Vite / TypeScript 環境型別宣告)
 ```
@@ -135,15 +135,19 @@ src/
 tests/
 ├─ component/ (Vue 元件測試)
 │  ├─ AppShellSmoke.spec.ts (AppShell 基本渲染與核心外框 smoke test)
+│  ├─ ChoonRuleSection.spec.ts (長音規則大表格的結構與例字三段資訊測試)
 │  ├─ ExamModal.spec.ts (ExamModal 的關鍵互動與顯示測試)
-│  ├─ PracticeViewSmoke.spec.ts (PracticeView 的基本渲染與最近結果互動測試)
-│  ├─ RouteOwnership.spec.ts (驗證不同頁面是否顯示正確面板)
+│  ├─ LoanwordSection.spec.ts (外來語矩陣的標頭、內容格與假名/羅馬音呈現測試)
+│  ├─ PracticeViewSmoke.spec.ts (PracticeView 的基本渲染、下半部區塊首屏存在與最近結果互動測試)
+│  ├─ RouteOwnership.spec.ts (驗證 `/practice` 的 feature ownership 與其他頁面的 negative ownership)
 │  ├─ SelectionDetailPanel.spec.ts (選取明細面板的顯示邏輯測試)
-│  └─ testUtils.ts (元件測試共用 helper；例如先 provide PracticeSession 再 mount)
+│  ├─ YoonSections.spec.ts (清音拗音與合拗音矩陣的全表羅馬音測試)
+│  └─ testUtils.ts (元件測試共用 helper；例如先 provide PracticeSession 再 mount，並可傳入額外 mount options)
 ├─ e2e/ (Playwright 端到端測試)
 │  ├─ app-shell.smoke.spec.ts (整個網站 shell 與基本進站流程 smoke test)
+│  ├─ practice-layout.smoke.spec.ts (375px 下 `/practice` 首屏、表格可讀性與無水平捲動 smoke test)
 │  ├─ practice-exam-flow.spec.ts (從選字到開始測驗的完整流程測試)
-│  └─ testUtils.ts (e2e 共用 helper)
+│  └─ testUtils.ts (e2e 共用 helper；含主要 tabs 與無水平捲動斷言)
 ├─ mocks/ (測試替身 / mock 模組)
 │  └─ pwaRegisterMock.ts (mock `virtual:pwa-register`，讓測試不真的註冊 service worker)
 ├─ unit/ (純邏輯單元測試)
@@ -160,7 +164,9 @@ tests/
 ```text
 specs/ (每個功能需求的規格資料夾)
 ├─ 001-japanese-pwa-study/ (第一階段功能規格：主功能、畫面契約、研究、任務拆解)
-└─ 002-testing-cicd-foundation/ (第二階段規格：測試與 CI/CD 基礎建設)
+├─ 002-testing-cicd-foundation/ (第二階段規格：測試與 CI/CD 基礎建設)
+├─ 003-practice-romaji-layout/ (第三階段規格：字母練習排版與羅馬音補強)
+└─ 004-romaji-layout-stability/ (第四階段規格：長音大表格、外來語矩陣、首屏穩定渲染與 375px 補強)
 
 .specify/ (規格導向開發工具資源)
 ├─ templates/ (spec、plan、tasks 等模板)
