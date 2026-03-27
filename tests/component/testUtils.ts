@@ -4,7 +4,11 @@ import { mount } from '@vue/test-utils';
 import { createPracticeSession, providePracticeSession } from '@/modules/practice/composables/usePracticeSession';
 import type { PracticeSession } from '@/modules/practice/composables/usePracticeSession';
 
-export function mountWithPracticeSession(component: Component, configure?: (session: PracticeSession) => void) {
+export function mountWithPracticeSession(
+  component: Component,
+  configure?: (session: PracticeSession) => void,
+  mountOptions?: Parameters<typeof mount>[1]
+) {
   const session = createPracticeSession();
   configure?.(session);
 
@@ -21,6 +25,6 @@ export function mountWithPracticeSession(component: Component, configure?: (sess
 
   return {
     session,
-    wrapper: mount(Wrapper)
+    wrapper: mount(Wrapper, mountOptions)
   };
 }

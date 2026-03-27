@@ -1,25 +1,30 @@
 <script setup lang="ts">
-import { seionYoonRows } from '@/modules/practice/data/specialSyllableData';
+import { seionYoonRows, yoonColumnHeaders } from '@/modules/practice/data/specialSyllableData';
 </script>
 
 <template>
-  <section class="section-card space-y-2">
+  <section data-testid="seion-yoon-section" class="section-card space-y-2" v-once>
     <h2 class="text-sm font-semibold text-ink">清音拗音：由 i 段假名接上小や・ゆ・よ，整體要一口氣連讀。</h2>
     <div class="table-shell">
-      <table class="fixed-grid-table text-xs">
+      <table class="fixed-grid-table practice-grid-table text-xs">
         <thead>
           <tr>
-            <th class="kana-header border-b border-clay/10 px-2 py-2"></th>
-            <th class="kana-header border-b border-l border-clay/10 px-2 py-2">や / ヤ<br />ya</th>
-            <th class="kana-header border-b border-l border-clay/10 px-2 py-2">ゆ / ユ<br />yu</th>
-            <th class="kana-header border-b border-l border-clay/10 px-2 py-2">よ / ヨ<br />yo</th>
+            <th class="practice-grid-header-cell border-b border-clay/10"></th>
+            <th v-for="header in yoonColumnHeaders" :key="header.key" class="practice-grid-header-cell border-b border-l border-clay/10">
+              <span class="practice-kana-text">{{ header.kana }}</span>
+              <span class="practice-romaji-text">{{ header.romaji }}</span>
+            </th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="row in seionYoonRows" :key="row.label">
-            <th class="kana-header border-b border-clay/10 px-2 py-2">{{ row.label }}</th>
-            <td v-for="value in row.values" :key="value" class="border-b border-l border-clay/10 px-2 py-2 text-center">
-              {{ value }}
+          <tr v-for="row in seionYoonRows" :key="row.header.key">
+            <th class="practice-grid-header-cell border-b border-clay/10">
+              <span class="practice-kana-text">{{ row.header.kana }}</span>
+              <span class="practice-romaji-text">{{ row.header.romaji }}</span>
+            </th>
+            <td v-for="cell in row.cells" :key="cell.kana" class="practice-grid-cell border-b border-l border-clay/10">
+              <span class="practice-kana-text">{{ cell.kana }}</span>
+              <span class="practice-romaji-text">{{ cell.romaji }}</span>
             </td>
           </tr>
         </tbody>

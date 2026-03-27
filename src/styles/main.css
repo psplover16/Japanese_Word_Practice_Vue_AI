@@ -29,6 +29,14 @@ textarea {
 }
 
 @layer components {
+  .app-shell-frame {
+    @apply min-w-0;
+  }
+
+  .app-shell-header {
+    @apply min-w-0;
+  }
+
   .surface-card {
     @apply rounded-lg border border-clay/15 bg-white/80 shadow-soft backdrop-blur;
   }
@@ -57,7 +65,125 @@ textarea {
     @apply bg-clay/15;
   }
 
+  .route-tabs {
+    @apply shrink-0 whitespace-nowrap;
+  }
+
+  .route-tab-link {
+    @apply whitespace-nowrap rounded border;
+  }
+
+  .practice-reference-grid {
+    @apply min-w-0;
+  }
+
+  .practice-static-stack {
+    @apply min-w-0;
+  }
+
+  .practice-grid-header-cell {
+    @apply kana-header px-2 py-2 text-center align-middle;
+  }
+
+  .practice-grid-cell {
+    @apply px-2 py-2 text-center align-middle text-ink;
+  }
+
+  .practice-kana-cell {
+    @apply whitespace-nowrap text-center;
+  }
+
+  .practice-kana-text {
+    @apply block whitespace-nowrap text-sm font-semibold text-ink;
+  }
+
+  .practice-romaji-text {
+    @apply block text-[11px] text-ink/70;
+  }
+
+  .practice-translation-text {
+    @apply block text-sm text-ink/80;
+  }
+
+  .practice-long-vowel-romaji-text {
+    @apply block text-xs text-ink/75 sm:text-sm;
+  }
+
+  .practice-long-vowel-translation-text {
+    @apply block text-base text-ink/85 sm:text-[1.0625rem];
+  }
+
+  .practice-placeholder-text {
+    @apply block text-sm font-semibold text-ink/45;
+  }
+
+  .practice-long-vowel-rule-cell {
+    @apply border-b border-clay/10 bg-sand/70 px-2 py-2 text-left align-middle text-sm;
+  }
+
+  .practice-long-vowel-cell {
+    @apply border-b border-clay/10 px-2 py-2 align-middle;
+  }
+
+  .practice-long-vowel-example-cell {
+    @apply text-left;
+  }
+
+  .practice-long-vowel-kana-text {
+    @apply text-left;
+  }
+
   .detail-pill {
     @apply inline-flex items-center gap-1 rounded-full bg-sand/80 px-2 py-1 text-xs font-medium text-ink;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-shell-header {
+    gap: 0.375rem;
+  }
+
+  .route-tab-link {
+    padding: 0.25rem 0.375rem;
+  }
+
+  .practice-grid-header-cell,
+  .practice-grid-cell,
+  .practice-long-vowel-rule-cell,
+  .practice-long-vowel-cell {
+    padding: 0.375rem 0.25rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .route-tab-link {
+    font-size: 0.6875rem;
+  }
+
+  .practice-grid-header-cell,
+  .practice-grid-cell,
+  .practice-long-vowel-rule-cell,
+  .practice-long-vowel-cell {
+    font-size: 0.6875rem;
+  }
+
+  .practice-kana-text {
+    font-size: 0.75rem;
+  }
+
+  .practice-romaji-text {
+    font-size: 0.625rem;
+  }
+
+  .practice-translation-text {
+    font-size: 0.6875rem;
+  }
+
+  .practice-long-vowel-romaji-text {
+    font-size: 0.75rem;
+  }
+
+  .practice-long-vowel-translation-text {
+    font-size: 0.8125rem;
   }
 }

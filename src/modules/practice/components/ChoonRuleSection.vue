@@ -1,21 +1,34 @@
 <script setup lang="ts">
-import { choonRuleRows } from '@/modules/practice/data/specialSyllableData';
+import { longVowelRows } from '@/modules/practice/data/specialSyllableData';
 </script>
 
 <template>
-  <section class="section-card space-y-2">
+  <section data-testid="choon-section" class="section-card space-y-2" v-once>
     <h2 class="text-sm font-semibold text-ink">長音規則：不同拼寫形式都在提醒同一個母音要拉長。</h2>
-    <div class="grid gap-2 md:grid-cols-2">
-      <article
-        v-for="row in choonRuleRows"
-        :key="row.label"
-        class="rounded-lg border border-clay/15 bg-white/70 p-3"
-      >
-        <h3 class="text-center text-sm font-semibold text-ink">{{ row.label }}</h3>
-        <div class="mt-2 space-y-1 text-center text-sm text-ink/80">
-          <p v-for="value in row.values" :key="value">{{ value }}</p>
-        </div>
-      </article>
+    <div class="table-shell">
+      <table class="content-fit-table practice-long-vowel-table text-sm">
+        <tbody>
+          <template v-for="row in longVowelRows" :key="row.id">
+            <tr v-if="row.kind === 'rule'" class="practice-long-vowel-rule-row">
+              <th colspan="3" class="practice-long-vowel-rule-cell">
+                <span class="font-semibold text-ink">{{ row.groupTitle }}</span>
+                <span class="text-ink/80">：{{ row.ruleText }}</span>
+              </th>
+            </tr>
+            <tr v-else class="practice-long-vowel-example-row">
+              <td class="practice-long-vowel-cell practice-long-vowel-example-cell">
+                <span class="practice-kana-text practice-long-vowel-kana-text">{{ row.example?.kana }}</span>
+              </td>
+              <td class="practice-long-vowel-cell practice-long-vowel-example-cell">
+                <span class="practice-long-vowel-romaji-text">{{ row.example?.romaji }}</span>
+              </td>
+              <td class="practice-long-vowel-cell practice-long-vowel-example-cell">
+                <span class="practice-long-vowel-translation-text">{{ row.example?.translation }}</span>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
     </div>
   </section>
 </template>
