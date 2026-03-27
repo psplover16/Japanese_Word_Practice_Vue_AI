@@ -24,6 +24,16 @@ describe('PracticeView', () => {
     expect(wrapper.text()).toContain('-');
   });
 
+  it('首次 render 時即可看到濁音／半濁音以下的參考區塊', () => {
+    const { wrapper } = mountWithPracticeSession(PracticeView);
+
+    expect(wrapper.find('[data-testid="practice-reference-sections"]').exists()).toBe(true);
+    expect(wrapper.find('[data-testid="seion-yoon-section"]').exists()).toBe(true);
+    expect(wrapper.find('[data-testid="dakuon-yoon-section"]').exists()).toBe(true);
+    expect(wrapper.find('[data-testid="loanword-section"]').exists()).toBe(true);
+    expect(wrapper.find('[data-testid="choon-section"]').exists()).toBe(true);
+  });
+
   it('進入第一頁且已有最近一次結果時會觸發 smooth scroll', async () => {
     vi.useFakeTimers();
     const scrollSpy = vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined);

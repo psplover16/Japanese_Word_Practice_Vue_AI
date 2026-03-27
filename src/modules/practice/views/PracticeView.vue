@@ -105,13 +105,13 @@ onBeforeUnmount(() => {
   <div class="space-y-1 py-1">
     <PracticeToolbar :has-latest-result="Boolean(examSession.latestUnknownSnapshot.value)" @start-exam="startExam" @clear-latest-result="clearLatestResult" />
 
-    <div class="grid gap-1 xl:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.9fr)]">
+    <div data-testid="practice-main-grid" class="practice-reference-grid grid gap-1 xl:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.9fr)]">
       <div class="space-y-1">
         <SeionTable />
         <DakuonTable />
       </div>
 
-      <div class="space-y-1">
+      <div data-testid="practice-reference-sections" class="practice-static-stack space-y-1" v-once>
         <HatsuonSection />
         <SokuonSection />
         <SeionYoonSection />
