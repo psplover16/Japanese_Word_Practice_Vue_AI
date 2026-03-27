@@ -28,13 +28,14 @@ git clean -fdx
 
 以下功能一次超懶人作法，從步驟二開始，直接到實作，但跳過步驟六
 /speckit.specify
-@/_private/_private_notes/v1/specify.txt
+@/_private/_private_notes/v3/specify.txt
 /speckit.clarify
-@/_private/_private_notes/v1/clarify.txt
+@/_private/_private_notes/v3/clarify.txt
 /speckit.plan
-@/_private/_private_notes/v1/plan.txt
+@/_private/_private_notes/v3/plan.txt
 /speckit.tasks
-@/_private/_private_notes/v1/tasks.txt
+@/_private/_private_notes/v3/tasks.txt
+
 /speckit.implement
 
 /speckit.analyze Save your analyze report to `analyze.md`
@@ -149,5 +150,3 @@ push 到 dev >> staging(測試站) >> https://psplover16.github.io/Japanese_Word
 push 到 main >> production >> https://psplover16.github.io/Japanese_Word_Practice_Vue_AI/
 -----------------------------------------------------------------------------------------------
 
-
-長音規則要添加翻譯
