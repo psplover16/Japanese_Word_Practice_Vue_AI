@@ -27,6 +27,9 @@ git clean -fdx
 
 
 以下功能一次超懶人作法，從步驟二開始，直接到實作，但跳過步驟六
+
+幫我掃描全部專案，然後依序執行以下任務
+commit with detailed zh-tw log，包含目前全部非 ignored 變更
 /speckit.specify
 @/_private/_private_notes/v3/specify.txt
 /speckit.clarify
@@ -35,10 +38,9 @@ git clean -fdx
 @/_private/_private_notes/v3/plan.txt
 /speckit.tasks
 @/_private/_private_notes/v3/tasks.txt
-
-/speckit.implement
-
 /speckit.analyze Save your analyze report to `analyze.md`
+analyze.md，如果沒有發現重大嚴重缺失，請直接執行以下任務
+/speckit.implement
 
 
 步驟一.AI 發想憲法
