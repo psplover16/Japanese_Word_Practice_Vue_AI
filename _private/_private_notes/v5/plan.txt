@@ -1,0 +1,214 @@
+請根據以下背景與要求，產出這個 feature 的 implementation plan。
+
+Feature 目標：
+我要把參考頁面
+https://psplover16.github.io/Japanese_Word_Practice_Vue/change-rules
+在「最上方頁首標題與路由切換按鈕以下」的主要內容，
+重新改寫到目前專案既有的 `變化規則` 路由主內容區內。
+
+重點不是新做 route，而是替換目前專案既有 `變化規則` 頁的主內容。
+
+---
+
+一、目前專案上下文
+1. 目前專案是 Vue 3 + TypeScript + Vite + Tailwind CSS 的純前端專案
+2. 目前專案已有 router
+3. 目前 `變化規則` 路由已存在
+4. 目前該 route 的頁首標題與 route tabs 已存在
+5. 目前該 route 的主要內容不是我要的，後續要廢棄並改寫
+
+目前 router 現況的重要事實：
+1. `變化規則` 是目前專案既有 route
+2. 目前 route path 是既有路徑，不應因本次需求硬改成 `/change-rules`
+3. 這次不要新增第二套 route shell
+
+---
+
+二、關鍵規劃原則
+1. 保留目前專案原本的頁首標題與 route 切換按鈕
+2. 只替換 `變化規則` route 中它們下方的主內容
+3. 配色沿用目前專案
+4. 主要內容資訊架構與互動高度參考外部 `change-rules`
+5. 為了後續 CRUD，資料必須採本地結構化設計
+6. 不允許 runtime 抓外部網站內容
+7. 不能把大量規則內容硬寫死在單一 `.vue` 模板裡
+
+---
+
+三、主內容重寫範圍
+請把 plan 寫清楚：哪些內容是要重寫的，哪些不是。
+
+這次 in scope：
+1. 目前專案 `變化規則` 路由主內容區
+2. 章節順序
+3. 章節展開/收合互動
+4. 章節內表格與規則內容
+5. 可能位於主內容底部的狀態資訊
+
+這次 out of scope：
+1. 目前專案頁首標題
+2. 目前專案 route 切換按鈕
+3. 其他 route 的內容
+4. 外部站的整體配色與 shell
+5. 新增新 route
+
+---
+
+四、參考頁主內容特徵
+plan 中請把這些特徵轉成技術設計與資料模型：
+
+1. 一個白底圓角主卡片容器
+2. 內容由多個章節垂直堆疊
+3. 每個章節預設收合
+4. 點擊章節標題列後可展開/收合
+5. 可同時展開多個章節
+6. 每個章節標題列右側有「▼」型指示
+7. 章節順序如下：
+   - 語法系統差異
+   - 各活用型意義
+   - 動詞型態分辨: 一段/五段/不規則
+   - 五段動詞表(詞尾母音變化)
+   - 一段動詞 (辭書型 結尾必定是 る)
+   - サ變動詞 (する動詞為結尾的動詞)
+   - カ變動詞 (只有来る)
+   - い形容詞
+   - ない形容詞
+   - だ助動詞
+   - 詞性變化規則
+
+---
+
+五、資料模型設計要求
+這次最重要的是讓後續 CRUD 容易，所以請在 plan 中明確設計：
+
+1. section 層級資料
+   - id
+   - title
+   - subtitle / note
+   - defaultExpanded
+   - contentBlocks
+
+2. content block 層級資料
+依內容型態拆分，而不是全部塞成長字串。
+請至少思考是否需要以下幾種：
+   - compareTable
+   - conjugationTable
+   - ruleList
+   - noteBlock
+   - exampleList
+   - mixedTextBlock
+
+3. table 結構資料
+   - headers
+   - rows
+   - cell type
+   - optional notes
+
+4. 為什麼要這樣拆
+請把 CRUD-friendly rationale 寫清楚。
+我要的是後續：
+   - 新增章節
+   - 刪除章節
+   - 修改單列
+   - 修改補充文字
+都不需要重寫主要畫面元件。
+
+---
+
+六、檔案結構規劃
+這次不是新 route shell，所以請不要把檔案規劃成一個全新獨立 app。
+請以目前專案既有 grammar 模組或變化規則 route 的責任為中心來規劃。
+
+我希望 plan 至少明確規劃這些檔案類型：
+1. 既有 `GrammarView.vue` 或等價 route view 的重寫策略
+2. 章節 accordion 元件
+3. 內容 renderer 元件
+4. 靜態資料檔
+5. 型別檔
+6. footer/status 顯示元件（如果你判斷需要）
+7. 測試檔
+
+你要回答：
+1. 是直接重寫 `src/modules/grammar/views/GrammarView.vue`
+2. 還是讓它作為 container，內部改組新的 grammar/change-rules 元件
+3. 如何讓結構清楚又不過度拆檔
+
+---
+
+七、既有內容替換策略
+目前 `GrammarView.vue` 有舊的主內容。
+請在 plan 中明寫：
+
+1. 舊內容是直接刪除，還是漸進替換
+2. 哪些舊元件引用要從 `GrammarView.vue` 移除
+3. 如何避免舊內容與新內容並存造成混亂
+
+---
+
+八、樣式與配色策略
+請在 plan 中定義：
+
+1. 主內容版型要參考外部頁，但配色使用目前專案的色票
+2. 頁首標題與 route tabs 不應被新樣式破壞
+3. `變化規則` route 需要 route-specific styles
+4. 手機寬度約 390px 不應出現橫向捲動
+5. 表格/規則內容在手機上仍需可讀
+
+---
+
+九、底部狀態資訊
+外部頁在主內容底部可見：
+1. 正在下載應用資源
+2. 完成後可離線使用
+3. 0.2.3
+
+請在 plan 中明確評估：
+1. 這些資訊是否應視為主內容的一部分而重寫進 route
+2. 是否應重用目前專案既有 PWA / 狀態機制
+3. 版本號應如何維護，避免四散硬編碼
+
+---
+
+十、測試策略
+plan 中不要只寫「補測試」，請明確定義：
+
+1. Grammar / change-rules route 的 smoke test
+2. 章節順序測試
+3. accordion 預設收合與切換測試
+4. mobile layout / no horizontal overflow 測試
+5. negative ownership 測試
+   - 確保新內容只出現在 `變化規則` route 主內容區
+   - 不外溢到其他 route
+6. 若頁首殼層應保持不變，也要有回歸驗證策略
+
+---
+
+十一、文件同步
+若本次會改變：
+1. grammar route 的責任
+2. 模組結構
+3. 測試結構
+4. route 內容職責
+
+請在 plan 中主動要求更新 `PROJECT_ARCHITECTURE.md`
+
+---
+
+十二、希望 plan 至少包含
+1. Technical Context
+2. Architecture Decisions
+3. Project Structure
+4. Data / state / UI strategy
+5. Existing-content replacement strategy
+6. RWD strategy
+7. Testing strategy
+8. Risks and implementation notes
+9. CRUD-friendly data design rationale
+
+---
+
+十三、請特別避免的誤解
+1. 不要把這次當成「新增 `/change-rules` route」
+2. 不要把這次當成「整頁外觀全部複製」
+3. 不要把頁首標題與 route tabs 也拉進重寫範圍
+4. 不要忽略舊內容需要廢棄這件事
