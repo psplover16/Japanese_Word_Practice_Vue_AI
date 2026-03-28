@@ -28,16 +28,16 @@ git clean -fdx
 
 以下功能一次超懶人作法，從步驟二開始，直接到實作，但跳過步驟六
 
-幫我掃描全部專案，然後依序執行以下任務
+幫我先掃描全部專案，掃描完成後，依序執行以下任務
 commit with detailed zh-tw log，包含目前全部非 ignored 變更
 /speckit.specify
-@/_private/_private_notes/v3/specify.txt
+@/_private/_private_notes/v4/specify.txt
 /speckit.clarify
-@/_private/_private_notes/v3/clarify.txt
+@/_private/_private_notes/v4/clarify.txt
 /speckit.plan
-@/_private/_private_notes/v3/plan.txt
+@/_private/_private_notes/v4/plan.txt
 /speckit.tasks
-@/_private/_private_notes/v3/tasks.txt
+@/_private/_private_notes/v4/tasks.txt
 /speckit.analyze Save your analyze report to `analyze.md`
 在 speckit.analyze 這個步驟，如果沒有發現重大嚴重缺失，請直接執行以下任務
 /speckit.implement
