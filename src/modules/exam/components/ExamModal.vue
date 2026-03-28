@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
     >
       <section
         data-testid="exam-modal"
-        class="surface-card flex h-[300px] w-full max-w-[360px] flex-col overflow-hidden"
+        class="exam-modal-card surface-card"
         aria-modal="true"
         role="dialog"
       >
@@ -73,9 +73,9 @@ onBeforeUnmount(() => {
           </button>
         </div>
 
-        <div class="flex-1 border-b border-clay/10 px-4 py-3">
-          <div class="flex h-full flex-col items-center justify-center gap-2 text-center">
-            <p class="text-4xl font-bold text-clay">{{ props.question?.promptText ?? '-' }}</p>
+        <div class="flex-1 border-b border-clay/10 px-4 py-3 sm:px-5 sm:py-4">
+          <div class="exam-modal-body">
+            <p data-testid="exam-prompt" class="exam-modal-prompt">{{ props.question?.promptText ?? '-' }}</p>
             <p class="min-h-[28px] text-lg font-semibold text-ink">
               {{ props.question?.answerRevealed ? props.question.answerText : '' }}
             </p>

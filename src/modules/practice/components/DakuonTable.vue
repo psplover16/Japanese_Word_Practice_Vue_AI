@@ -18,7 +18,6 @@ function toggleCell(cell: KanaCell): void {
   <section class="section-card space-y-2">
     <div class="flex items-center justify-between gap-2">
       <h2 class="text-sm font-semibold text-ink">濁音／半濁音</h2>
-      <span class="text-xs text-ink/60">tableB</span>
     </div>
 
     <div class="table-shell">

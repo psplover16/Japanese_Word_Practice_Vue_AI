@@ -65,7 +65,7 @@ const recommendedQuestionCount = session.recommendedQuestionCount;
         <BaseButton variant="secondary" @click="session.resetAll">重置</BaseButton>
       </div>
 
-      <BaseButton variant="ghost" :disabled="!hasLatestResult" @click="emit('clearLatestResult')">
+      <BaseButton data-testid="toolbar-clear-result-button" variant="ghost" :disabled="!hasLatestResult" @click="emit('clearLatestResult')">
         清除結果
       </BaseButton>
     </div>

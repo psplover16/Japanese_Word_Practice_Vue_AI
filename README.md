@@ -53,6 +53,7 @@ npm run test:ci
 - `dev` push：部署到 staging
 - `main` push：部署到 production
 - 部署承載：GitHub Pages `gh-pages` branch
+- 發佈方式：`cd.yml` 直接建置 `dist/`、切出 `gh-pages` worktree、清理對應目錄後提交
 
 預期 URL：
 
@@ -73,4 +74,5 @@ npm run test:ci
 - e2e 啟不來：確認已執行 `npx playwright install --with-deps chromium`
 - staging 路由 404：確認 `VITE_APP_BASE_PATH`、router `BASE_URL` 與 Pages 路徑一致
 - GitHub Pages 沒更新：確認 `cd.yml` 成功執行，且 `gh-pages` branch 有新 commit
-- production 部署後 staging 消失：確認 `scripts/publishPages.mjs` 仍保留 `staging/` 子目錄
+- staging 重新部署後 production 異常：確認 `cd.yml` 只清理 `gh-pages/staging/`，沒有誤刪 root 內容
+- production 部署後 staging 消失：確認 `cd.yml` 的 production 清理步驟仍保留 `staging/` 子目錄

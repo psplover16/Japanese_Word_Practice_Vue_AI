@@ -20,29 +20,50 @@ const examSession = createExamSession();
 const resultPanelRef = ref<HTMLElement | null>(null);
 let pendingScrollTimer: number | null = null;
 
+function clearPendingScrollTimer(): void {
+  if (pendingScrollTimer !== null) {
+    window.clearTimeout(pendingScrollTimer);
+    pendingScrollTimer = null;
+  }
+}
+
+function scheduleScroll(callback: () => void): void {
+  void nextTick(() => {
+    clearPendingScrollTimer();
+
+    pendingScrollTimer = window.setTimeout(() => {
+      pendingScrollTimer = null;
+      callback();
+    }, 0);
+  });
+}
+
 function scrollToResult(): void {
   if (!examSession.latestUnknownSnapshot.value?.results.length) {
     return;
   }
 
-  void nextTick(() => {
-    if (pendingScrollTimer !== null) {
-      window.clearTimeout(pendingScrollTimer);
+  scheduleScroll(() => {
+    const resultPanel = resultPanelRef.value;
+
+    if (!resultPanel) {
+      return;
     }
 
-    pendingScrollTimer = window.setTimeout(() => {
-      const resultPanel = resultPanelRef.value;
+    const targetTop = Math.max(resultPanel.getBoundingClientRect().top + window.scrollY - 8, 0);
+    window.scrollTo({
+      top: targetTop,
+      behavior: 'smooth'
+    });
+  });
+}
 
-      if (!resultPanel) {
-        return;
-      }
-
-      const targetTop = Math.max(resultPanel.getBoundingClientRect().top + window.scrollY - 8, 0);
-      window.scrollTo({
-        top: targetTop,
-        behavior: 'smooth'
-      });
-    }, 0);
+function scrollToTop(): void {
+  scheduleScroll(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   });
 }
 
@@ -70,13 +91,18 @@ function startExam(): void {
   });
 }
 
-function clearLatestResult(): void {
+function clearLatestResult(source: 'toolbar' | 'result-panel' = 'toolbar'): void {
   if (!examSession.latestUnknownSnapshot.value) {
     return;
   }
 
   if (window.confirm('確定要清除所有「我不清楚的音節」紀錄嗎？')) {
+    clearPendingScrollTimer();
     examSession.clearLatestResults();
+
+    if (source === 'result-panel') {
+      scrollToTop();
+    }
   }
 }
 
@@ -95,15 +121,17 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  if (pendingScrollTimer !== null) {
-    window.clearTimeout(pendingScrollTimer);
-  }
+  clearPendingScrollTimer();
 });
 </script>
 
 <template>
   <div class="space-y-1 py-1">
-    <PracticeToolbar :has-latest-result="Boolean(examSession.latestUnknownSnapshot.value)" @start-exam="startExam" @clear-latest-result="clearLatestResult" />
+    <PracticeToolbar
+      :has-latest-result="Boolean(examSession.latestUnknownSnapshot.value)"
+      @start-exam="startExam"
+      @clear-latest-result="clearLatestResult('toolbar')"
+    />
 
     <div data-testid="practice-main-grid" class="practice-reference-grid grid gap-1 xl:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.9fr)]">
       <div class="space-y-1">
@@ -123,7 +151,7 @@ onBeforeUnmount(() => {
     </div>
 
     <div ref="resultPanelRef">
-      <UnknownResultPanel :snapshot="examSession.latestUnknownSnapshot.value" @clear="clearLatestResult" />
+      <UnknownResultPanel :snapshot="examSession.latestUnknownSnapshot.value" @clear="clearLatestResult('result-panel')" />
     </div>
 
     <ExamModal

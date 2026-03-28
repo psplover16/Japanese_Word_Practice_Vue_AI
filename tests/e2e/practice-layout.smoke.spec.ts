@@ -14,6 +14,8 @@ test('375px 下的 /practice 首屏可讀且下半部區塊穩定顯示', async 
   await expect(page.getByTestId('choon-section')).toBeVisible();
   await expect(page.getByTestId('loanword-section')).toContainText('ファ');
   await expect(page.getByTestId('choon-section')).toContainText('ケーキ');
+  await expect(page.getByText('tableA')).toHaveCount(0);
+  await expect(page.getByText('tableB')).toHaveCount(0);
 
   await expectNoHorizontalOverflow(page);
 });
