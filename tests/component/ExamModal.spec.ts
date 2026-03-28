@@ -38,8 +38,11 @@ describe('ExamModal', () => {
     });
 
     const actionButtons = wrapper.findAll('[data-testid="exam-actions"] button');
+    const prompt = wrapper.get('[data-testid="exam-prompt"]');
 
     expect(document.body.style.overflow).toBe('hidden');
+    expect(prompt.text()).toBe('か');
+    expect(prompt.classes()).toContain('exam-modal-prompt');
     expect(actionButtons).toHaveLength(2);
     expect(actionButtons[0]?.text()).toContain('我不清楚');
     expect(actionButtons[1]?.text()).toContain('下一步');

@@ -57,5 +57,49 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Publish to GitHub Pages branch
-        run: node scripts/publishPages.mjs --source dist --branch gh-pages --target-subdir "$PUBLISH_SUBDIR"
+      - name: Prepare GitHub Pages worktree
+        run: |
+          if git ls-remote --exit-code --heads origin gh-pages > /dev/null 2>&1; then
+            git fetch origin gh-pages
+            git worktree add --force .deploy-pages origin/gh-pages
+            cd .deploy-pages
+            git checkout -B gh-pages
+          else
+            git worktree add --detach .deploy-pages HEAD
+            cd .deploy-pages
+            git checkout --orphan gh-pages
+            find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          fi
+
+      - name: Sync static site into GitHub Pages branch
+        run: |
+          if [ -n "${PUBLISH_SUBDIR}" ]; then
+            mkdir -p ".deploy-pages/${PUBLISH_SUBDIR}"
+            find ".deploy-pages/${PUBLISH_SUBDIR}" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+            cp -a dist/. ".deploy-pages/${PUBLISH_SUBDIR}/"
+          else
+            find .deploy-pages -mindepth 1 -maxdepth 1 ! -name '.git' ! -name 'staging' -exec rm -rf {} +
+            cp -a dist/. .deploy-pages/
+          fi
+
+          touch .deploy-pages/.nojekyll
+
+      - name: Commit and push GitHub Pages content
+        run: |
+          cd .deploy-pages
+          git add -A
+
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No publish changes to commit."
+            exit 0
+          fi
+
+          DEPLOY_LABEL="${PUBLISH_SUBDIR:-production}"
+          SHORT_SHA="${GITHUB_SHA::7}"
+
+          git commit -m "deploy: publish ${DEPLOY_LABEL} (${SHORT_SHA})"
+          git push origin gh-pages:gh-pages
+
+      - name: Cleanup GitHub Pages worktree
+        if: always()
+        run: git worktree remove --force .deploy-pages || rm -rf .deploy-pages

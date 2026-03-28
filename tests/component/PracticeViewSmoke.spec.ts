@@ -20,6 +20,8 @@ describe('PracticeView', () => {
     expect(wrapper.text()).toContain('清音');
     expect(wrapper.text()).toContain('濁音／半濁音');
     expect(wrapper.text()).toContain('撥音的發音規則');
+    expect(wrapper.text()).not.toContain('tableA');
+    expect(wrapper.text()).not.toContain('tableB');
     expect(wrapper.find('[data-testid="selection-detail-panel"]').exists()).toBe(false);
     expect(wrapper.text()).toContain('-');
   });
@@ -60,5 +62,69 @@ describe('PracticeView', () => {
         behavior: 'smooth'
       })
     );
+  });
+
+  it('從上方工具列清除最近結果時不會強制回頂', async () => {
+    vi.useFakeTimers();
+    const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true);
+    const scrollSpy = vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined);
+
+    writeLatestUnknownResults({
+      updatedAt: '2026-03-24T00:00:00.000Z',
+      totalUnknownCount: 1,
+      results: [
+        {
+          kanaId: 'tableA-ka',
+          hiragana: 'か',
+          katakana: 'カ',
+          romaji: 'ka',
+          count: 1
+        }
+      ]
+    });
+
+    const { wrapper } = mountWithPracticeSession(PracticeView);
+    await vi.runAllTimersAsync();
+    scrollSpy.mockClear();
+
+    await wrapper.get('[data-testid="toolbar-clear-result-button"]').trigger('click');
+    await vi.runAllTimersAsync();
+
+    expect(confirmSpy).toHaveBeenCalledOnce();
+    expect(scrollSpy).not.toHaveBeenCalled();
+    expect(wrapper.find('[data-testid="result-panel-clear-button"]').exists()).toBe(false);
+  });
+
+  it('從下方結果區清除最近結果時會平滑回到頂部', async () => {
+    vi.useFakeTimers();
+    vi.spyOn(window, 'confirm').mockReturnValue(true);
+    const scrollSpy = vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined);
+
+    writeLatestUnknownResults({
+      updatedAt: '2026-03-24T00:00:00.000Z',
+      totalUnknownCount: 1,
+      results: [
+        {
+          kanaId: 'tableA-ka',
+          hiragana: 'か',
+          katakana: 'カ',
+          romaji: 'ka',
+          count: 1
+        }
+      ]
+    });
+
+    const { wrapper } = mountWithPracticeSession(PracticeView);
+    await vi.runAllTimersAsync();
+    scrollSpy.mockClear();
+
+    await wrapper.get('[data-testid="result-panel-clear-button"]').trigger('click');
+    await vi.runAllTimersAsync();
+
+    expect(scrollSpy).toHaveBeenCalledWith({
+      top: 0,
+      behavior: 'smooth'
+    });
+    expect(wrapper.find('[data-testid="result-panel-clear-button"]').exists()).toBe(false);
   });
 });

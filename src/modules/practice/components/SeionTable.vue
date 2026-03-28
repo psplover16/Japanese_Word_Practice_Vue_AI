@@ -26,7 +26,6 @@ function renderKana(cell: KanaCell): string {
   <section class="section-card space-y-2">
     <div class="flex items-center justify-between gap-2">
       <h2 class="text-sm font-semibold text-ink">清音</h2>
-      <span class="text-xs text-ink/60">tableA</span>
     </div>
 
     <div class="table-shell">
