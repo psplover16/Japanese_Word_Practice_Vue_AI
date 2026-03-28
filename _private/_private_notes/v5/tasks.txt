@@ -1,182 +1,180 @@
-# Tasks: 重寫目前專案「變化規則」路由的主內容
-
-以下任務拆解的前提是：
-1. 保留目前專案既有的頁首標題與 route 切換按鈕
-2. 不新增新的 `/change-rules` route
-3. 只替換目前專案 `變化規則` route 的主要內容
-4. 目前該 route 原有內容視為廢棄
-5. 配色沿用目前專案
-6. 新內容的資訊架構與互動高度參考外部 `change-rules`
-7. 內容資料需要方便後續 CRUD
-
----
-
-## Phase 1: Setup
-
-**Purpose**: 建立本次重寫工作的邊界，避免把殼層與主內容混在一起
-
-- [ ] T001 確認 `.gitignore` 與現有前端工具鏈可支援本次新增模組與測試，不提交 `dist/`、`coverage/` 等輸出檔於 `.gitignore`
-- [ ] T002 [P] 盤點目前 `變化規則` route、`GrammarView.vue`、頁首標題與 route tabs 的責任邊界於 `src/app/router.ts`、`src/modules/grammar/views/GrammarView.vue`、`src/app/AppShell.vue`、`src/shared/components/RouteTabs.vue`
-- [ ] T003 [P] 標記本次需要同步更新的結構文件與測試責任於 `PROJECT_ARCHITECTURE.md`、`tests/`
-
----
-
-## Phase 2: Foundational
-
-**Purpose**: 建立新主內容的資料模型與 rendering 邊界，但不動既有殼層
-
-- [ ] T004 建立 grammar/change-rules 主內容專用型別，支援 section、content block、table row、note 等資料模型於 `src/modules/grammar/types/changeRules.ts`
-- [ ] T005 建立本地靜態資料檔骨架，讓章節與內容可被後續 CRUD 於 `src/modules/grammar/data/changeRulesContent.ts`
-- [ ] T006 建立章節 accordion 元件骨架於 `src/modules/grammar/components/GrammarRulesSection.vue`
-- [ ] T007 建立內容 renderer 元件骨架於 `src/modules/grammar/components/GrammarRulesRenderer.vue`
-- [ ] T008 明確界定 `GrammarView.vue` 新舊內容切換策略，保證頁首殼層不受影響於 `src/modules/grammar/views/GrammarView.vue`
-
-**Checkpoint**: 新主內容的資料驅動基礎已建立，可進入 user story
-
----
-
-## Phase 3: User Story 1 - 使用者在既有「變化規則」路由中看到新的主內容骨架 (Priority: P1)
-
-**Goal**: 保留目前專案既有頁首標題與 route tabs，只替換其下方主內容
-
-**Independent Test**: 進入目前專案既有 `變化規則` route 時，仍看到原本頁首標題與 route tabs，但主內容已換成新的白色卡片與正確章節標題順序
-
-### Tests for User Story 1
-
-- [ ] T009 [P] [US1] 建立 `GrammarView` route smoke test，驗證頁首標題與 route tabs 仍存在於 `tests/component/GrammarView.spec.ts`
-- [ ] T010 [P] [US1] 建立主內容章節順序驗證於 `tests/component/GrammarView.spec.ts`
-- [ ] T011 [P] [US1] 建立回歸驗證，確認頁首殼層未被本次重寫改壞於 `tests/component/AppShellSmoke.spec.ts` 或相關測試檔
-
-### Implementation for User Story 1
-
-- [ ] T012 [US1] 從 `GrammarView.vue` 移除舊的主內容引用，保留頁面殼層並導入新主內容容器於 `src/modules/grammar/views/GrammarView.vue`
-- [ ] T013 [US1] 在 `GrammarView.vue` 中渲染新的白色主卡片容器與 11 個章節標題於 `src/modules/grammar/views/GrammarView.vue`
-- [ ] T014 [P] [US1] 若需要，建立 route 專屬主內容容器元件於 `src/modules/grammar/components/GrammarRulesPanel.vue`
-
-**Checkpoint**: 舊主內容已被替換，新的主內容骨架可獨立展示
-
----
-
-## Phase 4: User Story 2 - 使用者可展開/收合新的規則章節並閱讀內容 (Priority: P1)
-
-**Goal**: 完成參考頁主內容的核心互動與主要內容渲染
-
-**Independent Test**: 所有章節預設收合；點擊標題列可展開/收合；可同時展開多個章節；展開後可看到對應內容
-
-### Tests for User Story 2
-
-- [ ] T015 [P] [US2] 建立 accordion 互動測試，驗證預設收合、點擊切換與多開行為於 `tests/component/GrammarRulesSection.spec.ts`
-- [ ] T016 [P] [US2] 建立內容渲染測試，驗證展開後可看到比較表、規則表、補充說明與例句於 `tests/component/GrammarView.spec.ts`
-
-### Implementation for User Story 2
-
-- [ ] T017 [US2] 實作章節標題列切換與多開行為於 `src/modules/grammar/components/GrammarRulesSection.vue`
-- [ ] T018 [US2] 實作多型內容 renderer，支援比較表、活用表、規則列表與補充說明於 `src/modules/grammar/components/GrammarRulesRenderer.vue`
-- [ ] T019 [US2] 將參考頁主內容實際章節與內容落地到本地資料檔於 `src/modules/grammar/data/changeRulesContent.ts`
-- [ ] T020 [US2] 串接 `GrammarView.vue`、section 元件與 renderer，完成新主內容顯示於 `src/modules/grammar/views/GrammarView.vue`
-
-**Checkpoint**: 新主內容可實際互動與閱讀
-
----
-
-## Phase 5: User Story 3 - 維護者可對規則主內容做後續 CRUD (Priority: P2)
-
-**Goal**: 讓未來新增、刪除、修改章節或單列內容時，不需要重寫 view 本身
-
-**Independent Test**: 僅調整 `changeRulesContent.ts` 即可增減章節或修改內容，畫面可正常渲染
-
-### Tests for User Story 3
-
-- [ ] T021 [P] [US3] 建立資料驅動渲染測試，驗證不同 block 類型都可正確顯示於 `tests/component/GrammarRulesRenderer.spec.ts`
-- [ ] T022 [P] [US3] 建立資料結構完整性與型別測試於 `tests/unit/changeRulesContent.spec.ts`
-
-### Implementation for User Story 3
-
-- [ ] T023 [US3] 細化 section / block / table / note 型別，讓單一章節可獨立 CRUD 於 `src/modules/grammar/types/changeRules.ts`
-- [ ] T024 [US3] 重新整理內容資料結構，避免單一超長 template 或大段 HTML 字串於 `src/modules/grammar/data/changeRulesContent.ts`
-- [ ] T025 [US3] 讓 renderer 以資料驅動為主，確保 view 本身不綁死內容細節於 `src/modules/grammar/components/GrammarRulesRenderer.vue`
-
-**Checkpoint**: 新主內容已具備後續 CRUD 友善性
-
----
-
-## Phase 6: User Story 4 - 使用者在手機上也能閱讀新的主內容 (Priority: P2)
-
-**Goal**: 在不動頁首殼層的前提下，讓新的主內容於手機寬度下可讀且不橫向捲動
-
-**Independent Test**: 手機寬度下頁首仍維持既有行為，新的主內容單欄可讀且無 horizontal overflow
-
-### Tests for User Story 4
-
-- [ ] T026 [P] [US4] 建立 `變化規則` route 的 mobile layout / no horizontal overflow 驗證於 `tests/e2e/grammar-layout.smoke.spec.ts`
-- [ ] T027 [P] [US4] 建立新主內容與既有頁首同時存在時的閱讀性驗證於 `tests/e2e/grammar-layout.smoke.spec.ts`
-
-### Implementation for User Story 4
-
-- [ ] T028 [US4] 為 `變化規則` route 主內容新增 route-specific styles，沿用目前專案配色於 `src/styles/main.css`
-- [ ] T029 [US4] 調整 accordion 標題列、表格與規則內容的小螢幕密度於 `src/modules/grammar/components/GrammarRulesSection.vue`、`src/modules/grammar/components/GrammarRulesRenderer.vue`
-- [ ] T030 [US4] 確保 `GrammarView.vue` 新主內容區在 390px 左右不出現橫向捲動於 `src/modules/grammar/views/GrammarView.vue`、`src/styles/main.css`
-
-**Checkpoint**: 手機版可獨立驗收
-
----
-
-## Phase 7: User Story 5 - 主內容底部可呈現狀態資訊且與既有機制不衝突 (Priority: P3)
-
-**Goal**: 決定並實作參考頁主內容底部的狀態資訊，避免與目前專案既有 PWA / 全域提示衝突
-
-**Independent Test**: 在 `變化規則` route 主內容底部可看到應有的狀態資訊，且不需要四處硬編碼版本字串
-
-### Tests for User Story 5
-
-- [ ] T031 [P] [US5] 建立主內容底部狀態區塊顯示測試於 `tests/component/GrammarFooterStatus.spec.ts`
-
-### Implementation for User Story 5
-
-- [ ] T032 [US5] 判斷底部狀態資訊應屬於 route 主內容或重用既有全域機制，並完成對應實作於 `src/modules/grammar/views/GrammarView.vue` 或 `src/modules/grammar/components/GrammarFooterStatus.vue`
-- [ ] T033 [US5] 抽離版本資訊來源，避免多處硬編碼於 `package.json` 或適當的設定/工具層
-- [ ] T034 [US5] 若需重用既有 PWA 能力，整理其責任邊界，避免與主內容重複於 `src/modules/pwa/`、`src/shared/components/ToastBanner.vue` 或 grammar 模組
-
-**Checkpoint**: 新主內容底部狀態資訊可維護且不與既有機制衝突
-
----
-
-## Phase 8: Polish & Cross-Cutting Concerns
-
-**Purpose**: 文件同步、回歸驗證與交付收尾
-
-- [ ] T035 [P] 更新 `PROJECT_ARCHITECTURE.md`，反映 `變化規則` route 主內容職責重寫、資料檔、元件與測試責任
-- [ ] T036 [P] 若 route 說明或驗證流程需補充，更新 `README.md`
-- [ ] T037 [P] 執行 `npm run lint`、`npm run typecheck`、`npm run test:unit`、`npm run build`
-- [ ] T038 [P] 執行 `tests/e2e/grammar-layout.smoke.spec.ts` 與相關 smoke tests
-
----
-
-## Dependencies & Execution Order
-
-1. Setup 與 Foundational 先完成
-2. US1 先替換主內容骨架，建立新舊邊界
-3. US2 補內容互動與實際資料渲染
-4. US3 深化資料模型，提升 CRUD 友善性
-5. US4 做手機版與 RWD 驗收
-6. US5 處理底部狀態資訊
-7. 最後更新文件與跑回歸驗證
-
----
-
-## Parallel Opportunities
-
-- T002、T003 可平行
-- T009、T010、T011 可平行
-- T015、T016 可平行
-- T021、T022 可平行
-- T026、T027 可平行
-- T035、T036、T037、T038 可在主實作完成後批次處理
-
----
-
-## 補充說明
-
-1. 本份 tasks 的核心假設是「既有 route shell 保留、主內容替換」
-2. 若 clarify 階段對底部狀態資訊的責任邊界有不同結論，請同步調整 US5
-3. 若後續發現 `GrammarView.vue` 過於肥大，可在不改動 route shell 的前提下再往內拆分元件
+# Tasks: 高保真重寫變化規則主內容，並建立逐容器 table 驗收
+
+==================================================
+一、任務總目標
+==================================================
+
+把目前專案 `變化規則` route 的主內容，重寫為與參考頁一致的版本，
+並且把驗收拆細到足以逐容器、逐 table、逐列、逐儲存格檢查。
+
+==================================================
+二、Phase 1 - Audit Baseline
+==================================================
+
+目的：
+先把參考頁每個容器的比對基準整理清楚，避免後續實作邊做邊猜。
+
+- [ ] T001 建立 12 個容器的固定清單與順序基準
+- [ ] T002 逐一確認每個容器的 title / subtitle 是否存在與如何換行
+- [ ] T003 逐一確認每個容器的 table 數量
+- [ ] T004 逐一確認每個 table 是否有 thead / tbody / tfoot
+- [ ] T005 逐一確認每個 table 的 tr / td / th 結構
+- [ ] T006 逐一確認每個 table 的 colspan / rowspan 規則
+- [ ] T007 逐一確認每個 table 是否存在 nested list / footer note / example rows
+- [ ] T008 建立每個容器的驗收面向清單：
+  - 結構
+  - 文字
+  - 換行
+  - 顏色
+  - 對齊
+  - 字級與粗細
+
+==================================================
+三、Phase 2 - Data Modeling
+==================================================
+
+目的：
+把資料模型調整到足以承載高保真 table 內容，同時保留 CRUD 能力。
+
+- [ ] T009 調整 grammar 內容型別，支援 referenceTable block
+- [ ] T010 定義 section schema，保留 id / title / subtitle / defaultExpanded / contentBlocks
+- [ ] T011 定義 referenceTable schema，保留 headerHtml / bodyHtml / footHtml
+- [ ] T012 確認 schema 可支援 rowspan / colspan / nested list / footer
+- [ ] T013 確認 schema 可支援逐容器 CRUD，不會只能整頁覆蓋
+
+==================================================
+四、Phase 3 - Content Reconstruction
+==================================================
+
+目的：
+將參考頁內容逐容器重建到本地 grammar 主內容資料。
+
+- [ ] T014 重建 `語法系統差異`
+- [ ] T015 重建 `各活用型意義`
+- [ ] T016 重建 `動詞型態分辨: 一段/五段/不規則`
+- [ ] T017 重建 `五段動詞表(詞尾母音變化)`
+- [ ] T018 重建 `音便 (詞尾接尾一起改變)`，且保持為獨立容器
+- [ ] T019 重建 `一段動詞 (辭書型 結尾必定是 る)`
+- [ ] T020 重建 `サ變動詞 (する動詞為結尾的動詞)`
+- [ ] T021 重建 `カ變動詞 (只有来る)` 與其副標題
+- [ ] T022 重建 `い形容詞`
+- [ ] T023 重建 `ない形容詞`
+- [ ] T024 重建 `だ助動詞` 與其多行副標題
+- [ ] T025 重建 `詞性變化規則` 的巢狀清單內容
+
+==================================================
+五、Phase 4 - Renderer Alignment
+==================================================
+
+目的：
+讓目前專案的 renderer 能正確還原參考頁 table 結構。
+
+- [ ] T026 調整 `GrammarRulesRenderer.vue` 支援 referenceTable 渲染
+- [ ] T027 確認 renderer 可正確渲染 thead / tbody / tfoot
+- [ ] T028 確認 renderer 不會破壞 rowspan / colspan
+- [ ] T029 確認 renderer 可呈現 nested list / footer note / highlight cell
+- [ ] T030 調整 `GrammarRulesSection.vue` 支援多行 subtitle、不截斷標題
+- [ ] T031 確認 accordion 不會破壞表格版面
+
+==================================================
+六、Phase 5 - Style Fidelity
+==================================================
+
+目的：
+把 table 的樣式逐項對齊到參考頁。
+
+- [ ] T032 對齊 table shell 邊框與背景層次
+- [ ] T033 對齊表頭背景色與字重
+- [ ] T034 對齊一般儲存格背景色與文字色
+- [ ] T035 對齊特殊高亮儲存格色彩
+- [ ] T036 對齊表尾區塊背景與文字樣式
+- [ ] T037 對齊表頭/內文/範例文字的字級
+- [ ] T038 對齊表頭/內文/範例文字的字重
+- [ ] T039 對齊文字置左/置中/置右與 vertical alignment
+- [ ] T040 對齊 nowrap / wrap / pre-wrap 行為
+- [ ] T041 對齊 nested list 的縮排與間距
+
+==================================================
+七、Phase 6 - Detailed Acceptance Tests
+==================================================
+
+目的：
+把使用者要求的 6 大驗收面向落實成可執行測試與可檢查標準。
+
+結構驗收
+- [ ] T042 建立 unit test 驗證 12 個容器 id 與順序
+- [ ] T043 建立 component test 驗證 referenceTable block 可渲染
+- [ ] T044 建立 component test 驗證含 tfoot 的容器可渲染
+- [ ] T045 建立結構驗證，涵蓋關鍵容器的 row / col span
+
+文字驗收
+- [ ] T046 建立 unit / component 驗證關鍵標題、副標題與表格文字
+- [ ] T047 建立詞性變化規則的關鍵關鍵字驗證
+
+換行驗收
+- [ ] T048 建立 subtitle 多行保留驗證
+- [ ] T049 建立手機寬度下關鍵容器的換行與閱讀順序驗證
+
+顏色驗收
+- [ ] T050 建立關鍵表頭與高亮 cell 的 class / style 驗證
+
+對齊驗收
+- [ ] T051 建立關鍵表頭與儲存格對齊 class 驗證
+
+字體驗收
+- [ ] T052 建立標題、副標題、表頭、內文與範例字級/字重驗證
+
+==================================================
+八、Phase 7 - E2E Verification
+==================================================
+
+目的：
+在真實 route 中檢查最終呈現是否符合預期。
+
+- [ ] T053 建立 `/grammar` route smoke test
+- [ ] T054 驗證 12 個容器都存在
+- [ ] T055 驗證展開 `語法系統差異` 後內容正確
+- [ ] T056 驗證展開 `音便` 後內容正確
+- [ ] T057 驗證 mobile width 下無非預期 horizontal overflow
+- [ ] T058 驗證 route shell 未被破壞
+
+==================================================
+九、Phase 8 - CRUD Readiness
+==================================================
+
+目的：
+讓這份內容後續可被安全維護，而不是一次性拷貝。
+
+- [ ] T059 為每個 section 保持穩定且可讀的 id
+- [ ] T060 為每個 content block 保持穩定且可讀的 id
+- [ ] T061 確保修改單一容器不會影響其他容器
+- [ ] T062 確保修改單一 table block 後，可只重跑對應驗收
+- [ ] T063 在文件中記錄「若修改某容器，至少需重新驗證哪些項目」
+
+==================================================
+十、最終交付檢查
+==================================================
+
+- [ ] T064 `npm run lint`
+- [ ] T065 `npm run typecheck`
+- [ ] T066 `npm run test:unit`
+- [ ] T067 `npm run build`
+- [ ] T068 `npx playwright test tests/e2e/grammar-layout.smoke.spec.ts`
+
+==================================================
+十一、Definition of Done
+==================================================
+
+全部完成的條件是：
+
+1. 目前專案 `變化規則` route 主內容已與參考頁對齊
+2. 12 個容器全部完成重建
+3. 每個容器都可依下列 6 類標準驗收：
+   - 結構
+   - 文字
+   - 換行
+   - 顏色
+   - 對齊
+   - 字級與粗細
+4. route shell 保持不變
+5. 文件已足夠支援後續 CRUD 與 regression
