@@ -1,0 +1,14 @@
+以下，都要單獨一個task完成
+1. 字典檔轉換與引入
+2. 字典的table生成
+3. input及非table的checkbox的排版
+4. 整頁的排版
+5. 標頭的checkbox功能
+6. 非標頭的checkbox功能
+7. input的功能
+8. input及標頭的checkbox 功能疊加驗證
+9. input及非標頭的checkbox 功能疊加驗證
+10. input及 標頭的checkbox 和 非標頭的checkbox 功能疊加驗證
+11. 儲存註記的功能
+12. 儲存註記功能的驗收
+13. 字典table長按的功能實作與驗收

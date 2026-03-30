@@ -9,7 +9,7 @@
 ## File access restrictions
 - Do not read or modify `_private/_private_notes/筆記.txt`.
 - Ignore personal notes and learning materials unless explicitly asked.
-<!-- - Restricted version folder names: `v1`. -->
-- Restricted version folder names: `done`, `v1`, `v2`, `v3`, `v4`.
+- Restricted version folder names: `done`.
+<!-- - Restricted version folder names: `done`, `v1`, `v2`, `v3`, `v4`. -->
 - Within `_private/_private_notes/`, do not read or modify any folder whose name matches a restricted version folder name, or any files inside it, regardless of nesting depth.
 - Within `_private/_private_fileAssets/`, do not read or modify any folder whose name matches a restricted version folder name, or any files inside it, regardless of nesting depth.

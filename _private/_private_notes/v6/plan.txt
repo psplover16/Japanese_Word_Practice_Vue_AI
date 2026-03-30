@@ -1,0 +1,6 @@
+1. 字典實際內容利用 table、thead、tbody來做
+2. table 最後一列的寬度，有設限制
+3. 在引入字典檔的腳本的時候，對每一個 資料，依序設置ID，照順序設置ID即可
+3. 儲存註記的功能，用localStorage來做
+4. 儲存註記的功能，為了避免對localStorage負擔太重，儲存第3點的ID即可，根據ID便可以做到儲存、搜尋的功能
+5. 版面上要隱藏的內容可以用v-if或v-show。但有些要隱藏，但卻要保留佔位的 可以參考 visibility: hidden，用tailwind來做
