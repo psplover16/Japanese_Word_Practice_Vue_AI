@@ -1,6 +1,6 @@
 Feature:
 https://psplover16.github.io/Japanese_Word_Practice_Vue/ 是一個SPA網站，所以抓取其路由要特別處理。
-將目前專案既有 `變化規則` route 的主內容，重寫為與參考頁 `https://psplover16.github.io/Japanese_Word_Practice_Vue/word-practice` 主內容高度一致的版本。
+將目前專案既有 `單字練習` route 的主內容，重寫為與參考頁 `https://psplover16.github.io/Japanese_Word_Practice_Vue/word-practice` 主內容高度一致的版本。
 該內容是一個類似字典，但具有學習、紀錄功能的網站。
 
 本次需求不是新增 route，也不是重做整個 app shell。
@@ -17,7 +17,7 @@ https://psplover16.github.io/Japanese_Word_Practice_Vue/ 是一個SPA網站，�
 ==================================================
 
 目標不是做「相似版」。
-目標是讓目前專案 `變化規則` route 的主要內容，在以下面向都盡量與參考頁一致：
+目標是讓目前專案 `單字練習` route 的主要內容，在以下面向都盡量與參考頁一致：
 
 1. 容器順序
 2. 每個容器的標題與副標題文字
@@ -34,7 +34,7 @@ https://psplover16.github.io/Japanese_Word_Practice_Vue/ 是一個SPA網站，�
 
 In scope
 
-1. 目前專案 `變化規則` route 主內容的完整替換
+1. 目前專案 `單字練習` route 主內容的完整替換
 2. 與參考頁一致的容器順序與容器數量
 3. 與參考頁一致的表格結構與內容
 4. 與參考頁一致的 typography / alignment / wrapping / background / border 呈現
@@ -64,7 +64,7 @@ Out of scope
 ==================================================
 
 User Story 1
-作為使用者，我進入目前專案的 `變化規則` route 時，
+作為使用者，我進入目前專案的 `單字練習` route 時，
 希望在不改變既有 route title 與 route tabs 的前提下，
 看到與參考頁一致的主要內容區。
 
@@ -216,7 +216,7 @@ AC-G 功能驗收：input及各個checkbox是否會正確影響到 實際 table�
 八、成功標準
 ==================================================
 
-1. 使用者進入目前專案 `變化規則` route 時，主內容區與參考頁主內容在結構與視覺上高度一致。
+1. 使用者進入目前專案 `單字練習` route 時，主內容區與參考頁主內容在結構與視覺上高度一致。
 2. 容器內容無缺漏、無錯字、無錯位、無錯色。
 3. 表格內所有tr、td、結構都通過驗收。
 4. 文件中已提供足夠詳細的 acceptance，後續維護者可依此進行 CRUD 與 regression 驗證。
