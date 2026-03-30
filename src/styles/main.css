@@ -148,6 +148,177 @@ textarea {
   .exam-modal-prompt {
     @apply whitespace-nowrap text-[5.5rem] font-bold leading-none text-clay sm:text-[6rem];
   }
+
+  .grammar-section-card {
+    @apply overflow-hidden rounded border border-gray-200 bg-white;
+  }
+
+  .grammar-stack {
+    @apply space-y-0;
+  }
+
+  .grammar-table {
+    @apply w-full border-separate border-spacing-0;
+  }
+
+  .grammar-title-cell {
+    @apply relative border border-gray-300 bg-neutral-100 p-1 text-center text-base font-bold text-black;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .grammar-title-cell-pre {
+    @apply px-3;
+    white-space: pre;
+  }
+
+  .grammar-title-copy {
+    @apply whitespace-pre-wrap text-black;
+  }
+
+  .grammar-subtitle-text {
+    @apply whitespace-pre-wrap text-base font-bold text-black;
+  }
+
+  .grammar-subtitle-cell {
+    @apply border border-gray-300 bg-neutral-100 p-1 text-center text-base font-bold text-black;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .grammar-toggle-icon {
+    @apply absolute right-1 top-1/2 -translate-y-1/2 text-xs text-black;
+  }
+
+  .grammar-header-cell {
+    @apply border border-gray-300 bg-neutral-100 p-0.5 text-center text-sm font-bold text-black;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .grammar-header-cell-wide {
+    @apply text-base;
+  }
+
+  .grammar-header-cell-pre {
+    white-space: pre-wrap;
+  }
+
+  .grammar-body-cell {
+    @apply border border-gray-300 bg-white p-0.5 text-base text-black;
+    text-align: left;
+    vertical-align: middle;
+    white-space: normal;
+  }
+
+  .grammar-no-select {
+    @apply select-none;
+  }
+
+  .grammar-center-cell {
+    text-align: center !important;
+    vertical-align: middle !important;
+  }
+
+  .grammar-row-title-cell {
+    @apply w-[80px] border border-gray-300 bg-neutral-100 p-0.5 text-center text-xs font-bold text-black;
+    text-align: center;
+    vertical-align: middle;
+    white-space: normal;
+  }
+
+  .grammar-row-title-footer-cell {
+    @apply bg-transparent;
+  }
+
+  .grammar-prefix-cell {
+    @apply w-[80px] border border-gray-300 bg-white p-0.5 text-center text-xs font-bold text-black;
+    text-align: center;
+    vertical-align: middle;
+    white-space: normal;
+  }
+
+  .grammar-highlight-cell {
+    @apply !bg-red-900 text-white;
+  }
+
+  .grammar-footer-row {
+    @apply bg-neutral-200;
+  }
+
+  .grammar-footnote-cell {
+    @apply border border-gray-300 bg-neutral-100 p-1 text-base font-bold text-black;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .grammar-footnote-line {
+    @apply text-left;
+  }
+
+  .grammar-example-line {
+    @apply ml-2 text-sm text-gray-500;
+  }
+
+  .grammar-example-indent {
+    @apply ml-5;
+  }
+
+  .grammar-rule-line {
+    @apply flex items-start gap-1;
+  }
+
+  .grammar-rule-index {
+    @apply w-5 shrink-0 text-left;
+  }
+
+  .grammar-rule-text {
+    @apply flex-1 whitespace-normal break-words;
+  }
+
+  .grammar-substack {
+    @apply mt-2;
+  }
+
+  .grammar-pos-group-title {
+    @apply font-bold;
+  }
+
+  .grammar-alpha-list {
+    @apply list-inside list-[upper-alpha] pl-2;
+  }
+
+  .grammar-alpha-item {
+    @apply pl-0;
+  }
+
+  .grammar-square-list {
+    @apply ml-1 list-inside list-[square];
+  }
+
+  .grammar-disc-list {
+    @apply ml-1 list-inside list-disc;
+  }
+
+  .grammar-example-heading {
+    @apply font-bold;
+  }
+
+  .grammar-nowrap {
+    white-space: nowrap;
+  }
+
+  .grammar-normal-space-cell {
+    white-space: normal !important;
+  }
+
+  .grammar-pre-wrap-cell {
+    white-space: pre-wrap !important;
+  }
+
+  .grammar-subtable-highlight-cell {
+    @apply !bg-red-700 text-white;
+  }
 }
 
 @media (max-width: 420px) {
@@ -174,7 +345,12 @@ textarea {
   .exam-modal-prompt {
     font-size: 5rem;
   }
-}
+
+  .grammar-header-cell,
+  .grammar-body-cell {
+      padding: 0.125rem;
+    }
+  }
 
 @media (max-width: 375px) {
   .route-tab-link {
@@ -214,5 +390,9 @@ textarea {
 
   .exam-modal-prompt {
     font-size: 4.75rem;
+  }
+
+  .grammar-title-copy {
+    font-size: 0.9375rem;
   }
 }
