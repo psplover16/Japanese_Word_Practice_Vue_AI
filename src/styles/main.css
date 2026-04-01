@@ -181,7 +181,7 @@ textarea {
   }
 
   .grammar-subtitle-cell {
-    @apply border border-gray-300 bg-neutral-100 p-1 text-center text-base font-bold text-black;
+    @apply border border-gray-300 bg-neutral-100 p-[2px] text-center text-base font-bold text-black;
     text-align: center;
     vertical-align: middle;
   }
@@ -205,7 +205,7 @@ textarea {
   }
 
   .grammar-body-cell {
-    @apply border border-gray-300 bg-white px-2 py-1 text-base text-black;
+    @apply border border-gray-300 bg-white p-[2px] text-base text-black;
     text-align: left;
     vertical-align: middle;
     white-space: normal;
@@ -221,7 +221,7 @@ textarea {
   }
 
   .grammar-row-title-cell {
-    @apply w-[80px] border border-gray-300 bg-neutral-100 px-2 py-1 text-center text-xs font-bold text-black;
+    @apply w-[80px] border border-gray-300 bg-neutral-100 p-[2px] text-center text-xs font-bold text-black;
     text-align: center;
     vertical-align: middle;
     white-space: normal;
@@ -232,10 +232,15 @@ textarea {
   }
 
   .grammar-prefix-cell {
-    @apply w-[80px] border border-gray-300 bg-white px-2 py-1 text-center text-xs font-bold text-black;
+    @apply w-[80px] border border-gray-300 bg-white p-[2px] text-center text-xs font-bold text-black;
     text-align: center;
     vertical-align: middle;
     white-space: normal;
+  }
+
+  .grammar-highlight-cell,
+  .grammar-subtable-highlight-cell {
+    box-shadow: inset -1px 0 0 #9ca3af;
   }
 
   .grammar-highlight-cell {
@@ -247,13 +252,19 @@ textarea {
   }
 
   .grammar-footnote-cell {
-    @apply border border-gray-300 bg-neutral-100 p-1 text-base font-bold text-black;
+    @apply border border-gray-300 bg-neutral-100 p-[2px] text-base font-bold text-black;
     text-align: center;
     vertical-align: middle;
   }
 
   .grammar-footnote-line {
     @apply text-left;
+  }
+
+  .grammar-table tbody tr > td:first-child,
+  .grammar-table tfoot tr > td:first-child {
+    padding-left: 4px;
+    padding-right: 4px;
   }
 
   .grammar-example-line {
@@ -278,6 +289,10 @@ textarea {
 
   .grammar-substack {
     @apply mt-2;
+  }
+
+  .grammar-substack-tight {
+    @apply mt-1;
   }
 
   .grammar-pos-group-title {
@@ -305,15 +320,28 @@ textarea {
   }
 
   .grammar-nowrap {
-    white-space: nowrap;
+    white-space: nowrap !important;
   }
 
   .grammar-normal-space-cell {
     white-space: normal !important;
   }
 
+  .grammar-force-nowrap {
+    white-space: nowrap !important;
+  }
+
   .grammar-pre-wrap-cell {
     white-space: pre-wrap !important;
+  }
+
+  .grammar-derived-cell {
+    @apply !bg-neutral-200;
+  }
+
+  .grammar-fixed-break-cell {
+    white-space: pre-line !important;
+    word-break: keep-all;
   }
 
   .grammar-subtable-highlight-cell {
@@ -350,7 +378,7 @@ textarea {
   .grammar-body-cell,
   .grammar-row-title-cell,
   .grammar-prefix-cell {
-    padding: 0.25rem 0.5rem;
+    padding: 2px;
   }
   }
 

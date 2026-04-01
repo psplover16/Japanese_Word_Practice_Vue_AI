@@ -7,3 +7,9 @@
 - Plans, tasks, and tests must encode both positive ownership and negative ownership: if a feature is assigned to specific routes, implementation must also verify that it does not appear in unassigned routes.
 - Shared styles, layout primitives, and reusable UI abstractions must only be applied where the visual behavior and layout requirements are materially the same. Convenience or implementation speed must not justify forcing a component into a shared style system that contradicts its explicit specification. When a screen or component has explicit layout or sizing rules, those rules take precedence over reusable style abstractions. Reuse must not override route-specific or component-specific requirements.
 - PROJECT_ARCHITECTURE.md is a required living document and must always reflect the current repository structure and the functional role of each major directory, module, and significant source file. Any work that changes the shape of the codebase, including additions, removals, renames, file moves, module extraction, introduction of shared utilities, route changes, test structure changes, or deployment-related structural changes, must update PROJECT_ARCHITECTURE.md before the work is considered complete. Reviews must treat architecture-document drift as a documentation defect.
+- 請在憲法加入一條非協商規則：
+如果某個功能是根據既有 feature spec 實作出來的，後續又有修改，而且這些修改影響使用者可見行為、畫面排版、文案、互動、驗收條件或範圍解讀，則同一個工作項目必須同步更新原本對應的 spec.md，不能只改程式碼而不回寫 spec。
+例如：如果某項成果是依 specs/006-.../spec.md 做出來的，後續再微調時，就必須把修改同步寫回那份 006 spec。
+只有純內部重構、且完全不影響外部行為與驗收條件時，才可以不更新 spec，但不得讓 spec 與實際成果不一致。
+請把這條規則寫成憲法中的正式治理條文，並同步反映到 plan-template 與 tasks-template 的 constitution alignment / constitution check。
+

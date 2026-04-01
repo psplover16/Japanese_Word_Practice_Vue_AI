@@ -23,7 +23,7 @@ defineProps<{
     </tr>
 
     <tr v-for="row in rows" :key="row.name">
-      <td class="grammar-body-cell grammar-no-select">{{ row.name }}</td>
+      <td class="grammar-body-cell grammar-no-select grammar-center-cell">{{ row.name }}</td>
       <td class="grammar-body-cell grammar-no-select">
         <span>{{ row.cn.content }}</span>
         <div v-for="example in row.cn.examples" :key="example" class="grammar-example-line">-{{ example }}</div>

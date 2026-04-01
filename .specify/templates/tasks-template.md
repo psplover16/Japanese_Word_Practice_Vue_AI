@@ -25,7 +25,11 @@ rendering the feature. Tasks must also preserve route-specific and
 component-specific layout rules instead of forcing incompatible shared styles or
 reusable abstractions. Any structural change to the repository, module layout,
 shared infrastructure, route structure, test structure, or deployment flow must
-include a task to update `PROJECT_ARCHITECTURE.md`.
+include a task to update `PROJECT_ARCHITECTURE.md`. When work refines behavior
+already delivered from an existing feature specification, tasks must include
+updating the originating `spec.md` in the same work item whenever
+user-visible behavior, layout, content, interaction, acceptance criteria, or
+scope interpretation changes.
 
 ## Format: `[ID] [P?] [Story] Description`
 

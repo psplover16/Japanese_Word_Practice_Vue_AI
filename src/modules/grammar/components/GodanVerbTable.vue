@@ -62,21 +62,42 @@ function toggleExpanded() {
       <tfoot v-if="expanded">
         <template v-for="(row, rowIndex) in props.spec.footerRows" :key="`${sectionId}-foot-${row.base}`">
           <tr v-for="(pair, pairIndex) in row.suffixAndMeaning" :key="`${row.base}-${pair.suffix}-${pairIndex}`" class="grammar-footer-row">
-            <td v-if="pairIndex === 0" :rowspan="row.suffixAndMeaning.length" class="grammar-row-title-cell grammar-row-title-footer-cell">
+            <td
+              v-if="pairIndex === 0"
+              :rowspan="row.suffixAndMeaning.length"
+              class="grammar-row-title-cell grammar-row-title-footer-cell"
+              :class="{ 'grammar-derived-cell': props.sectionId === 'godan-table' }"
+            >
               {{ row.base }}
             </td>
             <td
               v-if="rowIndex === 0 && pairIndex === 0"
               :rowspan="props.spec.footerRows.reduce((count, item) => count + item.suffixAndMeaning.length, 0)"
               class="grammar-body-cell grammar-no-select grammar-center-cell"
+              :class="{ 'grammar-derived-cell': props.sectionId === 'godan-table' }"
             >
               {{ props.spec.verb.slice(0, 1) }}
             </td>
-            <td v-if="pairIndex === 0" :rowspan="row.suffixAndMeaning.length" class="grammar-body-cell grammar-no-select grammar-center-cell">
+            <td
+              v-if="pairIndex === 0"
+              :rowspan="row.suffixAndMeaning.length"
+              class="grammar-body-cell grammar-no-select grammar-center-cell"
+              :class="{ 'grammar-derived-cell': props.sectionId === 'godan-table' }"
+            >
               {{ row.baseEnding }}
             </td>
-            <td class="grammar-body-cell grammar-no-select grammar-center-cell">{{ pair.suffix }}</td>
-            <td class="grammar-body-cell grammar-no-select grammar-center-cell">{{ pair.meaning }}</td>
+            <td
+              class="grammar-body-cell grammar-no-select grammar-center-cell"
+              :class="{ 'grammar-derived-cell': props.sectionId === 'godan-table' }"
+            >
+              {{ pair.suffix }}
+            </td>
+            <td
+              class="grammar-body-cell grammar-no-select grammar-center-cell"
+              :class="{ 'grammar-derived-cell': props.sectionId === 'godan-table' }"
+            >
+              {{ pair.meaning }}
+            </td>
           </tr>
         </template>
       </tfoot>

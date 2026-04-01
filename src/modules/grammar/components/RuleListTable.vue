@@ -22,7 +22,10 @@ defineProps<{
           <span class="grammar-rule-index">{{ index + 1 }}.</span>
           <span class="grammar-rule-text">{{ row.rules }}</span>
         </div>
-        <div v-if="row.examples?.length" class="grammar-substack">
+        <div
+          v-if="row.examples?.length"
+          :class="sectionId === 'verb-classification' && index === 3 ? 'grammar-substack-tight' : 'grammar-substack'"
+        >
           <div v-for="example in row.examples" :key="`${example.verb}-${example.meaning}`" class="grammar-example-indent">
             {{ example.verb }}：{{ example.meaning }}
           </div>
