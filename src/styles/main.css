@@ -331,6 +331,12 @@ textarea {
     white-space: nowrap !important;
   }
 
+  .grammar-kana-nowrap-cell {
+    white-space: nowrap !important;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+
   .grammar-pre-wrap-cell {
     white-space: pre-wrap !important;
   }

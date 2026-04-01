@@ -30,6 +30,29 @@ describe('Grammar change-rules tables', () => {
     expect(wrapper.get('[data-testid="grammar-table-da-auxiliary-table"]').text()).toContain('被修飾');
   });
 
+  it('ない形容詞與だ助動詞的假名欄維持不換行，且固定兩行欄位仍保留', async () => {
+    const { wrapper } = mountWithPracticeSession(GrammarView);
+
+    await wrapper.get('[data-testid="grammar-toggle-nai-adjective-table"]').trigger('click');
+    await wrapper.get('[data-testid="grammar-toggle-da-auxiliary-table"]').trigger('click');
+
+    const naiTable = wrapper.get('[data-testid="grammar-table-nai-adjective-table"]');
+    const daTable = wrapper.get('[data-testid="grammar-table-da-auxiliary-table"]');
+
+    expect(naiTable.findAll('td').find((cell) => cell.text() === '優しく')?.classes()).toContain('grammar-kana-nowrap-cell');
+    expect(naiTable.findAll('td').find((cell) => cell.text() === 'な')?.classes()).toContain('grammar-kana-nowrap-cell');
+    expect(naiTable.findAll('td').find((cell) => cell.text() === 'ない')?.classes()).toContain('grammar-kana-nowrap-cell');
+
+    expect(daTable.findAll('td').find((cell) => cell.text() === '好き')?.classes()).toContain('grammar-kana-nowrap-cell');
+    expect(daTable.findAll('td').find((cell) => cell.text() === 'では')?.classes()).toContain('grammar-kana-nowrap-cell');
+    expect(daTable.findAll('td').find((cell) => cell.text() === 'ない')?.classes()).toContain('grammar-kana-nowrap-cell');
+
+    const fixedBreakCell = daTable.findAll('td').find((cell) => cell.text().includes('被修飾') && cell.text().includes('的名詞'));
+    expect(fixedBreakCell).toBeDefined();
+    expect(fixedBreakCell?.classes()).toContain('grammar-fixed-break-cell');
+    expect(fixedBreakCell?.classes()).not.toContain('grammar-kana-nowrap-cell');
+  });
+
   it('詞性變化規則展開後顯示巢狀條列與範例', async () => {
     const { wrapper } = mountWithPracticeSession(GrammarView);
 

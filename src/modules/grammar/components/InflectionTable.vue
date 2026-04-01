@@ -10,6 +10,18 @@ defineProps<{
 function rowCount(rows: InflectionSeries[]) {
   return rows.reduce((count, row) => count + row.suffixAndMeaning.length, 0);
 }
+
+function isKanaNowrapSection(sectionId: string) {
+  return sectionId === 'nai-adjective-table' || sectionId === 'da-auxiliary-table';
+}
+
+function isKanaSuffixNowrap(sectionId: string, rowIndex: number) {
+  if (sectionId === 'nai-adjective-table') {
+    return true;
+  }
+
+  return sectionId === 'da-auxiliary-table' && rowIndex !== 4;
+}
 </script>
 
 <template>
@@ -35,7 +47,7 @@ function rowCount(rows: InflectionSeries[]) {
           v-if="rowIndex === 0 && pairIndex === 0 && spec.prefix"
           :rowspan="rowCount(spec.mainRows)"
           class="grammar-prefix-cell"
-          :class="{ 'grammar-force-nowrap': sectionId === 'nai-adjective-table' || sectionId === 'da-auxiliary-table' }"
+          :class="{ 'grammar-kana-nowrap-cell': isKanaNowrapSection(sectionId) }"
         >
           {{ spec.prefix }}
         </td>
@@ -43,7 +55,7 @@ function rowCount(rows: InflectionSeries[]) {
           v-if="rowIndex === 0 && pairIndex === 0 && spec.verb"
           :rowspan="rowCount(spec.mainRows)"
           class="grammar-body-cell grammar-no-select grammar-center-cell grammar-normal-space-cell"
-          :class="{ 'grammar-force-nowrap': sectionId === 'nai-adjective-table' }"
+          :class="{ 'grammar-kana-nowrap-cell': sectionId === 'nai-adjective-table' }"
         >
           {{ spec.verb }}
         </td>
@@ -51,12 +63,16 @@ function rowCount(rows: InflectionSeries[]) {
           v-if="pairIndex === 0"
           :rowspan="row.suffixAndMeaning.length"
           class="grammar-body-cell grammar-no-select grammar-center-cell grammar-normal-space-cell"
+          :class="{ 'grammar-kana-nowrap-cell': isKanaNowrapSection(sectionId) }"
         >
           {{ row.baseEnding }}
         </td>
         <td
           class="grammar-body-cell grammar-no-select grammar-center-cell grammar-pre-wrap-cell"
-          :class="{ 'grammar-fixed-break-cell': sectionId === 'da-auxiliary-table' && rowIndex === 4 }"
+          :class="{
+            'grammar-kana-nowrap-cell': isKanaSuffixNowrap(sectionId, rowIndex),
+            'grammar-fixed-break-cell': sectionId === 'da-auxiliary-table' && rowIndex === 4
+          }"
         >
           {{ pair.suffix }}
         </td>
