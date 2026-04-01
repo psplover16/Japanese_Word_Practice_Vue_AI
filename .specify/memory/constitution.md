@@ -1,11 +1,11 @@
 <!--
 Sync Impact Report
-Version change: 1.2.0 -> 1.3.0
-Modified principles: V. Documentation & Repository Hygiene
+Version change: 1.3.0 -> 1.4.0
+Modified principles: none
 Added sections: none
 Removed sections: none
 Templates requiring updates: .specify/templates/plan-template.md (updated),
-.specify/templates/spec-template.md (updated),
+.specify/templates/spec-template.md (validated, no change),
 .specify/templates/tasks-template.md (updated)
 Deferred items: none
 -->
@@ -86,16 +86,28 @@ requirements.
 Documentation and implementation must stay aligned. If a change alters user
 behavior, data shape, performance characteristics, ownership boundaries, or
 test strategy, the corresponding specification and plan must be updated in the
-same work item. When the repository uses linting, formatting, type checking,
-or CI validation, those checks must pass before the change is accepted.
+same work item. If the change refines functionality that was originally
+implemented from an approved feature specification, the originating `spec.md`
+remains the authoritative record and MUST be updated in the same work item
+whenever user-visible behavior, layout, content, interaction, acceptance
+criteria, or scope interpretation changes. Such refinements must never be left
+documented only in source code, review comments, or chat history. Pure
+internal refactoring that does not change user-visible behavior or acceptance
+criteria MAY omit a specification update, but it MUST NOT leave the
+originating specification inaccurate or misleading. When the repository uses
+linting, formatting, type checking, or CI validation, those checks must pass
+before the change is accepted.
 
 ## Development Workflow
 
 Every meaningful change must be traceable to a specification or explicit
-maintenance task. Test coverage must be added or updated with the smallest
-useful scope that proves the change. Reviewers must verify that language,
-testing, performance, scope ownership, reusable-style boundaries, and
-repository hygiene requirements are satisfied before merge.
+maintenance task. Post-implementation refinements must identify and update the
+originating specification whenever they change user-visible behavior, layout,
+content, interaction, acceptance criteria, or scope interpretation. Test
+coverage must be added or updated with the smallest useful scope that proves
+the change. Reviewers must verify that language, testing, performance, scope
+ownership, reusable-style boundaries, repository hygiene, and
+specification-sync requirements are satisfied before merge.
 
 ## Governance
 
@@ -108,4 +120,4 @@ wording fixes. Compliance review is mandatory for all specs, plans, and
 implementation changes, and any exception must be documented with a clear
 expiration or remediation path.
 
-**Version**: 1.3.0 | **Ratified**: 2026-03-21 | **Last Amended**: 2026-03-25
+**Version**: 1.4.0 | **Ratified**: 2026-03-21 | **Last Amended**: 2026-04-01

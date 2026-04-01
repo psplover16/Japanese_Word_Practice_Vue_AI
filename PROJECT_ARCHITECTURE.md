@@ -69,8 +69,19 @@ src/
 │  │     └─ exam.ts (測驗資料型別定義，例如 StartExamInput、ExamQuestionCard、結果快照)
 │  │
 │  ├─ grammar/ (文法頁模組)
+│  │  ├─ components/
+│  │  │  ├─ GodanVerbTable.vue (五段動詞主表與音便子表；以兩個 accordion table 呈現詞尾母音變化與音便規則)
+│  │  │  ├─ GrammarAccordionTableShell.vue (文法表格共用殼層；提供標題列、展開收合、`data-testid` 與一致表格骨架)
+│  │  │  ├─ InflectionTable.vue (一般活用表 renderer；支援一段、サ變、カ變、形容詞與助動詞等多組列資料)
+│  │  │  ├─ PosConversionTable.vue (詞性變化規則 renderer；顯示分組標題、條列規則與例句)
+│  │  │  ├─ RuleListTable.vue (規則清單表 renderer；顯示編號規則與多行補充說明)
+│  │  │  └─ SystemDifferenceTable.vue (語法系統差異比較表 renderer；顯示系統別對照與備註列)
+│  │  ├─ data/
+│  │  │  └─ changeRules.ts (文法頁 11 個 section 的靜態資料來源；集中管理標題、payload 與穩定 id)
+│  │  ├─ types/
+│  │  │  └─ changeRules.ts (文法表格資料型別定義，例如 section、比較列、活用表與詞性變化結構)
 │  │  └─ views/
-│  │     └─ GrammarView.vue (文法頁畫面；承接共用練習狀態並顯示對應內容)
+│  │     └─ GrammarView.vue (文法頁畫面；組裝 11 個規則容器並依資料型別切換對應 renderer)
 │  │
 │  ├─ practice/ (主練習頁模組：假名選擇、練習設定、規則說明)
 │  │  ├─ components/
@@ -105,7 +116,7 @@ src/
 │  │
 │  └─ vocabulary/ (單字頁模組)
 │     └─ views/
-│        └─ VocabularyView.vue (單字頁畫面；承接共用練習狀態並顯示對應內容)
+│        └─ VocabularyView.vue (單字頁畫面；延續共用練習狀態並保留 SelectionDetailPanel 字典練習介面)
 │
 ├─ shared/ (跨模組共用的元件與工具)
 │  ├─ components/
@@ -122,7 +133,7 @@ src/
 │     └─ storageGuard.ts (localStorage 讀寫保護工具；含 JSON parse 驗證與移除壞資料)
 │
 ├─ styles/ (全域樣式層)
-│  └─ main.css (全域 CSS 與 Tailwind / 主題樣式入口；含 `/practice` 專用表格與 375px 密度退讓樣式)
+│  └─ main.css (全域 CSS 與 Tailwind / 主題樣式入口；含 `/practice` 與 `/grammar` 專用表格樣式，以及 375px 密度退讓規則)
 │
 └─ env.d.ts (Vite / TypeScript 環境型別宣告)
 ```
@@ -135,14 +146,17 @@ tests/
 │  ├─ AppShellSmoke.spec.ts (AppShell 基本渲染與核心外框 smoke test)
 │  ├─ ChoonRuleSection.spec.ts (長音規則大表格的結構與例字三段資訊測試)
 │  ├─ ExamModal.spec.ts (ExamModal 的關鍵互動、題目列顯示與關閉測試)
+│  ├─ GrammarChangeRulesTables.spec.ts (文法頁複雜表格 renderer 測試；驗證五段動詞、活用表與詞性變化內容)
+│  ├─ GrammarViewSmoke.spec.ts (文法頁 11 個規則容器與 accordion 初始狀態 smoke test)
 │  ├─ LoanwordSection.spec.ts (外來語矩陣的標頭、內容格與假名/羅馬音呈現測試)
 │  ├─ PracticeViewSmoke.spec.ts (PracticeView 的基本渲染、下半部區塊首屏存在與最近結果清除/捲動測試)
-│  ├─ RouteOwnership.spec.ts (驗證 `/practice` 的 feature ownership 與其他頁面的 negative ownership)
+│  ├─ RouteOwnership.spec.ts (驗證 `/practice`、`/grammar`、`/vocabulary` 的 feature ownership 與 negative ownership)
 │  ├─ SelectionDetailPanel.spec.ts (選取明細面板的顯示邏輯測試)
 │  ├─ YoonSections.spec.ts (清音拗音與合拗音矩陣的全表羅馬音測試)
 │  └─ testUtils.ts (元件測試共用 helper；例如先 provide PracticeSession 再 mount，並可傳入額外 mount options)
 ├─ e2e/ (Playwright 端到端測試)
 │  ├─ app-shell.smoke.spec.ts (整個網站 shell 與基本進站流程 smoke test)
+│  ├─ grammar-change-rules.spec.ts (375px 下 `/grammar` 的展開流程、主要文法表格可見性與不破版驗證)
 │  ├─ practice-layout.smoke.spec.ts (375px 下 `/practice` 首屏、表格可讀性與無水平捲動 smoke test)
 │  ├─ practice-exam-flow.spec.ts (從選字到開始測驗的完整流程測試，含 modal 題目列存在驗證)
 │  └─ testUtils.ts (e2e 共用 helper；含主要 tabs 與無水平捲動斷言)
@@ -150,6 +164,7 @@ tests/
 │  └─ pwaRegisterMock.ts (mock `virtual:pwa-register`，讓測試不真的註冊 service worker)
 ├─ unit/ (純邏輯單元測試)
 │  ├─ latestUnknownResultStorage.spec.ts (最近不熟結果 storage 的讀寫與驗證測試)
+│  ├─ changeRulesData.spec.ts (文法頁靜態資料測試；驗證 section 數量、id 唯一性與關鍵 payload 完整度)
 │  ├─ pwaLifecycleService.spec.ts (PWA 更新流程與 toast 狀態測試)
 │  ├─ questionDeck.spec.ts (洗牌與循環題組工具測試)
 │  ├─ useExamSession.spec.ts (測驗流程狀態機測試)

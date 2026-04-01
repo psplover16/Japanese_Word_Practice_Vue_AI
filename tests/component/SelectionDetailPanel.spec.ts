@@ -1,13 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import GrammarView from '@/modules/grammar/views/GrammarView.vue';
+import SelectionDetailPanel from '@/modules/practice/components/SelectionDetailPanel.vue';
 import { allKanaCells } from '@/modules/practice/data/kanaData';
 import { mountWithPracticeSession } from './testUtils';
 
 describe('SelectionDetailPanel', () => {
-  it('在第二頁顯示第一頁勾選的實際文字', async () => {
+  it('會顯示第一頁勾選的實際文字', () => {
     const targetCell = allKanaCells.find((item) => item.id === 'tableA-ka');
 
-    const { wrapper } = mountWithPracticeSession(GrammarView, (createdSession) => {
+    const { wrapper } = mountWithPracticeSession(SelectionDetailPanel, (createdSession) => {
       createdSession.toggleKana(targetCell!, true);
       createdSession.enableSokuon.value = true;
     });

@@ -40,6 +40,11 @@
 - If the planned work changes repository structure, module boundaries, shared
   infrastructure, route composition, test structure, or deployment structure,
   the plan must call out the required update to `PROJECT_ARCHITECTURE.md`.
+- If the planned work refines behavior originally delivered from an existing
+  feature specification, the plan must identify the originating `spec.md` and
+  require the same work item to update that specification whenever
+  user-visible behavior, layout, content, interaction, acceptance criteria, or
+  scope interpretation changes.
 - Code changes must define the relevant test strategy before implementation.
 - Legal default states, empty states, hidden states, and placeholder states
   must be covered by a render-safe strategy. Each primary route and each
