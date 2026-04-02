@@ -68,20 +68,15 @@ jobs:
             git worktree add --detach .deploy-pages HEAD
             cd .deploy-pages
             git checkout --orphan gh-pages
+            git rm -rf --ignore-unmatch .
             find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
           fi
 
       - name: Sync static site into GitHub Pages branch
+        env:
+          DEPLOY_TARGET: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
         run: |
-          if [ -n "${PUBLISH_SUBDIR}" ]; then
-            mkdir -p ".deploy-pages/${PUBLISH_SUBDIR}"
-            find ".deploy-pages/${PUBLISH_SUBDIR}" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
-            cp -a dist/. ".deploy-pages/${PUBLISH_SUBDIR}/"
-          else
-            find .deploy-pages -mindepth 1 -maxdepth 1 ! -name '.git' ! -name 'staging' -exec rm -rf {} +
-            cp -a dist/. .deploy-pages/
-          fi
-
+          node ./scripts/publishPages.mjs --worktree .deploy-pages --dist dist --target "${DEPLOY_TARGET}"
           touch .deploy-pages/.nojekyll
 
       - name: Commit and push GitHub Pages content
@@ -89,12 +84,13 @@ jobs:
           cd .deploy-pages
           git add -A
 
+          DEPLOY_LABEL="${PUBLISH_SUBDIR:-production}"
+
           if [ -z "$(git status --porcelain)" ]; then
-            echo "No publish changes to commit."
+            echo "No publish changes to commit for ${DEPLOY_LABEL}."
             exit 0
           fi
 
-          DEPLOY_LABEL="${PUBLISH_SUBDIR:-production}"
           SHORT_SHA="${GITHUB_SHA::7}"
 
           git commit -m "deploy: publish ${DEPLOY_LABEL} (${SHORT_SHA})"
