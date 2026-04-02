@@ -38,7 +38,7 @@ Japanese_Word_Practice_Vue_AI/
 ├─ tsconfig.app.json (前端 app TypeScript 設定)
 ├─ tsconfig.json (TypeScript 基礎設定)
 ├─ tsconfig.node.json (Node / 工具腳本 TypeScript 設定)
-├─ vite.config.ts (Vite 建置、alias、PWA 等設定)
+├─ vite.config.ts (Vite 建置、alias、PWA 等設定；`publicDir` 目前指向 `_private/_private_fileAssets/v1/public`)
 └─ vitest.config.ts (Vitest 設定：jsdom、setup、排除 e2e)
 ```
 
@@ -140,6 +140,8 @@ src/
 │  │  ├─ BaseInput.vue (全站共用輸入框元件)
 │  │  ├─ RouteTabs.vue (頁面分頁切換導覽列；在 375px 下維持 route tabs 單列可辨識)
 │  │  └─ ToastBanner.vue (全站共用 Toast 提示；主要用於 PWA 更新 / 離線提示)
+│  ├─ config/
+│  │  └─ publicAssets.ts (公開資產來源常數；集中定義 favicon、PWA icon 與 `publicDir` 對應來源)
 │  └─ utils/
 │     ├─ questionCount.ts (依已選假名數與是否包含平假名/片假名，計算建議題數)
 │     ├─ questionDeck.ts (提供洗牌與循環補足題組的工具函式)
@@ -221,6 +223,12 @@ index.html
   -> PracticeView / GrammarView / VocabularyView
   -> 各模組 composables、components、utils
 ```
+
+## 公開資產與 PWA Icon 責任
+
+- `vite.config.ts` 透過 `publicDir` 將 `_private/_private_fileAssets/v1/public` 視為正式公開資產來源。
+- `src/shared/config/publicAssets.ts` 是 favicon 與 PWA icon 檔名的單一來源，供 Vite 設定與測試共用。
+- `tests/unit/publicAssets.spec.ts` 會驗證來源素材存在，並以暫時 build 輸出確認 `index.html`、`manifest.webmanifest`、`vite.ico` 與 `icons/*.png` 都真的進入可發布產物。
 
 ## 一句話總結
 
