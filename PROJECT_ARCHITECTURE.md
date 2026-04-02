@@ -15,7 +15,7 @@ Japanese_Word_Practice_Vue_AI/
 ├─ .github/
 │  └─ workflows/
 │     ├─ ci.yml (CI 驗證流程：lint、typecheck、unit test、build、e2e)
-│     └─ cd.yml (CD 部署流程：建置後直接操作 `gh-pages` worktree，分別同步 production root 與 `staging/`)
+│     └─ cd.yml (CD 部署流程：建置後建立 `gh-pages` worktree，交由 `scripts/publishPages.mjs` 同步 production root 與 `staging/`)
 ├─ .specify/ (Spec-driven 開發模板、腳本與專案規範記憶)
 ├─ dist/ (Vite build 後產生的靜態網站輸出)
 ├─ node_modules/ (npm 安裝的套件)
@@ -207,7 +207,8 @@ specs/ (每個功能需求的規格資料夾)
 ├─ scripts/ (建立新 feature、檢查前置條件、更新 agent context 的腳本)
 └─ memory/ (專案規範記憶，例如 constitution)
 
-scripts/ (目前無追蹤中的專案自訂腳本；部署邏輯已收斂到 GitHub Actions workflow)
+scripts/ (專案自訂腳本目錄)
+└─ publishPages.mjs (GitHub Pages 發布同步腳本：清理不安全 root 殘留、保留合法 production 內容、同步 `dist/` 到 production 或 `staging/`)
 ```
 
 ## 執行流程速記
@@ -226,5 +227,4 @@ index.html
 - `src/`：真正的產品邏輯與畫面實作。
 - `tests/`：驗證 `src/` 是否正確。
 - `specs/` / `.specify/`：規格、計畫、任務與開發流程支援。
-- `.github/workflows/`：自動化驗證與部署。
-- `.github/workflows/`：自動化驗證與部署，包含直接管理 `gh-pages` 內容的 CD。
+- `.github/workflows/`：自動化驗證與部署，包含呼叫 `scripts/publishPages.mjs` 管理 `gh-pages` 內容的 CD。
