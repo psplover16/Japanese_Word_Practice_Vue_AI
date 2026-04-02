@@ -1,0 +1,2 @@
+bug修正
+再推送至github之後，會跳出 錯誤訊息，GET https://psplover16.github.io/src/app/main.ts net::ERR_ABORTED 404 (Not Found)，無法正確部屬。
