@@ -115,8 +115,22 @@ src/
 │  │     └─ pwa.ts (PWA ToastState 型別定義)
 │  │
 │  └─ vocabulary/ (單字頁模組)
+│     ├─ components/
+│     │  ├─ VocabularyControlBar.vue (單字頁控制區；提供搜尋、練習模式與右側全域篩選入口)
+│     │  ├─ VocabularyCountSummary.vue (單字數量摘要文字；顯示目前可見資料列數)
+│     │  └─ VocabularyStageTable.vue (單字表格；處理單一可捲動 table、共用欄位顯示、註記欄與長按揭露事件)
+│     ├─ composables/
+│     │  └─ useVocabularySession.ts (單字頁狀態管理；串接 `/practice` 勾選、搜尋條件、註記草稿／持久化與長按揭露)
+│     ├─ data/
+│     │  └─ jpWords.ts (單字靜態資料；將既有字典資料正規化為可渲染結構，並保留 stage 中繼資訊)
+│     ├─ storage/
+│     │  └─ vocabularyMarksStorage.ts (單字註記 localStorage 存取與格式驗證)
+│     ├─ types/
+│     │  └─ vocabulary.ts (單字資料、顯示欄位、篩選條件與註記快照型別)
+│     ├─ utils/
+│     │  └─ vocabularyFilters.ts (單字字種轉換、搜尋比對、條件篩選與顯示內容導出)
 │     └─ views/
-│        └─ VocabularyView.vue (單字頁畫面；延續共用練習狀態並保留 SelectionDetailPanel 字典練習介面)
+│        └─ VocabularyView.vue (單字頁畫面；重建為參考頁風格的單表格字典、搜尋篩選、註記與長按揭露介面)
 │
 ├─ shared/ (跨模組共用的元件與工具)
 │  ├─ components/
@@ -133,7 +147,7 @@ src/
 │     └─ storageGuard.ts (localStorage 讀寫保護工具；含 JSON parse 驗證與移除壞資料)
 │
 ├─ styles/ (全域樣式層)
-│  └─ main.css (全域 CSS 與 Tailwind / 主題樣式入口；含 `/practice` 與 `/grammar` 專用表格樣式，以及 375px 密度退讓規則)
+│  └─ main.css (全域 CSS 與 Tailwind / 主題樣式入口；含 `/practice`、`/grammar` 與 `/vocabulary` 專用表格樣式，以及 375px 密度退讓規則)
 │
 └─ env.d.ts (Vite / TypeScript 環境型別宣告)
 ```
@@ -152,6 +166,9 @@ tests/
 │  ├─ PracticeViewSmoke.spec.ts (PracticeView 的基本渲染、下半部區塊首屏存在與最近結果清除/捲動測試)
 │  ├─ RouteOwnership.spec.ts (驗證 `/practice`、`/grammar`、`/vocabulary` 的 feature ownership 與 negative ownership)
 │  ├─ SelectionDetailPanel.spec.ts (選取明細面板的顯示邏輯測試)
+│  ├─ VocabularyControlBar.spec.ts (單字頁控制區測試；驗證搜尋與 checkbox 疊加控制事件)
+│  ├─ VocabularyStageTable.spec.ts (單字表格測試；驗證欄位保留佔位、註記與長按事件輸出)
+│  ├─ VocabularyViewSmoke.spec.ts (單字頁 smoke test；驗證初始渲染、註記儲存與長按揭露)
 │  ├─ YoonSections.spec.ts (清音拗音與合拗音矩陣的全表羅馬音測試)
 │  └─ testUtils.ts (元件測試共用 helper；例如先 provide PracticeSession 再 mount，並可傳入額外 mount options)
 ├─ e2e/ (Playwright 端到端測試)
@@ -159,6 +176,7 @@ tests/
 │  ├─ grammar-change-rules.spec.ts (375px 下 `/grammar` 的展開流程、主要文法表格可見性與不破版驗證)
 │  ├─ practice-layout.smoke.spec.ts (375px 下 `/practice` 首屏、表格可讀性與無水平捲動 smoke test)
 │  ├─ practice-exam-flow.spec.ts (從選字到開始測驗的完整流程測試，含 modal 題目列存在驗證)
+│  ├─ vocabulary-word-practice.spec.ts (單字頁端到端測試；驗證搜尋、註記持久化、長按揭露與窄版穩定性)
 │  └─ testUtils.ts (e2e 共用 helper；含主要 tabs 與無水平捲動斷言)
 ├─ mocks/ (測試替身 / mock 模組)
 │  └─ pwaRegisterMock.ts (mock `virtual:pwa-register`，讓測試不真的註冊 service worker)
@@ -168,7 +186,10 @@ tests/
 │  ├─ pwaLifecycleService.spec.ts (PWA 更新流程與 toast 狀態測試)
 │  ├─ questionDeck.spec.ts (洗牌與循環題組工具測試)
 │  ├─ useExamSession.spec.ts (測驗流程狀態機測試)
-│  └─ usePracticeSession.spec.ts (練習狀態管理測試)
+│  ├─ usePracticeSession.spec.ts (練習狀態管理測試)
+│  ├─ vocabularyData.spec.ts (單字資料測試；驗證正規化後筆數、id 與 stage 分組順序)
+│  ├─ vocabularyFilters.spec.ts (單字過濾邏輯測試；驗證搜尋與字母條件疊加規則)
+│  └─ vocabularyMarksStorage.spec.ts (單字註記 storage 測試；驗證格式驗證與壞資料清除)
 └─ setup.ts (Vitest 共用初始化；載入 `jest-dom` matcher)
 ```
 

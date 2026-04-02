@@ -353,6 +353,104 @@ textarea {
   .grammar-subtable-highlight-cell {
     @apply !bg-red-700 text-white;
   }
+
+  .vocabulary-control-bar {
+    @apply space-y-1.5;
+  }
+
+  .vocabulary-view {
+    @apply flex h-full flex-col gap-2;
+  }
+
+  .vocabulary-control-bar {
+    @apply flex flex-col gap-0 px-1;
+  }
+
+  .vocabulary-control-row,
+  .vocabulary-toolbar {
+    @apply flex items-center justify-between gap-3;
+  }
+
+  .vocabulary-toolbar {
+    @apply px-1;
+  }
+
+  .vocabulary-control-left {
+    @apply flex min-w-0 flex-1 items-center;
+  }
+
+  .vocabulary-control-right {
+    @apply flex shrink-0 items-center justify-end;
+  }
+
+  .vocabulary-control-right-stack {
+    @apply flex flex-col items-start gap-2;
+  }
+
+  .vocabulary-search-input {
+    @apply h-10 w-full rounded-md border border-gray-300 bg-white px-2 py-1 outline-none transition focus:border-gray-500;
+  }
+
+  .vocabulary-count-summary {
+    @apply text-sm font-medium text-ink;
+  }
+
+  .vocabulary-table-scroll {
+    @apply overflow-y-auto;
+    max-height: calc(100dvh - 196px);
+  }
+
+  .vocabulary-table {
+    @apply w-full border-separate border-spacing-0;
+  }
+
+  .vocabulary-header-row {
+    @apply sticky top-0 z-10 bg-neutral-100;
+  }
+
+  .vocabulary-header-cell {
+    @apply border border-gray-300 bg-neutral-100 px-0.5 py-0.5 text-left align-top text-xs font-bold leading-4 text-ink;
+  }
+
+  .vocabulary-header-toggle {
+    @apply inline-flex items-center gap-2 whitespace-nowrap;
+  }
+
+  .vocabulary-body-cell {
+    @apply border border-gray-300 px-0.5 py-0.5 align-top text-sm leading-5 text-ink;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+
+  .vocabulary-cell-content {
+    @apply block select-none;
+  }
+
+  .vocabulary-hidden-content {
+    visibility: hidden;
+  }
+
+  .vocabulary-mark-header-cell {
+    @apply border border-gray-300 bg-neutral-100 align-middle;
+    width: 22px;
+  }
+
+  .vocabulary-mark-cell {
+    @apply border border-gray-300 align-middle text-center;
+    width: 22px;
+  }
+
+  .vocabulary-clear-marks-shell {
+    @apply flex justify-center p-1;
+  }
+
+  .vocabulary-mark-cell-shell {
+    @apply flex items-center justify-center p-1;
+  }
+
+  .vocabulary-marked-row {
+    @apply bg-red-200;
+  }
 }
 
 @media (max-width: 420px) {
@@ -386,7 +484,12 @@ textarea {
   .grammar-prefix-cell {
     padding: 2px;
   }
+
+  .vocabulary-header-cell,
+  .vocabulary-body-cell {
+    padding: 2px;
   }
+}
 
 @media (max-width: 375px) {
   .route-tab-link {
@@ -430,5 +533,16 @@ textarea {
 
   .grammar-title-copy {
     font-size: 0.9375rem;
+  }
+
+  .vocabulary-control-row,
+  .vocabulary-toolbar {
+    gap: 0.75rem;
+  }
+
+  .vocabulary-header-cell,
+  .vocabulary-body-cell,
+  .vocabulary-count-summary {
+    font-size: 0.6875rem;
   }
 }
