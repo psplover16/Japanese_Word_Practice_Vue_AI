@@ -44,7 +44,9 @@
   feature specification, the plan must identify the originating `spec.md` and
   require the same work item to update that specification whenever
   user-visible behavior, layout, content, interaction, acceptance criteria, or
-  scope interpretation changes.
+  scope interpretation changes. The plan must expect that write-back to be
+  clear and complete enough to remain the authoritative behavior record without
+  forcing reviewers to infer missing rules from code diffs.
 - Code changes must define the relevant test strategy before implementation.
 - Legal default states, empty states, hidden states, and placeholder states
   must be covered by a render-safe strategy. Each primary route and each

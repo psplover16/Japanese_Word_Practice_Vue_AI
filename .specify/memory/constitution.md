@@ -1,12 +1,13 @@
 <!--
 Sync Impact Report
-Version change: 1.3.0 -> 1.4.0
+Version change: 1.4.0 -> 1.5.0
 Modified principles: none
 Added sections: none
 Removed sections: none
 Templates requiring updates: .specify/templates/plan-template.md (updated),
 .specify/templates/spec-template.md (validated, no change),
-.specify/templates/tasks-template.md (updated)
+.specify/templates/tasks-template.md (updated),
+.specify/templates/commands/ (not present, no update required)
 Deferred items: none
 -->
 
@@ -94,20 +95,29 @@ criteria, or scope interpretation changes. Such refinements must never be left
 documented only in source code, review comments, or chat history. Pure
 internal refactoring that does not change user-visible behavior or acceptance
 criteria MAY omit a specification update, but it MUST NOT leave the
-originating specification inaccurate or misleading. When the repository uses
-linting, formatting, type checking, or CI validation, those checks must pass
-before the change is accepted.
+originating specification inaccurate or misleading. Specification write-backs
+are only complete when the updated `spec.md` clearly and fully describes the
+current authoritative behavior, affected user journeys, acceptance criteria,
+edge cases, and scope decisions introduced or changed by the work. Partial or
+implicit documentation deltas that require readers to infer behavior from code,
+review comments, or chat history do not satisfy this requirement. When the
+repository uses linting, formatting, type checking, or CI validation, those
+checks must pass before the change is accepted.
 
 ## Development Workflow
 
 Every meaningful change must be traceable to a specification or explicit
 maintenance task. Post-implementation refinements must identify and update the
 originating specification whenever they change user-visible behavior, layout,
-content, interaction, acceptance criteria, or scope interpretation. Test
-coverage must be added or updated with the smallest useful scope that proves
-the change. Reviewers must verify that language, testing, performance, scope
-ownership, reusable-style boundaries, repository hygiene, and
-specification-sync requirements are satisfied before merge.
+content, interaction, acceptance criteria, or scope interpretation. That
+update must be clear enough that a reviewer or future maintainer can validate
+the final behavior from the specification alone without reconstructing missing
+rules from source code history. Test coverage must be added or updated with the
+smallest useful scope that proves the change. Reviewers must verify that
+language, testing, performance, scope ownership, reusable-style boundaries,
+repository hygiene, and specification-sync requirements are satisfied before
+merge. Incomplete specification write-backs must be treated as compliance
+failures, not optional follow-up documentation polish.
 
 ## Governance
 
@@ -120,4 +130,4 @@ wording fixes. Compliance review is mandatory for all specs, plans, and
 implementation changes, and any exception must be documented with a clear
 expiration or remediation path.
 
-**Version**: 1.4.0 | **Ratified**: 2026-03-21 | **Last Amended**: 2026-04-01
+**Version**: 1.5.0 | **Ratified**: 2026-03-21 | **Last Amended**: 2026-04-03

@@ -17,7 +17,7 @@
 | live-search | Yes | T019, T020, T023, T027 | input 即時搜尋與結果更新 |
 | stacked-filter-logic | Yes | T019, T020, T025, T026, T027 | input、標頭 checkbox、非標頭 checkbox 疊加邏輯 |
 | non-table-control-layout | Yes | T024, T028 | input 與非 table checkbox 排版 |
-| table-generation | Yes | T014, T017, T022 | stage 容器與 table 生成 |
+| table-generation | Yes | T014, T017, T022 | 單一 table 生成與資料導出 |
 | header-checkbox-behavior | Yes | T029, T031, T033 | 標頭 checkbox 顯示規則與保留佔位 |
 | row-checkbox-behavior | Yes | T029, T032, T039, T041 | 列內 checkbox 與註記互動 |
 | kanji-romaji-shared-column | Yes | T030, T033 | 漢字／拼音共用欄位切換 |
@@ -25,7 +25,7 @@
 | mark-persistence | Yes | T008, T036, T039, T040 | localStorage 註記持久化與驗證 |
 | mark-clear-flow | Yes | T037, T041 | 雙重確認清除全部註記 |
 | count-summary | Yes | T020, T027 | 單字數量摘要與可見列數同步 |
-| long-press-reveal | Yes | T037, T038, T042, T043 | 長按 0.5 秒揭露與恢復 |
+| long-press-reveal | Yes | T037, T038, T042, T043 | 長按 0.4 秒揭露與恢復 |
 | responsive-fidelity | Yes | T010, T028, T035, T043, T052 | 手機 / 平板 / 桌機版面穩定性 |
 | storage-validation | Yes | T036, T040 | 壞資料清除與錯誤儲存警告 |
 | footer-version-exclusion | Yes | T012, T016, T045 | 不重建參考頁底部版號 |
@@ -70,7 +70,7 @@
   - `/practice` 勾選結果轉成字典過濾條件
   - 隱藏但保留佔位的欄位
   - localStorage 壞資料清除與警告
-  - 長按 0.5 秒揭露在手機與桌機的一致性
+  - 長按 0.4 秒揭露在手機與桌機的一致性
 
 ## Remediation
 

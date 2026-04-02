@@ -80,7 +80,7 @@
 ### 6. 長按揭露採 pointer/touch 統一邏輯，暫時覆蓋欄位顯示狀態
 
 - 長按需求同時涵蓋手機與 PC，因此會用同一套 pointer-based interaction 為主，必要時補 touch fallback。
-- 長按約 0.5 秒時，該列會進入暫時 reveal 狀態；放開、取消或 pointer 離開後立刻恢復。
+- 長按約 0.4 秒時，該列會進入暫時 reveal 狀態；放開、取消或 pointer 離開後立刻恢復。
 - reveal 狀態只影響單列顯示，不改變欄位 checkbox 的真實狀態，也不寫入持久化。
 
 ### 7. 測試採 unit + component + e2e + ownership 四層驗證

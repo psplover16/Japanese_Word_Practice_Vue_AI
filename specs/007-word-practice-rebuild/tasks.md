@@ -50,11 +50,11 @@
 
 ### Implementation for User Story 1
 
-- [X] T013 [P] [US1] 實作 stage 容器元件於 `src/modules/vocabulary/components/VocabularyStageSection.vue`
-- [X] T014 [P] [US1] 實作 stage table 基本 renderer 於 `src/modules/vocabulary/components/VocabularyStageTable.vue`
+- [X] T013 [P] [US1] 實作單一可縱向捲動 table 容器與 renderer shell 於 `src/modules/vocabulary/components/VocabularyStageTable.vue`
+- [X] T014 [P] [US1] 實作 table 基本 renderer 與欄位骨架於 `src/modules/vocabulary/components/VocabularyStageTable.vue`
 - [X] T015 [P] [US1] 實作控制區與單字數量摘要骨架於 `src/modules/vocabulary/components/VocabularyControlBar.vue`、`src/modules/vocabulary/components/VocabularyCountSummary.vue`
-- [X] T016 [US1] 重寫 `/vocabulary` 主 view，移除舊 placeholder 並串接控制區、stage 容器與基礎表格於 `src/modules/vocabulary/views/VocabularyView.vue`
-- [X] T017 [US1] 在 `src/modules/vocabulary/data/jpWords.ts` 補齊 stage 順序、容器標題與表格生成所需的基礎 mapping
+- [X] T016 [US1] 重寫 `/vocabulary` 主 view，移除舊 placeholder 並串接控制區、單一 table 與基礎表格於 `src/modules/vocabulary/views/VocabularyView.vue`
+- [X] T017 [US1] 在 `src/modules/vocabulary/data/jpWords.ts` 補齊穩定 `id`、stage 順序與測試所需 stage metadata
 
 **Checkpoint**: `/vocabulary` 已成為真正的單字學習頁入口，且最小可用版本可獨立驗證。
 
@@ -70,18 +70,18 @@
 
 - [X] T018 [P] [US2] 新增字典正規化與 stage 分組 unit test 於 `tests/unit/vocabularyData.spec.ts`
 - [X] T019 [P] [US2] 新增 filter pipeline unit test，驗證 input 與非 table checkbox 疊加行為於 `tests/unit/vocabularyFilters.spec.ts`
-- [X] T020 [P] [US2] 新增控制區搜尋與條件切換 component test 於 `tests/component/VocabularyControlBar.spec.ts`
+- [X] T020 [P] [US2] 新增控制區搜尋、`全部字音`、`漢字`、`只顯示註記` 與 `練習` 切換 component test 於 `tests/component/VocabularyControlBar.spec.ts`
 
 ### Implementation for User Story 2
 
 - [X] T021 [US2] 實作 `/vocabulary` 專屬狀態 composable，串接 `/practice` 勾選結果與頁內 filter state 於 `src/modules/vocabulary/composables/useVocabularySession.ts`
-- [X] T022 [US2] 實作字典 table 生成與 stage 可見列導出於 `src/modules/vocabulary/utils/vocabularyFilters.ts`、`src/modules/vocabulary/components/VocabularyStageTable.vue`
+- [X] T022 [US2] 實作字典 table 生成與最終可見列導出於 `src/modules/vocabulary/utils/vocabularyFilters.ts`、`src/modules/vocabulary/components/VocabularyStageTable.vue`
 - [X] T023 [US2] 實作 input 功能於 `src/modules/vocabulary/components/VocabularyControlBar.vue`
 - [X] T024 [US2] 實作 input 及非 table checkbox 的排版於 `src/modules/vocabulary/components/VocabularyControlBar.vue`、`src/styles/main.css`
 - [X] T025 [US2] 實作 input 與標頭 checkbox 功能疊加驗證邏輯於 `src/modules/vocabulary/composables/useVocabularySession.ts`、`src/modules/vocabulary/utils/vocabularyFilters.ts`
 - [X] T026 [US2] 實作 input 與非標頭 checkbox 功能疊加驗證邏輯於 `src/modules/vocabulary/composables/useVocabularySession.ts`、`src/modules/vocabulary/utils/vocabularyFilters.ts`
 - [X] T027 [US2] 實作 input、標頭 checkbox、非標頭 checkbox 三者共同疊加的最終可見列邏輯與單字數量摘要於 `src/modules/vocabulary/composables/useVocabularySession.ts`、`src/modules/vocabulary/components/VocabularyCountSummary.vue`、`src/modules/vocabulary/views/VocabularyView.vue`
-- [X] T028 [US2] 調整整頁排版，讓控制區、單字摘要與 stage table 的位置符合參考頁於 `src/modules/vocabulary/views/VocabularyView.vue`、`src/styles/main.css`
+- [X] T028 [US2] 調整整頁排版，讓控制區、單字摘要與單一 table 的位置符合參考頁於 `src/modules/vocabulary/views/VocabularyView.vue`、`src/styles/main.css`
 
 **Checkpoint**: 使用者已可用 `/practice` 勾選結果、input 與頁內 checkbox 對字典做正確篩選與搜尋。
 
@@ -114,7 +114,7 @@
 
 **Goal**: 完成註記持久化、清除全部註記、格式錯誤保護與長按顯示互動。
 
-**Independent Test**: 勾選幾筆註記後儲存並重新整理，確認資料保留；再測試清除全部註記與長按約 0.5 秒揭露單列內容。
+**Independent Test**: 勾選幾筆註記後儲存並重新整理，確認資料保留；再測試清除全部註記與長按約 0.4 秒揭露單列內容。
 
 ### Tests for User Story 4
 
@@ -205,13 +205,13 @@
 
 ```bash
 # 先並行建立資料與篩選測試
-Task: "新增字典正規化與 stage 分組 unit test 於 tests/unit/vocabularyData.spec.ts"
+Task: "新增字典正規化與 stage metadata unit test 於 tests/unit/vocabularyData.spec.ts"
 Task: "新增 filter pipeline unit test 於 tests/unit/vocabularyFilters.spec.ts"
 Task: "新增控制區搜尋與條件切換 component test 於 tests/component/VocabularyControlBar.spec.ts"
 
 # 再並行實作核心邏輯與顯示
 Task: "實作 /vocabulary 專屬狀態 composable 於 src/modules/vocabulary/composables/useVocabularySession.ts"
-Task: "實作字典 table 生成與 stage 可見列導出於 src/modules/vocabulary/utils/vocabularyFilters.ts"
+Task: "實作字典 table 生成與最終可見列導出於 src/modules/vocabulary/utils/vocabularyFilters.ts"
 ```
 
 ---

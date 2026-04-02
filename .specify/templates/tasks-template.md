@@ -29,7 +29,10 @@ include a task to update `PROJECT_ARCHITECTURE.md`. When work refines behavior
 already delivered from an existing feature specification, tasks must include
 updating the originating `spec.md` in the same work item whenever
 user-visible behavior, layout, content, interaction, acceptance criteria, or
-scope interpretation changes.
+scope interpretation changes. Those tasks must treat the spec write-back as a
+complete deliverable that clearly captures the final behavior, affected user
+journeys, edge cases, and acceptance rules rather than leaving critical detail
+only in code changes.
 
 ## Format: `[ID] [P?] [Story] Description`
 
