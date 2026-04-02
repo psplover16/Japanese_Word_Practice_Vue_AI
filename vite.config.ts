@@ -2,6 +2,12 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
+import {
+  faviconFileName,
+  pwaIconDescriptors,
+  pwaIconFileNames,
+  publicAssetSourceDir
+} from './src/shared/config/publicAssets';
 
 function normalizeBasePath(value: string | undefined): string {
   const rawValue = value?.trim() || '/';
@@ -39,7 +45,7 @@ export default defineConfig(({ mode }) => {
       vue(),
       VitePWA({
         registerType: 'prompt',
-        includeAssets: ['vite.ico', 'icons/180.png', 'icons/192.png', 'icons/512.png'],
+        includeAssets: [faviconFileName, ...pwaIconFileNames],
         manifest: {
           name: 'Duotify 日語學習 PWA',
           short_name: 'Duotify',
@@ -47,18 +53,17 @@ export default defineConfig(({ mode }) => {
           display: 'standalone',
           background_color: '#f6f0e8',
           theme_color: '#b45a32',
-          icons: [
-            { src: `${appBasePath}icons/180.png`, sizes: '180x180', type: 'image/png' },
-            { src: `${appBasePath}icons/192.png`, sizes: '192x192', type: 'image/png' },
-            { src: `${appBasePath}icons/512.png`, sizes: '512x512', type: 'image/png' }
-          ]
+          icons: pwaIconDescriptors.map((icon) => ({
+            ...icon,
+            src: `${appBasePath}${icon.src}`
+          }))
         },
         workbox: {
           globPatterns: ['**/*.{js,css,html,ico,png,svg,json}']
         }
       })
     ],
-    publicDir: '_private/_private_fileAssets/public',
+    publicDir: publicAssetSourceDir,
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
