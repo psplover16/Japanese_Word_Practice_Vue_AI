@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { RouterView, useRoute } from 'vue-router';
-import AppHeader from '@/shared/components/AppHeader.vue';
+import { RouterView } from 'vue-router';
 import RouteTabs from '@/shared/components/RouteTabs.vue';
 import ToastBanner from '@/shared/components/ToastBanner.vue';
 import { createPracticeSession, providePracticeSession } from '@/modules/practice/composables/usePracticeSession';
@@ -10,8 +8,6 @@ import { usePwaLifecycle } from '@/modules/pwa/composables/usePwaLifecycle';
 const session = createPracticeSession();
 providePracticeSession(session);
 
-const route = useRoute();
-const title = computed(() => (route.meta.title as string | undefined) ?? '50音');
 const { toast, confirmUpdate, dismissToast } = usePwaLifecycle();
 </script>
 
@@ -23,9 +19,8 @@ const { toast, confirmUpdate, dismissToast } = usePwaLifecycle();
     <div class="app-shell-frame mx-auto flex min-h-screen w-full max-w-6xl flex-col px-2 py-3">
       <header
         data-testid="app-header"
-        class="app-shell-header mb-1 flex items-center justify-between gap-2 whitespace-nowrap rounded-lg border border-clay/15 bg-white/75 px-2 py-2 shadow-soft backdrop-blur"
+        class="app-shell-header mb-1 flex items-start rounded-lg border border-clay/15 bg-white/75 px-2 py-2 shadow-soft backdrop-blur"
       >
-        <AppHeader :title="title" class="min-w-0 flex-1" />
         <RouteTabs />
       </header>
 

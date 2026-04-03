@@ -36,6 +36,16 @@ describe('PracticeView', () => {
     expect(wrapper.find('[data-testid="choon-section"]').exists()).toBe(true);
   });
 
+  it('清音與濁音／半濁音表格維持指定字級 class 與可見性', () => {
+    const { wrapper } = mountWithPracticeSession(PracticeView);
+
+    expect(wrapper.get('[data-testid="practice-seion-table"]').classes()).toContain('practice-kana-table');
+    expect(wrapper.get('[data-testid="practice-dakuon-table"]').classes()).toContain('practice-kana-table');
+    expect(wrapper.findAll('.practice-kana-text-stack').length).toBeGreaterThan(0);
+    expect(wrapper.findAll('.practice-kana-main-text').length).toBeGreaterThan(0);
+    expect(wrapper.findAll('.practice-kana-romaji-text').length).toBeGreaterThan(0);
+  });
+
   it('進入第一頁且已有最近一次結果時會觸發 smooth scroll', async () => {
     vi.useFakeTimers();
     const scrollSpy = vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined);

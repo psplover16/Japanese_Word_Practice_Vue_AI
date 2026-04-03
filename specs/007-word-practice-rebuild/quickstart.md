@@ -9,7 +9,7 @@
 1. 執行 `npm run dev`。
 2. 開啟 `/practice`，至少勾選幾個假名字母，保留 `題目包含：平假名` 與 `題目包含：片假名` 的不同組合。
 3. 切換到 `/vocabulary`。
-4. 確認 route title、route tabs 與 app shell 仍是既有版本。
+4. 確認共享 route tabs 與 app shell 仍是既有版本，且頁首沒有額外 route title。
 5. 確認頁面主內容不再顯示：
    - `SelectionDetailPanel`
    - `單字練習預備區`

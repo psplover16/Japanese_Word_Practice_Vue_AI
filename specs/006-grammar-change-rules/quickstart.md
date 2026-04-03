@@ -8,7 +8,7 @@
 
 1. 執行 `npm run dev`。
 2. 開啟 `/grammar`。
-3. 確認 route title、route tabs 與 app shell 仍是既有版本。
+3. 確認共享 route tabs 與 app shell 仍是既有版本，且頁首沒有額外 route title。
 4. 確認頁面主內容已不再顯示舊的 selection detail / hatsuon / sokuon 區塊。
 5. 確認頁面出現以下 11 個容器：
    - 語法系統差異

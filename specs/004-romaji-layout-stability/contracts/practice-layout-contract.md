@@ -10,7 +10,7 @@
 | Surface | Contract |
 |---------|----------|
 | `/practice` | 首次開啟與重新整理時，濁音／半濁音以下的本期區塊需在首屏穩定出現 |
-| `AppShell` | 375px 下頁首標題與 route tabs 不得裁切、重疊或造成水平捲動 |
+| `AppShell` | 375px 下共享 route tabs 不得裁切、重疊或造成水平捲動 |
 | `PracticeView` | 必須同步渲染本期調整區塊，不可先留大片空白後延遲補上 |
 | Negative ownership | 其他 route 與高風險互動元件不得出現本 feature 的內容與樣式回歸 |
 

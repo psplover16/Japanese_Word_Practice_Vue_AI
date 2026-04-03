@@ -34,7 +34,7 @@ textarea {
   }
 
   .app-shell-header {
-    @apply min-w-0;
+    @apply min-w-0 gap-2;
   }
 
   .surface-card {
@@ -66,11 +66,43 @@ textarea {
   }
 
   .route-tabs {
-    @apply shrink-0 whitespace-nowrap;
+    @apply flex w-full flex-wrap items-center justify-start gap-1;
   }
 
   .route-tab-link {
-    @apply whitespace-nowrap rounded border;
+    @apply inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded border px-2 py-1 font-medium leading-none transition-colors;
+    font-size: 0.875rem;
+  }
+
+  .practice-kana-table {
+    font-size: 12px;
+  }
+
+  .practice-kana-header-button {
+    font-size: inherit;
+  }
+
+  .practice-kana-button {
+    font-size: inherit;
+  }
+
+  .practice-kana-text-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    line-height: 1;
+  }
+
+  .practice-kana-main-text {
+    font-size: 13px;
+  }
+
+  .practice-kana-romaji-text {
+    font-size: 11px;
+  }
+
+  .practice-kana-placeholder {
+    font-size: 13px;
   }
 
   .practice-reference-grid {
@@ -459,7 +491,7 @@ textarea {
   }
 
   .route-tab-link {
-    padding: 0.25rem 0.375rem;
+    padding: 0.3125rem 0.5rem;
   }
 
   .practice-grid-header-cell,
@@ -493,7 +525,21 @@ textarea {
 
 @media (max-width: 375px) {
   .route-tab-link {
-    font-size: 0.6875rem;
+    font-size: 0.8125rem;
+    padding: 0.25rem 0.4375rem;
+  }
+
+  .practice-kana-table {
+    font-size: 11.5px;
+  }
+
+  .practice-kana-main-text,
+  .practice-kana-placeholder {
+    font-size: 12px;
+  }
+
+  .practice-kana-romaji-text {
+    font-size: 10.5px;
   }
 
   .practice-grid-header-cell,

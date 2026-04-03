@@ -5,7 +5,6 @@ test('375px 下的 /grammar 可展開規則表且不破版', async ({ page }) =>
   await page.setViewportSize({ width: 375, height: 900 });
   await gotoApp(page, '/grammar');
 
-  await expect(page.getByTestId('app-header')).toContainText('變化規則');
   await expectPrimaryTabs(page);
   await expect(page.getByTestId('grammar-sections')).toBeVisible();
   await expect(page.getByTestId('grammar-section-system-difference')).toBeVisible();

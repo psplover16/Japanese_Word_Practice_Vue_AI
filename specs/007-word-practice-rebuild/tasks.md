@@ -41,7 +41,7 @@
 
 **Goal**: 進入 `/vocabulary` 時，保留既有 shell，但主內容改為參考頁等級的單字學習頁。
 
-**Independent Test**: 打開 `/vocabulary`，確認 route title、route tabs 與 app shell 保持不變，且頁面不再顯示 `SelectionDetailPanel` 或「單字練習預備區」。
+**Independent Test**: 打開 `/vocabulary`，確認共享 route tabs 與 app shell 保持不變，且頁面不再顯示 `SelectionDetailPanel` 或「單字練習預備區」。
 
 ### Tests for User Story 1
 

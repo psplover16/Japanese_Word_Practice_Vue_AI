@@ -8,8 +8,8 @@
   - `/grammar`
 - Must preserve:
   - 現有 route path
-  - 現有 route title
-  - 現有 route tabs
+  - 既有共享 route tabs
+  - 不額外顯示 route title 的既有 app shell
   - 現有 app shell
 
 ## Required UI Surfaces
