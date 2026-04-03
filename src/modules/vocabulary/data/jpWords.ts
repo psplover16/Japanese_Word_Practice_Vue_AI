@@ -41,7 +41,7 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     text: "いす",
     romanization: "i-su",
     kanji: "椅子",
-    meaning: "椅子(口語常用)",
+    meaning: "椅子",
     stage: "Stage1_基礎生活",
   },
   {
@@ -258,7 +258,7 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     text: "さす",
     romanization: "sa-su",
     kanji: "刺す",
-    meaning: "刺",
+    meaning: "刺／扎",
     stage: "Stage1_基礎生活",
   },
   {
@@ -517,7 +517,7 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     text: "なま",
     romanization: "na-ma",
     kanji: "生",
-    meaning: "生的／未煮熟的／新鮮的\n該詞彈性很大",
+    meaning: "生的／未煮熟的／新鮮的",
     stage: "Stage1_基礎生活",
   },
   {
@@ -580,7 +580,7 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     text: "へい",
     romanization: "he-i",
     kanji: "塀",
-    meaning: "牆／圍欄(語感)",
+    meaning: "圍牆／圍欄",
     stage: "Stage1_基礎生活",
   },
   {
@@ -1000,7 +1000,7 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     text: "かう",
     romanization: "ka-u",
     kanji: "買う",
-    meaning: "買",
+    meaning: "買／購買",
     stage: "Stage1_基礎生活",
   },
   {
@@ -1028,7 +1028,7 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     text: "かりる",
     romanization: "ka-ri-ru",
     kanji: "借りる",
-    meaning: "借入",
+    meaning: "借／借用",
     stage: "Stage1_基礎生活",
   },
   {
@@ -5481,7 +5481,7 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     text: "じっかんする",
     romanization: "jik-kan-su-ru",
     kanji: "実感する",
-    meaning: "切身感受到／實際感受到",
+    meaning: "切身感受到／親身感受到",
     stage: "Stage3_抽象動詞",
   },
   {
