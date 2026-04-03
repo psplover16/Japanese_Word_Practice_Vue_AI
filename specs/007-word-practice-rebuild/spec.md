@@ -3,7 +3,7 @@
 **Feature Branch**: `007-word-practice-rebuild`  
 **Created**: 2026-04-02  
 **Status**: Draft  
-**Input**: User description: "將目前專案既有 `單字練習` route 的主內容，重寫為與參考頁 `https://psplover16.github.io/Japanese_Word_Practice_Vue/word-practice` 主內容高度一致的版本，保留既有 route path、route title、route tabs 與 app shell，只替換主要內容區，並整合字典搜尋、條件篩選、註記與顯示控制。"
+**Input**: User description: "將目前專案既有 `單字練習` route 的主內容，重寫為與參考頁 `https://psplover16.github.io/Japanese_Word_Practice_Vue/word-practice` 主內容高度一致的版本，保留既有 route path、共享 route tabs 與 app shell，只替換主要內容區，並整合字典搜尋、條件篩選、註記與顯示控制。"
 
 > 本規格以繁體中文撰寫；Constitution 依專案規範維持英文。
 
@@ -19,15 +19,15 @@
 
 ### User Story 1 - 使用者看到完整單字練習頁 (Priority: P1)
 
-作為進入 `單字練習` 頁的使用者，我希望在保留既有 `/vocabulary` 路由、頁面標題與分頁切換的前提下，看到與參考頁一致的主要內容區，而不是目前的簡化 placeholder 或舊版內容。
+作為進入 `單字練習` 頁的使用者，我希望在保留既有 `/vocabulary` 路由與共享分頁切換的前提下，看到與參考頁一致的主要內容區，而不是目前的簡化 placeholder 或舊版內容。
 
 **Why this priority**: 這是本功能的核心價值；若主內容沒有被完整替換，後續所有搜尋、篩選、註記與驗收都失去基礎。
 
-**Independent Test**: 只實作這個故事時，使用者可直接開啟 `/vocabulary`，確認 route title、route tabs 與 app shell 保持不變，且主內容區已替換為參考頁對應的搜尋列、條件切換列、工具列、單字數量摘要與單一可捲動表格。
+**Independent Test**: 只實作這個故事時，使用者可直接開啟 `/vocabulary`，確認共享 route tabs 與 app shell 保持不變，且主內容區已替換為參考頁對應的搜尋列、條件切換列、工具列、單字數量摘要與單一可捲動表格。
 
 **Acceptance Scenarios**:
 
-1. **Given** 使用者進入 `/vocabulary`，**When** 頁面完成初始渲染，**Then** 畫面仍保留既有 route title、route tabs 與 app shell，且主內容區顯示與參考頁一致的搜尋列、條件切換列、工具列、表格與資訊區塊。
+1. **Given** 使用者進入 `/vocabulary`，**When** 頁面完成初始渲染，**Then** 畫面仍保留既有 route tabs 與 app shell，且主內容區顯示與參考頁一致的搜尋列、條件切換列、工具列、表格與資訊區塊。
 2. **Given** 使用者在 `/vocabulary` 與其他 routes 之間切換，**When** 再返回 `/vocabulary`，**Then** 新版主內容仍穩定顯示，不會退回舊版簡化內容或共享其他 route 的 UI。
 
 ---
@@ -112,14 +112,14 @@
 - 若使用者執行儲存註記時資料格式驗證失敗，系統必須拒絕儲存並顯示警告，不得寫入不合法資料。
 - 若使用者長按列內容期間切換裝置輸入事件或放開手指／滑鼠，列內容必須正確恢復原始顯示，不得卡在暫時展開狀態。
 - 若使用者在桌機上長按資料列，瀏覽器原生右鍵選單不得蓋住長按揭露內容或打斷揭露流程。
-- 本功能只作用於 `/vocabulary` 主內容；`/practice`、`/grammar`、route tabs、route title、app shell 與其他 routes 都必須維持既有行為。
+- 本功能只作用於 `/vocabulary` 主內容；`/practice`、`/grammar`、route tabs、app shell 與其他 routes 都必須維持既有行為。
 - 若現有共用樣式或元件無法忠實表達參考頁版型，可在 `/vocabulary` 模組中採用 route-specific 結構與樣式，但不得把不適合的共享樣式強行套用到此頁。
 
 ## Requirements
 
 ### Functional Requirements
 
-- **FR-001**: 系統 MUST 保留既有 `/vocabulary` route path、route title、route tabs 與 app shell，不得因本功能改變這些外層導覽與殼層結構。
+- **FR-001**: 系統 MUST 保留既有 `/vocabulary` route path、共享 route tabs 與 app shell，不得因本功能改變這些外層導覽與殼層結構。
 - **FR-002**: 系統 MUST 將 `/vocabulary` 目前的舊主內容完整替換為參考頁 `https://psplover16.github.io/Japanese_Word_Practice_Vue/word-practice` 的重建版本。
 - **FR-003**: 系統 MUST 讓 `/vocabulary` 主內容中的容器數量、順序、搜尋列、條件切換列、工具列、單字數量摘要列與單一可縱向捲動的表格區塊與參考頁一致。
 - **FR-004**: 系統 MUST 以既有提供的字典資料作為單字表格的資料來源，保留其單字、漢字、拼音、中文翻譯與可供篩選的字音資訊。

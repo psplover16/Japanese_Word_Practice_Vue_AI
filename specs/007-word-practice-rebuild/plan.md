@@ -16,7 +16,7 @@
 **Target Platform**: GitHub Pages 上的前端 SPA，支援手機、平板與桌機瀏覽器  
 **Project Type**: 單一前端 Web Application / PWA  
 **Performance Goals**: 1077 筆字典資料在單次條件變更後的前端過濾與計數應維持即時反應；桌機上目標 <50ms、手機上目標 <100ms 的可感知更新，且 `/vocabulary` 初次進站不可出現 console error  
-**Constraints**: 僅能變更 `/vocabulary` 主內容；不得修改 `/practice`、`/grammar`、route tabs、route title 與 app shell；需保留表格原始欄位佔位；隱藏但保留佔位的內容須採 `visibility: hidden` 類策略；註記資料需使用 localStorage 並只存 `id`  
+**Constraints**: 僅能變更 `/vocabulary` 主內容；不得修改 `/practice`、`/grammar`、共享 route tabs 與 app shell；需保留表格原始欄位佔位；隱藏但保留佔位的內容須採 `visibility: hidden` 類策略；註記資料需使用 localStorage 並只存 `id`  
 **Scale/Scope**: 1 個 route、1 份約 1077 筆的字典資料、保留約 19 組 stage 中繼資訊供資料整理使用、搜尋／條件篩選／註記／長按揭露等互動，以及對應 unit/component/e2e/ownership 測試與文件更新
 
 ## Constitution Check

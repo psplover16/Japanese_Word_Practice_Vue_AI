@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { expectNoHorizontalOverflow, gotoApp } from './testUtils';
+import { expectNoHorizontalOverflow, expectPrimaryTabs, gotoApp } from './testUtils';
 
 test('單字練習頁可搜尋、持久化註記並支援長按揭露', async ({ page }) => {
   page.on('dialog', async (dialog) => {
@@ -8,7 +8,7 @@ test('單字練習頁可搜尋、持久化註記並支援長按揭露', async ({
 
   await gotoApp(page, '/vocabulary');
 
-  await expect(page.getByTestId('app-header')).toContainText('單字練習');
+  await expectPrimaryTabs(page);
   await expect(page.getByTestId('vocabulary-control-bar')).toBeVisible();
   await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1077個單字');
 

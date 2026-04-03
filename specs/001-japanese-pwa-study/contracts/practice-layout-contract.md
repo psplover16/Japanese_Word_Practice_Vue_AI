@@ -3,7 +3,7 @@
 ## 外層容器
 
 - 全站最外層固定容器 `padding-y = 12px`、`padding-x = 8px`。
-- 頁首同列必須顯示 route title 與 route tabs。
+- 頁首必須顯示共享 route tabs，且不得再輸出獨立 route title。
 - `375px` 驗收寬度下，頁首不得出現橫向捲動、裁切、重疊或破版。
 
 ## 固定格表

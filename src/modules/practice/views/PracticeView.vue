@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="space-y-1 py-1">
+  <div class="practice-view space-y-1 py-1">
     <PracticeToolbar
       :has-latest-result="Boolean(examSession.latestUnknownSnapshot.value)"
       @start-exam="startExam"

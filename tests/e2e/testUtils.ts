@@ -6,9 +6,14 @@ export async function gotoApp(page: Page, path = '/'): Promise<void> {
 }
 
 export async function expectPrimaryTabs(page: Page): Promise<void> {
-  await expect(page.getByRole('link', { name: '字母練習' })).toBeVisible();
-  await expect(page.getByRole('link', { name: '變化規則' })).toBeVisible();
-  await expect(page.getByRole('link', { name: '單字練習' })).toBeVisible();
+  const links = page.getByTestId('route-tabs').locator('a');
+  await expect(links).toHaveCount(4);
+  await expect(links).toHaveText(['字母練習', '變化規則', '單字練習', 'N5文法']);
+
+  for (const label of ['字母練習', '變化規則', '單字練習', 'N5文法']) {
+    await expect(page.getByRole('link', { name: label })).toBeVisible();
+    await expect(page.getByRole('link', { name: label })).toHaveCSS('white-space', 'nowrap');
+  }
 }
 
 export async function expectNoHorizontalOverflow(page: Page): Promise<void> {

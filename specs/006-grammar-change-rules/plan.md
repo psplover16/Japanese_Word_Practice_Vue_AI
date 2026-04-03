@@ -16,7 +16,7 @@
 **Target Platform**: GitHub Pages 上的前端 SPA，支援手機與桌機瀏覽器  
 **Project Type**: 單一前端 Web Application / PWA  
 **Performance Goals**: `/grammar` 初次渲染需在單次 route 載入內穩定顯示 11 個容器，375px 寬度下不可出現遮蓋、重疊或 console error  
-**Constraints**: 僅能變更 `/grammar` 主內容；不得修改 `/practice`、`/vocabulary`、route tabs、route title 與 app shell；route-specific 視覺規則優先於既有共用樣式，且「音便」需保留為五段動詞區塊內的子表格  
+**Constraints**: 僅能變更 `/grammar` 主內容；不得修改 `/practice`、`/vocabulary`、共享 route tabs 與 app shell；route-specific 視覺規則優先於既有共用樣式，且「音便」需保留為五段動詞區塊內的子表格  
 **Scale/Scope**: 1 個 route、11 個規則容器、5 類以上 table/內容 renderer、對應 unit/component/e2e/ownership 測試與文件更新
 
 ## Constitution Check

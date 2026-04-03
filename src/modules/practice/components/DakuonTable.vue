@@ -21,7 +21,7 @@ function toggleCell(cell: KanaCell): void {
     </div>
 
     <div class="table-shell">
-      <table class="fixed-grid-table text-[11px] sm:text-xs">
+      <table data-testid="practice-dakuon-table" class="fixed-grid-table practice-kana-table">
         <tbody>
           <tr v-for="row in tableBRows" :key="row.rowKey">
             <td
@@ -33,18 +33,18 @@ function toggleCell(cell: KanaCell): void {
               <button
                 v-if="cell"
                 type="button"
-                class="flex min-h-[58px] w-full flex-col items-center justify-center gap-1 whitespace-nowrap"
+                class="practice-kana-button flex min-h-[58px] w-full flex-col items-center justify-center gap-1 whitespace-nowrap"
                 @click="toggleCell(cell)"
               >
                 <input class="pointer-events-none h-3.5 w-3.5" type="checkbox" :checked="session.isKanaChecked(cell.id)" />
-                <div class="leading-none">
-                  <div class="font-semibold">{{ cell.hiragana }} / {{ cell.katakana }}</div>
-                  <div class="text-[10px] text-ink/70">{{ cell.romaji }}</div>
+                <div class="practice-kana-text-stack">
+                  <div class="practice-kana-main-text font-semibold">{{ cell.hiragana }} / {{ cell.katakana }}</div>
+                  <div class="practice-kana-romaji-text text-ink/70">{{ cell.romaji }}</div>
                 </div>
               </button>
               <div
                 v-else
-                class="flex min-h-[58px] items-center justify-center whitespace-nowrap text-sm text-ink/40"
+                class="practice-kana-placeholder flex min-h-[58px] items-center justify-center whitespace-nowrap text-ink/40"
               >
                 -
               </div>

@@ -87,13 +87,6 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     stage: "Stage1_基礎生活",
   },
   {
-    text: "け",
-    romanization: "ke",
-    kanji: "毛",
-    meaning: "毛",
-    stage: "Stage1_基礎生活",
-  },
-  {
     text: "こえ",
     romanization: "ko-e",
     kanji: "声",
@@ -524,7 +517,7 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     text: "なま",
     romanization: "na-ma",
     kanji: "生",
-    meaning: "生的；未煮熟(名詞／接頭語)",
+    meaning: "生的／未煮熟的／新鮮的\n該詞彈性很大",
     stage: "Stage1_基礎生活",
   },
   {
@@ -4592,7 +4585,7 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     text: "こい",
     romanization: "ko-i",
     kanji: "恋",
-    meaning: "戀愛(曖昧感)(い形容詞)",
+    meaning: "戀愛／愛戀(名詞)",
     stage: "Stage2_聊天曖昧",
   },
   {
@@ -5488,7 +5481,7 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     text: "じっかんする",
     romanization: "jik-kan-su-ru",
     kanji: "実感する",
-    meaning: "切身感受",
+    meaning: "切身感受到／實際感受到",
     stage: "Stage3_抽象動詞",
   },
   {
@@ -5502,7 +5495,7 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     text: "こうどうする",
     romanization: "ko-u-do-u-su-ru",
     kanji: "行動する",
-    meaning: "採取行動",
+    meaning: "行動／採取行動",
     stage: "Stage3_抽象動詞",
   },
   {

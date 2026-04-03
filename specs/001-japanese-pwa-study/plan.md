@@ -5,7 +5,7 @@
 
 ## Summary
 
-本功能會建立一個純前端的 Vue 3 + TypeScript + Vite + Tailwind PWA，提供三個主要路由。第一頁負責字母勾選、教學表格、考試 modal 與結算；第二頁與第三頁只唯讀共享勾選明細，不得把第一頁的專屬 UI 擴散過去。整體設計以 `375px` 為主要驗收尺寸，並以 render-safe、route ownership 與 reusable-style boundary 為核心約束。
+本功能會建立一個純前端的 Vue 3 + TypeScript + Vite + Tailwind PWA，提供四個主要路由入口。第一頁負責字母勾選、教學表格、考試 modal 與結算；第二頁與第三頁只唯讀共享勾選明細，不得把第一頁的專屬 UI 擴散過去，另有 `N5文法` 作為占位入口。整體設計以 `375px` 為主要驗收尺寸，並以 render-safe、route ownership 與 reusable-style boundary 為核心約束。
 
 ## Technical Context
 
@@ -15,7 +15,7 @@
 **Testing**: Vitest、Vue Test Utils、jsdom  
 **Target Platform**: 手機、平板、桌機瀏覽器與手機獨立 app 模式 PWA  
 **Project Type**: 純前端 Web Application / PWA  
-**Performance Goals**: `375px` 主要路由首次 render 不出錯；三個主要路由皆可在離線狀態開啟；`tableA` / `tableB` 於 375px 無捲動條  
+**Performance Goals**: `375px` 主要路由首次 render 不出錯；四個主要路由皆可在離線狀態開啟；`tableA` / `tableB` 於 375px 無捲動條  
 **Constraints**: 無後端、不可使用 `any`、避免不必要第三方套件、使用原生 `alert` / `confirm`  
 **Scale/Scope**: 3 個主要路由、1 個 app-level session store、1 組最近一次結算 localStorage、數個教學表格元件
 
@@ -38,7 +38,7 @@
 
 ### 1. App Shell 與 Route Ownership
 
-- `AppShell` 管理固定頁首、route title、route tabs 與 PWA toast。
+- `AppShell` 管理固定頁首、共享 route tabs 與 PWA toast。
 - `PracticeView` 為第一頁核心畫面，包含工具列、主表格、教學區塊、考試 modal 與結算區。
 - `GrammarView`、`VocabularyView` 只讀取共享狀態，顯示勾選結果明細與各自內容容器。
 - `SelectionDetailPanel` 屬於 `/grammar` 與 `/vocabulary` 專屬功能；不得掛在 `/practice`。

@@ -3,7 +3,7 @@
 **Feature Branch**: `006-grammar-change-rules`  
 **Created**: 2026-03-31  
 **Status**: Draft  
-**Input**: User description: "將目前專案既有 `變化規則` route 的主內容，重寫為與參考頁 `https://psplover16.github.io/Japanese_Word_Practice_Vue/change-rules` 主內容高度一致的版本，保留既有 route path、route title、route tabs 與 app shell，只替換主要內容區。"
+**Input**: User description: "將目前專案既有 `變化規則` route 的主內容，重寫為與參考頁 `https://psplover16.github.io/Japanese_Word_Practice_Vue/change-rules` 主內容高度一致的版本，保留既有 route path、共享 route tabs 與 app shell，只替換主要內容區。"
 
 > 本規格以繁體中文撰寫；Constitution 依專案規範維持英文。
 
@@ -11,7 +11,7 @@
 
 ### User Story 1 - 使用者看到完整變化規則頁 (Priority: P1)
 
-作為進入 `變化規則` 頁的使用者，我希望在保留既有 `/grammar` 路由、頁面標題與分頁切換的前提下，看到與參考頁一致的主內容區，而不是目前的簡化占位內容。
+作為進入 `變化規則` 頁的使用者，我希望在保留既有 `/grammar` 路由與共享分頁切換的前提下，看到與參考頁一致的主內容區，而不是目前的簡化占位內容。
 
 **Why this priority**: 這是功能的核心價值；若主內容沒有被完整替換，其他驗收面向都失去意義。
 
@@ -19,7 +19,7 @@
 
 **Acceptance Scenarios**:
 
-1. **Given** 使用者進入 `/grammar`，**When** 頁面完成渲染，**Then** 頁面仍保留既有 route tabs、route title 與 app shell，且主內容區顯示與參考頁一致的容器順序與內容。
+1. **Given** 使用者進入 `/grammar`，**When** 頁面完成渲染，**Then** 頁面仍保留既有 route tabs 與 app shell，且主內容區顯示與參考頁一致的容器順序與內容。
 2. **Given** 使用者已在 `/grammar`，**When** 與其他 route 切換再返回，**Then** `/grammar` 仍顯示新規則內容，不會退回舊版簡化區塊。
 
 ---
@@ -85,7 +85,7 @@
 
 ### Functional Requirements
 
-- **FR-001**: 系統 MUST 保留既有 `/grammar` route path、route title、route tabs 與 app shell，不得因本功能改變這些外層導覽與殼層結構。
+- **FR-001**: 系統 MUST 保留既有 `/grammar` route path、共享 route tabs 與 app shell，不得因本功能改變這些外層導覽與殼層結構。
 - **FR-002**: 系統 MUST 將 `/grammar` 目前的舊主內容完整替換為參考頁 `https://psplover16.github.io/Japanese_Word_Practice_Vue/change-rules` 的重建版本。
 - **FR-003**: 系統 MUST 讓 `/grammar` 主內容容器的數量、順序、標題與副標題與參考頁一致，共 11 個規則容器，且「音便」必須作為五段動詞區塊內的子表格保留。
 - **FR-004**: 系統 MUST 使每個容器內的 table 結構與參考頁一致，包含 table 數量、thead/tbody/tfoot、tr、td、th、colspan、rowspan、巢狀清單與附註區塊。
