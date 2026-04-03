@@ -5,8 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import {
   faviconFileName,
   pwaIconDescriptors,
-  pwaIconFileNames,
-  publicAssetSourceDir
+  pwaIconFileNames
 } from './src/shared/config/publicAssets';
 
 function normalizeBasePath(value: string | undefined): string {
@@ -63,7 +62,6 @@ export default defineConfig(({ mode }) => {
         }
       })
     ],
-    publicDir: publicAssetSourceDir,
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
