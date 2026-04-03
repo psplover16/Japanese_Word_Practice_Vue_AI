@@ -20,6 +20,7 @@ Japanese_Word_Practice_Vue_AI/
 ├─ dist/ (Vite build 後產生的靜態網站輸出)
 ├─ node_modules/ (npm 安裝的套件)
 ├─ playwright-report/ (Playwright 測試報告輸出)
+├─ public/ (正式公開靜態資產；提供 favicon 與 PWA icons，會直接進入 Vite build 輸出)
 ├─ specs/ (功能規格、研究、計畫、任務與契約文件)
 ├─ src/ (專案核心原始碼：畫面、路由、資料、商業邏輯、共用元件)
 ├─ test-results/ (Playwright 執行後的原始測試結果)
@@ -38,7 +39,7 @@ Japanese_Word_Practice_Vue_AI/
 ├─ tsconfig.app.json (前端 app TypeScript 設定)
 ├─ tsconfig.json (TypeScript 基礎設定)
 ├─ tsconfig.node.json (Node / 工具腳本 TypeScript 設定)
-├─ vite.config.ts (Vite 建置、alias、PWA 等設定；`publicDir` 目前指向 `_private/_private_fileAssets/v1/public`)
+├─ vite.config.ts (Vite 建置、alias、PWA 等設定；使用 Vite 標準 `public/` 目錄提供 favicon 與 PWA icons)
 └─ vitest.config.ts (Vitest 設定：jsdom、setup、排除 e2e)
 ```
 
@@ -141,7 +142,7 @@ src/
 │  │  ├─ RouteTabs.vue (頁面分頁切換導覽列；在 375px 下維持 route tabs 單列可辨識)
 │  │  └─ ToastBanner.vue (全站共用 Toast 提示；主要用於 PWA 更新 / 離線提示)
 │  ├─ config/
-│  │  └─ publicAssets.ts (公開資產來源常數；集中定義 favicon、PWA icon 與 `publicDir` 對應來源)
+│  │  └─ publicAssets.ts (公開資產常數；集中定義 favicon 與 PWA icon 檔名，供 Vite 設定與測試共用)
 │  └─ utils/
 │     ├─ questionCount.ts (依已選假名數與是否包含平假名/片假名，計算建議題數)
 │     ├─ questionDeck.ts (提供洗牌與循環補足題組的工具函式)
@@ -226,9 +227,11 @@ index.html
 
 ## 公開資產與 PWA Icon 責任
 
-- `vite.config.ts` 透過 `publicDir` 將 `_private/_private_fileAssets/v1/public` 視為正式公開資產來源。
+- 根目錄 `public/` 是正式公開靜態資產來源，包含 `public/vite.ico` 與 `public/icons/*.png`。
+- `_private/_private_fileAssets/v1/public` 僅保留為原始參考素材位置，不再作為正式 build 的公開來源。
+- `vite.config.ts` 使用 Vite 標準 `public/` 目錄與 PWA 設定輸出 favicon、manifest 與安裝圖示。
 - `src/shared/config/publicAssets.ts` 是 favicon 與 PWA icon 檔名的單一來源，供 Vite 設定與測試共用。
-- `tests/unit/publicAssets.spec.ts` 會驗證來源素材存在，並以暫時 build 輸出確認 `index.html`、`manifest.webmanifest`、`vite.ico` 與 `icons/*.png` 都真的進入可發布產物。
+- `tests/unit/publicAssets.spec.ts` 會驗證 `public/` 來源素材存在，並以暫時 build 輸出確認 `index.html`、`manifest.webmanifest`、`vite.ico` 與 `icons/*.png` 都真的進入可發布產物。
 
 ## 一句話總結
 

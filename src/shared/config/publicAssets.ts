@@ -1,5 +1,4 @@
-export const publicAssetSourceDir = '_private/_private_fileAssets/v1/public' as const;
-export const legacyPublicAssetSourceDir = '_private/_private_fileAssets/public' as const;
+export const publicAssetSourceDir = 'public' as const;
 
 export const faviconFileName = 'vite.ico' as const;
 
