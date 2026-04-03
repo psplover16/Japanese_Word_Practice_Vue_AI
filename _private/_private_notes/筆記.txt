@@ -31,13 +31,13 @@ git clean -fdx
 幫我先掃描全部專案，掃描完成後，依序執行以下任務
 commit with detailed zh-tw log，包含目前全部非 ignored 變更
 /speckit.specify
-@/_private/_private_notes/v7/specify.txt
+@/_private/_private_notes/v9/specify.txt
 /speckit.clarify
-@/_private/_private_notes/v7/clarify.txt
+@/_private/_private_notes/v9/clarify.txt
 /speckit.plan
-@/_private/_private_notes/v7/plan.txt
+@/_private/_private_notes/v9/plan.txt
 /speckit.tasks
-@/_private/_private_notes/v7/tasks.txt
+@/_private/_private_notes/v9/tasks.txt
 /speckit.analyze Save your analyze report to `analyze.md`
 在 speckit.analyze 這個步驟，如果沒有發現重大嚴重缺失，請直接執行以下任務
 /speckit.implement
