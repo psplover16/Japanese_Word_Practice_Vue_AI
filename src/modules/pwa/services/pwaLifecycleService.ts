@@ -1,8 +1,7 @@
 import { ref } from 'vue';
 import { registerSW } from 'virtual:pwa-register';
 import type { ToastState } from '@/modules/pwa/types/pwa';
-
-const deferredUpdateKey = 'duotify.pwa.deferredUpdate';
+import { pwaDeferredUpdateStorageKey } from '@/shared/config/storageKeys';
 
 const defaultToastState: ToastState = {
   visible: false,
@@ -42,7 +41,7 @@ export function createPwaLifecycleService() {
       return;
     }
 
-    window.localStorage.removeItem(deferredUpdateKey);
+    window.localStorage.removeItem(pwaDeferredUpdateStorageKey);
     await clearCacheStorage();
     await updateServiceWorker(true);
     dismissToast();
@@ -66,7 +65,7 @@ export function createPwaLifecycleService() {
         window.setTimeout(() => dismissToast(), 5000);
       },
       onNeedRefresh() {
-        const shouldAutoUpdate = window.localStorage.getItem(deferredUpdateKey) === 'true';
+        const shouldAutoUpdate = window.localStorage.getItem(pwaDeferredUpdateStorageKey) === 'true';
 
         if (shouldAutoUpdate || !isStandaloneMobile()) {
           void confirmUpdate();
@@ -81,7 +80,7 @@ export function createPwaLifecycleService() {
         };
 
         window.setTimeout(() => {
-          window.localStorage.setItem(deferredUpdateKey, 'true');
+          window.localStorage.setItem(pwaDeferredUpdateStorageKey, 'true');
           dismissToast();
         }, 5000);
       }

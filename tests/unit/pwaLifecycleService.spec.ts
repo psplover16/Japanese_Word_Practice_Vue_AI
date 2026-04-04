@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createPwaLifecycleService } from '@/modules/pwa/services/pwaLifecycleService';
+import { pwaDeferredUpdateStorageKey } from '@/shared/config/storageKeys';
 import { pwaRegisterMock } from '../mocks/pwaRegisterMock';
 
 describe('pwaLifecycleService', () => {
@@ -41,7 +42,7 @@ describe('pwaLifecycleService', () => {
     await vi.advanceTimersByTimeAsync(5000);
 
     expect(service.toast.value.visible).toBe(false);
-    expect(window.localStorage.getItem('duotify.pwa.deferredUpdate')).toBe('true');
+    expect(window.localStorage.getItem(pwaDeferredUpdateStorageKey)).toBe('true');
   });
 
   it('按下立即更新會清除 cache 並呼叫 update service worker', async () => {
@@ -51,7 +52,7 @@ describe('pwaLifecycleService', () => {
     pwaRegisterMock.callbacks.onNeedRefresh?.();
     await service.confirmUpdate();
 
-    expect(window.localStorage.getItem('duotify.pwa.deferredUpdate')).toBeNull();
+    expect(window.localStorage.getItem(pwaDeferredUpdateStorageKey)).toBeNull();
     expect(pwaRegisterMock.updateServiceWorker).toHaveBeenCalledWith(true);
   });
 });
