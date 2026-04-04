@@ -1,0 +1,70 @@
+Please create the implementation plan based on the following technical constraints and project rules.
+0. This is a pure frontend web application with no backend service.
+1. 使用 Vue 3 + TypeScript + Vite + Tailwind CSS.
+2. 必要時，可以使用SCSS
+3. Use Composition API and avoid Options API.
+4. Use @ as the project root alias.
+5. 要考慮PWA，目前PWA是完全離線式
+6. 該路由的內容要做成可擴充式，文本內容採用外部json或是array的方式 import進組件的方式執行
+7. Coding rules:
+- Avoid var; use let or const instead.
+- Avoid global variables; prefer local scope.
+- Avoid global functions; prefer local/module-scoped functions.
+- Avoid unnecessary third-party packages; prefer native/browser/platform capabilities when feasible.
+- Do not use any; all types must be explicitly defined.
+- Keep code concise and avoid duplicated logic.
+- End statements with semicolons.
+- Avoid ESLint errors.
+
+Naming conventions:
+- Component files must use PascalCase, for example: UserCard.vue, LoginForm.vue.
+- Component names must be semantic and avoid meaningless abbreviations.
+- Modular files should use camelCase, for example: userService.ts, authUtils.ts.
+
+Repository hygiene:
+- Design a proper .gitignore for files not needed by the project.
+
+UI planning requirements:
+- 全部畫面最外層有一個固定的容器，該容器的padding-y 與 padding-x 分別是12px 8px 
+- mobile的UI 可以參考圖片 @/_private/_private_fileAssets/v1/wordPracticeUI.jpg
+- 桌機版的UI可以參考圖片 @/_private/_private_fileAssets/v1/desktopWordPractice.jpg
+- 最外層容器排版如以下，詳細可以參考圖片 @/_private/_private_fileAssets/v1/wordPracticeUI.jpg
+ 該頁標題(該路由的標題，沒有其他東西，置左)    路由切換的按鈕group(靠右)   此處不可斷行，且在 375px狀態下，不出現橫向捲動、不得破版、裁切、重疊，且內容必須仍可正常辨識。
+router-view 區域應佔滿可用寬度
+- 關於日語的字母與字符的練習，該頁具有以下要求(詳細可以參考圖片 @/_private/_private_fileAssets/v1/wordPracticeUI.jpg)
+- model的UI及card的UI可以參考以下圖片
+@/_private/_private_fileAssets/v1/modelTest1.jpg
+@/_private/_private_fileAssets/v1/modelTest2.jpg
+- 每個區塊的圓弧用0.5rem
+- 按鈕不用橢圓，用方型但是具有弧度 0.25rem，py-1，px-2
+- input 用長方型，弧度為0.25rem，px-2，py則用0.275rem
+- 專案圖標使用 fontawesome
+- 每個路由的配色要相同
+
+PWA asset implementation:
+- 採用完全離線模式
+- PWA的圖片請用@/_private/_private_fileAssets/v1/public/icons 該資料夾內部的圖片
+- 網頁的icon可以參考@/_private/_private_fileAssets/v1/public/vite.ico
+
+Please generate a plan that includes:
+1. Technical Context
+2. Architecture Decisions
+3. Project Structure
+4. UI / state / storage strategy
+5. PWA implementation considerations
+6. Code standards
+7. Risks and implementation notes
+
+RWD 規劃
+- 支援手機、平板、桌機。
+- 設定主要斷點：<768px、768~1023px、>=1024px。
+- 手機版採單欄排列，避免非必要橫向捲動。
+- 表單、按鈕群、表格、彈窗需分別定義手機版行為。
+- 以 375px作為主要驗收尺寸，需求主要是以375px作為設計。
+- 768px、1024px 為次要驗收尺寸，以不破版為原則，其餘彈性較高。
+
+
+Others
+- 有需要製作警告的功能，不需要額外製作UI，純粹使用原生的alert就好
+
+Focus on implementation planning only. Do not restate product requirements unless needed for technical decisions.

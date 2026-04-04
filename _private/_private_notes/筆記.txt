@@ -45,7 +45,7 @@ commit with detailed zh-tw log，包含目前全部非 ignored 變更
 
 步驟一.AI 發想憲法
 /speckit.constitution
-@/_private/_private_notes/done/constitution.txt
+@/_private/_private_notes/constitution.txt
 
 
 -後續要怎麼測試，也要寫在這

@@ -1,15 +1,81 @@
-- Create principles focused on code quality, testing standards, user experience consistency, and performance requirements.
-- Add a new rule to the Constitution: Keep this document in English only. All specifications, plans, and user-facing documentation MUST be written in Traditional Chinese (zh-TW).
-- Legal default states, empty states, hidden states, and placeholder states must never cause runtime errors, render failures, or browser console errors. Each primary route and each high-risk interactive component must include at least one smoke test that verifies successful initial render under default conditions.
-- All newly generated projects must include a .gitignore file.
-- node_modules/ must never be committed to Git version control.
-- Any reinstallable or regenerable files, such as build, dist, and coverage, must not be committed by default.
-- Plans, tasks, and tests must encode both positive ownership and negative ownership: if a feature is assigned to specific routes, implementation must also verify that it does not appear in unassigned routes.
-- Shared styles, layout primitives, and reusable UI abstractions must only be applied where the visual behavior and layout requirements are materially the same. Convenience or implementation speed must not justify forcing a component into a shared style system that contradicts its explicit specification. When a screen or component has explicit layout or sizing rules, those rules take precedence over reusable style abstractions. Reuse must not override route-specific or component-specific requirements.
-- PROJECT_ARCHITECTURE.md is a required living document and must always reflect the current repository structure and the functional role of each major directory, module, and significant source file. Any work that changes the shape of the codebase, including additions, removals, renames, file moves, module extraction, introduction of shared utilities, route changes, test structure changes, or deployment-related structural changes, must update PROJECT_ARCHITECTURE.md before the work is considered complete. Reviews must treat architecture-document drift as a documentation defect.
-- 請在憲法加入一條非協商規則：
-如果某個功能是根據既有 feature spec 實作出來的，後續又有修改，而且這些修改影響使用者可見行為、畫面排版、文案、互動、驗收條件或範圍解讀，則同一個工作項目必須同步更新原本對應的 spec.md，不能只改程式碼而不回寫 spec；同步的內容，必須要清楚、完整。
-例如：如果某項成果是依 specs/006-.../spec.md 做出來的，後續再微調時，就必須把修改同步寫回那份 006 spec。
-只有純內部重構、且完全不影響外部行為與驗收條件時，才可以不更新 spec，但不得讓 spec 與實際成果不一致。
-請把這條規則寫成憲法中的正式治理條文，並同步反映到 plan-template 與 tasks-template 的 constitution alignment / constitution check。
+# 專案憲法草稿（中文版本）
 
+本文件僅保留適合作為專案憲法的治理條文，用於約束專案在程式碼品質、測試驗證、使用者體驗、效能、文件治理、範圍控制與規格同步上的長期規範。
+
+## 一、核心原則
+
+### 1. 程式碼品質與可維護性
+
+- 程式碼必須容易閱讀、審查與修改。
+- 新增或修改的程式碼必須使用清楚命名、單一職責、低耦合與最簡可行的實作方式。
+- 任何刻意引入的複雜度，都必須在規劃或規格文件中說明其必要性。
+- 對外可見的行為變更，在工作完成前必須具備對應的驗證依據。
+
+### 2. 測試與驗證標準
+
+- 變更在可行的情況下，必須透過測試驗證後才可視為完成。
+- bug 修正必須能重現問題，再進行修補。
+- 新增行為必須依其風險與範圍補上適當層級的驗證。
+- legal default states、empty states、hidden states 與 placeholder states，不得造成 runtime error、render failure 或 browser console error。
+- 每個主要 route 與每個高風險互動元件，都必須至少有一個 smoke test 驗證預設初始渲染可正常完成。
+
+### 3. 使用者體驗一致性
+
+- 所有面向使用者的體驗，必須維持術語、語氣、版面模式與互動模型的一致性。
+- 共用樣式、layout primitive 與可重用 UI abstraction，只能在視覺行為與版面需求實質一致時使用。
+- 不得因為開發方便或速度考量，強行把頁面或元件套用到與規格衝突的共用樣式系統中。
+- 當 route、view 或 component 已有明確的版面、尺寸或互動規則時，顯式規則優先於可重用抽象。
+- loading、empty、error 與 success 狀態，必須與主流程同等重視，不得草率處理。
+
+### 4. 效能要求
+
+- 任何可能影響延遲、記憶體、渲染效能、bundle size 或其他資源使用的變更，都必須先定義預期影響。
+- 若變更可能超出可接受範圍，實作時必須包含量測、緩解方案與明確理由。
+- 效能退化屬於缺陷，必須在交付前處理。
+
+### 5. 文件與版本庫治理
+
+- 憲法文件本身應維持英文；spec、plan 與面向使用者的文件必須使用繁體中文（zh-TW）。
+- 所有新專案都必須包含適當的 `.gitignore`。
+- `node_modules/` 不得提交到 Git。
+- `build/`、`dist/`、`coverage/` 與其他可重建產物，預設不得提交到版本控制。
+- 產生式檔案除非有明確且被記錄的產品理由，否則應維持未追蹤狀態。
+- `PROJECT_ARCHITECTURE.md` 必須作為持續維護的活文件，正確反映目前專案結構、主要目錄、模組與重要檔案責任。
+- 任何涉及目錄結構、檔案職責、共享模組、route 組成、測試結構或部署結構變動的工作，都必須同步更新 `PROJECT_ARCHITECTURE.md`。
+
+### 6. 範圍治理與重用邊界
+
+- 功能只能出現在 spec 或 clarifications 明確指派的 route、view、component 與其他表面中。
+- 共用 state、共用資料來源或共用邏輯，不代表 UI 可以自動共用。
+- 若功能被指派到特定表面，其他未被指派的表面預設為不在範圍內，除非規格有明確納入。
+- plans、tasks 與 tests 必須同時記錄正向範圍與反向範圍，也就是同時驗證功能應出現在哪裡，以及不得出現在哪裡。
+- 重用不得凌駕於 route-specific 或 component-specific 的明確需求之上。
+
+## 二、附加約束
+
+- 文件與實作必須保持一致。
+- 若某次變更影響使用者行為、資料形狀、效能特性、範圍邊界或測試策略，則對應的 spec 與 plan 必須在同一工作項目中同步更新。
+- 如果某個功能原本是根據既有 `spec.md` 實作，後續又有修改，且這些修改影響使用者可見行為、畫面排版、文案、互動、驗收條件或範圍解讀，則同一個工作項目必須同步更新原本對應的 `spec.md`。
+- 這類後續修正不得只改程式碼而不回寫 spec，也不得把關鍵變更只留在程式碼、review 討論或聊天紀錄中。
+- spec 回寫內容必須清楚、完整，足以作為當前正式行為的權威記錄，涵蓋受影響的使用流程、驗收條件、邊界情況與範圍決策。
+- 只有在純內部重構且完全不影響外部行為、驗收條件與範圍解讀時，才可以不更新 spec；但即使如此，也不得讓 spec 與實際成果不一致。
+- 若專案已配置 lint、format、type check 或 CI 驗證，相關檢查在變更完成前必須通過。
+
+## 三、開發流程要求
+
+- 每一項有意義的變更，都必須可追溯到對應的 specification 或明確的 maintenance task。
+- 後續優化若改動使用者可見行為、排版、文案、互動、驗收條件或範圍解讀，必須回頭更新原始 spec，使其仍能單獨作為最終行為依據。
+- 測試補強與文件回寫，不屬於可選的收尾工作，而是完成定義的一部分。
+- 審查時必須檢查語言規範、測試要求、效能要求、範圍邊界、重用邊界、版本庫衛生與規格同步是否都已滿足。
+- 不完整的 spec 回寫，應視為治理不合格，而非可延後處理的文件潤飾。
+
+## 四、治理
+
+- 本憲法優先於非正式慣例、臨時做法與其他衝突的本地規則。
+- 任何修憲都必須明確更新憲法文件本身，並附上修訂理由。
+- 版本號應依語意化規則遞增：
+- MAJOR：不相容的治理變更、原則刪除或重大重定義。
+- MINOR：新增原則、章節，或對既有規則作出實質擴充。
+- PATCH：澄清、措辭修正、結構整理或非語意性的修訂。
+- 所有 spec、plan、tasks 與 implementation work 都必須接受合規檢查。
+- 任何例外都必須被明確記錄，並附上失效條件、期限或補救路徑。
