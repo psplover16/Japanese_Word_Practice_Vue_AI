@@ -5,15 +5,16 @@ import VocabularyControlBar from '@/modules/vocabulary/components/VocabularyCont
 import VocabularyCountSummary from '@/modules/vocabulary/components/VocabularyCountSummary.vue';
 import VocabularyStageTable from '@/modules/vocabulary/components/VocabularyStageTable.vue';
 import { useVocabularySession } from '@/modules/vocabulary/composables/useVocabularySession';
+import { lockBodyScroll, unlockBodyScroll } from '@/shared/utils/bodyScrollLock';
 
 const session = useVocabularySession();
 
 onMounted(() => {
-  document.body.style.overflow = 'hidden';
+  lockBodyScroll();
 });
 
 onBeforeUnmount(() => {
-  document.body.style.overflow = '';
+  unlockBodyScroll();
 });
 </script>
 

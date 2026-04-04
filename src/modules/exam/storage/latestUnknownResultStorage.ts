@@ -1,7 +1,8 @@
 import { readJsonStorage, removeStorage, writeJsonStorage } from '@/shared/utils/storageGuard';
 import type { LatestUnknownResultEntry, LatestUnknownResultSnapshot } from '@/modules/exam/types/exam';
+import { latestUnknownResultsStorageKey } from '@/shared/config/storageKeys';
 
-export const latestUnknownResultsStorageKey = 'duotify.exam.latestUnknownResults';
+export { latestUnknownResultsStorageKey };
 
 function isResultEntry(value: unknown): value is LatestUnknownResultEntry {
   if (!value || typeof value !== 'object') {

@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref, watch } from 'vue';
+import { onBeforeUnmount, watch } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import BaseButton from '@/shared/components/BaseButton.vue';
 import type { ExamQuestionCard } from '@/modules/exam/types/exam';
+import { lockBodyScroll, unlockBodyScroll } from '@/shared/utils/bodyScrollLock';
 
 const props = defineProps<{
   open: boolean;
@@ -14,8 +15,6 @@ const props = defineProps<{
 
 const emit = defineEmits<{ next: []; unknown: []; confirmClose: [] }>();
 
-const previousBodyOverflow = ref('');
-
 function requestClose(): void {
   if (window.confirm('確定要結束練習嗎？')) {
     emit('confirmClose');
@@ -25,24 +24,19 @@ function requestClose(): void {
 watch(
   () => props.open,
   (isOpen) => {
-    if (typeof document === 'undefined') {
-      return;
-    }
-
     if (isOpen) {
-      previousBodyOverflow.value = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
+      lockBodyScroll();
       return;
     }
 
-    document.body.style.overflow = previousBodyOverflow.value;
+    unlockBodyScroll();
   },
   { immediate: true }
 );
 
 onBeforeUnmount(() => {
-  if (typeof document !== 'undefined') {
-    document.body.style.overflow = previousBodyOverflow.value;
+  if (props.open) {
+    unlockBodyScroll();
   }
 });
 </script>

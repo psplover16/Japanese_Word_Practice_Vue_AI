@@ -1,7 +1,8 @@
 import { readJsonStorage, removeStorage, writeJsonStorage } from '@/shared/utils/storageGuard';
 import type { VocabularyMarkSnapshot } from '@/modules/vocabulary/types/vocabulary';
+import { vocabularyMarksStorageKey } from '@/shared/config/storageKeys';
 
-export const vocabularyMarksStorageKey = 'vocabulary-mark-snapshot';
+export { vocabularyMarksStorageKey };
 
 export function isVocabularyMarkSnapshot(value: unknown): value is VocabularyMarkSnapshot {
   if (typeof value !== 'object' || value === null) {
