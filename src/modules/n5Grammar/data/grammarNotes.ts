@@ -1,6 +1,6 @@
 import type { N5GrammarSection, N5GrammarSourceCoverageItem } from '@/modules/n5Grammar/types/grammarNotes';
 
-export const particleSectionIds = ['particle-wa', 'particle-mo', 'particle-no', 'particle-ni', 'particle-he', 'particle-ka'] as const;
+export const particleSectionIds = ['particle-wa', 'particle-ga', 'particle-wo', 'particle-mo', 'particle-no', 'particle-ni', 'particle-he', 'particle-ka'] as const;
 
 export const n5GrammarSections: N5GrammarSection[] = [
   {
@@ -451,6 +451,102 @@ export const n5GrammarSections: N5GrammarSection[] = [
     ]
   },
   {
+    id: 'particle-ga',
+    title: '助詞 が：標示狀態主體',
+    description: '把「が」在狀態、感覺與能力這類句型中的作用獨立整理出來，方便和前面的「は」主題概念對照閱讀。',
+    presentationMode: 'info-stack',
+    order: 90.5,
+    category: 'particle',
+    sharedNotes: [],
+    topics: [
+      {
+        id: 'ga-state-subject',
+        title: 'が 常用來標示正在被描述的對象',
+        summary: '在狀態句裡，「が」常標示的是正在被說明的對象，也就是這個句子裡的狀態主體。',
+        details: [
+          '和「は」相比，「が」更常把焦點放在句子裡被描述的對象本身，而不是把它立成整句的主題。',
+          '因此在「できる」「好きだ」「わかる」這類表現裡，很常看到「が」出現。'
+        ],
+        sourceRefs: ['note-ch2-wa-subject-difference', 'note-ch6-verb-past-positive-negative'],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: 'ga-cooking-done',
+            japanese: '料理ができました。',
+            reading: 'りょうり が できました。',
+            translation: '料理做好了。',
+            note: '這裡的「が」標示的是正在被描述的狀態主體，也就是「料理這件事」已經完成了。',
+            origin: 'source'
+          },
+          {
+            id: 'ga-sushi-like',
+            japanese: '寿司が好きです。',
+            reading: 'すし が すき です。',
+            translation: '喜歡壽司。',
+            note: '句子的重點是在說「壽司」這個對象具有「喜歡」的關係，所以常用「が」來標示。',
+            origin: 'supplemental'
+          },
+          {
+            id: 'ga-japanese-understand',
+            japanese: '日本語がわかります。',
+            reading: 'にほんご が わかります。',
+            translation: '懂日文。',
+            note: '「わかる」這類表現也常用「が」來標示被理解的內容。',
+            origin: 'supplemental'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'particle-wo',
+    title: '助詞 を：標示動作直接作用的對象',
+    description: '承接前面的「が」狀態主體概念，這一組把「を」最核心的用法獨立整理成「動作直接作用到哪個對象」。',
+    presentationMode: 'info-stack',
+    order: 90.75,
+    category: 'particle',
+    sharedNotes: [],
+    topics: [
+      {
+        id: 'wo-direct-object',
+        title: 'を 常用來標示動作的受詞',
+        summary: '當句子要表達「做某件事、吃某個東西、看某樣東西」時，「を」常用來標示那個直接受到動作影響的對象。',
+        details: [
+          '和前一組的「が」相比，「が」常標示狀態、感覺或能力句型中的主體；「を」則更常出現在實際動作直接作用到某個對象的句子裡。',
+          '初學時先把它記成「動作做在什麼東西上」，大多數情況都能快速判斷。'
+        ],
+        sourceRefs: ['note-ch1-verb-present-future', 'note-ch2-mo-wo'],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: 'wo-movie-watch',
+            japanese: '映画を見ます。',
+            reading: 'えいが を みます。',
+            translation: '看電影。',
+            note: '「映画」是被觀看的對象，所以用「を」標示。',
+            origin: 'supplemental'
+          },
+          {
+            id: 'wo-breakfast-eat',
+            japanese: '朝ごはんを食べました。',
+            reading: 'あさごはん を たべました。',
+            translation: '吃了早餐。',
+            note: '「朝ごはん」是被吃的內容，也就是這個動作直接作用的對象。',
+            origin: 'supplemental'
+          },
+          {
+            id: 'wo-cooking-contrast',
+            japanese: '料理を作りました。',
+            reading: 'りょうり を つくりました。',
+            translation: '做了料理。',
+            note: '這句和前面的「料理ができました」剛好能對照來看：前者強調「做了料理」這個動作，後者強調「料理完成了」這個狀態。',
+            origin: 'supplemental'
+          }
+        ]
+      }
+    ]
+  },
+  {
     id: 'particle-mo',
     title: '助詞 も：也、同樣，與其他助詞的搭配',
     description: '把原筆記中「も」如何取代或保留原本助詞的規則整理成對照表，再補上每種情況的代表例句。',
@@ -632,7 +728,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: 'particle-ka',
     title: '助詞 か：把句子變成疑問句',
-    description: '原筆記只列出最核心的疑問句形式，這裡補成最常見的 yes / no 問答格式，方便當成入門範本使用。',
+    description: '把原筆記中最基本的疑問句用法補成可直接套用的整理版，除了 yes / no 問答，也一起整理和疑問詞連用時的句尾形式。',
     presentationMode: 'info-stack',
     order: 96,
     category: 'particle',
@@ -641,10 +737,12 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: 'ka-question',
         title: '句尾加 か，形成 yes / no 疑問句',
-        summary: '在敬體句尾加上「か」，就可以把陳述句改成禮貌的疑問句。',
+        summary: '在敬體句尾加上「か」，就可以把陳述句改成禮貌的疑問句，常用來詢問對方「是不是……」。',
         details: [
-          '回答時常搭配「はい、……です」或「いいえ、……じゃありません」。',
-          '雖然原筆記只寫了一句，但在實際學習時最好連回答型一起記住。'
+          '回答時常搭配「はい、……です」或「いいえ、……じゃありません / ではありません」。',
+          '句尾有了「か」就已經表示疑問，寫正式句子時不一定要再加問號。',
+          '學習時最好把問句和回答型一起記住，這樣比較能直接套進對話。',
+          '這一組先聚焦句尾的「か」；至於句中的「か」還有選擇、不確定等其他用法。'
         ],
         sourceRefs: ['note-ch4-ka'],
         sharedNoteIds: [],
@@ -661,6 +759,55 @@ export const n5GrammarSections: N5GrammarSection[] = [
             japanese: 'はい、学生です。 / いいえ、学生じゃありません。',
             reading: 'はい、がくせい です。 / いいえ、がくせい じゃありません。',
             translation: '是的，我是學生。／不，我不是學生。',
+            origin: 'supplemental'
+          },
+          {
+            id: 'ka-teacher',
+            japanese: 'あの人は先生ですか。',
+            reading: 'あの ひと は せんせい ですか。',
+            translation: '那個人是老師嗎？',
+            origin: 'supplemental'
+          },
+          {
+            id: 'ka-teacher-answer',
+            japanese: 'はい、先生です。 / いいえ、先生ではありません。',
+            reading: 'はい、せんせい です。 / いいえ、せんせい ではありません。',
+            translation: '是的，是老師。／不，不是老師。',
+            note: '用同一組例句順手補上較正式的否定說法「ではありません」。',
+            origin: 'supplemental'
+          }
+        ]
+      },
+      {
+        id: 'ka-question-word',
+        title: '疑問詞句尾也常用 か 收尾',
+        summary: '當句子裡出現「何」「だれ」「どこ」「いつ」這類疑問詞時，敬體問句的句尾一樣常用「か」收尾。',
+        details: [
+          '這時候問句的重點不再是 yes / no，而是要對方補出未知資訊。',
+          '可以把它理解成：疑問詞負責指出「不知道的是哪一部分」，句尾的「か」則負責把整句收成疑問句。'
+        ],
+        sourceRefs: ['note-ch4-ka'],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: 'ka-what',
+            japanese: 'これは何ですか。',
+            reading: 'これ は なん ですか。',
+            translation: '這是什麼？',
+            origin: 'supplemental'
+          },
+          {
+            id: 'ka-where',
+            japanese: 'トイレはどこですか。',
+            reading: 'トイレ は どこ ですか。',
+            translation: '廁所在哪裡？',
+            origin: 'supplemental'
+          },
+          {
+            id: 'ka-when',
+            japanese: '試験はいつですか。',
+            reading: 'しけん は いつ ですか。',
+            translation: '考試是什麼時候？',
             origin: 'supplemental'
           }
         ]
