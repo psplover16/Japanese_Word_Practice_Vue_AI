@@ -194,7 +194,7 @@ textarea {
   }
 
   .grammar-title-cell {
-    @apply relative border border-gray-300 bg-neutral-100 p-1 text-center text-base font-bold text-black;
+    @apply relative cursor-pointer border border-gray-300 bg-neutral-100 p-1 text-center text-base font-bold text-black transition-colors hover:bg-neutral-200;
     text-align: center;
     vertical-align: middle;
   }
@@ -219,7 +219,7 @@ textarea {
   }
 
   .grammar-toggle-icon {
-    @apply absolute right-1 top-1/2 -translate-y-1/2 text-xs text-black;
+    @apply absolute right-2 top-1/2 -translate-y-1/2 text-xs text-black;
   }
 
   .grammar-header-cell {
@@ -386,6 +386,136 @@ textarea {
     @apply !bg-red-700 text-white;
   }
 
+  .n5-grammar-view {
+    @apply space-y-1 py-1;
+  }
+
+  .n5-grammar-section-card {
+    @apply overflow-hidden rounded border border-gray-200 bg-white;
+  }
+
+  .n5-grammar-section-header {
+    @apply border-b border-gray-300 bg-neutral-100;
+  }
+
+  .n5-grammar-section-heading {
+    @apply m-0;
+  }
+
+  .n5-grammar-section-title {
+    @apply block whitespace-pre-wrap text-black;
+  }
+
+  .n5-grammar-section-toggle {
+    @apply relative flex w-full items-center justify-center px-8 py-1 text-center text-base font-bold text-black transition-colors hover:bg-neutral-200;
+  }
+
+  .n5-grammar-section-toggle-icon {
+    @apply absolute right-2 top-1/2 -translate-y-1/2 text-xs text-black;
+  }
+
+  .n5-grammar-section-body {
+    @apply space-y-3 bg-white px-3 py-3;
+  }
+
+  .n5-grammar-section-description {
+    @apply text-sm leading-6 text-ink/85;
+    white-space: pre-line;
+  }
+
+  .n5-grammar-topic-stack {
+    @apply space-y-3;
+  }
+
+  .n5-grammar-topic-card {
+    @apply rounded-lg border border-clay/15 bg-white/80 p-3;
+  }
+
+  .n5-grammar-topic-title {
+    @apply text-sm font-bold text-ink;
+    white-space: pre-line;
+  }
+
+  .n5-grammar-topic-summary {
+    @apply mt-1 text-sm leading-6 text-ink/85;
+    white-space: pre-line;
+  }
+
+  .n5-grammar-detail-list,
+  .n5-grammar-bullet-summary {
+    @apply mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-ink/85;
+  }
+
+  .n5-grammar-detail-item {
+    @apply break-words;
+    white-space: pre-line;
+  }
+
+  .n5-grammar-subheading {
+    @apply text-xs font-bold uppercase tracking-[0.08em] text-clay;
+  }
+
+  .n5-grammar-shared-note-box {
+    @apply mt-3 rounded-md bg-sand/45 p-2;
+  }
+
+  .n5-grammar-shared-note-line {
+    @apply mt-1 text-sm leading-6 text-ink/80;
+    white-space: pre-line;
+  }
+
+  .n5-grammar-example-box {
+    @apply mt-3 space-y-2;
+  }
+
+  .n5-grammar-example-card {
+    @apply rounded-md border border-clay/10 bg-sand/25 p-2;
+  }
+
+  .n5-grammar-example-japanese {
+    @apply text-sm font-semibold text-ink;
+    white-space: pre-line;
+  }
+
+  .n5-grammar-example-reading {
+    @apply mt-1 text-xs text-ink/60;
+    white-space: pre-line;
+  }
+
+  .n5-grammar-example-translation {
+    @apply mt-1 text-sm text-ink/85;
+    white-space: pre-line;
+  }
+
+  .n5-grammar-example-note {
+    @apply mt-1 text-xs leading-5 text-ink/70;
+    white-space: pre-line;
+  }
+
+  .n5-grammar-table-shell {
+    @apply overflow-hidden rounded-lg border border-clay/15 bg-white/80;
+  }
+
+  .n5-grammar-table {
+    @apply w-full table-fixed border-collapse;
+  }
+
+  .n5-grammar-table-head-cell {
+    @apply border border-clay/15 bg-sand/70 px-2 py-2 text-center align-middle text-xs font-bold text-ink;
+    white-space: pre-line;
+  }
+
+  .n5-grammar-table-row-head {
+    @apply border border-clay/15 bg-sand/40 px-2 py-2 text-center align-middle text-xs font-semibold text-ink;
+    white-space: pre-line;
+  }
+
+  .n5-grammar-table-body-cell {
+    @apply border border-clay/15 px-2 py-2 align-middle text-xs leading-5 text-ink;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+  }
+
   .vocabulary-control-bar {
     @apply space-y-1.5;
   }
@@ -521,6 +651,18 @@ textarea {
   .vocabulary-body-cell {
     padding: 2px;
   }
+
+  .n5-grammar-section-body,
+  .n5-grammar-topic-card,
+  .n5-grammar-example-card {
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+  }
+
+  .n5-grammar-section-toggle {
+    padding-left: 0.625rem;
+    padding-right: 1.75rem;
+  }
 }
 
 @media (max-width: 375px) {
@@ -579,6 +721,27 @@ textarea {
 
   .grammar-title-copy {
     font-size: 0.9375rem;
+  }
+
+  .n5-grammar-section-title {
+    font-size: 0.9375rem;
+  }
+
+  .n5-grammar-table-head-cell,
+  .n5-grammar-table-row-head,
+  .n5-grammar-table-body-cell,
+  .n5-grammar-topic-summary,
+  .n5-grammar-detail-list,
+  .n5-grammar-bullet-summary,
+  .n5-grammar-example-japanese,
+  .n5-grammar-example-translation {
+    font-size: 0.75rem;
+  }
+
+  .n5-grammar-example-reading,
+  .n5-grammar-example-note,
+  .n5-grammar-subheading {
+    font-size: 0.6875rem;
   }
 
   .vocabulary-control-row,
