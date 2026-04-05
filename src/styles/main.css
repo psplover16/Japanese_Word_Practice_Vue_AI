@@ -433,17 +433,20 @@ textarea {
 
   .n5-grammar-topic-title {
     @apply text-sm font-bold text-ink;
+    font-size: 1rem;
     white-space: pre-line;
   }
 
   .n5-grammar-topic-summary {
     @apply mt-1 text-sm leading-6 text-ink/85;
+    font-size: 1rem;
     white-space: pre-line;
   }
 
   .n5-grammar-detail-list,
   .n5-grammar-bullet-summary {
     @apply mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-ink/85;
+    font-size: 1rem;
   }
 
   .n5-grammar-detail-item {
@@ -453,6 +456,7 @@ textarea {
 
   .n5-grammar-subheading {
     @apply text-xs font-bold uppercase tracking-[0.08em] text-clay;
+    font-size: 0.8571428571rem;
   }
 
   .n5-grammar-shared-note-box {
@@ -461,6 +465,7 @@ textarea {
 
   .n5-grammar-shared-note-line {
     @apply mt-1 text-sm leading-6 text-ink/80;
+    font-size: 1rem;
     white-space: pre-line;
   }
 
@@ -474,21 +479,25 @@ textarea {
 
   .n5-grammar-example-japanese {
     @apply text-sm font-semibold text-ink;
+    font-size: 1rem;
     white-space: pre-line;
   }
 
   .n5-grammar-example-reading {
     @apply mt-1 text-xs text-ink/60;
+    font-size: 0.8571428571rem;
     white-space: pre-line;
   }
 
   .n5-grammar-example-translation {
     @apply mt-1 text-sm text-ink/85;
+    font-size: 1rem;
     white-space: pre-line;
   }
 
   .n5-grammar-example-note {
     @apply mt-1 text-xs leading-5 text-ink/70;
+    font-size: 0.8571428571rem;
     white-space: pre-line;
   }
 
@@ -502,16 +511,19 @@ textarea {
 
   .n5-grammar-table-head-cell {
     @apply border border-clay/15 bg-sand/70 px-2 py-2 text-center align-middle text-xs font-bold text-ink;
+    font-size: 0.8571428571rem;
     white-space: pre-line;
   }
 
   .n5-grammar-table-row-head {
     @apply border border-clay/15 bg-sand/40 px-2 py-2 text-center align-middle text-xs font-semibold text-ink;
+    font-size: 0.8571428571rem;
     white-space: pre-line;
   }
 
   .n5-grammar-table-body-cell {
     @apply border border-clay/15 px-2 py-2 align-middle text-xs leading-5 text-ink;
+    font-size: 0.8571428571rem;
     white-space: pre-line;
     overflow-wrap: anywhere;
   }
@@ -730,18 +742,20 @@ textarea {
   .n5-grammar-table-head-cell,
   .n5-grammar-table-row-head,
   .n5-grammar-table-body-cell,
+  .n5-grammar-subheading,
+  .n5-grammar-example-reading,
+  .n5-grammar-example-note {
+    font-size: 0.8571428571rem;
+  }
+
+  .n5-grammar-topic-title,
   .n5-grammar-topic-summary,
   .n5-grammar-detail-list,
   .n5-grammar-bullet-summary,
+  .n5-grammar-shared-note-line,
   .n5-grammar-example-japanese,
   .n5-grammar-example-translation {
-    font-size: 0.75rem;
-  }
-
-  .n5-grammar-example-reading,
-  .n5-grammar-example-note,
-  .n5-grammar-subheading {
-    font-size: 0.6875rem;
+    font-size: 1rem;
   }
 
   .vocabulary-control-row,

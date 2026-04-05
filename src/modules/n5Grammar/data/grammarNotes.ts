@@ -1,6 +1,6 @@
 import type { N5GrammarSection, N5GrammarSourceCoverageItem } from '@/modules/n5Grammar/types/grammarNotes';
 
-export const particleSectionIds = ['particle-wa', 'particle-mo', 'particle-no', 'particle-ka', 'particle-ni', 'particle-he'] as const;
+export const particleSectionIds = ['particle-wa', 'particle-mo', 'particle-no', 'particle-ni', 'particle-he', 'particle-ka'] as const;
 
 export const n5GrammarSections: N5GrammarSection[] = [
   {
@@ -149,7 +149,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: 'past-and-state',
     title: '過去、狀態與補充表現',
-    description: '過去敬體、狀態持續與常見補充語法，主題為「發生過」、「當時的狀態」與「原因」。',
+    description: '過去敬體、狀態持續與常見補充語法。「發生過」、「當時的狀態」與「原因」。',
     presentationMode: 'info-stack',
     order: 2,
     category: 'core',
@@ -169,11 +169,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: 'verb-past',
         title: '動詞過去敬體與完成語感',
-        summary: '動詞的敬體過去形是「ました」，可用來表示昨天做了某件事，也能表示某件事已經完成。',
-        details: [
-          '「料理ができました」中的「できました」依語境可解讀成「做好了／完成了」。',
-          '同一句中，「が」標示的是「料理這件事」這個狀態主體。'
-        ],
+        summary: '動詞的敬體過去形是「ました」，可用來表示過去做了某件事，也能表示某件事已經完成。',
+        details: [],
         sourceRefs: ['note-ch6-verb-past-positive-negative'],
         sharedNoteIds: [],
         examples: [
@@ -189,6 +186,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             japanese: '料理ができました。',
             reading: 'りょうり が できました。',
             translation: '料理做好了。',
+            note: '「できました」依語境可解讀成「做好了／完成了」',
             origin: 'source'
           },
           {
@@ -205,10 +203,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: 'nominal-past',
         title: '名詞與な形容詞的過去說法',
         summary: '名詞與な形容詞的過去敬體都用「でした / じゃありませんでした」，差別仍然只在接名詞時是否需要加「な」。',
-        details: [
-          '「昨日、お花見をしました。とてもきれいでした。」中的「きれいでした」是在描述當時的感想。',
-          '「駅ができるまえ、ここは交通が便利じゃありませんでした。」則是在回顧過去某段時間的狀態。'
-        ],
+        details: [],
         sourceRefs: ['note-ch5-noun-past', 'note-ch7-na-adjective-past'],
         sharedNoteIds: [],
         examples: [
@@ -227,10 +222,19 @@ export const n5GrammarSections: N5GrammarSection[] = [
             origin: 'source'
           },
           {
+            id: 'na-past-flower-viewing',
+            japanese: '昨日、お花見をしました。とてもきれいでした。',
+            reading: 'きのう、おはなみ を しました。とても きれい でした。',
+            translation: '昨天去賞花了。非常漂亮。',
+            note: '「でした」是在描述當時的感想。\n「きれい」是在描述過去的動作。',
+            origin: 'source'
+          },
+          {
             id: 'na-past-traffic',
             japanese: '駅ができるまえ、ここは交通が便利じゃありませんでした。',
             reading: 'えき が できる まえ、ここ は こうつう が べんり じゃありませんでした。',
             translation: '在車站建好以前，這裡的交通不方便。',
+            note: '「じゃありませんでした」是回顧過去某段時間的狀態。',
             origin: 'source'
           }
         ]
@@ -238,7 +242,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: 'i-adjective-past',
         title: 'い形容詞過去肯定與否定',
-        summary: 'い形容詞做過去肯定時把「い」改成「かったです」；做過去否定時則用「くなかったです」。',
+        summary: 'い形容詞要變成過去肯定時，把詞尾「い」改成「かったです」；要變成過去否定時，則改成「くなかったです」。',
         details: [
           '「いいです」的過去與否定仍然走「よい」系列，所以要說「よかったです / よくなかったです」。',
           '這一類句子也常與「から」連用，表達造成後句動作的原因。'
@@ -273,10 +277,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: 'continuous-state',
         title: '～ていました 與持續狀態',
         summary: '「～ていました」常用來描述過去某一時點正在持續的狀態，而不只是單純說動作「正在做」。',
-        details: [
-          '「風邪をひく」是固定搭配，表示感冒；整理後把原筆記對「ひく」不同意思的補充收斂成這個重點。',
-          '「住む → 住んでいる」也屬於用 ている 描述狀態持續的典型例子。'
-        ],
+        details: [],
         sourceRefs: ['note-ch2-wa-relative-clause', 'note-ch7-te-iru-state'],
         sharedNoteIds: ['te-iru-state'],
         examples: [
@@ -285,6 +286,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             japanese: '先生は風邪をひいていました。',
             reading: 'せんせい は かぜ を ひいていました。',
             translation: '老師那時感冒了。',
+            note: '「風邪をひく」是固定搭配，表示感冒。',
             origin: 'source'
           },
           {
@@ -292,7 +294,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             japanese: '私が住んでいるアパートの大家さんの子供は小学生です。',
             reading: 'わたし が すんでいる アパート の おおやさん の こども は しょうがくせい です。',
             translation: '我住的公寓房東的小孩是小學生。',
-            note: '這個例句同時示範修飾子句中的主語常用「が」。',
+            note: '這個例句同時示範修飾子句中的主語常用「が」\n「住む → 住んでいる」也示範了五段動詞接「ている」的用法。',
             origin: 'source'
           },
           {
@@ -300,7 +302,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             japanese: '先週はとても暇でしたから、たくさん本を読みました。',
             reading: 'せんしゅう は とても ひま でした から、たくさん ほん を よみました。',
             translation: '上週因為很閒，所以讀了很多書。',
-            note: '同時複習「から」表原因與「本を読む」固定搭配。',
+            note: '「から」表示原因。',
             origin: 'source'
           }
         ]
@@ -632,7 +634,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
     title: '助詞 か：把句子變成疑問句',
     description: '原筆記只列出最核心的疑問句形式，這裡補成最常見的 yes / no 問答格式，方便當成入門範本使用。',
     presentationMode: 'info-stack',
-    order: 93,
+    order: 96,
     category: 'particle',
     sharedNotes: [],
     topics: [
