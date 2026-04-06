@@ -37,6 +37,8 @@ describe('AppShell', () => {
     await router.push('/n5-grammar');
     await nextTick();
     expect(wrapper.find('[data-testid="n5-grammar-view"]').exists()).toBe(true);
-    expect(wrapper.text()).toContain('製作中');
+    expect(wrapper.text()).toContain('句型與詞類敬體基礎');
+    expect(wrapper.text()).toContain('助詞 へ：移動的方向');
+    expect(wrapper.text()).not.toContain('製作中');
   });
 });

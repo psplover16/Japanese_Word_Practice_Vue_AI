@@ -5,8 +5,8 @@ const route = useRoute();
 const tabs = [
   { to: '/practice', label: '字母練習', testId: 'route-tab-practice' },
   { to: '/grammar', label: '變化規則', testId: 'route-tab-grammar' },
-  { to: '/vocabulary', label: '單字練習', testId: 'route-tab-vocabulary' },
-  { to: '/n5-grammar', label: 'N5文法', testId: 'route-tab-n5-grammar' }
+  { to: '/n5-grammar', label: 'N5文法', testId: 'route-tab-n5-grammar' },
+  { to: '/vocabulary', label: '單字練習', testId: 'route-tab-vocabulary' }
 ];
 </script>
 

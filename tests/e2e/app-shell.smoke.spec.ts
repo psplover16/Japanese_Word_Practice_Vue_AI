@@ -16,7 +16,8 @@ test('首頁可載入並切換主要導覽', async ({ page }) => {
 
   await page.getByRole('link', { name: 'N5文法' }).click();
   await expect(page).toHaveURL(/\/n5-grammar$/);
-  await expect(page.getByTestId('n5-grammar-view')).toContainText('製作中');
+  await expect(page.getByTestId('n5-grammar-view')).toContainText('句型與詞類敬體基礎');
+  await expect(page.getByTestId('n5-grammar-view')).not.toContainText('製作中');
 
   await expectPrimaryTabs(page);
   await expectNoHorizontalOverflow(page);
@@ -25,6 +26,7 @@ test('首頁可載入並切換主要導覽', async ({ page }) => {
 test('可直接以網址進入 N5 文法頁', async ({ page }) => {
   await gotoApp(page, '/n5-grammar');
 
-  await expect(page.getByTestId('n5-grammar-view')).toContainText('製作中');
+  await expect(page.getByTestId('n5-grammar-view')).toContainText('助詞 は：主題標記與句子焦點');
+  await expect(page.getByTestId('n5-grammar-view')).not.toContainText('製作中');
   await expectPrimaryTabs(page);
 });

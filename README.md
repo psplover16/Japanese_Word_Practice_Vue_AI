@@ -12,7 +12,7 @@ npm run dev
 
 ## 本地測試
 
-第一次執行 e2e 前，先安裝 Playwright browser：
+第一次執行 e2e 前，先安裝 Playwright 瀏覽器：
 
 ```powershell
 npx playwright install chromium

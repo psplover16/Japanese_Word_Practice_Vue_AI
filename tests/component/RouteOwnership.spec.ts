@@ -34,7 +34,9 @@ describe('route ownership', () => {
     expect(vocabulary.text()).not.toContain('單字練習預備區');
     expect(vocabulary.text()).not.toContain('語法系統差異');
     expect(n5Grammar.find('[data-testid="n5-grammar-view"]').exists()).toBe(true);
-    expect(n5Grammar.text()).toContain('製作中');
+    expect(n5Grammar.text()).toContain('句型與詞類敬體基礎');
+    expect(n5Grammar.text()).toContain('助詞 も：也、同樣，與其他助詞的搭配');
+    expect(n5Grammar.text()).not.toContain('製作中');
     expect(n5Grammar.text()).not.toContain('語法系統差異');
     expect(n5Grammar.text()).not.toContain('單字練習預備區');
   });
