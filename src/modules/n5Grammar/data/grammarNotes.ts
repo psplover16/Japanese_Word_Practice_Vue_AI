@@ -908,62 +908,54 @@ export const n5GrammarSections: N5GrammarSection[] = [
     presentationMode: 'info-stack',
     order: 96,
     category: 'particle',
-    sharedNotes: [],
+    sharedNotes: [
+      {
+        id: 'ka-scope',
+        title: '這一組先聚焦句尾的 か',
+        content: '句尾的「か」是 N5 最核心的疑問句用法；至於句中的「か」，還有選擇、不確定等其他功能，可以之後再分開整理。'
+      }
+    ],
     topics: [
       {
         id: 'ka-question',
-        title: '句尾加 か，形成 yes / no 疑問句',
-        summary: '在敬體句尾加上「か」，就可以把陳述句改成禮貌的疑問句，常用來詢問對方「是不是……」。',
+        title: '句尾加 か，先掌握 yes / no 疑問句',
+        summary: '在敬體句尾加上「か」，就可以把陳述句改成禮貌的疑問句，常用來確認對方「是不是……」。',
         details: [
-          '回答時常搭配「はい、……です」或「いいえ、……じゃありません / ではありません」。',
           '句尾有了「か」就已經表示疑問，寫正式句子時不一定要再加問號。',
-          '學習時最好把問句和回答型一起記住，這樣比較能直接套進對話。',
-          '這一組先聚焦句尾的「か」；至於句中的「か」還有選擇、不確定等其他用法。'
+          '回答時常搭配「はい、……です」或\n「いいえ、……じゃありません / ではありません」。',
         ],
         sourceRefs: ['note-ch4-ka'],
-        sharedNoteIds: [],
+        sharedNoteIds: ['ka-scope'],
         examples: [
           {
             id: 'ka-student',
-            japanese: 'あなたは学生ですか。',
-            reading: 'あなた は がくせい ですか。',
-            translation: '你是學生嗎？',
-            origin: 'source'
-          },
-          {
-            id: 'ka-answer',
-            japanese: 'はい、学生です。 / いいえ、学生じゃありません。',
-            reading: 'はい、がくせい です。 / いいえ、がくせい じゃありません。',
-            translation: '是的，我是學生。／不，我不是學生。',
+            japanese: 'あなたは学生ですか。\nはい、学生です。 / いいえ、学生じゃありません。',
+            reading: 'あなた は がくせい ですか。\nはい、がくせい です。 / いいえ、がくせい じゃありません。',
+            translation: '你是學生嗎？\n是的，我是學生。／不，我不是學生。',
+            note: '',
             origin: 'supplemental'
           },
           {
             id: 'ka-teacher',
-            japanese: 'あの人は先生ですか。',
-            reading: 'あの ひと は せんせい ですか。',
-            translation: '那個人是老師嗎？',
-            origin: 'supplemental'
-          },
-          {
-            id: 'ka-teacher-answer',
-            japanese: 'はい、先生です。 / いいえ、先生ではありません。',
-            reading: 'はい、せんせい です。 / いいえ、せんせい ではありません。',
-            translation: '是的，是老師。／不，不是老師。',
-            note: '用同一組例句順手補上較正式的否定說法「ではありません」。',
+            japanese: 'あの人は先生ですか。\nはい、先生です。 / いいえ、先生ではありません。',
+            reading: 'あの ひと は せんせい ですか。\nはい、せんせい です。 / いいえ、せんせい ではありません。',
+            translation: '那個人是老師嗎？\n是的，是老師。／不，不是老師。',
+            note: '',
             origin: 'supplemental'
           }
         ]
       },
       {
         id: 'ka-question-word',
-        title: '疑問詞句尾也常用 か 收尾',
+        title: '疑問詞問句，句尾也常用 か 收尾',
         summary: '當句子裡出現「何」「だれ」「どこ」「いつ」這類疑問詞時，敬體問句的句尾一樣常用「か」收尾。',
         details: [
-          '這時候問句的重點不再是 yes / no，而是要對方補出未知資訊。',
-          '可以把它理解成：疑問詞負責指出「不知道的是哪一部分」，句尾的「か」則負責把整句收成疑問句。'
+          '這時候問句的重點不再是 yes / no，而是請對方補出未知資訊。',
+          '可以理解成：疑問詞負責指出「不知道的是哪一部分」，句尾的「か」則負責把整句收成疑問句。',
+          '和 yes / no 問句相比，回答時通常不會只說「はい / いいえ」，而是要直接回答內容。'
         ],
         sourceRefs: ['note-ch4-ka'],
-        sharedNoteIds: [],
+        sharedNoteIds: ['ka-scope'],
         examples: [
           {
             id: 'ka-what',
