@@ -87,13 +87,13 @@ src/
 │  ├─ n5Grammar/ (N5 文法學習頁模組)
 │  │  ├─ components/
 │  │  │  ├─ N5GrammarBulletBlock.vue (條列式文法說明 renderer；適合規則重點與例句混合閱讀的群組)
-│  │  │  ├─ N5GrammarCompareTable.vue (差異對照表 renderer；先顯示比較表，再補充每個主題的說明與例句)
+│  │  │  ├─ N5GrammarCompareTable.vue (差異對照表 renderer；先顯示比較表，再補充每個儲存格例句群組與必要的主題說明/例句)
 │  │  │  ├─ N5GrammarInfoBlock.vue (說明後接例句的 renderer；適合連續閱讀型內容)
 │  │  │  └─ N5GrammarSectionCard.vue (N5 文法群組容器；提供標題列、右側收合按鈕與標題分離的說明區)
 │  │  ├─ data/
-│  │  │  └─ grammarNotes.ts (N5 文法結構化靜態資料；整理 v11 筆記、排序規則、來源覆蓋與共通註記)
+│  │  │  └─ grammarNotes.ts (N5 文法結構化靜態資料；整理 v11 筆記、排序規則、來源覆蓋、共通註記與敬體總覽儲存格例句)
 │  │  ├─ types/
-│  │  │  └─ grammarNotes.ts (N5 文法資料型別定義，例如 section、topic、example、compare table 與來源覆蓋項)
+│  │  │  └─ grammarNotes.ts (N5 文法資料型別定義，例如 section、topic、example、compare table、tableExampleGroups 與來源覆蓋項)
 │  │  └─ views/
 │  │     └─ N5GrammarView.vue (N5 文法正式學習頁；依 section 的 presentation mode 組裝 compare/info/bullet 三種 renderer)
 │  │
@@ -178,8 +178,8 @@ tests/
 │  ├─ GrammarChangeRulesTables.spec.ts (文法頁複雜表格 renderer 測試；驗證五段動詞、活用表與詞性變化內容)
 │  ├─ GrammarViewSmoke.spec.ts (文法頁 11 個規則容器與 accordion 初始狀態 smoke test)
 │  ├─ LoanwordSection.spec.ts (外來語矩陣的標頭、內容格與假名/羅馬音呈現測試)
-│  ├─ N5GrammarSections.spec.ts (N5 文法群組測試；驗證收合行為、標題/說明分離與不同內容模式 renderer)
-│  ├─ N5GrammarViewSmoke.spec.ts (N5 文法正式頁 smoke test；驗證 render-safe 初始渲染與無非預期外溢內容)
+│  ├─ N5GrammarSections.spec.ts (N5 文法群組測試；驗證敬體總覽收合/展開、儲存格例句群組與不同內容模式 renderer)
+│  ├─ N5GrammarViewSmoke.spec.ts (N5 文法正式頁 smoke test；驗證新的前兩個區塊標題、render-safe 初始渲染與無非預期外溢內容)
 │  ├─ PracticeViewSmoke.spec.ts (PracticeView 的基本渲染、指定假名表字級 class、下半部區塊首屏存在與最近結果清除/捲動測試)
 │  ├─ RouteOwnership.spec.ts (驗證 `/practice`、`/grammar`、`/vocabulary`、`/n5-grammar` 的 feature ownership 與 negative ownership，並確認 N5 文法內容不外溢)
 │  ├─ SelectionDetailPanel.spec.ts (選取明細面板的顯示邏輯測試)
@@ -201,7 +201,7 @@ tests/
 ├─ unit/ (純邏輯單元測試)
 │  ├─ latestUnknownResultStorage.spec.ts (最近不熟結果 storage 的讀寫與驗證測試)
 │  ├─ changeRulesData.spec.ts (文法頁靜態資料測試；驗證 section 數量、id 唯一性與關鍵 payload 完整度)
-│  ├─ n5GrammarData.spec.ts (N5 文法靜態資料測試；驗證每個主題都有說明與例句、助詞排序與來源覆蓋)
+│  ├─ n5GrammarData.spec.ts (N5 文法靜態資料測試；驗證前兩個區塊排序、12 組儲存格例句、助詞排序與來源覆蓋)
 │  ├─ pwaLifecycleService.spec.ts (PWA 更新流程與 toast 狀態測試)
 │  ├─ questionDeck.spec.ts (洗牌與循環題組工具測試)
 │  ├─ useExamSession.spec.ts (測驗流程狀態機測試)
@@ -220,7 +220,10 @@ specs/ (每個功能需求的規格資料夾)
 ├─ 002-testing-cicd-foundation/ (第二階段規格：測試與 CI/CD 基礎建設)
 ├─ 003-practice-romaji-layout/ (第三階段規格：字母練習排版與羅馬音補強)
 ├─ 004-romaji-layout-stability/ (第四階段規格：長音大表格、外來語矩陣、首屏穩定渲染與 375px 補強)
-└─ 011-route-tabs-n5-grammar/ (第十一階段規格：共享 route tabs 重構、N5 文法入口與 `/practice` 指定表格字級調整)
+├─ 011-route-tabs-n5-grammar/ (第十一階段規格：共享 route tabs 重構、N5 文法入口與 `/practice` 指定表格字級調整)
+├─ 012-n5-grammar-route/ (第十二階段規格：N5 文法正式學習頁、資料整理、群組／收合與來源覆蓋)
+├─ 013-add-vocabulary-entries/ (第十三階段規格：單字練習補齊詞條與字典驗證)
+└─ 014-n5-grammar-table/ (第十四階段規格：N5 文法敬體變化總覽、儲存格例句與前兩個區塊重整)
 
 .specify/ (規格導向開發工具資源)
 ├─ templates/ (spec、plan、tasks 等模板)

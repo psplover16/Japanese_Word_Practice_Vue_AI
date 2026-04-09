@@ -36,6 +36,15 @@ export interface N5GrammarCompareTable {
   rows: N5GrammarCompareTableRow[];
 }
 
+export interface N5GrammarTableExampleGroup {
+  id: string;
+  rowId: string;
+  columnIndex: number;
+  forms: string[];
+  examples: N5GrammarExample[];
+  note?: string;
+}
+
 export interface N5GrammarSection {
   id: string;
   title: string;
@@ -46,6 +55,7 @@ export interface N5GrammarSection {
   topics: N5GrammarTopic[];
   sharedNotes: N5GrammarSharedNote[];
   table?: N5GrammarCompareTable;
+  tableExampleGroups?: N5GrammarTableExampleGroup[];
 }
 
 export interface N5GrammarSourceCoverageItem {

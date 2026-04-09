@@ -45,7 +45,7 @@ function toggleExpanded() {
       :data-testid="`n5-grammar-body-${section.id}`"
       class="n5-grammar-section-body"
     >
-      <p :data-testid="`n5-grammar-description-${section.id}`" class="n5-grammar-section-description">
+      <p v-if="section.description" :data-testid="`n5-grammar-description-${section.id}`" class="n5-grammar-section-description">
         {{ section.description }}
       </p>
       <slot />
