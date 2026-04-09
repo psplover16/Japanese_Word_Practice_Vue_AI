@@ -528,6 +528,38 @@ textarea {
     overflow-wrap: anywhere;
   }
 
+  .n5-grammar-table-example-stack {
+    @apply space-y-3;
+  }
+
+  .n5-grammar-table-example-card {
+    @apply rounded-lg border border-clay/15 bg-sand/25 p-3;
+  }
+
+  .n5-grammar-table-example-header {
+    @apply space-y-1;
+  }
+
+  .n5-grammar-table-example-title {
+    @apply text-sm font-bold text-ink;
+    font-size: 1rem;
+  }
+
+  .n5-grammar-table-example-forms {
+    @apply mt-2 flex flex-wrap gap-2;
+  }
+
+  .n5-grammar-table-example-form {
+    @apply inline-flex items-center rounded-full bg-white px-2 py-1 text-xs font-semibold text-clay;
+    font-size: 0.8571428571rem;
+  }
+
+  .n5-grammar-table-example-note {
+    @apply mt-2 text-xs leading-5 text-ink/70;
+    font-size: 0.8571428571rem;
+    white-space: pre-line;
+  }
+
   .vocabulary-control-bar {
     @apply space-y-1.5;
   }
@@ -666,7 +698,8 @@ textarea {
 
   .n5-grammar-section-body,
   .n5-grammar-topic-card,
-  .n5-grammar-example-card {
+  .n5-grammar-example-card,
+  .n5-grammar-table-example-card {
     padding-left: 0.625rem;
     padding-right: 0.625rem;
   }
@@ -744,7 +777,9 @@ textarea {
   .n5-grammar-table-body-cell,
   .n5-grammar-subheading,
   .n5-grammar-example-reading,
-  .n5-grammar-example-note {
+  .n5-grammar-example-note,
+  .n5-grammar-table-example-form,
+  .n5-grammar-table-example-note {
     font-size: 0.8571428571rem;
   }
 
@@ -754,7 +789,8 @@ textarea {
   .n5-grammar-bullet-summary,
   .n5-grammar-shared-note-line,
   .n5-grammar-example-japanese,
-  .n5-grammar-example-translation {
+  .n5-grammar-example-translation,
+  .n5-grammar-table-example-title {
     font-size: 1rem;
   }
 
