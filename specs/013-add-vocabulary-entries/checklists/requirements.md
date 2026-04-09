@@ -1,35 +1,35 @@
-# Specification Quality Checklist: 單字練習補充詞彙
+# 規格品質檢查清單：單字練習補充詞彙
 
-**Purpose**: Validate specification completeness and quality before proceeding to planning  
-**Created**: 2026-04-07  
-**Feature**: [spec.md](../spec.md)
+**目的**: 在進入規劃前驗證規格的完整性與品質  
+**建立日期**: 2026-04-07  
+**功能規格**: [spec.md](../spec.md)
 
-## Content Quality
+## 內容品質
 
-- [x] No implementation details (languages, frameworks, APIs)
-- [x] Focused on user value and business needs
-- [x] Written for non-technical stakeholders
-- [x] All mandatory sections completed
+- [x] 不含實作細節（語言、框架、API）
+- [x] 聚焦於使用者價值與業務需求
+- [x] 以非技術利害關係人可理解的方式撰寫
+- [x] 所有必要章節皆已完成
 
-## Requirement Completeness
+## 需求完整性
 
-- [x] No [NEEDS CLARIFICATION] markers remain
-- [x] Requirements are testable and unambiguous
-- [x] Success criteria are measurable
-- [x] Success criteria are technology-agnostic (no implementation details)
-- [x] All acceptance scenarios are defined
-- [x] Edge cases are identified
-- [x] Scope is clearly bounded
-- [x] Dependencies and assumptions identified
+- [x] 已無 [NEEDS CLARIFICATION] 標記
+- [x] 需求可測試且沒有歧義
+- [x] 成功標準可衡量
+- [x] 成功標準與技術實作無關（不洩漏實作細節）
+- [x] 所有驗收情境皆已定義
+- [x] 已識別邊界情境
+- [x] 範圍界線清楚
+- [x] 已識別相依關係與假設
 
-## Feature Readiness
+## 功能就緒度
 
-- [x] All functional requirements have clear acceptance criteria
-- [x] User scenarios cover primary flows
-- [x] Feature meets measurable outcomes defined in Success Criteria
-- [x] No implementation details leak into specification
+- [x] 所有功能需求都有明確的驗收標準
+- [x] 使用情境已涵蓋主要流程
+- [x] 功能符合成功標準中定義的可衡量結果
+- [x] 規格中沒有洩漏實作細節
 
-## Notes
+## 備註
 
 - 已驗證本規格以「詞義覆蓋」為核心，並明確記錄「若已存在則不得重複新增」的規則。
 - 本輪未保留任何 [NEEDS CLARIFICATION] 標記，可直接進入 `/speckit.plan`。
