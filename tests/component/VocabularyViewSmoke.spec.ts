@@ -14,7 +14,7 @@ describe('VocabularyViewSmoke', () => {
     const { wrapper } = mountWithPracticeSession(VocabularyView);
 
     expect(wrapper.find('[data-testid="vocabulary-control-bar"]').exists()).toBe(true);
-    expect(wrapper.get('[data-testid="vocabulary-count-summary"]').text()).toContain('1076個單字');
+    expect(wrapper.get('[data-testid="vocabulary-count-summary"]').text()).toContain('1079個單字');
     expect(wrapper.find('[data-testid="vocabulary-table"]').exists()).toBe(true);
   });
 

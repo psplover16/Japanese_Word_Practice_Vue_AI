@@ -7535,8 +7535,28 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     meaning: "概念性的",
     stage: "Stage5_抽象核心",
   },
+  {
+    text: "はだ",
+    romanization: "ha-da",
+    kanji: "肌",
+    meaning: "皮膚",
+    stage: "Stage1_基礎生活",
+  },
+  {
+    text: "なめらか",
+    romanization: "na-me-ra-ka",
+    kanji: "滑らか",
+    meaning: "光滑(な形容詞)",
+    stage: "Stage2_日常強化",
+  },
+  {
+    text: "うごき",
+    romanization: "u-go-ki",
+    kanji: "動き",
+    meaning: "動作",
+    stage: "Stage2_日常強化",
+  },
 ];
 
 export const vocabularyEntries = normalizeVocabularyEntries(rawVocabularyEntries);
 export const vocabularyStageGroups = groupVocabularyEntriesByStage(vocabularyEntries);
-

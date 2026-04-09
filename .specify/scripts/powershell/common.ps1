@@ -58,6 +58,20 @@ function Get-CurrentBranch {
     return "main"
 }
 
+function Get-FeatureSlug {
+    param([string]$Branch)
+
+    if (-not $Branch) {
+        return $Branch
+    }
+
+    if ($Branch -match '^(?:feature/)?([0-9]{3}-.*)$') {
+        return $matches[1]
+    }
+
+    return $Branch
+}
+
 function Test-HasGit {
     try {
         git rev-parse --show-toplevel 2>$null | Out-Null
@@ -79,9 +93,9 @@ function Test-FeatureBranch {
         return $true
     }
     
-    if ($Branch -notmatch '^[0-9]{3}-') {
+    if ($Branch -notmatch '^(?:feature/)?[0-9]{3}-') {
         Write-Output "ERROR: Not on a feature branch. Current branch: $Branch"
-        Write-Output "Feature branches should be named like: 001-feature-name"
+        Write-Output "Feature branches should be named like: feature/001-feature-name"
         return $false
     }
     return $true
@@ -89,7 +103,8 @@ function Test-FeatureBranch {
 
 function Get-FeatureDir {
     param([string]$RepoRoot, [string]$Branch)
-    Join-Path $RepoRoot "specs/$Branch"
+    $featureSlug = Get-FeatureSlug -Branch $Branch
+    Join-Path $RepoRoot "specs/$featureSlug"
 }
 
 function Get-FeaturePathsEnv {
@@ -201,4 +216,3 @@ function Resolve-Template {
 
     return $null
 }
-
