@@ -1,14 +1,86 @@
 import { describe, expect, it } from 'vitest';
 import { rawVocabularyEntries, vocabularyEntries, vocabularyStageGroups } from '@/modules/vocabulary/data/jpWords';
 
+const expectedTailEntries = [
+  {
+    text: 'はだ',
+    romanization: 'ha-da',
+    kanji: '肌',
+    meaning: '皮膚',
+    stage: 'Stage1_基礎生活'
+  },
+  {
+    text: 'なめらか',
+    romanization: 'na-me-ra-ka',
+    kanji: '滑らか',
+    meaning: '光滑(な形容詞)',
+    stage: 'Stage2_日常強化'
+  },
+  {
+    text: 'うごき',
+    romanization: 'u-go-ki',
+    kanji: '動き',
+    meaning: '動作',
+    stage: 'Stage2_日常強化'
+  }
+];
+
 describe('vocabulary data', () => {
   it('將字典正規化為穩定 id 與 stage 分組', () => {
-    expect(rawVocabularyEntries).toHaveLength(1076);
-    expect(vocabularyEntries).toHaveLength(1076);
+    expect(rawVocabularyEntries).toHaveLength(1079);
+    expect(vocabularyEntries).toHaveLength(1079);
     expect(vocabularyEntries[0]?.id).toBe(1);
-    expect(vocabularyEntries.at(-1)?.id).toBe(1076);
+    expect(vocabularyEntries[1075]).toMatchObject({
+      id: 1076,
+      text: 'がいねんてき',
+      kanji: '概念的',
+      meaning: '概念性的',
+      stage: 'Stage5_抽象核心'
+    });
+    expect(vocabularyEntries.at(-1)?.id).toBe(1079);
     expect(vocabularyStageGroups).toHaveLength(19);
     expect(vocabularyStageGroups[0]?.stage).toBe('Stage1_基礎生活');
     expect(vocabularyStageGroups.at(-1)?.stage).toBe('Stage5_抽象核心');
+  });
+
+  it('只在字典檔尾端追加 3 筆指定詞條，且不改動既有尾端資料', () => {
+    expect(rawVocabularyEntries.at(-4)).toMatchObject({
+      text: 'がいねんてき',
+      romanization: 'ga-i-nen-te-ki',
+      kanji: '概念的',
+      meaning: '概念性的',
+      stage: 'Stage5_抽象核心'
+    });
+    expect(rawVocabularyEntries.slice(-3)).toEqual(expectedTailEntries);
+    expect(vocabularyEntries.slice(-3)).toMatchObject([
+      { id: 1077, ...expectedTailEntries[0] },
+      { id: 1078, ...expectedTailEntries[1] },
+      { id: 1079, ...expectedTailEntries[2] }
+    ]);
+  });
+
+  it('沿用既有 話す -> 說話 覆蓋，且不為說話新增重複詞條', () => {
+    const speakingEntries = rawVocabularyEntries.filter((entry) => entry.meaning === '說話');
+
+    expect(speakingEntries).toHaveLength(1);
+    expect(speakingEntries[0]).toMatchObject({
+      text: 'はなす',
+      kanji: '話す',
+      meaning: '說話',
+      stage: 'Stage1_基礎生活'
+    });
+    expect(rawVocabularyEntries.filter((entry) => entry.kanji === '肌' && entry.meaning === '皮膚')).toHaveLength(1);
+    expect(rawVocabularyEntries.filter((entry) => entry.kanji === '滑らか' && entry.meaning === '光滑(な形容詞)')).toHaveLength(1);
+    expect(rawVocabularyEntries.filter((entry) => entry.kanji === '動き' && entry.meaning === '動作')).toHaveLength(1);
+  });
+
+  it('新增詞條若屬動詞或形容詞，meaning 必須附上既有格式的詞性標記', () => {
+    const appendedEntries = rawVocabularyEntries.slice(-3);
+    const partOfSpeechMarkerPattern = /\((五段動詞|一段動詞|な形容詞|い形容詞)\)$/;
+
+    expect(appendedEntries.find((entry) => entry.kanji === '滑らか')?.meaning).toBe('光滑(な形容詞)');
+    expect(appendedEntries.find((entry) => entry.kanji === '滑らか')?.meaning).toMatch(partOfSpeechMarkerPattern);
+    expect(appendedEntries.find((entry) => entry.kanji === '肌')?.meaning).toBe('皮膚');
+    expect(appendedEntries.find((entry) => entry.kanji === '動き')?.meaning).toBe('動作');
   });
 });

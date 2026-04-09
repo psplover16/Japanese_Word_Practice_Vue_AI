@@ -93,7 +93,7 @@ tests/
 - 只修改 [`src/modules/vocabulary/data/jpWords.ts`](C:/Users/user1/Documents/Japanese_Word_Practice_Vue_AI/src/modules/vocabulary/data/jpWords.ts) 的 `rawVocabularyEntries`。
 - 保留現有尾端資料順序，並在最後一筆之後依序追加：
   1. `はだ / 肌 / 皮膚 / Stage1_基礎生活`
-  2. `なめらか / 滑らか / 光滑 / Stage2_日常強化`
+  2. `なめらか / 滑らか / 光滑(な形容詞) / Stage2_日常強化`
   3. `うごき / 動き / 動作 / Stage2_日常強化`
 - 由於 `normalizeVocabularyEntries()` 以陣列 index 產生 `id`，追加後新詞條 id 預計為 `1077`、`1078`、`1079`，既有 1..1076 不變。
 - `groupVocabularyEntriesByStage()` 依 stage 名稱聚合並保留 stage 首次出現順序，因此「追加在檔尾」只保證原始資料順序，不保證 UI 一定顯示在整頁最底部；新詞會顯示在各自 stage 群組的尾端。
@@ -104,6 +104,7 @@ tests/
   - 總筆數 1076 -> 1079
   - 最後 id 1076 -> 1079
   - 明確驗證 `肌`、`滑らか`、`動き` 存在
+  - 明確驗證 `滑らか` 的詞義標註為 `光滑(な形容詞)`
   - 明確驗證 `話す` 仍提供「說話」覆蓋
   - 明確驗證最後 3 筆新增資料確實位於字典檔尾端，且順序為 `肌`、`滑らか`、`動き`
   - 明確驗證既有尾端基線切片與既有 `話す` 資料未漂移

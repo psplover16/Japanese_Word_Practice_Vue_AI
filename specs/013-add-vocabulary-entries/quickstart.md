@@ -5,7 +5,7 @@
 確認 [`src/modules/vocabulary/data/jpWords.ts`](C:/Users/user1/Documents/Japanese_Word_Practice_Vue_AI/src/modules/vocabulary/data/jpWords.ts) 尾端最後 3 筆新增資料依序為：
 
 1. `はだ / 肌 / 皮膚 / Stage1_基礎生活`
-2. `なめらか / 滑らか / 光滑 / Stage2_日常強化`
+2. `なめらか / 滑らか / 光滑(な形容詞) / Stage2_日常強化`
 3. `うごき / 動き / 動作 / Stage2_日常強化`
 
 同時確認沒有新增任何新的「說話」詞條，既有 `話す -> 說話` 仍保留。

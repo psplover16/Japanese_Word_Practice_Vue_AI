@@ -13,8 +13,8 @@
 
 **目的**: 先確認儲存庫整潔要求與本功能的結構邊界，避免在實作小型資料補充時意外擴大變更範圍。
 
-- [ ] T001 檢查 `.gitignore` 是否仍涵蓋 `node_modules/`、`dist/`、`build/`、`coverage/` 於 `.gitignore`
-- [ ] T002 確認本功能不需變更儲存庫結構或 `PROJECT_ARCHITECTURE.md`，並對照 `PROJECT_ARCHITECTURE.md`、`specs/013-add-vocabulary-entries/plan.md` 鎖定實作範圍
+- [x] T001 檢查 `.gitignore` 是否仍涵蓋 `node_modules/`、`dist/`、`build/`、`coverage/` 於 `.gitignore`
+- [x] T002 確認本功能不需變更儲存庫結構或 `PROJECT_ARCHITECTURE.md`，並對照 `PROJECT_ARCHITECTURE.md`、`specs/013-add-vocabulary-entries/plan.md` 鎖定實作範圍
 
 ---
 
@@ -24,9 +24,9 @@
 
 **關鍵要求**: 本階段完成前，不修改字典尾端資料。
 
-- [ ] T003 建立字典尾端追加、既有 `話す -> 說話` 覆蓋、既有尾端切片不漂移與 1076 筆基線對照於 `src/modules/vocabulary/data/jpWords.ts`、`tests/unit/vocabularyData.spec.ts`
-- [ ] T004 [P] 建立 `/vocabulary` 預設 count、初始渲染安全與互動冒煙基線於 `tests/component/VocabularyViewSmoke.spec.ts`
-- [ ] T005 [P] 建立 `/vocabulary` e2e count/search 與超出範圍路由邊界基線於 `tests/e2e/vocabulary-word-practice.spec.ts`、`tests/component/RouteOwnership.spec.ts`
+- [x] T003 建立字典尾端追加、既有 `話す -> 說話` 覆蓋、既有尾端切片不漂移與 1076 筆基線對照於 `src/modules/vocabulary/data/jpWords.ts`、`tests/unit/vocabularyData.spec.ts`
+- [x] T004 [P] 建立 `/vocabulary` 預設 count、初始渲染安全與互動冒煙基線於 `tests/component/VocabularyViewSmoke.spec.ts`
+- [x] T005 [P] 建立 `/vocabulary` e2e count/search 與超出範圍路由邊界基線於 `tests/e2e/vocabulary-word-practice.spec.ts`、`tests/component/RouteOwnership.spec.ts`
 
 **檢查點**: 字典現況、`/vocabulary` count 與範圍邊界都已有明確基線，可開始拆入使用者故事。
 
@@ -40,14 +40,14 @@
 
 ### 使用者故事 1 的測試
 
-- [ ] T006 [P] [US1] 更新字典資料單元測試，驗證總筆數為 1079、最後 id 為 1079、`肌`、`滑らか`、`動き` 可被正規化，且最後 3 筆新增資料依序位於檔尾於 `tests/unit/vocabularyData.spec.ts`
-- [ ] T007 [P] [US1] 更新 `/vocabulary` 初次渲染冒煙測試，驗證預設 count summary 變為 `1079個單字` 於 `tests/component/VocabularyViewSmoke.spec.ts`
-- [ ] T008 [US1] 更新 `/vocabulary` e2e 搜尋驗證，確認可透過中文詞義找到 `肌`、`滑らか`、`動き` 於 `tests/e2e/vocabulary-word-practice.spec.ts`
+- [x] T006 [P] [US1] 更新字典資料單元測試，驗證總筆數為 1079、最後 id 為 1079、`肌`、`滑らか`、`動き` 可被正規化，且最後 3 筆新增資料依序位於檔尾於 `tests/unit/vocabularyData.spec.ts`
+- [x] T007 [P] [US1] 更新 `/vocabulary` 初次渲染冒煙測試，驗證預設 count summary 變為 `1079個單字` 於 `tests/component/VocabularyViewSmoke.spec.ts`
+- [x] T008 [US1] 更新 `/vocabulary` e2e 搜尋驗證，確認可透過中文詞義找到 `肌`、`滑らか`、`動き` 於 `tests/e2e/vocabulary-word-practice.spec.ts`
 
 ### 使用者故事 1 的實作
 
-- [ ] T009 [US1] 在 `src/modules/vocabulary/data/jpWords.ts` 尾端依序追加 `はだ / 肌 / 皮膚`、`なめらか / 滑らか / 光滑`、`うごき / 動き / 動作`
-- [ ] T010 [US1] 檢查僅追加更新後 `normalizeVocabularyEntries()` 與 `groupVocabularyEntriesByStage()` 不需額外邏輯修正，必要時只做最小相容調整於 `src/modules/vocabulary/data/jpWords.ts`、`src/modules/vocabulary/utils/vocabularyFilters.ts`
+- [x] T009 [US1] 在 `src/modules/vocabulary/data/jpWords.ts` 尾端依序追加 `はだ / 肌 / 皮膚`、`なめらか / 滑らか / 光滑`、`うごき / 動き / 動作`
+- [x] T010 [US1] 檢查僅追加更新後 `normalizeVocabularyEntries()` 與 `groupVocabularyEntriesByStage()` 不需額外邏輯修正，必要時只做最小相容調整於 `src/modules/vocabulary/data/jpWords.ts`、`src/modules/vocabulary/utils/vocabularyFilters.ts`
 
 **檢查點**: `/vocabulary` 已補齊缺少的 3 個指定詞義，且預設 count 與搜尋可獨立驗證。
 
@@ -61,12 +61,12 @@
 
 ### 使用者故事 2 的測試
 
-- [ ] T011 [P] [US2] 擴充字典資料單元測試，驗證 `話す -> 說話` 仍為唯一覆蓋、本次新增清單只包含 3 筆詞條，且既有尾端基線與 `話す` 資料不漂移於 `tests/unit/vocabularyData.spec.ts`
-- [ ] T012 [US2] 擴充 `/vocabulary` e2e 驗證，確認搜尋 `說話` 時命中既有 `話す` 而非本次新增重複列於 `tests/e2e/vocabulary-word-practice.spec.ts`
+- [x] T011 [P] [US2] 擴充字典資料單元測試，驗證 `話す -> 說話` 仍為唯一覆蓋、本次新增清單只包含 3 筆詞條，且既有尾端基線與 `話す` 資料不漂移於 `tests/unit/vocabularyData.spec.ts`
+- [x] T012 [US2] 擴充 `/vocabulary` e2e 驗證，確認搜尋 `說話` 時命中既有 `話す` 而非本次新增重複列於 `tests/e2e/vocabulary-word-practice.spec.ts`
 
 ### 使用者故事 2 的實作
 
-- [ ] T013 [US2] 審核並調整 `src/modules/vocabulary/data/jpWords.ts`，確保本次只沿用既有 `話す` 覆蓋而不新增第二筆「說話」詞條
+- [x] T013 [US2] 審核並調整 `src/modules/vocabulary/data/jpWords.ts`，確保本次只沿用既有 `話す` 覆蓋而不新增第二筆「說話」詞條
 
 **檢查點**: 指定詞義補齊與去重規則已同時成立，不會因補詞導致「說話」重複。
 
@@ -80,13 +80,13 @@
 
 ### 使用者故事 3 的測試
 
-- [ ] T014 [P] [US3] 更新 `/vocabulary` 元件冒煙測試，驗證 1079 筆資料下的註記、marked-only 與長按揭露仍可用於 `tests/component/VocabularyViewSmoke.spec.ts`
-- [ ] T015 [P] [US3] 更新路由範圍驗證，確認本功能仍只出現在 `/vocabulary` 而不污染 `/practice`、`/grammar`、`/n5-grammar` 於 `tests/component/RouteOwnership.spec.ts`
+- [x] T014 [P] [US3] 更新 `/vocabulary` 元件冒煙測試，驗證 1079 筆資料下的註記、marked-only 與長按揭露仍可用於 `tests/component/VocabularyViewSmoke.spec.ts`
+- [x] T015 [P] [US3] 更新路由範圍驗證，確認本功能仍只出現在 `/vocabulary` 而不污染 `/practice`、`/grammar`、`/n5-grammar` 於 `tests/component/RouteOwnership.spec.ts`
 
 ### 使用者故事 3 的實作
 
-- [ ] T016 [US3] 以既有欄位格式與 stage 命名維持 `/vocabulary` 體驗一致，必要時只微調 `src/modules/vocabulary/data/jpWords.ts` 的 stage 佈局，不修改 `src/modules/vocabulary/views/VocabularyView.vue` 的互動介面
-- [ ] T017 [US3] 對照 `specs/013-add-vocabulary-entries/quickstart.md` 的手動驗收步驟，校正 `tests/e2e/vocabulary-word-practice.spec.ts` 的 count/search 斷言與實際體驗一致
+- [x] T016 [US3] 以既有欄位格式與 stage 命名維持 `/vocabulary` 體驗一致，必要時只微調 `src/modules/vocabulary/data/jpWords.ts` 的 stage 佈局，不修改 `src/modules/vocabulary/views/VocabularyView.vue` 的互動介面
+- [x] T017 [US3] 對照 `specs/013-add-vocabulary-entries/quickstart.md` 的手動驗收步驟，校正 `tests/e2e/vocabulary-word-practice.spec.ts` 的 count/search 斷言與實際體驗一致
 
 **檢查點**: 新增詞條已接入既有 `/vocabulary` 管線，使用者體驗與負向邊界都維持穩定。
 
@@ -96,12 +96,12 @@
 
 **目的**: 執行最終驗證、確認文件與實作一致，並收斂本功能的交付證據。
 
-- [ ] T018 [P] 執行 `npm run lint` 驗證 `src/modules/vocabulary/data/jpWords.ts`、`tests/unit/vocabularyData.spec.ts`、`tests/component/VocabularyViewSmoke.spec.ts`、`tests/e2e/vocabulary-word-practice.spec.ts`
-- [ ] T019 [P] 執行 `npm run typecheck` 驗證 `src/modules/vocabulary/data/jpWords.ts`、`src/modules/vocabulary/utils/vocabularyFilters.ts`、`src/modules/vocabulary/views/VocabularyView.vue`
-- [ ] T020 [P] 執行 `npx vitest run tests/unit/vocabularyData.spec.ts tests/component/VocabularyViewSmoke.spec.ts tests/component/RouteOwnership.spec.ts`
-- [ ] T021 [P] 執行 `npm run build` 驗證 `src/modules/vocabulary/data/jpWords.ts` 與既有 `/vocabulary` 路由組裝
-- [ ] T022 [P] 執行 `npx playwright test tests/e2e/vocabulary-word-practice.spec.ts`
-- [ ] T023 驗證 `specs/013-add-vocabulary-entries/quickstart.md` 的手動流程與實作一致，並只在實際行為不同時回寫 `specs/013-add-vocabulary-entries/spec.md`、`specs/013-add-vocabulary-entries/quickstart.md`、`specs/013-add-vocabulary-entries/contracts/vocabulary-entry-coverage-contract.md`
+- [x] T018 [P] 執行 `npm run lint` 驗證 `src/modules/vocabulary/data/jpWords.ts`、`tests/unit/vocabularyData.spec.ts`、`tests/component/VocabularyViewSmoke.spec.ts`、`tests/e2e/vocabulary-word-practice.spec.ts`
+- [x] T019 [P] 執行 `npm run typecheck` 驗證 `src/modules/vocabulary/data/jpWords.ts`、`src/modules/vocabulary/utils/vocabularyFilters.ts`、`src/modules/vocabulary/views/VocabularyView.vue`
+- [x] T020 [P] 執行 `npx vitest run tests/unit/vocabularyData.spec.ts tests/component/VocabularyViewSmoke.spec.ts tests/component/RouteOwnership.spec.ts`
+- [x] T021 [P] 執行 `npm run build` 驗證 `src/modules/vocabulary/data/jpWords.ts` 與既有 `/vocabulary` 路由組裝
+- [x] T022 [P] 執行 `npx playwright test tests/e2e/vocabulary-word-practice.spec.ts`
+- [x] T023 驗證 `specs/013-add-vocabulary-entries/quickstart.md` 的手動流程與實作一致，並只在實際行為不同時回寫 `specs/013-add-vocabulary-entries/spec.md`、`specs/013-add-vocabulary-entries/quickstart.md`、`specs/013-add-vocabulary-entries/contracts/vocabulary-entry-coverage-contract.md`
 
 ---
 

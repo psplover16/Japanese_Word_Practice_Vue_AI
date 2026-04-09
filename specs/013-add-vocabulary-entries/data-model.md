@@ -35,7 +35,7 @@
 | `text` | `string` | 假名主詞條 | 必填；詞典基本型 |
 | `romanization` | `string` | 既有資料風格的分音節羅馬字 | 必填；沿用 `a-ta-ma` 這類格式 |
 | `kanji` | `string` | 漢字或標準書寫 | 必填 |
-| `meaning` | `string` | 中文詞義 | 必填；必須對應本次需求 |
+| `meaning` | `string` | 中文詞義 | 必填；必須對應本次需求；若為動詞或形容詞需附詞性標記 |
 | `stage` | `string` | 既有 stage 名稱 | 必填；必須是現有 stage 值 |
 | `appendOrder` | `number` | 追加順序 | 必須為 1..3，且寫在檔尾 |
 | `derivedId` | `number` | 由 index 自動導出的 id | 1077..1079，不能手寫覆蓋 |
@@ -45,7 +45,7 @@
 | appendOrder | text | romanization | kanji | meaning | stage | derivedId |
 |-------------|------|--------------|-------|---------|-------|-----------|
 | 1 | `はだ` | `ha-da` | `肌` | `皮膚` | `Stage1_基礎生活` | `1077` |
-| 2 | `なめらか` | `na-me-ra-ka` | `滑らか` | `光滑` | `Stage2_日常強化` | `1078` |
+| 2 | `なめらか` | `na-me-ra-ka` | `滑らか` | `光滑(な形容詞)` | `Stage2_日常強化` | `1078` |
 | 3 | `うごき` | `u-go-ki` | `動き` | `動作` | `Stage2_日常強化` | `1079` |
 
 ### 3. 單字資料集基線（VocabularyDatasetBaseline）

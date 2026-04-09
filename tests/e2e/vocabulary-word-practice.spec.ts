@@ -10,7 +10,7 @@ test('單字練習頁可搜尋、持久化註記並支援長按揭露', async ({
 
   await expectPrimaryTabs(page);
   await expect(page.getByTestId('vocabulary-control-bar')).toBeVisible();
-  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1076個單字');
+  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1079個單字');
 
   await page.getByTestId('vocabulary-mark-checkbox-1').check();
   await page.getByTestId('vocabulary-save-marks-button').click();
@@ -28,8 +28,33 @@ test('單字練習頁可搜尋、持久化註記並支援長按揭露', async ({
   await page.getByTestId('vocabulary-row-1').dispatchEvent('pointerup');
   await expect(combinedContent).toHaveClass(/vocabulary-hidden-content/);
 
-  await page.getByTestId('vocabulary-search-input').fill('概念');
-  await expect(page.getByTestId('vocabulary-count-summary')).not.toContainText('1076個單字');
+  await page.getByTestId('vocabulary-search-input').fill('皮膚');
+  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1個單字');
+  await expect(page.getByTestId('vocabulary-row-1077')).toContainText('はだ');
+  await expect(page.getByTestId('vocabulary-row-1077')).toContainText('肌');
+  await expect(page.getByTestId('vocabulary-row-1077')).toContainText('皮膚');
+
+  await page.getByTestId('vocabulary-search-input').fill('光滑');
+  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1個單字');
+  await expect(page.getByTestId('vocabulary-row-1078')).toContainText('なめらか');
+  await expect(page.getByTestId('vocabulary-row-1078')).toContainText('滑らか');
+  await expect(page.getByTestId('vocabulary-row-1078')).toContainText('光滑(な形容詞)');
+
+  await page.getByTestId('vocabulary-search-input').fill('動作');
+  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1個單字');
+  await expect(page.getByTestId('vocabulary-row-1079')).toContainText('うごき');
+  await expect(page.getByTestId('vocabulary-row-1079')).toContainText('動き');
+  await expect(page.getByTestId('vocabulary-row-1079')).toContainText('動作');
+
+  await page.getByTestId('vocabulary-search-input').fill('說話');
+  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1個單字');
+  await expect(page.locator('[data-testid^="vocabulary-row-"]')).toHaveCount(1);
+  await expect(page.locator('[data-testid^="vocabulary-row-"]').first()).toContainText('はなす');
+  await expect(page.locator('[data-testid^="vocabulary-row-"]').first()).toContainText('話す');
+  await expect(page.locator('[data-testid^="vocabulary-row-"]').first()).toContainText('說話');
+
+  await page.getByTestId('vocabulary-search-input').fill('');
+  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1079個單字');
 
   await page.setViewportSize({ width: 375, height: 812 });
   await expect(page.getByTestId('vocabulary-control-bar')).toBeVisible();
