@@ -4,10 +4,15 @@ uvx --from git+https://github.com/github/spec-kit.git@v0.3.1 specify init --ai c
 
 copilot版本: 
 specify init --ai copilot --script ps --here
+
+claude版本
+specify init --ai claude-code --script ps --here --ai-skills
+
 2. tree /f
 
 在專案先建立
 # AGENTS.md (放置codex的思考限制器)
+# CLAUDE.md (放置claude的思考限制器)
 
 git：
 - AI提交git
@@ -31,13 +36,13 @@ git clean -fdx
 幫我先掃描全部專案，掃描完成後，依序執行以下任務
 commit with detailed zh-tw log，包含目前全部非 ignored 變更
 /speckit.specify
-@/_private/_private_notes/v13/specify.txt
+@/_private/_private_notes/v14/specify.txt
 /speckit.clarify
-@/_private/_private_notes/v13/clarify.txt
+@/_private/_private_notes/v14/clarify.txt
 /speckit.plan
-@/_private/_private_notes/v13/plan.txt
+@/_private/_private_notes/v14/plan.txt
 /speckit.tasks
-@/_private/_private_notes/v13/tasks.txt
+@/_private/_private_notes/v14/tasks.txt
 /speckit.analyze Save your analyze report to `analyze.md`
 在 speckit.analyze 這個步驟，如果沒有發現重大嚴重缺失，請直接執行以下任務
 /speckit.implement
