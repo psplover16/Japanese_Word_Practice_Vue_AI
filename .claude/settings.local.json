@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(specify init:*)",
+      "Bash(uvx --from git+https://github.com/github/spec-kit.git@v0.3.1 specify init --ai claude-code --script ps --here --ai-skills)",
+      "Bash(uvx --from git+https://github.com/github/spec-kit.git@v0.3.1 specify init --ai claude-code --script ps --here --ai-skills --force)",
+      "Bash(uvx --from git+https://github.com/github/spec-kit.git@v0.3.1 specify init --ai claude --script ps --here --ai-skills --force)",
+      "Bash(uvx --from git+https://github.com/github/spec-kit.git specify init --ai claude --script ps --here --ai-skills --force)"
+    ]
+  }
+}

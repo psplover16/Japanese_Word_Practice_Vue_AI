@@ -6,6 +6,7 @@ copilot版本:
 specify init --ai copilot --script ps --here
 
 claude版本
+uvx --from git+https://github.com/github/spec-kit.git specify init --ai claude --script ps --here --force
 specify init --ai claude-code --script ps --here --ai-skills
 
 2. tree /f
