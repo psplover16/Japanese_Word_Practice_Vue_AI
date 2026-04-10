@@ -1,4 +1,4 @@
-## General behavior
+﻿## General behavior
 - Always explain the plan before making changes.
 - Report progress after each meaningful step.
 - Summarize changed files and test results before finishing.

@@ -13,7 +13,9 @@ export const particleSectionIds = [
   'particle-no',
   'particle-ni',
   'particle-he',
-  'particle-ka'
+  'particle-ka',
+  'particle-to',
+  'particle-de'
 ] as const;
 
 const politeOverviewTable: N5GrammarCompareTable = {
@@ -1185,6 +1187,106 @@ export const n5GrammarSections: N5GrammarSection[] = [
         ]
       }
     ]
+  },
+  {
+    id: 'particle-to',
+    title: '助詞 と：動作夥伴與名詞並列',
+    description: '',
+    presentationMode: 'info-stack',
+    order: 97,
+    category: 'particle',
+    sharedNotes: [
+      {
+        id: 'to-noun-listing',
+        title: '名詞並列用法（AとB）',
+        content:
+          '「と」也可用來連接兩個名詞，表示「A 和 B」。' +
+          '例：コーヒーとお茶（咖啡和茶）、ペンと消しゴム（原子筆和橡皮擦）。' +
+          '名詞並列用法與動作夥伴用法的「と」字形相同，需依語境判斷。'
+      }
+    ],
+    topics: [
+      {
+        id: 'to-action-partner',
+        title: '動作夥伴：與某人一起做某事',
+        summary:
+          '「と」放在人物名詞後，表示「與……一起」進行某動作。' +
+          '句型：[人物] + と + [動詞]。',
+        details: [
+          '「と」的前面接人物（友達、家族、先生 等），表示共同進行的夥伴。',
+          '「いっしょに」（一起）常與「と」搭配，放在「と」後方，可省略其中之一。',
+          '「と」標示的夥伴本身不是動作的執行者——執行者仍是句子的主語（通常是說話者「私」）。'
+        ],
+        examples: [
+          {
+            id: 'to-friend-school',
+            japanese: '友達と学校へ行きます。',
+            reading: 'ともだち と がっこう へ いきます。',
+            translation: '和朋友一起去學校。',
+            origin: 'supplemental'
+          },
+          {
+            id: 'to-family-together',
+            japanese: '家族といっしょに食べました。',
+            reading: 'かぞく と いっしょ に たべました。',
+            translation: '和家人一起吃了飯。',
+            origin: 'supplemental'
+          }
+        ],
+        sourceRefs: ['note-v14-ch1'],
+        sharedNoteIds: ['to-noun-listing']
+      }
+    ]
+  },
+  {
+    id: 'particle-de',
+    title: '助詞 で：交通工具與行動手段',
+    description: '',
+    presentationMode: 'info-stack',
+    order: 98,
+    category: 'particle',
+    sharedNotes: [
+      {
+        id: 'de-with-mo',
+        title: '與「も」搭配',
+        content:
+          '「で」可與助詞「も」搭配，組成「でも」，' +
+          '意思是「即使搭～也」或「用～方式也」。' +
+          '詳細用法可參見助詞「も」的說明。'
+      }
+    ],
+    topics: [
+      {
+        id: 'de-transportation',
+        title: '交通工具與行動手段',
+        summary:
+          '「で」放在交通工具或工具手段名詞後，表示「搭乘～」或「用～方式」進行動作。' +
+          '句型：[手段] + で + [動詞]。',
+        details: [
+          '接交通工具名詞（バス、電車、タクシー 等），表示乘坐該工具移動。',
+          '也可接一般工具名詞（はし、ペン 等），表示動作的方式或工具。',
+          '注意：「で」在此標示「工具或手段」，並非場所。場所用法（在某處做某事）屬另一語意，不在本次範圍。'
+        ],
+        examples: [
+          {
+            id: 'de-bus-school',
+            japanese: 'バスで学校へ行きます。',
+            reading: 'バス で がっこう へ いきます。',
+            translation: '搭公車去學校。',
+            origin: 'supplemental'
+          },
+          {
+            id: 'de-train-station',
+            japanese: '電車で駅まで来ました。',
+            reading: 'でんしゃ で えき まで きました。',
+            translation: '搭電車來到車站。',
+            origin: 'supplemental'
+          }
+        ],
+        sourceRefs: ['note-v14-ch2'],
+        sharedNoteIds: ['de-with-mo']
+      }
+    ]
   }
 ];
 
@@ -1282,7 +1384,21 @@ export const n5GrammarSourceCoverage: N5GrammarSourceCoverageItem[] = [
   { sourceId: 'note-ch7-na-adjective-past', summary: 'な形容詞過去肯定與否定、過去狀態', mappedSectionId: 'past-and-state', mappedTopicIds: ['nominal-past', 'continuous-state'], status: 'merged' },
   { sourceId: 'note-ch8-i-adjective-past', summary: 'い形容詞過去肯定與否定', mappedSectionId: 'past-and-state', mappedTopicIds: ['i-adjective-past'], status: 'covered' },
   { sourceId: 'note2-ch9-ni', summary: '助詞に：動作進行時間點', mappedSectionId: 'particle-ni', mappedTopicIds: ['ni-time-point', 'ni-no-need', 'ni-others'], status: 'covered' },
-  { sourceId: 'note2-ch10-he', summary: '助詞へ：移動方向', mappedSectionId: 'particle-he', mappedTopicIds: ['he-direction', 'he-vs-ni'], status: 'supplemented' }
+  { sourceId: 'note2-ch10-he', summary: '助詞へ：移動方向', mappedSectionId: 'particle-he', mappedTopicIds: ['he-direction', 'he-vs-ni'], status: 'supplemented' },
+  {
+    sourceId: 'note-v14-ch1',
+    summary: '助詞と：動作夥伴',
+    mappedSectionId: 'particle-to',
+    mappedTopicIds: ['to-action-partner'],
+    status: 'supplemented'
+  },
+  {
+    sourceId: 'note-v14-ch2',
+    summary: '助詞で：交通工具與手段',
+    mappedSectionId: 'particle-de',
+    mappedTopicIds: ['de-transportation'],
+    status: 'supplemented'
+  }
 ];
 
 export const sortedN5GrammarSections = [...n5GrammarSections].sort((left, right) => left.order - right.order);

@@ -144,3 +144,84 @@ describe('n5GrammarData', () => {
     }
   });
 });
+
+describe('015 particle-to（助詞と）', () => {
+  it('particleSectionIds 包含 particle-to 且 section 可以 id 查找', () => {
+    expect(particleSectionIds).toContain('particle-to');
+    const section = sortedN5GrammarSections.find((s) => s.id === 'particle-to');
+    expect(section).toBeDefined();
+    expect(section!.order).toBe(97);
+    expect(section!.category).toBe('particle');
+  });
+
+  it('particle-to 的 sharedNotes 含 to-noun-listing 且內容非空', () => {
+    const section = sortedN5GrammarSections.find((s) => s.id === 'particle-to')!;
+    const note = section.sharedNotes.find((n) => n.id === 'to-noun-listing');
+    expect(note).toBeDefined();
+    expect(note!.content.length).toBeGreaterThan(0);
+    const topic = section.topics.find((t) => t.id === 'to-action-partner')!;
+    expect(topic.sharedNoteIds).toContain('to-noun-listing');
+  });
+
+  it('topic to-action-partner 有至少 2 個 examples，所有 origin 均為 supplemental，details 至少 2 條', () => {
+    const section = sortedN5GrammarSections.find((s) => s.id === 'particle-to')!;
+    const topic = section.topics.find((t) => t.id === 'to-action-partner')!;
+    expect(topic.examples.length).toBeGreaterThanOrEqual(2);
+    for (const example of topic.examples) {
+      expect(example.origin).toBe('supplemental');
+    }
+    expect(topic.details.length).toBeGreaterThanOrEqual(2);
+  });
+});
+
+describe('015 particle-de（助詞で）', () => {
+  it('section particle-de 可以 id 查找，order=98，category=particle，sharedNotes 含 de-with-mo', () => {
+    const section = sortedN5GrammarSections.find((s) => s.id === 'particle-de');
+    expect(section).toBeDefined();
+    expect(section!.order).toBe(98);
+    expect(section!.category).toBe('particle');
+    const note = section!.sharedNotes.find((n) => n.id === 'de-with-mo');
+    expect(note).toBeDefined();
+    expect(note!.content.length).toBeGreaterThan(0);
+  });
+
+  it('topic de-transportation 有至少 2 個 examples，所有 origin 均為 supplemental，details 至少 2 條', () => {
+    const section = sortedN5GrammarSections.find((s) => s.id === 'particle-de')!;
+    const topic = section.topics.find((t) => t.id === 'de-transportation')!;
+    expect(topic.examples.length).toBeGreaterThanOrEqual(2);
+    for (const example of topic.examples) {
+      expect(example.origin).toBe('supplemental');
+    }
+    expect(topic.details.length).toBeGreaterThanOrEqual(2);
+  });
+});
+
+describe('015 US3 排列順序與來源覆蓋', () => {
+  it('particleSectionIds 末尾依序為 particle-to 然後 particle-de', () => {
+    const ids = [...particleSectionIds];
+    expect(ids.at(-2)).toBe('particle-to');
+    expect(ids.at(-1)).toBe('particle-de');
+  });
+
+  it('sortedN5GrammarSections 中所有 particle 類別排在所有 core 類別之後，且 particle-to order 小於 particle-de', () => {
+    const sections = sortedN5GrammarSections;
+    const lastCoreIndex = sections.map((s) => s.category).lastIndexOf('core');
+    const firstParticleIndex = sections.map((s) => s.category).indexOf('particle');
+    expect(firstParticleIndex).toBeGreaterThan(lastCoreIndex);
+
+    const to = sections.find((s) => s.id === 'particle-to')!;
+    const de = sections.find((s) => s.id === 'particle-de')!;
+    expect(to.order).toBeLessThan(de.order);
+  });
+
+  it('n5GrammarSourceCoverage 含 note-v14-ch1 與 note-v14-ch2，mappedSectionId 與 status 正確', () => {
+    const ch1 = n5GrammarSourceCoverage.find((item) => item.sourceId === 'note-v14-ch1');
+    const ch2 = n5GrammarSourceCoverage.find((item) => item.sourceId === 'note-v14-ch2');
+    expect(ch1).toBeDefined();
+    expect(ch1!.mappedSectionId).toBe('particle-to');
+    expect(ch1!.status).toBe('supplemented');
+    expect(ch2).toBeDefined();
+    expect(ch2!.mappedSectionId).toBe('particle-de');
+    expect(ch2!.status).toBe('supplemented');
+  });
+});

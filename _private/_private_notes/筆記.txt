@@ -34,7 +34,7 @@ git clean -fdx
 
 以下功能一次超懶人作法，從步驟二開始，直接到實作，但跳過步驟六
 
-幫我先掃描全部專案，掃描完成後，依序執行以下任務
+我有做修改，所以幫我先掃描全部專案，掃描完成後，依序執行以下任務
 commit with detailed zh-tw log，包含目前全部非 ignored 變更
 /speckit.specify
 @/_private/_private_notes/v14/specify.txt
