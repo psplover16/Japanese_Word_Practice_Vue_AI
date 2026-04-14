@@ -143,6 +143,29 @@ describe('n5GrammarData', () => {
       }
     }
   });
+
+  it('particle-he 包含常見搭配動詞與北上例句', () => {
+    const section = getSection('particle-he');
+    const topic = section.topics.find((entry) => entry.id === 'he-common-collocations');
+
+    expect(topic).toBeDefined();
+    expect(topic!.details).toEqual([
+      '行きます（いきます）：去',
+      '来ます（きます）：來',
+      '帰ります（かえります）：回去／回家',
+      '向かいます（むかいます）：朝……前進、出發前往',
+      '戻ります（もどります）：返回、回去',
+      '走ります（はしります）：跑向……',
+      '飛びます（とびます）：飛往……',
+      '進みます（すすみます）：前進、邁向',
+      '出発します（しゅっぱつします）：出發前往',
+      '引っ越します（ひっこします）：搬家到……',
+      '旅行します（りょこうします）：旅行到……',
+      '送ります（おくります）：寄送到……'
+    ]);
+    expect(topic!.examples).toHaveLength(12);
+    expect(topic!.examples.map((example) => example.japanese)).toContain('台風は北へ進んでいます。');
+  });
 });
 
 describe('015 particle-to（助詞と）', () => {

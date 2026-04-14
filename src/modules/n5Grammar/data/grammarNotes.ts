@@ -1079,6 +1079,125 @@ export const n5GrammarSections: N5GrammarSection[] = [
         ]
       },
       {
+        id: 'he-common-collocations',
+        title: 'へ 的常見搭配動詞',
+        summary: '「へ」最常和表示移動、前進、出發、返回、寄送的動詞一起使用，先把高頻搭配記起來，閱讀和造句會順很多。',
+        details: [
+          '行きます（いきます）：去',
+          '来ます（きます）：來',
+          '帰ります（かえります）：回去／回家',
+          '向かいます（むかいます）：朝……前進、出發前往',
+          '戻ります（もどります）：返回、回去',
+          '走ります（はしります）：跑向……',
+          '飛びます（とびます）：飛往……',
+          '進みます（すすみます）：前進、邁向',
+          '出発します（しゅっぱつします）：出發前往',
+          '引っ越します（ひっこします）：搬家到……',
+          '旅行します（りょこうします）：旅行到……',
+          '送ります（おくります）：寄送到……'
+        ],
+        sourceRefs: ['note2-ch10-he'],
+        sharedNoteIds: ['he-pronunciation'],
+        examples: [
+          {
+            id: 'he-go-japan',
+            japanese: '日本へ行きます。',
+            reading: 'にほん へ いきます。',
+            translation: '去日本。',
+            note: '常見搭配：行きます（いきます）',
+            origin: 'supplemental'
+          },
+          {
+            id: 'he-come-taiwan',
+            japanese: '先生は台湾へ来ます。',
+            reading: 'せんせい は たいわん へ きます。',
+            translation: '老師會來台灣。',
+            note: '常見搭配：来ます（きます）',
+            origin: 'supplemental'
+          },
+          {
+            id: 'he-return-home',
+            japanese: '六時にうちへ帰ります。',
+            reading: 'ろくじ に うち へ かえります。',
+            translation: '六點回家。',
+            note: '常見搭配：帰ります（かえります）',
+            origin: 'supplemental'
+          },
+          {
+            id: 'he-head-to-station',
+            japanese: '今、駅へ向かいます。',
+            reading: 'いま、えき へ むかいます。',
+            translation: '現在正朝車站前進。',
+            note: '常見搭配：向かいます（むかいます）',
+            origin: 'supplemental'
+          },
+          {
+            id: 'he-return-company',
+            japanese: '昼休みのあとで会社へ戻ります。',
+            reading: 'ひるやすみ の あと で かいしゃ へ もどります。',
+            translation: '午休後回公司。',
+            note: '常見搭配：戻ります（もどります）',
+            origin: 'supplemental'
+          },
+          {
+            id: 'he-run-goal',
+            japanese: '選手はゴールへ走ります。',
+            reading: 'せんしゅ は ゴール へ はしります。',
+            translation: '選手朝終點跑去。',
+            note: '常見搭配：走ります（はしります）',
+            origin: 'supplemental'
+          },
+          {
+            id: 'he-fly-south',
+            japanese: '鳥は南へ飛びます。',
+            reading: 'とり は みなみ へ とびます。',
+            translation: '鳥往南方飛去。',
+            note: '常見搭配：飛びます（とびます）',
+            origin: 'supplemental'
+          },
+          {
+            id: 'he-typhoon-north',
+            japanese: '台風は北へ進んでいます。',
+            reading: 'たいふう は きた へ すすんでいます。',
+            translation: '颱風正朝北方前進。',
+            note: '常見搭配：進みます（すすみます）',
+            origin: 'supplemental'
+          },
+          {
+            id: 'he-depart-osaka',
+            japanese: '午前七時に大阪へ出発します。',
+            reading: 'ごぜん しちじ に おおさか へ しゅっぱつします。',
+            translation: '上午七點出發前往大阪。',
+            note: '常見搭配：出発します（しゅっぱつします）',
+            origin: 'supplemental'
+          },
+          {
+            id: 'he-move-tokyo',
+            japanese: '来月、東京へ引っ越します。',
+            reading: 'らいげつ、とうきょう へ ひっこします。',
+            translation: '下個月要搬家到東京。',
+            note: '常見搭配：引っ越します（ひっこします）',
+            origin: 'supplemental'
+          },
+          {
+            id: 'he-travel-hokkaido',
+            japanese: '夏休みに北海道へ旅行します。',
+            reading: 'なつやすみ に ほっかいどう へ りょこうします。',
+            translation: '暑假要去北海道旅行。',
+            note: '常見搭配：旅行します（りょこうします）',
+            origin: 'supplemental'
+          },
+          {
+            id: 'he-send-package-japan',
+            japanese: '荷物を日本へ送ります。',
+            reading: 'にもつ を にほん へ おくります。',
+            translation: '把包裹寄到日本。',
+            note: '常見搭配：送ります（おくります）',
+            origin: 'supplemental'
+          }
+        ]
+      },
+      {
         id: 'he-vs-ni',
         title: 'へ 與 に 的差別',
         summary: '兩者都能和移動動詞一起用，但「へ」較強調方向感，「に」則常讓人感到目的地或到達點更明確。',
