@@ -248,3 +248,104 @@ describe('015 US3 排列順序與來源覆蓋', () => {
     expect(ch2!.status).toBe('supplemented');
   });
 });
+
+describe('016 邀約與變化表現 core sections', () => {
+  it('在既有三個 core 區塊後新增 3 個 core sections，且順序正確', () => {
+    const coreSections = sortedN5GrammarSections.filter((section) => section.category === 'core');
+
+    expect(coreSections.map((section) => section.id)).toEqual([
+      'polite-overview',
+      'sentence-basics',
+      'past-and-state',
+      'invitation-comparison',
+      'state-change-naru',
+      'state-change-suru'
+    ]);
+
+    expect(coreSections.map((section) => section.order)).toEqual([1, 2, 3, 4, 5, 6]);
+  });
+
+  it('invitation-comparison 合併比較表與 ～ましょう 補充，並保留兩邊例句', () => {
+    const section = getSection('invitation-comparison');
+    const topic = section.topics.find((entry) => entry.id === 'invitation-core-difference');
+    const restExample = section.tableExampleGroups
+      ?.find((group) => group.id === 'invitation-tone-masenka')
+      ?.examples.find((example) => example.id === 'invitation-tone-masenka-example');
+
+    expect(section.presentationMode).toBe('compare-table');
+    expect(typeof section.description).toBe('string');
+    expect(section.table).toBeDefined();
+    expect(section.tableExampleGroups).toHaveLength(2);
+    expect(section.sharedNotes.map((note) => note.id)).toContain('invitation-plain-form-note');
+    expect(section.topics.map((entry) => entry.id)).toEqual([
+      'invitation-core-difference',
+      'mashou-plain-volitional'
+    ]);
+    expect(topic).toBeDefined();
+    expect(topic!.sourceRefs).toEqual(['note-v15-ch1', 'note-v15-ch4']);
+    expect(topic!.sharedNoteIds).toContain('invitation-plain-form-note');
+    expect(section.topics.find((entry) => entry.id === 'mashou-plain-volitional')?.sharedNoteIds).toEqual([
+      'invitation-plain-form-note',
+      'mashou-vs-masenka'
+    ]);
+    expect(topic?.examples.map((example) => example.japanese)).toContain('この週末、食事に行きませんか。');
+    expect(topic?.examples.map((example) => example.japanese)).toContain('一緒に映画を見ない？');
+    expect(topic?.examples.map((example) => example.japanese)).toContain('一緒に帰りましょう。');
+    expect(topic?.examples.map((example) => example.japanese)).toContain('まずビールを注文しましょう。');
+    expect(topic?.examples.map((example) => example.japanese)).toContain(
+      '山の中ではごみは捨てないで、ちゃんと持って帰りましょう。'
+    );
+    expect(topic?.details.some((detail) => detail.includes('食べます。→ 食べませんか。'))).toBe(true);
+    expect(topic?.details.some((detail) => detail.includes('食べます。→ 食べましょう。'))).toBe(true);
+    expect(
+      section.topics
+        .find((entry) => entry.id === 'mashou-plain-volitional')
+        ?.examples.find((example) => example.id === 'mashou-volitional-plain-example')?.note
+    ).toContain('普通體意向形');
+    expect(restExample?.japanese).toContain('ちょっと');
+    expect(restExample?.japanese.toLowerCase()).not.toContain('chotto');
+    expect(restExample?.note).toContain('chotto');
+  });
+
+  it('state-change-naru 與 state-change-suru 都完整保留三種詞類接續', () => {
+    const naru = getSection('state-change-naru');
+    const suru = getSection('state-change-suru');
+
+    expect(naru.presentationMode).toBe('info-stack');
+    expect(naru.topics.map((topic) => topic.id)).toEqual(['naru-i-adjective', 'naru-na-adjective', 'naru-noun']);
+    expect(naru.sharedNotes.map((note) => note.id)).toContain('naru-yameru-note');
+    expect(naru.topics.find((topic) => topic.id === 'naru-noun')?.sharedNoteIds).toContain('naru-yameru-note');
+    expect(naru.topics.find((topic) => topic.id === 'naru-i-adjective')?.examples.map((example) => example.japanese)).toContain('髪が長くなりました。');
+    expect(naru.topics.find((topic) => topic.id === 'naru-noun')?.examples.map((example) => example.japanese)).toContain('将来、医者になりたいです。');
+    expect(naru.topics.find((topic) => topic.id === 'naru-noun')?.examples.map((example) => example.japanese)).toContain('消費税が十パーセントになりましたね。');
+
+    expect(suru.presentationMode).toBe('info-stack');
+    expect(suru.topics.map((topic) => topic.id)).toEqual(['suru-i-adjective', 'suru-na-adjective', 'suru-noun-choice']);
+    expect(suru.topics.find((topic) => topic.id === 'suru-i-adjective')?.examples.map((example) => example.japanese)).toContain('髪を短くします。');
+    expect(suru.topics.find((topic) => topic.id === 'suru-na-adjective')?.examples.map((example) => example.japanese)).toContain('教室では静かにしてください。');
+    expect(suru.topics.find((topic) => topic.id === 'suru-noun-choice')?.examples.map((example) => example.japanese)).toContain('晩ご飯はカレーライスにします。');
+  });
+
+  it('source coverage 新增 note-v15-ch1 到 note-v15-ch4，且都映射到正確 section', () => {
+    expect(n5GrammarSourceCoverage.find((item) => item.sourceId === 'note-v15-ch1')).toMatchObject({
+      mappedSectionId: 'invitation-comparison',
+      mappedTopicIds: ['invitation-core-difference'],
+      status: 'supplemented'
+    });
+    expect(n5GrammarSourceCoverage.find((item) => item.sourceId === 'note-v15-ch2')).toMatchObject({
+      mappedSectionId: 'state-change-naru',
+      mappedTopicIds: ['naru-i-adjective', 'naru-na-adjective', 'naru-noun'],
+      status: 'supplemented'
+    });
+    expect(n5GrammarSourceCoverage.find((item) => item.sourceId === 'note-v15-ch3')).toMatchObject({
+      mappedSectionId: 'state-change-suru',
+      mappedTopicIds: ['suru-i-adjective', 'suru-na-adjective', 'suru-noun-choice'],
+      status: 'supplemented'
+    });
+    expect(n5GrammarSourceCoverage.find((item) => item.sourceId === 'note-v15-ch4')).toMatchObject({
+      mappedSectionId: 'invitation-comparison',
+      mappedTopicIds: ['invitation-core-difference', 'mashou-plain-volitional'],
+      status: 'supplemented'
+    });
+  });
+});

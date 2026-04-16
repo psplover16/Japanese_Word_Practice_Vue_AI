@@ -17,10 +17,12 @@ describe('N5GrammarSections', () => {
 
     expect(toggle.attributes('aria-expanded')).toBe('true');
     expect(body.attributes('style') ?? '').not.toContain('display: none;');
-    expect(wrapper.find('[data-testid="n5-grammar-compare-table-polite-overview"]').exists()).toBe(true);
-    expect(wrapper.findAll('[data-testid^="n5-grammar-table-example-"]')).toHaveLength(12);
-    expect(wrapper.text()).toContain('對應變化');
-    expect(wrapper.text()).toContain('この部屋は静かです。');
+    const politeOverview = wrapper.get('[data-testid="n5-grammar-section-polite-overview"]');
+
+    expect(politeOverview.find('[data-testid="n5-grammar-compare-table-polite-overview"]').exists()).toBe(true);
+    expect(politeOverview.findAll('[data-testid^="n5-grammar-table-example-"]')).toHaveLength(12);
+    expect(politeOverview.text()).toContain('對應變化');
+    expect(politeOverview.text()).toContain('この部屋は静かです。');
   });
 
   it('不同 section 仍依 mode 顯示對應 renderer，且 sentence-basics 不再有 compare table', async () => {
@@ -36,5 +38,31 @@ describe('N5GrammarSections', () => {
     expect(sentenceBasics.find('[data-testid="n5-grammar-compare-table-sentence-basics"]').exists()).toBe(false);
     expect(wrapper.find('[data-testid="n5-grammar-topic-wa-topic-marker"]').exists()).toBe(true);
     expect(wrapper.find('[data-testid="n5-grammar-compare-table-particle-mo"]').exists()).toBe(true);
+  });
+
+  it('新增的邀約與變化表現區塊可依 mode 正確展開', async () => {
+    const { wrapper } = mountWithPracticeSession(N5GrammarView);
+
+    const invitationToggle = wrapper.get('[data-testid="n5-grammar-toggle-invitation-comparison"]');
+    expect(invitationToggle.attributes('aria-expanded')).toBe('true');
+    await wrapper.get('[data-testid="n5-grammar-toggle-state-change-naru"]').trigger('click');
+
+    const invitationSection = wrapper.get('[data-testid="n5-grammar-section-invitation-comparison"]');
+    const naruSection = wrapper.get('[data-testid="n5-grammar-section-state-change-naru"]');
+
+    expect(invitationSection.text()).toContain('邀約與勸誘：ませんか 與 ましょう');
+    expect(invitationSection.find('[data-testid="n5-grammar-compare-table-invitation-comparison"]').exists()).toBe(true);
+    expect(invitationSection.text()).toContain('疲れましたね。ちょっと休みませんか。');
+    expect(invitationSection.text()).toContain('一緒に映画を見ない？');
+    expect(invitationSection.findAll('[data-testid^="n5-grammar-table-example-"]')).toHaveLength(2);
+    expect(invitationSection.find('[data-testid="n5-grammar-topic-mashou-plain-volitional"]').exists()).toBe(true);
+    expect(invitationSection.text()).toContain('一緒に帰ろう。');
+    expect(invitationSection.text()).toContain('この週末、食事に行きませんか。');
+    expect(invitationSection.text()).toContain('山の中ではごみは捨てないで、ちゃんと持って帰りましょう。');
+
+    expect(naruSection.text()).toContain('狀態變化：～くなります / ～になります');
+    expect(naruSection.find('[data-testid="n5-grammar-topic-naru-i-adjective"]').exists()).toBe(true);
+    expect(naruSection.text()).toContain('髪が長くなりました。');
+    expect(naruSection.text()).toContain('辞める / 止める / やめる');
   });
 });

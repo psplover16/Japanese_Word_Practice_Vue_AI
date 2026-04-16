@@ -19,6 +19,9 @@ test('首頁可載入並切換主要導覽', async ({ page }) => {
   await expect(page.getByTestId('n5-grammar-view')).toContainText('敬體變化速覽');
   await expect(page.getByTestId('n5-grammar-view')).toContainText('敬體句型：現在型與詞類基礎');
   await expect(page.getByTestId('n5-grammar-view')).toContainText('敬體句型：過去、狀態與補充表現');
+  await expect(page.getByTestId('n5-grammar-view')).toContainText('邀約與勸誘：ませんか 與 ましょう');
+  await expect(page.getByTestId('n5-grammar-view')).toContainText('狀態變化：～くなります / ～になります');
+  await expect(page.getByTestId('n5-grammar-view')).toContainText('人為改變：～くします / ～にします');
   await expect(page.getByTestId('n5-grammar-view')).not.toContainText('句型與詞類敬體基礎');
   await expect(page.getByTestId('n5-grammar-view')).not.toContainText('製作中');
 
@@ -37,6 +40,9 @@ test('可直接以網址進入 N5 文法頁', async ({ page }) => {
   await expect(page.getByTestId('n5-grammar-view')).toContainText('敬體變化速覽');
   await expect(page.getByTestId('n5-grammar-view')).toContainText('敬體句型：現在型與詞類基礎');
   await expect(page.getByTestId('n5-grammar-view')).toContainText('敬體句型：過去、狀態與補充表現');
+  await expect(page.getByTestId('n5-grammar-view')).toContainText('邀約與勸誘：ませんか 與 ましょう');
+  await expect(page.getByTestId('n5-grammar-view')).toContainText('狀態變化：～くなります / ～になります');
+  await expect(page.getByTestId('n5-grammar-view')).toContainText('人為改變：～くします / ～にします');
   await expect(page.getByTestId('n5-grammar-view')).not.toContainText('句型與詞類敬體基礎');
   await expect(page.getByTestId('n5-grammar-view')).not.toContainText('製作中');
   await expectPrimaryTabs(page);

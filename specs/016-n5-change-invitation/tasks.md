@@ -12,10 +12,10 @@
 
 **Purpose**: 對齊現有 N5 文法資料模型、測試面與文件責任，避免在實作中引入不必要結構變更。
 
-- [ ] T001 確認 `src/modules/n5Grammar/types/grammarNotes.ts` 的 `N5GrammarSection`、`N5GrammarTopic`、`N5GrammarSharedNote`、`N5GrammarExample`、`N5GrammarTableExampleGroup` 足以承載本次新增資料
-- [ ] T002 [P] 確認 `src/modules/n5Grammar/views/N5GrammarView.vue` 與 `src/modules/n5Grammar/components/N5GrammarSectionCard.vue` 仍由資料驅動渲染與收合，不需新增 route 或 view 分支
-- [ ] T003 [P] 確認 `src/modules/n5Grammar/components/N5GrammarInfoBlock.vue`、`src/modules/n5Grammar/components/N5GrammarCompareTable.vue` 能直接承接本次 `info-stack` 與 `compare-table` 需求
-- [ ] T004 [P] 確認 `.gitignore` 已涵蓋 `node_modules/`、`dist/`、`coverage/`，並確認本次無需更新 `PROJECT_ARCHITECTURE.md`
+- [X] T001 確認 `src/modules/n5Grammar/types/grammarNotes.ts` 的 `N5GrammarSection`、`N5GrammarTopic`、`N5GrammarSharedNote`、`N5GrammarExample`、`N5GrammarTableExampleGroup` 足以承載本次新增資料
+- [X] T002 [P] 確認 `src/modules/n5Grammar/views/N5GrammarView.vue` 與 `src/modules/n5Grammar/components/N5GrammarSectionCard.vue` 仍由資料驅動渲染與收合，不需新增 route 或 view 分支
+- [X] T003 [P] 確認 `src/modules/n5Grammar/components/N5GrammarInfoBlock.vue`、`src/modules/n5Grammar/components/N5GrammarCompareTable.vue` 能直接承接本次 `info-stack` 與 `compare-table` 需求
+- [X] T004 [P] 確認 `.gitignore` 已涵蓋 `node_modules/`、`dist/`、`coverage/`，並確認本次無需更新 `PROJECT_ARCHITECTURE.md`
 
 ---
 
@@ -25,9 +25,9 @@
 
 **⚠️ CRITICAL**: User Story 實作前必須完成此 Phase。
 
-- [ ] T005 在 `src/modules/n5Grammar/data/grammarNotes.ts` 確認既有 core sections `polite-overview`、`sentence-basics`、`past-and-state` 的 order 為 1、2、3，並確認 particle sections 從 90 起跳
-- [ ] T006 [P] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 確認 `n5GrammarSourceCoverage` 的欄位格式與既有 `note-v14-ch1`、`note-v14-ch2` 命名模式，作為新增 `note-v15-ch1`~`note-v15-ch4` 的基準
-- [ ] T007 [P] 比對 `_private/_private_notes/v15/note.txt`、`specs/016-n5-change-invitation/spec.md`、`specs/016-n5-change-invitation/research.md`，建立 ch1~ch4 的 coverage 清單與需修正的來源片段備忘
+- [X] T005 在 `src/modules/n5Grammar/data/grammarNotes.ts` 確認既有 core sections `polite-overview`、`sentence-basics`、`past-and-state` 的 order 為 1、2、3，並確認 particle sections 從 90 起跳
+- [X] T006 [P] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 確認 `n5GrammarSourceCoverage` 的欄位格式與既有 `note-v14-ch1`、`note-v14-ch2` 命名模式，作為新增 `note-v15-ch1`~`note-v15-ch4` 的基準
+- [X] T007 [P] 比對 `_private/_private_notes/v15/note.txt`、`specs/016-n5-change-invitation/spec.md`、`specs/016-n5-change-invitation/research.md`，建立 ch1~ch4 的 coverage 清單與需修正的來源片段備忘
 
 **Checkpoint**: 新增內容的排序區間、來源責任與命名規則已明確，後續 user stories 可依此實作。
 
@@ -40,19 +40,19 @@
 
 ### Tests for User Story 1
 
-- [ ] T008 [P] [US1] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `invitation-comparison` 與 `polite-volitional` 兩個 core sections 存在且 order 為 4、7
-- [ ] T009 [P] [US1] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `invitation-comparison` 使用 `compare-table`，且有對應 `tableExampleGroups` 與普通體 shared note
-- [ ] T010 [P] [US1] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `polite-volitional` 使用 `info-stack`，包含形成方式、意向形對照與勸誘例句 topics
-- [ ] T011 [P] [US1] 在 `tests/component/N5GrammarSections.spec.ts` 新增區塊渲染測試，驗證 ch1 比較區塊展開後可見差異內容與例句
-- [ ] T012 [P] [US1] 在 `tests/component/N5GrammarSections.spec.ts` 或 `tests/component/N5GrammarViewSmoke.spec.ts` 新增區塊渲染測試，驗證 `polite-volitional` 展開後可見形成方式與例句
+- [X] T008 [P] [US1] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `invitation-comparison` 與 `polite-volitional` 兩個 core sections 存在且 order 為 4、7
+- [X] T009 [P] [US1] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `invitation-comparison` 使用 `compare-table`，且有對應 `tableExampleGroups` 與普通體 shared note
+- [X] T010 [P] [US1] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `polite-volitional` 使用 `info-stack`，包含形成方式、意向形對照與勸誘例句 topics
+- [X] T011 [P] [US1] 在 `tests/component/N5GrammarSections.spec.ts` 新增區塊渲染測試，驗證 ch1 比較區塊展開後可見差異內容與例句
+- [X] T012 [P] [US1] 在 `tests/component/N5GrammarSections.spec.ts` 或 `tests/component/N5GrammarViewSmoke.spec.ts` 新增區塊渲染測試，驗證 `polite-volitional` 展開後可見形成方式與例句
 
 ### Implementation for User Story 1
 
-- [ ] T013 [US1] 依 `_private/_private_notes/v15/note.txt` ch1 與 ch4，在 `src/modules/n5Grammar/data/grammarNotes.ts` 整理 `ませんか`、`ましょう`、`見ない？`、`帰ろう` 與 `ます形 + ましょう` 的來源內容與需校正片段
-- [ ] T014 [US1] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `invitation-comparison` section，使用 `compare-table` 呈現 `ませんか` vs `ましょう` 差異、普通體對照與對應例句群組
-- [ ] T015 [US1] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `polite-volitional` section，整理 `～ましょう` 的形成方式、`帰ろう` 對照、勸誘語氣提醒與例句
-- [ ] T016 [US1] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 為 US1 兩個 sections 補齊 `sharedNotes`、`sourceRefs`、`origin` 與說明文字，確保沿用來源例句並在不足處補充 N5 程度例句
-- [ ] T017 [US1] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `note-v15-ch1` 與 `note-v15-ch4` 的 `n5GrammarSourceCoverage` 映射，確保 ch1 與 ch4 無遺漏
+- [X] T013 [US1] 依 `_private/_private_notes/v15/note.txt` ch1 與 ch4，在 `src/modules/n5Grammar/data/grammarNotes.ts` 整理 `ませんか`、`ましょう`、`見ない？`、`帰ろう` 與 `ます形 + ましょう` 的來源內容與需校正片段
+- [X] T014 [US1] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `invitation-comparison` section，使用 `compare-table` 呈現 `ませんか` vs `ましょう` 差異、普通體對照與對應例句群組
+- [X] T015 [US1] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `polite-volitional` section，整理 `～ましょう` 的形成方式、`帰ろう` 對照、勸誘語氣提醒與例句
+- [X] T016 [US1] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 為 US1 兩個 sections 補齊 `sharedNotes`、`sourceRefs`、`origin` 與說明文字，並將羅馬音輸入提示僅保留為補充註記，確保沿用來源例句並在不足處補充 N5 程度例句
+- [X] T017 [US1] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `note-v15-ch1` 與 `note-v15-ch4` 的 `n5GrammarSourceCoverage` 映射，確保 ch1 與 ch4 無遺漏
 
 **Checkpoint**: US1 完成後，`/n5-grammar` 可獨立提供邀約表現學習內容，且資料測試與基本渲染測試通過。
 
@@ -65,19 +65,19 @@
 
 ### Tests for User Story 2
 
-- [ ] T018 [P] [US2] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `state-change-naru` 與 `state-change-suru` 兩個 core sections 存在且 order 為 5、6
-- [ ] T019 [P] [US2] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `state-change-naru` 具備 `い形容詞`、`な形容詞`、名詞三類 topics 與對應例句
-- [ ] T020 [P] [US2] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `state-change-suru` 具備 `い形容詞`、`な形容詞`、名詞選擇三類 topics 與對應例句
-- [ ] T021 [P] [US2] 在 `tests/component/N5GrammarSections.spec.ts` 新增區塊渲染測試，驗證 `state-change-naru` 展開後能看到詞類接續與 shared note
-- [ ] T022 [P] [US2] 在 `tests/component/N5GrammarSections.spec.ts` 新增區塊渲染測試，驗證 `state-change-suru` 展開後能看到人為改變／決定用法與例句
+- [X] T018 [P] [US2] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `state-change-naru` 與 `state-change-suru` 兩個 core sections 存在且 order 為 5、6
+- [X] T019 [P] [US2] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `state-change-naru` 具備 `い形容詞`、`な形容詞`、名詞三類 topics 與對應例句
+- [X] T020 [P] [US2] 在 `tests/unit/n5GrammarData.spec.ts` 新增資料測試，驗證 `state-change-suru` 具備 `い形容詞`、`な形容詞`、名詞選擇三類 topics 與對應例句
+- [X] T021 [P] [US2] 在 `tests/component/N5GrammarSections.spec.ts` 新增區塊渲染測試，驗證 `state-change-naru` 展開後能看到詞類接續與 shared note
+- [X] T022 [P] [US2] 在 `tests/component/N5GrammarSections.spec.ts` 新增區塊渲染測試，驗證 `state-change-suru` 展開後能看到人為改變／決定用法與例句
 
 ### Implementation for User Story 2
 
-- [ ] T023 [US2] 依 `_private/_private_notes/v15/note.txt` ch2，在 `src/modules/n5Grammar/data/grammarNotes.ts` 整理 `～くなります / ～になります` 的來源內容、詞類接續與需修正片段
-- [ ] T024 [US2] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `state-change-naru` section，整理 `い形容詞`、`な形容詞`、名詞接續與 `辭める / 止める / やめる` 補充提醒
-- [ ] T025 [US2] 依 `_private/_private_notes/v15/note.txt` ch3，在 `src/modules/n5Grammar/data/grammarNotes.ts` 整理 `～くします / ～にします` 的來源內容、詞類接續與需修正片段
-- [ ] T026 [US2] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `state-change-suru` section，整理人為改變、決定／選擇用法與對應例句
-- [ ] T027 [US2] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `note-v15-ch2` 與 `note-v15-ch3` 的 `n5GrammarSourceCoverage` 映射，確保 ch2 與 ch3 無遺漏
+- [X] T023 [US2] 依 `_private/_private_notes/v15/note.txt` ch2，在 `src/modules/n5Grammar/data/grammarNotes.ts` 整理 `～くなります / ～になります` 的來源內容、詞類接續與需修正片段
+- [X] T024 [US2] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `state-change-naru` section，整理 `い形容詞`、`な形容詞`、名詞接續與 `辭める / 止める / やめる` 補充提醒
+- [X] T025 [US2] 依 `_private/_private_notes/v15/note.txt` ch3，在 `src/modules/n5Grammar/data/grammarNotes.ts` 整理 `～くします / ～にします` 的來源內容、詞類接續與需修正片段
+- [X] T026 [US2] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `state-change-suru` section，整理人為改變、決定／選擇用法與對應例句
+- [X] T027 [US2] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 新增 `note-v15-ch2` 與 `note-v15-ch3` 的 `n5GrammarSourceCoverage` 映射，確保 ch2 與 ch3 無遺漏
 
 **Checkpoint**: US2 完成後，`/n5-grammar` 可獨立提供狀態變化與人為改變學習內容，且資料與元件測試通過。
 
@@ -90,17 +90,17 @@
 
 ### Tests for User Story 3
 
-- [ ] T028 [P] [US3] 在 `tests/unit/n5GrammarData.spec.ts` 新增排序測試，驗證 core sections 順序為既有 1~3 後接 4~7，且所有 particle sections 仍排在 core 之後
-- [ ] T029 [P] [US3] 在 `tests/component/N5GrammarViewSmoke.spec.ts` 新增 smoke 驗證，確認新 4 個區塊標題在 `/n5-grammar` 初始 render 可見且無 render error
-- [ ] T030 [P] [US3] 在 `tests/component/RouteOwnership.spec.ts` 新增負向 ownership 測試，確認新 4 個區塊不會出現在 `/practice`、`/grammar`、`/vocabulary`
-- [ ] T031 [P] [US3] 在 `tests/e2e/n5-grammar-layout.spec.ts` 新增 mobile e2e 驗證，確認 375px 下展開新 4 個區塊仍可讀且無明顯水平溢出
-- [ ] T032 [P] [US3] 在 `tests/e2e/app-shell.smoke.spec.ts` 或既有 route smoke 測試中補強檢查，確認 app shell 與 direct route 進入 `/n5-grammar` 後能看到本次新增區塊
+- [X] T028 [P] [US3] 在 `tests/unit/n5GrammarData.spec.ts` 新增排序測試，驗證 core sections 順序為既有 1~3 後接 4~7，且所有 particle sections 仍排在 core 之後
+- [X] T029 [P] [US3] 在 `tests/component/N5GrammarViewSmoke.spec.ts` 新增 smoke 驗證，確認新 4 個區塊標題在 `/n5-grammar` 初始 render 可見且無 render error
+- [X] T030 [P] [US3] 在 `tests/component/RouteOwnership.spec.ts` 新增負向 ownership 測試，確認新 4 個區塊不會出現在 `/practice`、`/grammar`、`/vocabulary`
+- [X] T031 [P] [US3] 在 `tests/e2e/n5-grammar-layout.spec.ts` 新增 mobile e2e 驗證，確認 375px 下展開新 4 個區塊仍可讀且無明顯水平溢出
+- [X] T032 [P] [US3] 在 `tests/e2e/app-shell.smoke.spec.ts` 或既有 route smoke 測試中補強檢查，確認 app shell 與 direct route 進入 `/n5-grammar` 後能看到本次新增區塊
 
 ### Implementation for User Story 3
 
-- [ ] T033 [US3] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 調整新增 4 個 core sections 的 order 與插入位置，確保接在既有 3 個 core 區塊之後、助詞群組之前
-- [ ] T034 [US3] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 統一本次新增 sections 的 title / description / terminology，對齊既有 `/n5-grammar` 與 `變化規則` 的用語
-- [ ] T035 [US3] 比對 `_private/_private_notes/v15/note.txt` 與 `src/modules/n5Grammar/data/grammarNotes.ts`，完成 ch1~ch4 的最終漏缺檢查並補齊遺漏內容
+- [X] T033 [US3] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 調整新增 4 個 core sections 的 order 與插入位置，確保接在既有 3 個 core 區塊之後、助詞群組之前
+- [X] T034 [US3] 在 `src/modules/n5Grammar/data/grammarNotes.ts` 統一本次新增 sections 的 title / description / terminology，對齊既有 `/n5-grammar` 與 `變化規則` 的用語
+- [X] T035 [US3] 比對 `_private/_private_notes/v15/note.txt` 與 `src/modules/n5Grammar/data/grammarNotes.ts`，完成 ch1~ch4 的最終漏缺檢查並補齊遺漏內容
 
 **Checkpoint**: US3 完成後，新增內容排序正確、手機可讀、ownership 清楚，且既有 route 與助詞內容未回歸。
 
@@ -110,11 +110,11 @@
 
 **Purpose**: 收尾驗證、文件一致性與完整 quickstart 檢查。
 
-- [ ] T036 [P] 重新檢查 `specs/016-n5-change-invitation/spec.md`、`plan.md`、`research.md`、`data-model.md`、`quickstart.md`、`tasks.md` 的繁體中文與 UTF-8 文字正確性
-- [ ] T037 [P] 執行 `npm run lint` 與 `npm run typecheck` 驗證本次變更
-- [ ] T038 [P] 執行 `npx vitest run tests/unit/n5GrammarData.spec.ts tests/component/N5GrammarSections.spec.ts tests/component/N5GrammarViewSmoke.spec.ts tests/component/RouteOwnership.spec.ts`
-- [ ] T039 [P] 執行 `npm run build` 與 `npx playwright test tests/e2e/app-shell.smoke.spec.ts tests/e2e/n5-grammar-layout.spec.ts`
-- [ ] T040 依 `specs/016-n5-change-invitation/quickstart.md` 完成手動驗證與 SC-001 ~ SC-005 對照檢查
+- [X] T036 [P] 重新檢查 `specs/016-n5-change-invitation/spec.md`、`plan.md`、`research.md`、`data-model.md`、`quickstart.md`、`tasks.md` 的繁體中文與 UTF-8 文字正確性
+- [X] T037 [P] 執行 `npm run lint` 與 `npm run typecheck` 驗證本次變更
+- [X] T038 [P] 執行 `npx vitest run tests/unit/n5GrammarData.spec.ts tests/component/N5GrammarSections.spec.ts tests/component/N5GrammarViewSmoke.spec.ts tests/component/RouteOwnership.spec.ts`
+- [X] T039 [P] 執行 `npm run build` 與 `npx playwright test tests/e2e/app-shell.smoke.spec.ts tests/e2e/n5-grammar-layout.spec.ts`
+- [X] T040 依 `specs/016-n5-change-invitation/quickstart.md` 完成手動驗證與 SC-001 ~ SC-005 對照檢查
 
 ---
 
