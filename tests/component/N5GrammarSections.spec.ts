@@ -29,10 +29,10 @@ describe('N5GrammarSections', () => {
     const { wrapper } = mountWithPracticeSession(N5GrammarView);
     const sentenceBasics = wrapper.get('[data-testid="n5-grammar-section-sentence-basics"]');
 
-    await wrapper.get('[data-testid="n5-grammar-toggle-sentence-basics"]').trigger('click');
     await wrapper.get('[data-testid="n5-grammar-toggle-particle-wa"]').trigger('click');
     await wrapper.get('[data-testid="n5-grammar-toggle-particle-mo"]').trigger('click');
 
+    expect(wrapper.get('[data-testid="n5-grammar-toggle-sentence-basics"]').attributes('aria-expanded')).toBe('true');
     expect(sentenceBasics.text()).toContain('名詞與な形容詞的句尾變化與接名詞差異');
     expect(sentenceBasics.find('[data-testid="n5-grammar-topic-noun-na-basics"]').exists()).toBe(true);
     expect(sentenceBasics.find('[data-testid="n5-grammar-compare-table-sentence-basics"]').exists()).toBe(false);
@@ -44,8 +44,8 @@ describe('N5GrammarSections', () => {
     const { wrapper } = mountWithPracticeSession(N5GrammarView);
 
     const invitationToggle = wrapper.get('[data-testid="n5-grammar-toggle-invitation-comparison"]');
-    expect(invitationToggle.attributes('aria-expanded')).toBe('true');
-    await wrapper.get('[data-testid="n5-grammar-toggle-state-change-naru"]').trigger('click');
+    expect(invitationToggle.attributes('aria-expanded')).toBe('false');
+    await invitationToggle.trigger('click');
 
     const invitationSection = wrapper.get('[data-testid="n5-grammar-section-invitation-comparison"]');
     const naruSection = wrapper.get('[data-testid="n5-grammar-section-state-change-naru"]');
@@ -60,6 +60,7 @@ describe('N5GrammarSections', () => {
     expect(invitationSection.text()).toContain('この週末、食事に行きませんか。');
     expect(invitationSection.text()).toContain('山の中ではごみは捨てないで、ちゃんと持って帰りましょう。');
 
+    expect(wrapper.get('[data-testid="n5-grammar-toggle-state-change-naru"]').attributes('aria-expanded')).toBe('true');
     expect(naruSection.text()).toContain('狀態變化：～くなります / ～になります');
     expect(naruSection.find('[data-testid="n5-grammar-topic-naru-i-adjective"]').exists()).toBe(true);
     expect(naruSection.text()).toContain('髪が長くなりました。');

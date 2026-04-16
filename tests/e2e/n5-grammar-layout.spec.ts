@@ -29,8 +29,10 @@ test('375px 下的 /n5-grammar 可展開核心區塊並顯示新增邀約與變�
 
   const politeOverviewToggle = page.getByTestId('n5-grammar-toggle-polite-overview');
   const sentenceBasicsToggle = page.getByTestId('n5-grammar-toggle-sentence-basics');
+  const pastAndStateToggle = page.getByTestId('n5-grammar-toggle-past-and-state');
   await expect(politeOverviewToggle).toHaveAttribute('aria-expanded', 'false');
-  await expect(sentenceBasicsToggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(sentenceBasicsToggle).toHaveAttribute('aria-expanded', 'true');
+  await expect(pastAndStateToggle).toHaveAttribute('aria-expanded', 'true');
 
   await politeOverviewToggle.click();
   await expect(politeOverviewToggle).toHaveAttribute('aria-expanded', 'true');
@@ -42,9 +44,6 @@ test('375px 下的 /n5-grammar 可展開核心區塊並顯示新增邀約與變�
   await expect(overviewSection.locator('[data-testid^="n5-grammar-table-example-"]')).toHaveCount(12);
   await expect(overviewSection.getByTestId('n5-grammar-table-example-present-positive-nominal')).toContainText('この部屋は静かです。');
 
-  await sentenceBasicsToggle.click();
-  await expect(sentenceBasicsToggle).toHaveAttribute('aria-expanded', 'true');
-
   const sentenceBasicsSection = page.getByTestId('n5-grammar-section-sentence-basics');
   await expect(sentenceBasicsSection.getByText('名詞與な形容詞的句尾變化與接名詞差異')).toBeVisible();
   await expect(sentenceBasicsSection.getByText('名詞句與な形容詞句')).toBeVisible();
@@ -52,6 +51,8 @@ test('375px 下的 /n5-grammar 可展開核心區塊並顯示新增邀約與變�
 
   const invitationToggle = page.getByTestId('n5-grammar-toggle-invitation-comparison');
   await invitationToggle.scrollIntoViewIfNeeded();
+  await expect(invitationToggle).toHaveAttribute('aria-expanded', 'false');
+  await invitationToggle.click();
   await expect(invitationToggle).toHaveAttribute('aria-expanded', 'true');
 
   const invitationSection = page.getByTestId('n5-grammar-section-invitation-comparison');
@@ -75,7 +76,6 @@ test('375px 下的 /n5-grammar 可展開核心區塊並顯示新增邀約與變�
 
   const naruToggle = page.getByTestId('n5-grammar-toggle-state-change-naru');
   await naruToggle.scrollIntoViewIfNeeded();
-  await naruToggle.click();
   await expect(naruToggle).toHaveAttribute('aria-expanded', 'true');
 
   const naruSection = page.getByTestId('n5-grammar-section-state-change-naru');
