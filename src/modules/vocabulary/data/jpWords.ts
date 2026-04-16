@@ -7556,6 +7556,13 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     meaning: "動作",
     stage: "Stage2_日常強化",
   },
+  {
+    text: "いざかや",
+    romanization: "i-za-ka-ya",
+    kanji: "居酒屋",
+    meaning: "居酒屋",
+    stage: "Stage1_基礎生活",
+  },
 ];
 
 export const vocabularyEntries = normalizeVocabularyEntries(rawVocabularyEntries);

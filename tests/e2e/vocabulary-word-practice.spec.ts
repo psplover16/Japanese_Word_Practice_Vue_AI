@@ -10,7 +10,7 @@ test('單字練習頁可搜尋、持久化註記並支援長按揭露', async ({
 
   await expectPrimaryTabs(page);
   await expect(page.getByTestId('vocabulary-control-bar')).toBeVisible();
-  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1079個單字');
+  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1080個單字');
 
   await page.getByTestId('vocabulary-mark-checkbox-1').check();
   await page.getByTestId('vocabulary-save-marks-button').click();
@@ -46,6 +46,11 @@ test('單字練習頁可搜尋、持久化註記並支援長按揭露', async ({
   await expect(page.getByTestId('vocabulary-row-1079')).toContainText('動き');
   await expect(page.getByTestId('vocabulary-row-1079')).toContainText('動作');
 
+  await page.getByTestId('vocabulary-search-input').fill('居酒屋');
+  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1個單字');
+  await expect(page.getByTestId('vocabulary-row-1080')).toContainText('いざかや');
+  await expect(page.getByTestId('vocabulary-row-1080')).toContainText('居酒屋');
+
   await page.getByTestId('vocabulary-search-input').fill('說話');
   await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1個單字');
   await expect(page.locator('[data-testid^="vocabulary-row-"]')).toHaveCount(1);
@@ -54,7 +59,7 @@ test('單字練習頁可搜尋、持久化註記並支援長按揭露', async ({
   await expect(page.locator('[data-testid^="vocabulary-row-"]').first()).toContainText('說話');
 
   await page.getByTestId('vocabulary-search-input').fill('');
-  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1079個單字');
+  await expect(page.getByTestId('vocabulary-count-summary')).toContainText('1080個單字');
 
   await page.setViewportSize({ width: 375, height: 812 });
   await expect(page.getByTestId('vocabulary-control-bar')).toBeVisible();

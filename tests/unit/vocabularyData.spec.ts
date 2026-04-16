@@ -22,13 +22,20 @@ const expectedTailEntries = [
     kanji: '動き',
     meaning: '動作',
     stage: 'Stage2_日常強化'
+  },
+  {
+    text: 'いざかや',
+    romanization: 'i-za-ka-ya',
+    kanji: '居酒屋',
+    meaning: '居酒屋',
+    stage: 'Stage1_基礎生活'
   }
 ];
 
 describe('vocabulary data', () => {
   it('將字典正規化為穩定 id 與 stage 分組', () => {
-    expect(rawVocabularyEntries).toHaveLength(1079);
-    expect(vocabularyEntries).toHaveLength(1079);
+    expect(rawVocabularyEntries).toHaveLength(1080);
+    expect(vocabularyEntries).toHaveLength(1080);
     expect(vocabularyEntries[0]?.id).toBe(1);
     expect(vocabularyEntries[1075]).toMatchObject({
       id: 1076,
@@ -37,25 +44,26 @@ describe('vocabulary data', () => {
       meaning: '概念性的(な形容詞)',
       stage: 'Stage5_抽象核心'
     });
-    expect(vocabularyEntries.at(-1)?.id).toBe(1079);
+    expect(vocabularyEntries.at(-1)?.id).toBe(1080);
     expect(vocabularyStageGroups).toHaveLength(19);
     expect(vocabularyStageGroups[0]?.stage).toBe('Stage1_基礎生活');
     expect(vocabularyStageGroups.at(-1)?.stage).toBe('Stage5_抽象核心');
   });
 
-  it('只在字典檔尾端追加 3 筆指定詞條，且不改動既有尾端資料', () => {
-    expect(rawVocabularyEntries.at(-4)).toMatchObject({
+  it('只在字典檔尾端追加 4 筆指定詞條，且不改動既有尾端資料', () => {
+    expect(rawVocabularyEntries.at(-5)).toMatchObject({
       text: 'がいねんてき',
       romanization: 'ga-i-nen-te-ki',
       kanji: '概念的',
       meaning: '概念性的(な形容詞)',
       stage: 'Stage5_抽象核心'
     });
-    expect(rawVocabularyEntries.slice(-3)).toEqual(expectedTailEntries);
-    expect(vocabularyEntries.slice(-3)).toMatchObject([
+    expect(rawVocabularyEntries.slice(-4)).toEqual(expectedTailEntries);
+    expect(vocabularyEntries.slice(-4)).toMatchObject([
       { id: 1077, ...expectedTailEntries[0] },
       { id: 1078, ...expectedTailEntries[1] },
-      { id: 1079, ...expectedTailEntries[2] }
+      { id: 1079, ...expectedTailEntries[2] },
+      { id: 1080, ...expectedTailEntries[3] }
     ]);
   });
 
@@ -72,15 +80,17 @@ describe('vocabulary data', () => {
     expect(rawVocabularyEntries.filter((entry) => entry.kanji === '肌' && entry.meaning === '皮膚')).toHaveLength(1);
     expect(rawVocabularyEntries.filter((entry) => entry.kanji === '滑らか' && entry.meaning === '光滑(な形容詞)')).toHaveLength(1);
     expect(rawVocabularyEntries.filter((entry) => entry.kanji === '動き' && entry.meaning === '動作')).toHaveLength(1);
+    expect(rawVocabularyEntries.filter((entry) => entry.kanji === '居酒屋' && entry.meaning === '居酒屋')).toHaveLength(1);
   });
 
   it('新增詞條若屬動詞或形容詞，meaning 必須附上既有格式的詞性標記', () => {
-    const appendedEntries = rawVocabularyEntries.slice(-3);
+    const appendedEntries = rawVocabularyEntries.slice(-4);
     const partOfSpeechMarkerPattern = /\((五段動詞|一段動詞|な形容詞|い形容詞)\)$/;
 
     expect(appendedEntries.find((entry) => entry.kanji === '滑らか')?.meaning).toBe('光滑(な形容詞)');
     expect(appendedEntries.find((entry) => entry.kanji === '滑らか')?.meaning).toMatch(partOfSpeechMarkerPattern);
     expect(appendedEntries.find((entry) => entry.kanji === '肌')?.meaning).toBe('皮膚');
     expect(appendedEntries.find((entry) => entry.kanji === '動き')?.meaning).toBe('動作');
+    expect(appendedEntries.find((entry) => entry.kanji === '居酒屋')?.meaning).toBe('居酒屋');
   });
 });
