@@ -34,7 +34,7 @@ describe('vocabulary data', () => {
       id: 1076,
       text: 'がいねんてき',
       kanji: '概念的',
-      meaning: '概念性的',
+      meaning: '概念性的(な形容詞)',
       stage: 'Stage5_抽象核心'
     });
     expect(vocabularyEntries.at(-1)?.id).toBe(1079);
@@ -48,7 +48,7 @@ describe('vocabulary data', () => {
       text: 'がいねんてき',
       romanization: 'ga-i-nen-te-ki',
       kanji: '概念的',
-      meaning: '概念性的',
+      meaning: '概念性的(な形容詞)',
       stage: 'Stage5_抽象核心'
     });
     expect(rawVocabularyEntries.slice(-3)).toEqual(expectedTailEntries);
@@ -59,14 +59,14 @@ describe('vocabulary data', () => {
     ]);
   });
 
-  it('沿用既有 話す -> 說話 覆蓋，且不為說話新增重複詞條', () => {
-    const speakingEntries = rawVocabularyEntries.filter((entry) => entry.meaning === '說話');
+  it('沿用既有 話す -> 說話(五段動詞) 覆蓋，且不為說話新增重複詞條', () => {
+    const speakingEntries = rawVocabularyEntries.filter((entry) => entry.meaning === '說話(五段動詞)');
 
     expect(speakingEntries).toHaveLength(1);
     expect(speakingEntries[0]).toMatchObject({
       text: 'はなす',
       kanji: '話す',
-      meaning: '說話',
+      meaning: '說話(五段動詞)',
       stage: 'Stage1_基礎生活'
     });
     expect(rawVocabularyEntries.filter((entry) => entry.kanji === '肌' && entry.meaning === '皮膚')).toHaveLength(1);
