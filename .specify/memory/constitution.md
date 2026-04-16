@@ -1,19 +1,15 @@
 <!--
 Sync Impact Report
-Version change: 1.5.0 -> 1.5.1
+Version change: 1.5.1 -> 1.6.0
 Modified principles:
-- I. Code Quality & Maintainability (rewritten for direct alignment with the current governance draft)
-- II. Test-First Verification (rewritten for direct alignment with the current governance draft)
-- III. UX Consistency (rewritten for direct alignment with the current governance draft)
-- IV. Performance Budgets (rewritten for direct alignment with the current governance draft)
-- V. Documentation & Repository Hygiene (rewritten and project context corrected)
-- VI. Scope Ownership & Reuse Boundaries (rewritten for direct alignment with the current governance draft)
+- V. Documentation & Repository Hygiene (expanded to require valid UTF-8 text and to forbid garbled characters, replacement glyphs, or visible BOM corruption in human-readable artifacts)
 Added sections: none
 Removed sections: none
 Templates requiring updates:
 - .specify/templates/plan-template.md (validated, no change)
 - .specify/templates/spec-template.md (validated, no change)
 - .specify/templates/tasks-template.md (validated, no change)
+- .specify/templates/constitution-template.md (validated, no change)
 - .specify/templates/commands/ (not present, no update required)
 Deferred items: none
 -->
@@ -61,7 +57,12 @@ release.
 
 ### V. Documentation & Repository Hygiene
 This constitution MUST remain in English only. All specifications, plans, and
-user-facing documentation MUST be written in Traditional Chinese (zh-TW). Every
+user-facing documentation MUST be written in Traditional Chinese (zh-TW). All
+human-readable repository artifacts produced for this project, including Git
+commit messages, MUST preserve their intended characters using valid UTF-8
+text. Garbled characters, replacement glyphs (for example `?` replacing
+intended text), or visible BOM corruption in committed content are compliance
+failures and MUST be corrected before the work is considered complete. Every
 new project MUST include a `.gitignore` file. `node_modules/` MUST never be
 committed to Git. Re-installable or re-generatable artifacts such as `build/`,
 `dist/`, and `coverage/` MUST be excluded from version control by default.
@@ -127,4 +128,4 @@ or non-semantic refinements. Compliance review is mandatory for specifications,
 plans, tasks, and implementation work. Any exception MUST be documented with a
 clear expiration, condition for removal, or remediation path.
 
-**Version**: 1.5.1 | **Ratified**: 2026-03-21 | **Last Amended**: 2026-04-05
+**Version**: 1.6.0 | **Ratified**: 2026-03-21 | **Last Amended**: 2026-04-15
