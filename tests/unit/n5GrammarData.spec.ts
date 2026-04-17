@@ -25,10 +25,10 @@ describe('n5GrammarData', () => {
 
     expect(sentenceBasics.title).toBe('敬體句型：現在型與詞類基礎');
     expect(sentenceBasics.presentationMode).toBe('info-stack');
-    expect(sentenceBasics.description.length).toBeGreaterThan(0);
+    expect(sentenceBasics.description).toBe('');
     expect(sentenceBasics.table).toBeUndefined();
     expect(sentenceBasics.topics.map((topic) => topic.id)).toEqual(['noun-na-basics', 'i-adjective-basics', 'masu-verb-basics']);
-    expect(sentenceBasics.sharedNotes.map((note) => note.id)).toEqual(['nominal-predicate']);
+    expect(sentenceBasics.sharedNotes.map((note) => note.id)).toEqual(['noun-modifier-comparison', 'nominal-predicate']);
     expect(getSection('past-and-state').title).toBe('敬體句型：過去、狀態與補充表現');
   });
 
@@ -47,6 +47,22 @@ describe('n5GrammarData', () => {
         expect(topic.sourceRefs.length).toBeGreaterThan(0);
       }
     }
+  });
+
+  it('sentence-basics 把名詞修飾名詞與な形容詞修飾名詞的比較放在 sharedNotes', () => {
+    const sentenceBasics = getSection('sentence-basics');
+    const topic = sentenceBasics.topics.find((entry) => entry.id === 'noun-na-basics');
+
+    expect(topic).toBeDefined();
+    expect(topic!.sharedNoteIds).toContain('noun-modifier-comparison');
+
+    const note = sentenceBasics.sharedNotes.find((entry) => entry.id === 'noun-modifier-comparison');
+
+    expect(note).toBeDefined();
+    expect(note!.content).toContain('「日本人の子供」');
+    expect(note!.content).toContain('名詞修飾名詞');
+    expect(note!.content).toContain('「元気な子供」');
+    expect(note!.content).toContain('な形容詞修飾名詞');
   });
 
   it('敬體變化速覽的 12 組儲存格例句完整、唯一，且標記為 supplemental', () => {

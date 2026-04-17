@@ -28,11 +28,14 @@ describe('N5GrammarSections', () => {
   it('不同 section 仍依 mode 顯示對應 renderer，且 sentence-basics 不再有 compare table', async () => {
     const { wrapper } = mountWithPracticeSession(N5GrammarView);
     const sentenceBasics = wrapper.get('[data-testid="n5-grammar-section-sentence-basics"]');
+    const sentenceBasicsToggle = wrapper.get('[data-testid="n5-grammar-toggle-sentence-basics"]');
 
+    expect(sentenceBasicsToggle.attributes('aria-expanded')).toBe('false');
+    await sentenceBasicsToggle.trigger('click');
     await wrapper.get('[data-testid="n5-grammar-toggle-particle-wa"]').trigger('click');
     await wrapper.get('[data-testid="n5-grammar-toggle-particle-mo"]').trigger('click');
 
-    expect(wrapper.get('[data-testid="n5-grammar-toggle-sentence-basics"]').attributes('aria-expanded')).toBe('true');
+    expect(sentenceBasicsToggle.attributes('aria-expanded')).toBe('true');
     expect(sentenceBasics.text()).toContain('名詞與な形容詞的句尾變化與接名詞差異');
     expect(sentenceBasics.find('[data-testid="n5-grammar-topic-noun-na-basics"]').exists()).toBe(true);
     expect(sentenceBasics.find('[data-testid="n5-grammar-compare-table-sentence-basics"]').exists()).toBe(false);
@@ -44,8 +47,11 @@ describe('N5GrammarSections', () => {
     const { wrapper } = mountWithPracticeSession(N5GrammarView);
 
     const invitationToggle = wrapper.get('[data-testid="n5-grammar-toggle-invitation-comparison"]');
+    const naruToggle = wrapper.get('[data-testid="n5-grammar-toggle-state-change-naru"]');
     expect(invitationToggle.attributes('aria-expanded')).toBe('false');
+    expect(naruToggle.attributes('aria-expanded')).toBe('false');
     await invitationToggle.trigger('click');
+    await naruToggle.trigger('click');
 
     const invitationSection = wrapper.get('[data-testid="n5-grammar-section-invitation-comparison"]');
     const naruSection = wrapper.get('[data-testid="n5-grammar-section-state-change-naru"]');
@@ -60,7 +66,7 @@ describe('N5GrammarSections', () => {
     expect(invitationSection.text()).toContain('この週末、食事に行きませんか。');
     expect(invitationSection.text()).toContain('山の中ではごみは捨てないで、ちゃんと持って帰りましょう。');
 
-    expect(wrapper.get('[data-testid="n5-grammar-toggle-state-change-naru"]').attributes('aria-expanded')).toBe('true');
+    expect(naruToggle.attributes('aria-expanded')).toBe('true');
     expect(naruSection.text()).toContain('狀態變化：～くなります / ～になります');
     expect(naruSection.find('[data-testid="n5-grammar-topic-naru-i-adjective"]').exists()).toBe(true);
     expect(naruSection.text()).toContain('髪が長くなりました。');

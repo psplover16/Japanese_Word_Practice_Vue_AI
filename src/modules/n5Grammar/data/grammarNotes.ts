@@ -305,12 +305,17 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "sentence-basics",
     title: "敬體句型：現在型與詞類基礎",
-    description:
-      "敬體現在型的基本句型，說明名詞 / な形容詞、い形容詞與動詞在現在型的句尾用法、接名詞差異與典型例句。",
+    description: "",
     presentationMode: "info-stack",
     order: 2,
     category: "core",
     sharedNotes: [
+      {
+        id: "noun-modifier-comparison",
+        title: "名詞修飾名詞 vs な形容詞修飾名詞",
+        content:
+          "\n「日本人の子供」是名詞修飾名詞，要用「の」連接；\n「元気な子供」則是な形容詞修飾名詞，要用「な」連接。",
+      },
       {
         id: "nominal-predicate",
         title: "名詞句與な形容詞句",
@@ -322,17 +327,13 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "noun-na-basics",
         title: "名詞與な形容詞的句尾變化與接名詞差異",
-        summary:
-          "名詞與な形容詞放在句尾時都能用「です」說明身分或狀態；但接在名詞前面時，な形容詞要加「な」，一般名詞則直接接續。",
-        details: [
-          "「日本人の子供」是名詞修飾名詞",
-          "「元気な子供」則是な形容詞修飾名詞。",
-        ],
+        summary: "名詞與な形容詞放在句尾時都能用「です」說明身分或狀態",
+        details: ["な形容詞要加「な」 + 名詞", "一般名詞則用「の」"],
         sourceRefs: [
           "note-ch1-noun-positive-negative",
           "note-ch1-na-adjective-positive-negative",
         ],
-        sharedNoteIds: ["nominal-predicate"],
+        sharedNoteIds: ["nominal-predicate", "noun-modifier-comparison"],
         examples: [
           {
             id: "noun-student-positive",
@@ -370,11 +371,10 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "i-adjective-basics",
         title: "い形容詞的基本肯定與否定",
         summary:
-          "い形容詞放在句尾時可直接接「です」；做否定時，會先把詞尾「い」改成「く」，可理解成先轉成連用／副詞形，再接表示否定的「ない」，最後再接「です」。",
+          "い形容詞放在句尾時可直接接「です」；\n否定型：會先把詞尾「い」改成「く」，可理解成先轉成連用／副詞形，再接表示否定的「ない」，最後再接「です」。",
         details: [
-          "像「おいしい → おいしくないです」這種變化，不是單純在後面加否定，而是先經過形態轉換，再接上新的語法成分。",
-          "「いいです」與「よいです」在現在肯定都可以使用，但做變化時統一以「よい」系列活用。",
-          "因此現在否定要說「よくないです」，不是「いいくないです」。",
+          "「おいしい → おいしく → おいしくない → おいしくないです」",
+          "「いいです」與「よいです」在現在肯定都可以使用，但做變化時統一以「よい」系列活用。\n因此現在否定要說「よくないです」，不是「いいくないです」。",
         ],
         sourceRefs: ["note-ch1-i-adjective-positive-negative"],
         sharedNoteIds: [],
@@ -550,9 +550,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "i-adjective-past",
         title: "い形容詞過去肯定與否定",
         summary:
-          "い形容詞變成過去肯定時，會先把詞尾「い」改成「かった」，再接「です」；過去否定則可理解成先形成否定形「くない」，再把其中的「ない」改成過去的「なかった」，最後接「です」。",
+          "い形容詞變成過去肯定時，會先把詞尾「い」改成「かった」，再接「です」用來轉成敬體；\n過去否定則可理解成先形成否定形「くない」，再把其中的「ない」改成過去的「なかった」，最後接「です」用來轉成敬體。",
         details: [
-          "像「安い → 安かったです」這種變化，重點是詞尾本身的活用；不像「～くします」那樣是轉成副詞形後再接另一個動詞。",
           "若是否定過去，可先抓住「高い → 高くない → 高くなかったです」這種一路往下推進的變化。",
           "「いいです」的過去與否定仍然走「よい」系列，所以要說「よかったです / よくなかったです」。",
           "這一類句子也常與「から」連用，表達造成後句動作的原因。",
@@ -565,6 +564,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             japanese: "うなぎは昔、とても安かったです。",
             reading: "うなぎ は むかし、とても やすかった です。",
             translation: "鰻魚以前非常便宜。",
+            note: "「安い → 安かったです」形容詞自己變形；不像「～くします」那樣是轉成副詞形後再接另一個動詞。",
             origin: "source",
           },
           {
@@ -701,7 +701,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
           },
           {
             id: "invitation-trash-example",
-            japanese: "山の中ではごみは捨てないで、ちゃんと持って帰りましょう。",
+            japanese:
+              "山の中ではごみは捨てないで、ちゃんと持って帰りましょう。",
             reading:
               "やま の なか では ごみ は すてないで、ちゃんと もって かえりましょう。",
             translation: "在山裡不要亂丟垃圾，要好好帶回去吧。",
@@ -742,8 +743,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "state-change-naru",
     title: "狀態變化：～くなります / ～になります",
-    description:
-      "這一組整理非人為的狀態變化；重點不是只背接法，而是理解詞尾或詞類怎麼轉成可接「なります」的形式，再表示慢慢變成那樣。",
+    description: "自然發生的變化",
     presentationMode: "info-stack",
     order: 5,
     category: "core",
@@ -752,7 +752,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "naru-yameru-note",
         title: "辞める / 止める / やめる",
         content:
-          "\n「辞める」常用在辭掉工作、職位；\n「止める」常用在停止某個行為；\n寫成平假名「やめる」時，要靠語境判斷是哪一種意思。",
+          "\n「辞める」常用在辭掉工作、職位；\n「止める」常用在停止某個行為；\n「やめる」，停止、放棄、辭掉",
       },
     ],
     topics: [
@@ -760,9 +760,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "naru-i-adjective",
         title: "い形容詞：去い後接 くなります",
         summary:
-          "い形容詞在這裡會先把詞尾「い」改成「く」，可理解成先轉成可接後續變化的形，再接「なります」表示狀態變成那樣。",
+          "い形容詞在這裡會先把詞尾「い」改成「く」，可理解成先轉成可接後續變化的形(連用型)，再接「なります」表示狀態變成那樣。",
         details: [
-          "像「寒い → 寒くなります」這種變化，可先記成：先做詞尾轉換，再接表示變化結果的「なります」。",
           "如果要說已經變成那樣，則把後面的「なります」改成過去形「なりました」。",
         ],
         sourceRefs: ["note-v15-ch2"],
@@ -773,7 +772,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             japanese: "今日は寒くなりました。",
             reading: "きょう は さむく なりました。",
             translation: "今天變冷了。",
-            note: "「寒い → 寒くなります → 寒くなりました」。",
+            note: "「寒い → 寒く → 寒くなります → 寒くなりました」。",
             origin: "source",
           },
           {
@@ -797,10 +796,10 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "naru-na-adjective",
         title: "な形容詞：直接接 になります",
-        summary:
-          "な形容詞接「になります」時，可理解成先用「に」把狀態標成變化後的落點，再接「なります」表示整體變成那樣。",
+        summary: "な形容詞 +「に」+「なります」，表示整體變成那樣。",
         details: [
-          "像「にぎやか → にぎやかになります」這種接法，關鍵不是副詞化，而是用「に」標出變化後的狀態。",
+          "「に」為助詞，標示變化的目標終點。\nex. 駅に行きます。(去車站)",
+          "「なります」表示整體變成那樣。\nex. 春になります。(變成春天了)",
           "如果要表達已經變成那樣，就把後面的「なります」改成過去形「なりました」。",
         ],
         sourceRefs: ["note-v15-ch2"],
@@ -811,8 +810,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             japanese: "駅ができて、この町はにぎやかになりました。",
             reading: "えき が できて、この まち は にぎやか に なりました。",
             translation: "車站蓋好之後，這個城鎮變熱鬧了。",
-            note:
-              "「にぎやか → にぎやかになります → にぎやかになりました」；\n「駅ができて」中的「が」是主語助詞，標示「駅」是動作主體；\n「できて」是「できる」連用型中的て形，用於句子並列與接續；\n「にぎやかになりました」中的「に」表示狀態往「熱鬧」這個方向變化。",
+            note: "「にぎやか → にぎやかに → にぎやかになります → にぎやかになりました」；\n「駅ができて」中的「が」是主語助詞，標示「駅」是動作主體；\n「できて」是「できる」連用型中的て形，用於句子並列與接續；\n「にぎやかになりました」中的「に」表示狀態往「熱鬧」這個方向變化。",
             origin: "supplemental",
           },
         ],
@@ -820,11 +818,12 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "naru-noun",
         title: "名詞：身分、結果或時間點的變化",
-        summary:
-          "名詞接「になります」時，可理解成先用「に」把身分、結果或時間點標成變化後的落點，再接「なります」表示到達那個狀態。",
+        summary: "名詞 +「に」+「なります」",
         details: [
-          "像「医者になります」「十時になります」都不是單純背句型，而是把某個身分或時間點當成最後到達的結果。",
-          "如果要表達已經變成那樣，或已經到了那個時間點，就把後面的「なります」改成過去形「なりました」。",
+          "「に」為助詞，標示變化的目標終點。",
+          "「なります」現在禮貌形，會變成～，語感為陳述、宣告",
+          "「なりました」過去禮貌形，變成了～，語感為已完成",
+          "「なりたいです」願望禮貌形，想變成～，語感為內心期望",
         ],
         sourceRefs: ["note-v15-ch2"],
         sharedNoteIds: ["naru-yameru-note"],
@@ -903,7 +902,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "suru-break-longer-example",
             japanese: "休み時間が短いので、もう少し長くしてください。",
-            reading: "やすみじかん が みじかい ので、もう すこし ながく してください。",
+            reading:
+              "やすみじかん が みじかい ので、もう すこし ながく してください。",
             translation: "因為休息時間太短了，請再弄長一點。",
             origin: "source",
           },
@@ -2194,7 +2194,11 @@ export const n5GrammarSourceCoverage: N5GrammarSourceCoverageItem[] = [
     sourceId: "note-v15-ch3",
     summary: "～くします / ～にします",
     mappedSectionId: "state-change-suru",
-    mappedTopicIds: ["suru-i-adjective", "suru-na-adjective", "suru-noun-choice"],
+    mappedTopicIds: [
+      "suru-i-adjective",
+      "suru-na-adjective",
+      "suru-noun-choice",
+    ],
     status: "supplemented",
   },
   {
