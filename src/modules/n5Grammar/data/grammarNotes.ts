@@ -234,11 +234,66 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
   },
 ];
 
+const invitationComparisonTable: N5GrammarCompareTable = {
+  columns: ["比較項目", "ませんか", "ましょう"],
+  rows: [
+    {
+      id: "invitation-tone",
+      label: "基本語氣",
+      values: ["詢問對方意願，一起做……嗎", "較肯定地提議，一起做吧"],
+    },
+    {
+      id: "invitation-scene",
+      label: "常見情境",
+      values: ["先確認對方願不願意參加", "說話者先提出接下來的安排"],
+    },
+    {
+      id: "invitation-plain",
+      label: "普通體對照",
+      values: ["見ない？", "帰ろう"],
+    },
+  ],
+};
+
+const invitationComparisonExampleGroups: N5GrammarTableExampleGroup[] = [
+  {
+    id: "invitation-tone-masenka",
+    rowId: "invitation-tone",
+    columnIndex: 0,
+    forms: ["ませんか"],
+    examples: [
+      {
+        id: "invitation-tone-masenka-example",
+        japanese: "疲れましたね。ちょっと休みませんか。",
+        reading: "つかれました ね。ちょっと やすみませんか。",
+        translation: "你累了吧。要不要稍微休息一下呢？",
+        note: "ちょっと（chotto），一點點、稍微",
+        origin: "source",
+      },
+    ],
+  },
+  {
+    id: "invitation-tone-mashou",
+    rowId: "invitation-tone",
+    columnIndex: 1,
+    forms: ["ましょう"],
+    examples: [
+      {
+        id: "invitation-tone-mashou-example",
+        japanese: "先生：時間ですね。じゃ、十分休みましょう。",
+        reading: "せんせい：じかん です ね。じゃ、じゅっぷん やすみましょう。",
+        translation: "老師：時間差不多了。那我們休息十分鐘吧。",
+        origin: "source",
+      },
+    ],
+  },
+];
+
 export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "polite-overview",
     title: "敬體變化速覽",
-    description: "",
+    description: "名詞 / な形容詞、い形容詞與動詞的敬體變化",
     presentationMode: "compare-table",
     order: 1,
     category: "core",
@@ -250,12 +305,17 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "sentence-basics",
     title: "敬體句型：現在型與詞類基礎",
-    description:
-      "比較表抽出後，這一區改為集中整理敬體現在型的基本句型，說明名詞 / な形容詞、い形容詞與動詞在現在型的句尾用法、接名詞差異與典型例句。",
+    description: "",
     presentationMode: "info-stack",
     order: 2,
     category: "core",
     sharedNotes: [
+      {
+        id: "noun-modifier-comparison",
+        title: "名詞修飾名詞 vs な形容詞修飾名詞",
+        content:
+          "\n「日本人の子供」是名詞修飾名詞，要用「の」連接；\n「元気な子供」則是な形容詞修飾名詞，要用「な」連接。",
+      },
       {
         id: "nominal-predicate",
         title: "名詞句與な形容詞句",
@@ -267,17 +327,13 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "noun-na-basics",
         title: "名詞與な形容詞的句尾變化與接名詞差異",
-        summary:
-          "名詞與な形容詞放在句尾時都能用「です」說明身分或狀態；但接在名詞前面時，な形容詞要加「な」，一般名詞則直接接續。",
-        details: [
-          "「日本人の子供」是名詞修飾名詞",
-          "「元気な子供」則是な形容詞修飾名詞。",
-        ],
+        summary: "名詞與な形容詞放在句尾時都能用「です」說明身分或狀態",
+        details: ["な形容詞要加「な」 + 名詞", "一般名詞則用「の」"],
         sourceRefs: [
           "note-ch1-noun-positive-negative",
           "note-ch1-na-adjective-positive-negative",
         ],
-        sharedNoteIds: ["nominal-predicate"],
+        sharedNoteIds: ["nominal-predicate", "noun-modifier-comparison"],
         examples: [
           {
             id: "noun-student-positive",
@@ -315,10 +371,10 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "i-adjective-basics",
         title: "い形容詞的基本肯定與否定",
         summary:
-          "い形容詞放在句尾時直接接「です」；做否定時要先把詞尾「い」改成「く」，再接「ないです」。",
+          "い形容詞放在句尾時可直接接「です」；\n否定型：會先把詞尾「い」改成「く」，可理解成先轉成連用／副詞形，再接表示否定的「ない」，最後再接「です」。",
         details: [
-          "「いいです」與「よいです」在現在肯定都可以使用，但做變化時統一以「よい」系列活用。",
-          "因此現在否定要說「よくないです」，不是「いいくないです」。",
+          "「おいしい → おいしく → おいしくない → おいしくないです」",
+          "「いいです」與「よいです」在現在肯定都可以使用，但做變化時統一以「よい」系列活用。\n因此現在否定要說「よくないです」，不是「いいくないです」。",
         ],
         sourceRefs: ["note-ch1-i-adjective-positive-negative"],
         sharedNoteIds: [],
@@ -395,7 +451,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
     id: "past-and-state",
     title: "敬體句型：過去、狀態與補充表現",
     description:
-      "這一區延伸整理敬體句型在過去、狀態持續與常見補充語法中的用法，聚焦「發生過」、「當時的狀態」與「原因」。",
+      "敬體句型在過去、狀態持續與常見補充語法中的用法，聚焦「發生過」、「當時的狀態」與「原因」。",
     presentationMode: "info-stack",
     order: 3,
     category: "core",
@@ -494,8 +550,9 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "i-adjective-past",
         title: "い形容詞過去肯定與否定",
         summary:
-          "い形容詞要變成過去肯定時，把詞尾「い」改成「かったです」；要變成過去否定時，則改成「くなかったです」。",
+          "い形容詞變成過去肯定時，會先把詞尾「い」改成「かった」，再接「です」用來轉成敬體；\n過去否定則可理解成先形成否定形「くない」，再把其中的「ない」改成過去的「なかった」，最後接「です」用來轉成敬體。",
         details: [
+          "若是否定過去，可先抓住「高い → 高くない → 高くなかったです」這種一路往下推進的變化。",
           "「いいです」的過去與否定仍然走「よい」系列，所以要說「よかったです / よくなかったです」。",
           "這一類句子也常與「から」連用，表達造成後句動作的原因。",
         ],
@@ -507,6 +564,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             japanese: "うなぎは昔、とても安かったです。",
             reading: "うなぎ は むかし、とても やすかった です。",
             translation: "鰻魚以前非常便宜。",
+            note: "「安い → 安かったです」形容詞自己變形；不像「～くします」那樣是轉成副詞形後再接另一個動詞。",
             origin: "source",
           },
           {
@@ -559,6 +617,351 @@ export const n5GrammarSections: N5GrammarSection[] = [
               "せんしゅう は とても ひま でした から、たくさん ほん を よみました。",
             translation: "上週因為很閒，所以讀了很多書。",
             note: "「から」表示原因。",
+            origin: "source",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "invitation-comparison",
+    title: "邀約與勸誘：ませんか 與 ましょう",
+    description: "",
+    presentationMode: "compare-table",
+    order: 4,
+    category: "core",
+    sharedNotes: [
+      {
+        id: "invitation-plain-form-note",
+        title: "普通體對照",
+        content:
+          "像「見ない？」「帰ろう」這類普通體也能拿來邀約，但口氣更口語；本區仍以 N5 敬體差異為主。",
+      },
+    ],
+    table: invitationComparisonTable,
+    topics: [
+      {
+        id: "invitation-core-difference",
+        title: "詢問邀請 vs 較肯定提議",
+        summary:
+          "「ませんか」詢問對方是否願意一起做某事；\n「ましょう」則常由說話者先提出較肯定的共同安排。",
+        details: [
+          "「ませんか」常見於邀請對方一起吃飯、休息、聊天等情境，語氣比較顧及對方意願。",
+          "「ましょう」除了表示「一起……吧」，也常用來提出下一步安排；用在提醒時，通常是邀大家一起做，而不是命令對方。",
+          "文型上都從動詞的ます形出發：\n若想詢問對方意願，可去掉「ます」後接「ませんか」\nex.食べます。→ 食べませんか。；\n若想較肯定地提出安排，則接「ましょう」\nex.食べます。→ 食べましょう。",
+        ],
+        sourceRefs: ["note-v15-ch1", "note-v15-ch4"],
+        sharedNoteIds: ["invitation-plain-form-note"],
+        examples: [
+          {
+            id: "invitation-kissaten-example",
+            japanese: "あの、あそこの喫茶店に入って話しませんか。",
+            reading: "あの、あそこ の きっさてん に はいって はなしませんか。",
+            translation: "那個，要不要進那邊那家咖啡店聊聊呢？",
+            origin: "source",
+          },
+          {
+            id: "invitation-lunch-example",
+            japanese: "昼ご飯を食べに行きませんか。",
+            reading: "ひるごはん を たべに いきませんか。",
+            translation: "要不要一起去吃午飯呢？",
+            origin: "source",
+          },
+          {
+            id: "invitation-weekend-example",
+            japanese: "この週末、食事に行きませんか。",
+            reading: "この しゅうまつ、しょくじ に いきませんか。",
+            translation: "這個週末要不要一起去吃飯呢？",
+            note: "這句先確認對方意願，語氣比直接提議更客氣。",
+            origin: "source",
+          },
+          {
+            id: "invitation-mashou-polite-example",
+            japanese: "一緒に帰りましょう。",
+            reading: "いっしょに かえりましょう。",
+            translation: "一起回去吧。",
+            note: "這句和普通體的「一緒に帰ろう。」意思接近，但口氣更禮貌。",
+            origin: "source",
+          },
+          {
+            id: "invitation-plain-movie-example",
+            japanese: "一緒に映画を見ない？",
+            reading: "いっしょに えいが を みない？",
+            translation: "要不要一起看電影？",
+            note: "這是普通體的邀約方式，口氣比「見ませんか」更口語。",
+            origin: "source",
+          },
+          {
+            id: "invitation-order-beer-example",
+            japanese: "まずビールを注文しましょう。",
+            reading: "まず ビール を ちゅうもんしましょう。",
+            translation: "那我們先點啤酒吧。",
+            note: "這句是在判斷後直接提出下一步安排。",
+            origin: "source",
+          },
+          {
+            id: "invitation-trash-example",
+            japanese:
+              "山の中ではごみは捨てないで、ちゃんと持って帰りましょう。",
+            reading:
+              "やま の なか では ごみ は すてないで、ちゃんと もって かえりましょう。",
+            translation: "在山裡不要亂丟垃圾，要好好帶回去吧。",
+            note: "這裡的「ちゃんと」是「好好地、確實地」的意思，也是在勸大家一起遵守提醒。",
+            origin: "source",
+          },
+        ],
+      },
+      {
+        id: "mashou-plain-volitional",
+        title: "和普通體意向形一起看更清楚",
+        summary:
+          "「帰りましょう」和普通體的「帰ろう」在語意上很接近，但後者更口語，常出現在朋友之間的對話。",
+        details: [],
+        sourceRefs: ["note-v15-ch4"],
+        sharedNoteIds: ["invitation-plain-form-note", "mashou-vs-masenka"],
+        examples: [
+          {
+            id: "mashou-volitional-polite-example",
+            japanese: "一緒に帰りましょう。",
+            reading: "いっしょに かえりましょう。",
+            translation: "一起回去吧。",
+            origin: "source",
+          },
+          {
+            id: "mashou-volitional-plain-example",
+            japanese: "一緒に帰ろう。",
+            reading: "いっしょに かえろう。",
+            translation: "一起回去吧。",
+            note: "普通體意向形更口語，常用在熟人或朋友之間。",
+            origin: "source",
+          },
+        ],
+      },
+    ],
+    tableExampleGroups: invitationComparisonExampleGroups,
+  },
+  {
+    id: "state-change-naru",
+    title: "狀態變化：～くなります / ～になります",
+    description: "自然發生的變化",
+    presentationMode: "info-stack",
+    order: 5,
+    category: "core",
+    sharedNotes: [
+      {
+        id: "naru-yameru-note",
+        title: "辞める / 止める / やめる",
+        content:
+          "\n「辞める」常用在辭掉工作、職位；\n「止める」常用在停止某個行為；\n「やめる」，停止、放棄、辭掉",
+      },
+    ],
+    topics: [
+      {
+        id: "naru-i-adjective",
+        title: "い形容詞：去い後接 くなります",
+        summary:
+          "い形容詞在這裡會先把詞尾「い」改成「く」，可理解成先轉成可接後續變化的形(連用型)，再接「なります」表示狀態變成那樣。",
+        details: [
+          "如果要說已經變成那樣，則把後面的「なります」改成過去形「なりました」。",
+        ],
+        sourceRefs: ["note-v15-ch2"],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: "naru-cold-example",
+            japanese: "今日は寒くなりました。",
+            reading: "きょう は さむく なりました。",
+            translation: "今天變冷了。",
+            note: "「寒い → 寒く → 寒くなります → 寒くなりました」。",
+            origin: "source",
+          },
+          {
+            id: "naru-cool-example",
+            japanese: "朝晩は涼しくなりました。",
+            reading: "あさばん は すずしく なりました。",
+            translation: "早晚變涼快了。",
+            note: "「涼しい → 涼しくなります → 涼しくなりました」。",
+            origin: "supplemental",
+          },
+          {
+            id: "naru-hair-long-example",
+            japanese: "髪が長くなりました。",
+            reading: "かみ が ながく なりました。",
+            translation: "頭髮變長了。",
+            note: "「長い → 長くなります → 長くなりました」；\n句中的「が」標示被描述的狀態主體是「髪」。",
+            origin: "source",
+          },
+        ],
+      },
+      {
+        id: "naru-na-adjective",
+        title: "な形容詞：直接接 になります",
+        summary: "な形容詞 +「に」+「なります」，表示整體變成那樣。",
+        details: [
+          "「に」為助詞，標示變化的目標終點。\nex. 駅に行きます。(去車站)",
+          "「なります」表示整體變成那樣。\nex. 春になります。(變成春天了)",
+          "如果要表達已經變成那樣，就把後面的「なります」改成過去形「なりました」。",
+        ],
+        sourceRefs: ["note-v15-ch2"],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: "naru-lively-town-example",
+            japanese: "駅ができて、この町はにぎやかになりました。",
+            reading: "えき が できて、この まち は にぎやか に なりました。",
+            translation: "車站蓋好之後，這個城鎮變熱鬧了。",
+            note: "「にぎやか → にぎやかに → にぎやかになります → にぎやかになりました」；\n「駅ができて」中的「が」是主語助詞，標示「駅」是動作主體；\n「できて」是「できる」連用型中的て形，用於句子並列與接續；\n「にぎやかになりました」中的「に」表示狀態往「熱鬧」這個方向變化。",
+            origin: "supplemental",
+          },
+        ],
+      },
+      {
+        id: "naru-noun",
+        title: "名詞：身分、結果或時間點的變化",
+        summary: "名詞 +「に」+「なります」",
+        details: [
+          "「に」為助詞，標示變化的目標終點。",
+          "「なります」現在禮貌形，會變成～，語感為陳述、宣告",
+          "「なりました」過去禮貌形，變成了～，語感為已完成",
+          "「なりたいです」願望禮貌形，想變成～，語感為內心期望",
+        ],
+        sourceRefs: ["note-v15-ch2"],
+        sharedNoteIds: ["naru-yameru-note"],
+        examples: [
+          {
+            id: "naru-doctor-example",
+            japanese: "将来、医者になります。",
+            reading: "しょうらい、いしゃ に なります。",
+            translation: "將來要成為醫生。",
+            note: "這裡的「になります」表示要變成某種身分，帶有決心、宣告的語氣",
+            origin: "source",
+          },
+          {
+            id: "naru-want-doctor-example",
+            japanese: "将来、医者になりたいです。",
+            reading: "しょうらい、いしゃ に なりたい です。",
+            translation: "將來想成為醫生。",
+            note: "這裡的「なりたいです」表示說話者想成為某種身分，和單純描述未來會變成那樣的「になります」不同。",
+            origin: "supplemental",
+          },
+          {
+            id: "naru-ten-oclock-example",
+            japanese: "もう十時になりました。",
+            reading: "もう じゅうじ に なりました。",
+            translation: "已經十點了。",
+            note: "這裡是在說時間到了某個點，也屬於名詞接「になります」的用法。",
+            origin: "source",
+          },
+          {
+            id: "naru-free-time-example",
+            japanese: "仕事を辞めて、暇になりました。",
+            reading: "しごと を やめて、ひま に なりました。",
+            translation: "辭掉工作之後，變得有空了。",
+            origin: "source",
+          },
+          {
+            id: "naru-tax-example",
+            japanese: "消費税が十パーセントになりましたね。",
+            reading: "しょうひぜい が じゅっパーセント に なりました ね。",
+            translation: "消費稅變成百分之十了呢。",
+            origin: "source",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "state-change-suru",
+    title: "人為改變：～くします / ～にします",
+    description: "人為地把某件事弄成某種狀態，或決定成某個安排",
+    presentationMode: "info-stack",
+    order: 6,
+    category: "core",
+    sharedNotes: [],
+    topics: [
+      {
+        id: "suru-i-adjective",
+        title: "い形容詞：把詞尾「い」改成「く」，再接「します」",
+        summary:
+          "い形容詞在這裡要先把詞尾「い」改成「く」，變成副詞形，再接「します」表達「把某個狀態弄成怎樣」",
+        details: [
+          "這一類句子常搭配「を」標示被改變的對象。",
+          "除了直接陳述，也能改成「～くしてください」表示請求對方幫忙調整。",
+        ],
+        sourceRefs: ["note-v15-ch3"],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: "suru-hair-short-example",
+            japanese: "髪を短くします。",
+            reading: "かみ を みじかく します。",
+            translation: "要把頭髮剪短。",
+            note: "「を」標示被改變的對象是「髪」。",
+            origin: "source",
+          },
+          {
+            id: "suru-break-longer-example",
+            japanese: "休み時間が短いので、もう少し長くしてください。",
+            reading:
+              "やすみじかん が みじかい ので、もう すこし ながく してください。",
+            translation: "因為休息時間太短了，請再弄長一點。",
+            origin: "source",
+          },
+        ],
+      },
+      {
+        id: "suru-na-adjective",
+        title: "な形容詞：直接接 にします",
+        summary:
+          "な形容詞接「にします」時，也可以理解成先用「に」把狀態轉成副詞式說法，再接「します」表示把它弄成那樣。",
+        details: [
+          "除了直接陳述，也能改成「～にしてください」表示請求對方幫忙調整",
+        ],
+        sourceRefs: ["note-v15-ch3"],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: "suru-quiet-example",
+            japanese: "図書館では静かにします。",
+            reading: "としょかん では しずか に します。",
+            translation: "在圖書館要保持安靜。",
+            note: "「静かにします」是在說自己會讓狀態保持安靜",
+            origin: "source",
+          },
+          {
+            id: "suru-quiet-request-example",
+            japanese: "教室では静かにしてください。",
+            reading: "きょうしつ では しずか に してください。",
+            translation: "在教室裡請保持安靜。",
+            note: "「で」是助詞，標示動作發生的場所，表示「在～」\n「で＋は」合在一起會說成「では」，用來強調「在教室這個場所」這個場所主題\n「静かにしてください」則是請求對方配合維持安靜。",
+            origin: "source",
+          },
+        ],
+      },
+      {
+        id: "suru-noun-choice",
+        title: "名詞：決定成某安排或選擇某項目",
+        summary:
+          "名詞接「にします」時，常用來表示自己決定成某個安排，或從幾個選項中選擇其一；這裡的「に」重點是標示決定的目標或結果，不是把名詞變成副詞。",
+        details: [
+          "像會議日期、晚餐內容這類可由人決定的安排，都常用這個句型。",
+          "和「～になります」相比，這裡強調的是說話者的選擇或人為決定。",
+        ],
+        sourceRefs: ["note-v15-ch3"],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: "suru-meeting-example",
+            japanese: "次の会議は火曜日にします。",
+            reading: "つぎ の かいぎ は かようび に します。",
+            translation: "下次會議決定在星期二。",
+            origin: "source",
+          },
+          {
+            id: "suru-curry-example",
+            japanese: "晩ご飯はカレーライスにします。",
+            reading: "ばんごはん は カレーライス に します。",
+            translation: "晚餐決定吃咖哩飯。",
             origin: "source",
           },
         ],
@@ -1771,6 +2174,38 @@ export const n5GrammarSourceCoverage: N5GrammarSourceCoverageItem[] = [
     summary: "助詞へ：移動方向",
     mappedSectionId: "particle-he",
     mappedTopicIds: ["he-direction", "he-vs-ni"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v15-ch1",
+    summary: "ませんか 與 ましょう 的邀約差異",
+    mappedSectionId: "invitation-comparison",
+    mappedTopicIds: ["invitation-core-difference"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v15-ch2",
+    summary: "～くなります / ～になります",
+    mappedSectionId: "state-change-naru",
+    mappedTopicIds: ["naru-i-adjective", "naru-na-adjective", "naru-noun"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v15-ch3",
+    summary: "～くします / ～にします",
+    mappedSectionId: "state-change-suru",
+    mappedTopicIds: [
+      "suru-i-adjective",
+      "suru-na-adjective",
+      "suru-noun-choice",
+    ],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v15-ch4",
+    summary: "～ましょう 與意向形補充",
+    mappedSectionId: "invitation-comparison",
+    mappedTopicIds: ["invitation-core-difference", "mashou-plain-volitional"],
     status: "supplemented",
   },
   {

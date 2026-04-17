@@ -17,24 +17,59 @@ describe('N5GrammarSections', () => {
 
     expect(toggle.attributes('aria-expanded')).toBe('true');
     expect(body.attributes('style') ?? '').not.toContain('display: none;');
-    expect(wrapper.find('[data-testid="n5-grammar-compare-table-polite-overview"]').exists()).toBe(true);
-    expect(wrapper.findAll('[data-testid^="n5-grammar-table-example-"]')).toHaveLength(12);
-    expect(wrapper.text()).toContain('對應變化');
-    expect(wrapper.text()).toContain('この部屋は静かです。');
+    const politeOverview = wrapper.get('[data-testid="n5-grammar-section-polite-overview"]');
+
+    expect(politeOverview.find('[data-testid="n5-grammar-compare-table-polite-overview"]').exists()).toBe(true);
+    expect(politeOverview.findAll('[data-testid^="n5-grammar-table-example-"]')).toHaveLength(12);
+    expect(politeOverview.text()).toContain('對應變化');
+    expect(politeOverview.text()).toContain('この部屋は静かです。');
   });
 
   it('不同 section 仍依 mode 顯示對應 renderer，且 sentence-basics 不再有 compare table', async () => {
     const { wrapper } = mountWithPracticeSession(N5GrammarView);
     const sentenceBasics = wrapper.get('[data-testid="n5-grammar-section-sentence-basics"]');
+    const sentenceBasicsToggle = wrapper.get('[data-testid="n5-grammar-toggle-sentence-basics"]');
 
-    await wrapper.get('[data-testid="n5-grammar-toggle-sentence-basics"]').trigger('click');
+    expect(sentenceBasicsToggle.attributes('aria-expanded')).toBe('false');
+    await sentenceBasicsToggle.trigger('click');
     await wrapper.get('[data-testid="n5-grammar-toggle-particle-wa"]').trigger('click');
     await wrapper.get('[data-testid="n5-grammar-toggle-particle-mo"]').trigger('click');
 
+    expect(sentenceBasicsToggle.attributes('aria-expanded')).toBe('true');
     expect(sentenceBasics.text()).toContain('名詞與な形容詞的句尾變化與接名詞差異');
     expect(sentenceBasics.find('[data-testid="n5-grammar-topic-noun-na-basics"]').exists()).toBe(true);
     expect(sentenceBasics.find('[data-testid="n5-grammar-compare-table-sentence-basics"]').exists()).toBe(false);
     expect(wrapper.find('[data-testid="n5-grammar-topic-wa-topic-marker"]').exists()).toBe(true);
     expect(wrapper.find('[data-testid="n5-grammar-compare-table-particle-mo"]').exists()).toBe(true);
+  });
+
+  it('新增的邀約與變化表現區塊可依 mode 正確展開', async () => {
+    const { wrapper } = mountWithPracticeSession(N5GrammarView);
+
+    const invitationToggle = wrapper.get('[data-testid="n5-grammar-toggle-invitation-comparison"]');
+    const naruToggle = wrapper.get('[data-testid="n5-grammar-toggle-state-change-naru"]');
+    expect(invitationToggle.attributes('aria-expanded')).toBe('false');
+    expect(naruToggle.attributes('aria-expanded')).toBe('false');
+    await invitationToggle.trigger('click');
+    await naruToggle.trigger('click');
+
+    const invitationSection = wrapper.get('[data-testid="n5-grammar-section-invitation-comparison"]');
+    const naruSection = wrapper.get('[data-testid="n5-grammar-section-state-change-naru"]');
+
+    expect(invitationSection.text()).toContain('邀約與勸誘：ませんか 與 ましょう');
+    expect(invitationSection.find('[data-testid="n5-grammar-compare-table-invitation-comparison"]').exists()).toBe(true);
+    expect(invitationSection.text()).toContain('疲れましたね。ちょっと休みませんか。');
+    expect(invitationSection.text()).toContain('一緒に映画を見ない？');
+    expect(invitationSection.findAll('[data-testid^="n5-grammar-table-example-"]')).toHaveLength(2);
+    expect(invitationSection.find('[data-testid="n5-grammar-topic-mashou-plain-volitional"]').exists()).toBe(true);
+    expect(invitationSection.text()).toContain('一緒に帰ろう。');
+    expect(invitationSection.text()).toContain('この週末、食事に行きませんか。');
+    expect(invitationSection.text()).toContain('山の中ではごみは捨てないで、ちゃんと持って帰りましょう。');
+
+    expect(naruToggle.attributes('aria-expanded')).toBe('true');
+    expect(naruSection.text()).toContain('狀態變化：～くなります / ～になります');
+    expect(naruSection.find('[data-testid="n5-grammar-topic-naru-i-adjective"]').exists()).toBe(true);
+    expect(naruSection.text()).toContain('髪が長くなりました。');
+    expect(naruSection.text()).toContain('辞める / 止める / やめる');
   });
 });
