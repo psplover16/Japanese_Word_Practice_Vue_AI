@@ -451,14 +451,14 @@ export const n5GrammarSections: N5GrammarSection[] = [
     id: "past-and-state",
     title: "敬體句型：過去、狀態與補充表現",
     description:
-      "敬體句型在過去、狀態持續與常見補充語法中的用法，聚焦「發生過」、「當時的狀態」與「原因」。",
+      "聚焦「發生過」、「當時的狀態」與「原因」。",
     presentationMode: "info-stack",
     order: 3,
     category: "core",
     sharedNotes: [
       {
         id: "te-iru-state",
-        title: "～ている / ～ていました",
+        title: "動詞の て形 ＋ いる（います）",
         content:
           "除了表示進行，還常用來表達某種狀態正在持續；放到過去時，就能描述「當時正處於那個狀態」。",
       },
@@ -466,6 +466,12 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "kara-reason",
         title: "～から",
         content: "「から」接在句子後面可以表示原因，相當於「因為……所以……」。",
+      },
+      {
+        id: "suru-polite-past",
+        title: "する → します → しました",
+        content:
+          "\nする（做某個動作）\nします（現在／未來，敬體）\nしました（過去，敬體）",
       },
     ],
     topics: [
@@ -511,7 +517,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           "名詞與な形容詞的過去敬體都用「でした / じゃありませんでした」，差別仍然只在接名詞時是否需要加「な」。",
         details: [],
         sourceRefs: ["note-ch5-noun-past", "note-ch7-na-adjective-past"],
-        sharedNoteIds: [],
+        sharedNoteIds: ["suru-polite-past"],
         examples: [
           {
             id: "nominal-past-student",
@@ -532,7 +538,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
             japanese: "昨日、お花見をしました。とても綺麗でした。",
             reading: "きのう、おはなみ を しました。とても きれい でした。",
             translation: "昨天去賞花了。非常漂亮。",
-            note: "「でした」是在描述當時的感想。\n「きれい」是在描述過去的動作。",
+            note:
+              "「花見」= 賞花，特指賞櫻花，「お」是表示禮貌、優雅的前綴。\n「きれい」是な形容詞，描述當時的感想／狀態。\n「でした」是「です」的過去式，表示這個狀態發生在過去。",
             origin: "source",
           },
           {
@@ -541,7 +548,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             reading:
               "えき が できる まえ、ここ は こうつう が べんり じゃありませんでした。",
             translation: "在車站建好以前，這裡的交通不方便。",
-            note: "「じゃありませんでした」是回顧過去某段時間的狀態。",
+            note: "「が」助詞，標示主語\n「できる」一段動詞，此次意思為「建成、落成、誕生」\n「じゃありませんでした」是回顧過去某段時間的狀態。",
             origin: "source",
           },
         ],
@@ -580,6 +587,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
             reading:
               "せんしゅう は いそがしかった です から、どこも いきませんでした。",
             translation: "上週因為很忙，哪裡都沒去。",
+            note:
+              "「忙しかったですから」是原因，後句「どこも行きませんでした」是因此產生的結果。",
             origin: "source",
           },
         ],
@@ -607,7 +616,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             reading:
               "わたし が すんでいる アパート の おおやさん の こども は しょうがくせい です。",
             translation: "我住的公寓房東的小孩是小學生。",
-            note: "這個例句同時示範修飾子句中的主語常用「が」\n「住む → 住んでいる」也示範了五段動詞接「ている」的用法。",
+            note: "這個例句同時示範修飾子句中的主語常用「が」\n「住む → 住んでいる」也示範了五段動詞「て」型接「いる」的用法。",
             origin: "source",
           },
           {

@@ -65,6 +65,29 @@ describe('n5GrammarData', () => {
     expect(note!.content).toContain('な形容詞修飾名詞');
   });
 
+  it('past-and-state 把 する → します → しました 抽成 sharedNote', () => {
+    const section = getSection('past-and-state');
+    const note = section.sharedNotes.find((entry) => entry.id === 'suru-polite-past');
+
+    expect(note).toBeDefined();
+    expect(note!.content).toContain('する');
+    expect(note!.content).toContain('します');
+    expect(note!.content).toContain('しました');
+    expect(section.topics.find((entry) => entry.id === 'verb-past')?.sharedNoteIds).toEqual([]);
+    expect(section.topics.find((entry) => entry.id === 'nominal-past')?.sharedNoteIds).toContain('suru-polite-past');
+  });
+
+  it('i-adjective-past 保留過去形加 から 表示原因的例句', () => {
+    const section = getSection('past-and-state');
+    const topic = section.topics.find((entry) => entry.id === 'i-adjective-past');
+    const example = topic?.examples.find((entry) => entry.id === 'i-past-busy');
+
+    expect(example).toBeDefined();
+    expect(example!.japanese).toContain('ですから');
+    expect(example!.note).toContain('原因');
+    expect(example!.note).toContain('結果');
+  });
+
   it('敬體變化速覽的 12 組儲存格例句完整、唯一，且標記為 supplemental', () => {
     const politeOverview = getSection('polite-overview');
     const table = politeOverview.table!;
