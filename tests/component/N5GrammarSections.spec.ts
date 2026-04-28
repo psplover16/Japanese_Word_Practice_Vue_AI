@@ -117,10 +117,12 @@ describe('N5GrammarSections', () => {
     expect(wrapper.get('[data-testid="n5-grammar-title-demonstratives"]').text()).toBe('指示詞：こそあど系列');
     expect(wrapper.get('[data-testid="n5-grammar-title-demonstratives"]').text()).not.toContain('here.png');
 
-    await wrapper.get('[data-testid="n5-grammar-toggle-demonstratives"]').trigger('click');
+    if (wrapper.get('[data-testid="n5-grammar-toggle-demonstratives"]').attributes('aria-expanded') === 'false') {
+      await wrapper.get('[data-testid="n5-grammar-toggle-demonstratives"]').trigger('click');
+    }
 
     const section = wrapper.get('[data-testid="n5-grammar-section-demonstratives"]');
-    expect(section.get('[data-testid="n5-grammar-description-demonstratives"]').text()).toContain('here.png');
+    expect(section.get('[data-testid="n5-grammar-description-demonstratives"]').text()).toContain('N5常見指示詞');
     expect(section.findAll('.n5-grammar-example-highlight').map((node) => node.text())).toContain('これ');
     expect(section.text()).toContain('これは誰の傘ですか。');
   });

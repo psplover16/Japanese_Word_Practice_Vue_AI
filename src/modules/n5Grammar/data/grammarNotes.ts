@@ -60,6 +60,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-present-positive-nominal",
         japanese: "この部屋は静かです。",
+        highlightTerms: ["です"],
         reading: "この へや は しずか です。",
         translation: "這個房間很安靜。",
         origin: "supplemental",
@@ -75,6 +76,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-present-negative-nominal",
         japanese: "この店は便利じゃありません。",
+        highlightTerms: ["じゃありません"],
         reading: "この みせ は べんり じゃありません。",
         translation: "這間店不方便。",
         origin: "supplemental",
@@ -91,6 +93,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-past-positive-nominal",
         japanese: "昨日は休みでした。",
+        highlightTerms: ["でした"],
         reading: "きのう は やすみ でした。",
         translation: "昨天是休假日。",
         origin: "supplemental",
@@ -106,6 +109,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-past-negative-nominal",
         japanese: "去年、私は会社員じゃありませんでした。",
+        highlightTerms: ["じゃありませんでした"],
         reading: "きょねん、わたし は かいしゃいん じゃありませんでした。",
         translation: "去年我不是公司職員。",
         origin: "supplemental",
@@ -122,6 +126,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-present-positive-i-adjective",
         japanese: "今日は寒いです。",
+        highlightTerms: ["寒いです"],
         reading: "きょう は さむい です。",
         translation: "今天很冷。",
         origin: "supplemental",
@@ -137,6 +142,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-present-negative-i-adjective",
         japanese: "このかばんは重くないです。",
+        highlightTerms: ["重くないです"],
         reading: "この かばん は おもくない です。",
         translation: "這個包包不重。",
         origin: "supplemental",
@@ -152,6 +158,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-past-positive-i-adjective",
         japanese: "昨日の海は青かったです。",
+        highlightTerms: ["青かったです"],
         reading: "きのう の うみ は あおかった です。",
         translation: "昨天的海很藍。",
         origin: "supplemental",
@@ -167,6 +174,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-past-negative-i-adjective",
         japanese: "先月の宿題は難しくなかったです。",
+        highlightTerms: ["難しくなかったです"],
         reading: "せんげつ の しゅくだい は むずかしくなかった です。",
         translation: "上個月的作業不難。",
         origin: "supplemental",
@@ -182,6 +190,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-present-positive-verb",
         japanese: "毎朝、コーヒーを飲みます。",
+        highlightTerms: ["飲みます"],
         reading: "まいあさ、コーヒー を のみます。",
         translation: "每天早上喝咖啡。",
         origin: "supplemental",
@@ -198,6 +207,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-present-negative-verb",
         japanese: "今夜はテレビを見ません。",
+        highlightTerms: ["見ません"],
         reading: "こんや は テレビ を みません。",
         translation: "今晚不看電視。",
         origin: "supplemental",
@@ -213,6 +223,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-past-positive-verb",
         japanese: "さっき駅で友達に会いました。",
+        highlightTerms: ["会いました"],
         reading: "さっき えき で ともだち に あいました。",
         translation: "剛剛在車站見到了朋友。",
         origin: "supplemental",
@@ -228,6 +239,7 @@ const politeOverviewTableExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "polite-overview-past-negative-verb",
         japanese: "昨日はパンを買いませんでした。",
+        highlightTerms: ["買いませんでした"],
         reading: "きのう は パン を かいませんでした。",
         translation: "昨天沒有買麵包。",
         origin: "supplemental",
@@ -267,6 +279,7 @@ const invitationComparisonExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "invitation-tone-masenka-example",
         japanese: "疲れましたね。ちょっと休みませんか。",
+        highlightTerms: ["休みませんか"],
         reading: "つかれました ね。ちょっと やすみませんか。",
         translation: "你累了吧。要不要稍微休息一下呢？",
         note: "ちょっと（chotto），一點點、稍微",
@@ -283,6 +296,7 @@ const invitationComparisonExampleGroups: N5GrammarTableExampleGroup[] = [
       {
         id: "invitation-tone-mashou-example",
         japanese: "先生：時間ですね。じゃ、十分休みましょう。",
+        highlightTerms: ["休みましょう"],
         reading: "せんせい：じかん です ね。じゃ、じゅっぷん やすみましょう。",
         translation: "老師：時間差不多了。那我們休息十分鐘吧。",
         origin: "source",
@@ -407,6 +421,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "core-term-i-adjective-example",
             japanese: "今日は暑いです。暑い日ですね。",
+            highlightTerms: ["暑い"],
             reading: "きょう は あつい です。あつい ひ です ね。",
             translation: "今天很熱。是很熱的一天呢。",
             origin: "source",
@@ -414,6 +429,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "core-term-na-adjective-example",
             japanese: "ここは静かです。静かな場所です。",
+            highlightTerms: ["静かな", "静か"],
             reading: "ここ は しずか です。しずかな ばしょ です。",
             translation: "這裡很安靜。是安靜的地方。",
             origin: "source",
@@ -421,6 +437,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "core-term-noun-example",
             japanese: "これは日本語の本です。",
+            highlightTerms: ["日本語の本"],
             reading: "これ は にほんご の ほん です。",
             translation: "這是日文書。",
             origin: "source",
@@ -428,6 +445,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "core-term-verb-example",
             japanese: "毎日、本を読みます。",
+            highlightTerms: ["読みます"],
             reading: "まいにち、ほん を よみます。",
             translation: "每天讀書。",
             origin: "source",
@@ -484,6 +502,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "noun-student-positive",
             japanese: "私は学生です。",
+            highlightTerms: ["学生です"],
             reading: "わたし は がくせい です。",
             translation: "我是學生。",
             origin: "source",
@@ -491,6 +510,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "noun-student-negative",
             japanese: "私は学生じゃありません。",
+            highlightTerms: ["学生じゃありません"],
             reading: "わたし は がくせい じゃありません。",
             translation: "我不是學生。",
             note: "",
@@ -499,6 +519,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "na-town-negative",
             japanese: "この町は賑やかじゃありません。",
+            highlightTerms: ["賑やかじゃありません"],
             reading: "この まち は にぎやか じゃありません。",
             translation: "這個城鎮不熱鬧。",
             origin: "source",
@@ -506,6 +527,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "na-kirei-flower",
             japanese: "これは綺麗な花です。",
+            highlightTerms: ["綺麗な"],
             reading: "これ は きれいな はな です。",
             translation: "這是漂亮的花。",
             note: "「綺麗（きれい）」雖然字面以 い 結尾，但實際上屬於な形容詞。",
@@ -528,6 +550,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "i-oishii-positive",
             japanese: "台湾料理は美味しいです。",
+            highlightTerms: ["美味しいです"],
             reading: "たいわんりょうり は おいしい です。",
             translation: "台灣料理很好吃。",
             origin: "source",
@@ -535,6 +558,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "i-oishii-negative",
             japanese: "台湾料理は美味しくないです。",
+            highlightTerms: ["美味しくないです"],
             reading: "たいわんりょうり は おいしくない です。",
             translation: "台灣料理不好吃。",
             origin: "source",
@@ -543,6 +567,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             id: "i-yoi-variants",
             japanese:
               "この本はいいです。 / この本はよいです。 / この本はよくないです。",
+            highlightTerms: ["いいです", "よいです", "よくないです"],
             reading:
               "この ほん は いい です。 / この ほん は よい です。 / この ほん は よくない です。",
             translation: "這本書很好。／這本書很好。／這本書不好。",
@@ -563,6 +588,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "masu-hatarakimasu",
             japanese: "明日、働きます。",
+            highlightTerms: ["働きます"],
             reading: "あした、はたらきます。",
             translation: "明天要工作。",
             origin: "source",
@@ -570,6 +596,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "masu-hatarakimasen",
             japanese: "明日、働きません。",
+            highlightTerms: ["働きません"],
             reading: "あした、はたらきません。",
             translation: "明天不工作。",
             origin: "source",
@@ -577,6 +604,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "masu-hospital",
             japanese: "明日、病院へ行きます。",
+            highlightTerms: ["行きます"],
             reading: "あした、びょういん へ いきます。",
             translation: "明天要去醫院。",
             origin: "supplemental",
@@ -584,6 +612,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "masu-habit",
             japanese: "毎日、7時に起きます。",
+            highlightTerms: ["起きます"],
             reading: "まいにち、しちじ に おきます。",
             translation: "每天七點起床。",
             note: "屬於習慣性動作，語意是平常就會這樣做。",
@@ -632,6 +661,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "past-movie",
             japanese: "昨日、映画を見ました。",
+            highlightTerms: ["見ました"],
             reading: "きのう、えいが を みました。",
             translation: "昨天看了電影。",
             origin: "source",
@@ -639,6 +669,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "past-cooking-done",
             japanese: "料理ができました。",
+            highlightTerms: ["できました"],
             reading: "りょうり が できました。",
             translation: "料理做好了。",
             note: "「できました」依語境可解讀成「做好了／完成了」",
@@ -647,6 +678,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "past-tempura",
             japanese: "上野で友達と一緒に天ぷらを食べました。",
+            highlightTerms: ["食べました"],
             reading:
               "うえの で ともだち と いっしょに てんぷら を たべました。",
             translation: "在上野和朋友一起吃了天婦羅。",
@@ -667,6 +699,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "nominal-past-student",
             japanese: "学生でした。 / 学生じゃありませんでした。",
+            highlightTerms: ["学生でした", "学生じゃありませんでした"],
             reading: "がくせい でした。 / がくせい じゃありませんでした。",
             translation: "以前是學生。／以前不是學生。",
             origin: "source",
@@ -674,6 +707,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "na-past-river",
             japanese: "この川は昔、とても綺麗でした。",
+            highlightTerms: ["綺麗でした"],
             reading: "この かわ は むかし、とても きれい でした。",
             translation: "這條河以前非常漂亮。",
             origin: "source",
@@ -681,6 +715,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "na-past-flower-viewing",
             japanese: "昨日、お花見をしました。とても綺麗でした。",
+            highlightTerms: ["しました", "綺麗でした"],
             reading: "きのう、おはなみ を しました。とても きれい でした。",
             translation: "昨天去賞花了。非常漂亮。",
             note: "「花見」= 賞花，特指賞櫻花，「お」是表示禮貌、優雅的前綴。\n「きれい」是な形容詞，描述當時的感想／狀態。\n「でした」是「です」的過去式，表示這個狀態發生在過去。",
@@ -689,6 +724,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "na-past-traffic",
             japanese: "駅ができる前、ここは交通が便利じゃありませんでした。",
+            highlightTerms: ["便利じゃありませんでした"],
             reading:
               "えき が できる まえ、ここ は こうつう が べんり じゃありませんでした。",
             translation: "在車站建好以前，這裡的交通不方便。",
@@ -713,6 +749,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "i-past-unagi",
             japanese: "うなぎは昔、とても安かったです。",
+            highlightTerms: ["安かったです"],
             reading: "うなぎ は むかし、とても やすかった です。",
             translation: "鰻魚以前非常便宜。",
             note: "「安い → 安かったです」形容詞自己變形；不像「～くします」那樣是轉成副詞形後再接另一個動詞。",
@@ -721,6 +758,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "i-past-oishii",
             japanese: "昨日、うなぎを食べました。とても美味しかったです。",
+            highlightTerms: ["美味しかったです"],
             reading: "きのう、うなぎ を たべました。とても おいしかった です。",
             translation: "昨天吃了鰻魚，非常好吃。",
             origin: "source",
@@ -728,6 +766,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "i-past-busy",
             japanese: "先週は忙しかったですから、どこも行きませんでした。",
+            highlightTerms: ["忙しかったです"],
             reading:
               "せんしゅう は いそがしかった です から、どこも いきませんでした。",
             translation: "上週因為很忙，哪裡都沒去。",
@@ -748,6 +787,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "continuous-cold",
             japanese: "先生は風邪を引いていました。",
+            highlightTerms: ["引いていました"],
             reading: "せんせい は かぜ を ひいていました。",
             translation: "老師那時感冒了。",
             note: "「風邪をひく」是固定搭配，表示感冒。",
@@ -756,6 +796,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "continuous-live",
             japanese: "私が住んでいるアパートの大家さんの子供は小学生です。",
+            highlightTerms: ["住んでいる"],
             reading:
               "わたし が すんでいる アパート の おおやさん の こども は しょうがくせい です。",
             translation: "我住的公寓房東的小孩是小學生。",
@@ -765,6 +806,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "continuous-reason",
             japanese: "先週はとても暇でしたから、たくさん本を読みました。",
+            highlightTerms: ["暇でしたから"],
             reading:
               "せんしゅう は とても ひま でした から、たくさん ほん を よみました。",
             translation: "上週因為很閒，所以讀了很多書。",
@@ -808,6 +850,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "invitation-kissaten-example",
             japanese: "あの、あそこの喫茶店に入って話しませんか。",
+            highlightTerms: ["話しませんか"],
             reading: "あの、あそこ の きっさてん に はいって はなしませんか。",
             translation: "那個，要不要進那邊那家咖啡店聊聊呢？",
             origin: "source",
@@ -815,6 +858,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "invitation-lunch-example",
             japanese: "昼ご飯を食べに行きませんか。",
+            highlightTerms: ["行きませんか"],
             reading: "ひるごはん を たべに いきませんか。",
             translation: "要不要一起去吃午飯呢？",
             origin: "source",
@@ -822,6 +866,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "invitation-weekend-example",
             japanese: "この週末、食事に行きませんか。",
+            highlightTerms: ["行きませんか"],
             reading: "この しゅうまつ、しょくじ に いきませんか。",
             translation: "這個週末要不要一起去吃飯呢？",
             note: "這句先確認對方意願，語氣比直接提議更客氣。",
@@ -830,6 +875,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "invitation-mashou-polite-example",
             japanese: "一緒に帰りましょう。",
+            highlightTerms: ["帰りましょう"],
             reading: "いっしょに かえりましょう。",
             translation: "一起回去吧。",
             note: "這句和普通體的「一緒に帰ろう。」意思接近，但口氣更禮貌。",
@@ -838,6 +884,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "invitation-plain-movie-example",
             japanese: "一緒に映画を見ない？",
+            highlightTerms: ["見ない？"],
             reading: "いっしょに えいが を みない？",
             translation: "要不要一起看電影？",
             note: "這是普通體的邀約方式，口氣比「見ませんか」更口語。",
@@ -846,6 +893,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "invitation-order-beer-example",
             japanese: "まずビールを注文しましょう。",
+            highlightTerms: ["注文しましょう"],
             reading: "まず ビール を ちゅうもんしましょう。",
             translation: "那我們先點啤酒吧。",
             note: "這句是在判斷後直接提出下一步安排。",
@@ -855,6 +903,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             id: "invitation-trash-example",
             japanese:
               "山の中ではごみは捨てないで、ちゃんと持って帰りましょう。",
+            highlightTerms: ["帰りましょう"],
             reading:
               "やま の なか では ごみ は すてないで、ちゃんと もって かえりましょう。",
             translation: "在山裡不要亂丟垃圾，要好好帶回去吧。",
@@ -875,6 +924,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "mashou-volitional-polite-example",
             japanese: "一緒に帰りましょう。",
+            highlightTerms: ["帰りましょう"],
             reading: "いっしょに かえりましょう。",
             translation: "一起回去吧。",
             origin: "source",
@@ -882,6 +932,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "mashou-volitional-plain-example",
             japanese: "一緒に帰ろう。",
+            highlightTerms: ["帰ろう"],
             reading: "いっしょに かえろう。",
             translation: "一起回去吧。",
             note: "普通體意向形更口語，常用在熟人或朋友之間。",
@@ -922,6 +973,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "naru-cold-example",
             japanese: "今日は寒くなりました。",
+            highlightTerms: ["寒くなりました"],
             reading: "きょう は さむく なりました。",
             translation: "今天變冷了。",
             note: "「寒い → 寒く → 寒くなります → 寒くなりました」。",
@@ -930,6 +982,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "naru-cool-example",
             japanese: "朝晩は涼しくなりました。",
+            highlightTerms: ["涼しくなりました"],
             reading: "あさばん は すずしく なりました。",
             translation: "早晚變涼快了。",
             note: "「涼しい → 涼しくなります → 涼しくなりました」。",
@@ -938,6 +991,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "naru-hair-long-example",
             japanese: "髪が長くなりました。",
+            highlightTerms: ["長くなりました"],
             reading: "かみ が ながく なりました。",
             translation: "頭髮變長了。",
             note: "「長い → 長くなります → 長くなりました」；\n句中的「が」標示被描述的狀態主體是「髪」。",
@@ -960,6 +1014,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "naru-lively-town-example",
             japanese: "駅ができて、この町はにぎやかになりました。",
+            highlightTerms: ["にぎやかになりました"],
             reading: "えき が できて、この まち は にぎやか に なりました。",
             translation: "車站蓋好之後，這個城鎮變熱鬧了。",
             note: "「にぎやか → にぎやかに → にぎやかになります → にぎやかになりました」；\n「駅ができて」中的「が」是主語助詞，標示「駅」是動作主體；\n「できて」是「できる」連用型中的て形，用於句子並列與接續；\n「にぎやかになりました」中的「に」表示狀態往「熱鬧」這個方向變化。",
@@ -983,6 +1038,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "naru-doctor-example",
             japanese: "将来、医者になります。",
+            highlightTerms: ["医者になります"],
             reading: "しょうらい、いしゃ に なります。",
             translation: "將來要成為醫生。",
             note: "這裡的「になります」表示要變成某種身分，帶有決心、宣告的語氣",
@@ -991,6 +1047,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "naru-want-doctor-example",
             japanese: "将来、医者になりたいです。",
+            highlightTerms: ["医者になりたいです"],
             reading: "しょうらい、いしゃ に なりたい です。",
             translation: "將來想成為醫生。",
             note: "這裡的「なりたいです」表示說話者想成為某種身分，和單純描述未來會變成那樣的「になります」不同。",
@@ -999,6 +1056,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "naru-ten-oclock-example",
             japanese: "もう十時になりました。",
+            highlightTerms: ["十時になりました"],
             reading: "もう じゅうじ に なりました。",
             translation: "已經十點了。",
             note: "這裡是在說時間到了某個點，也屬於名詞接「になります」的用法。",
@@ -1007,6 +1065,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "naru-free-time-example",
             japanese: "仕事を辞めて、暇になりました。",
+            highlightTerms: ["暇になりました"],
             reading: "しごと を やめて、ひま に なりました。",
             translation: "辭掉工作之後，變得有空了。",
             origin: "source",
@@ -1014,6 +1073,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "naru-tax-example",
             japanese: "消費税が十パーセントになりましたね。",
+            highlightTerms: ["十パーセントになりました"],
             reading: "しょうひぜい が じゅっパーセント に なりました ね。",
             translation: "消費稅變成百分之十了呢。",
             origin: "source",
@@ -1046,6 +1106,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "suru-hair-short-example",
             japanese: "髪を短くします。",
+            highlightTerms: ["短くします"],
             reading: "かみ を みじかく します。",
             translation: "要把頭髮剪短。",
             note: "「を」標示被改變的對象是「髪」。",
@@ -1054,6 +1115,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "suru-break-longer-example",
             japanese: "休み時間が短いので、もう少し長くしてください。",
+            highlightTerms: ["長くしてください"],
             reading:
               "やすみじかん が みじかい ので、もう すこし ながく してください。",
             translation: "因為休息時間太短了，請再弄長一點。",
@@ -1075,6 +1137,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "suru-quiet-example",
             japanese: "図書館では静かにします。",
+            highlightTerms: ["静かにします"],
             reading: "としょかん では しずか に します。",
             translation: "在圖書館要保持安靜。",
             note: "「静かにします」是在說自己會讓狀態保持安靜",
@@ -1083,6 +1146,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "suru-quiet-request-example",
             japanese: "教室では静かにしてください。",
+            highlightTerms: ["静かにしてください"],
             reading: "きょうしつ では しずか に してください。",
             translation: "在教室裡請保持安靜。",
             note: "「で」是助詞，標示動作發生的場所，表示「在～」\n「で＋は」合在一起會說成「では」，用來強調「在教室這個場所」這個場所主題\n「静かにしてください」則是請求對方配合維持安靜。",
@@ -1105,6 +1169,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "suru-meeting-example",
             japanese: "次の会議は火曜日にします。",
+            highlightTerms: ["火曜日にします"],
             reading: "つぎ の かいぎ は かようび に します。",
             translation: "下次會議決定在星期二。",
             origin: "source",
@@ -1112,6 +1177,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "suru-curry-example",
             japanese: "晩ご飯はカレーライスにします。",
+            highlightTerms: ["カレーライスにします"],
             reading: "ばんごはん は カレーライス に します。",
             translation: "晚餐決定吃咖哩飯。",
             origin: "source",
@@ -1154,6 +1220,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "dekiru-ability-example",
             japanese: "日本語ができます。",
+            highlightTerms: ["できます"],
             reading: "にほんご が できます。",
             translation: "會日文。",
             note: "能力或可行性常用「ができます」。",
@@ -1162,6 +1229,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "dekiru-completion-example",
             japanese: "料理ができました。",
+            highlightTerms: ["できました"],
             reading: "りょうり が できました。",
             translation: "料理做好了。",
             note: "這裡表示完成。",
@@ -1170,6 +1238,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "dekiru-negative-example",
             japanese: "今日は宿題ができませんでした。",
+            highlightTerms: ["できませんでした"],
             reading: "きょう は しゅくだい が できませんでした。",
             translation: "今天沒能完成作業。",
             origin: "supplemental",
@@ -1177,6 +1246,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "dekiru-conditional-example",
             japanese: "明日できれば、連絡します。",
+            highlightTerms: ["できれば"],
             reading: "あした できれば、れんらく します。",
             translation: "如果明天可以的話，我會聯絡。",
             origin: "supplemental",
@@ -1485,7 +1555,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "demonstratives",
     title: "指示詞：こそあど系列",
-    description: "將 here.png 的指示詞表轉成可比較表格，並整理 ch6 指定例句。",
+    description: "N5常見指示詞",
     presentationMode: "compare-table",
     order: 8,
     category: "core",
@@ -1494,7 +1564,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "demonstrative-distance-note",
         title: "こ・そ・あ・ど的距離感",
         content:
-          "こ系列靠近說話者，そ系列靠近聽話者，あ系列離雙方都遠，ど系列用來提問。",
+          "\nこ系列靠近說話者，\nそ系列靠近聽話者，\nあ系列離雙方都遠，\nど系列用來提問。",
       },
     ],
     table: demonstrativeTable,
@@ -1503,10 +1573,14 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "demonstrative-object-place-person",
         title: "指東西、地方、方向與人",
         summary:
-          "これ / それ / あれ / どれ單獨指物；この / その / あの / どの後面要接名詞；ここ / そこ / あそこ / どこ指地方；こちら / そちら / あちら / どちら可指方向、場所或人，語氣較鄭重。",
+          "こそあど系列會依距離與用途，分成指物、接名詞、指地方、指方向或指人等形式。",
         details: [
-          "口語常用こっち、そっち、あっち、どっち。",
-          "原始筆記中加引號的重點詞改以資料欄位標記，畫面用紅色醒目顯示，不把引號直接留在例句裡。",
+          "表格只列詞本身；詞性、後接規則與特別事項放在這裡和例句 note。",
+          "これ / それ / あれ / どれ是指物代名詞，可直接接助詞或謂語，不接名詞；\nどれ問三個以上選項中的哪一個。",
+          "この / その / あの / どの是連體詞，後面必須接名詞，不直接接助詞。",
+          "ここ / そこ / あそこ / どこ是場所代名詞，可直接接助詞或謂語，不接名詞；\nどこ問地點／哪裡。",
+          "こちら / そちら / あちら / どちら可指方向、場所或人，語氣較鄭重；\nどちら也可問二選一或哪一方。",
+          "口語常用こっち、そっち、あっち、どっち；どっち也可用來問二選一。",
         ],
         sourceRefs: ["note-v16-ch6-demonstratives", "note-v16-here-image"],
         sharedNoteIds: ["demonstrative-distance-note"],
@@ -1517,6 +1591,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             highlightTerms: ["これ"],
             reading: "これ は だれ の かさ ですか。",
             translation: "這是誰的傘？",
+            note: "これ是代名詞，可直接接は；誰の傘問「誰的傘」。",
             origin: "source",
           },
           {
@@ -1525,6 +1600,16 @@ export const n5GrammarSections: N5GrammarSection[] = [
             highlightTerms: ["この"],
             reading: "この かさ は だれ の ですか。",
             translation: "這把傘是誰的？",
+            note: "この是連體詞，後面必須接名詞；この傘 = 這把傘。",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-doko-toilet",
+            japanese: "トイレはどこですか。",
+            highlightTerms: ["どこ"],
+            reading: "トイレ は どこ ですか。",
+            translation: "廁所在哪裡？",
+            note: "どこ是場所代名詞，用來問地點／哪裡。",
             origin: "source",
           },
           {
@@ -1533,6 +1618,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             highlightTerms: ["こちら"],
             reading: "こちら は やまだ たろう さん です。",
             translation: "這位是山田太郎先生。",
+            note: "こちら可禮貌指人，用於介紹時語氣比この人更鄭重。",
             origin: "source",
           },
           {
@@ -1541,6 +1627,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             highlightTerms: ["あちら"],
             reading: "おかいけい は あちら で おねがいします。",
             translation: "結帳請到那邊。",
+            note: "あちら是較鄭重的方向／場所說法；\nお会計的お是禮貌前綴，可拿掉但語氣會較普通。\nお願いします表示「拜託了／麻煩您」，お願いのお是詞的一部分，不能拿掉。",
             origin: "source",
           },
         ],
@@ -1550,10 +1637,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
         title: "選擇、移動與店家對話",
         summary:
           "指示詞不只指物，也常出現在選座位、移動到另一邊、詢問營業時間與點餐的對話中。",
-        details: [
-          "「ここはうるさいから、あっちへ行きましょう。」用ここ標示現在位置，用あっち標示移動方向。",
-          "「そちらは何時から何時まで開いていますか。」可禮貌詢問對方店家營業時間。",
-        ],
+        details: [],
         sourceRefs: ["note-v16-ch6-demonstratives"],
         sharedNoteIds: [],
         examples: [
@@ -1564,6 +1648,35 @@ export const n5GrammarSections: N5GrammarSection[] = [
             reading:
               "この せき は せまい ですから、あっち の せき に すわりましょう。",
             translation: "這個座位很窄，我們坐那邊的位子吧。",
+            note: "この席中的この後接名詞；\n狭い是い形容詞「窄」。\nですから表示原因，前句是原因，後句是結論或行動。\nあっちの席に的に標示方向／目標；\n座りましょう是座る的邀約形，表示「我們去坐吧」。",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-noisy-move-example",
+            japanese: "ここはうるさいから、あっちへ行きましょう。",
+            highlightTerms: ["ここ", "あっち"],
+            reading: "ここ は うるさい から、あっち へ いきましょう。",
+            translation: "這裡很吵，我們去那邊吧。",
+            note: "ここ標示現在位置；\nから標示原因「因為」。\nあっち標示移動方向；\n行きましょう是邀約形，表示「我們去吧」。",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-business-hours-example",
+            japanese: "そちらは何時から何時まで開いていますか。",
+            highlightTerms: ["そちら"],
+            reading:
+              "そちら は なんじ から なんじ まで あいています か。",
+            translation: "請問貴店從幾點營業到幾點？",
+            note: "そちら可禮貌指對方店家或所在地。\n何時から的から標示起點「從幾點」；\n何時まで的まで標示終點「到幾點」。\n開いています是開く接ている，表示持續狀態「開著」。",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-coffee-tea-choice",
+            japanese: "コーヒーと紅茶とどちらがいいですか。",
+            highlightTerms: ["どちら"],
+            reading: "コーヒー と こうちゃ と どちら が いい ですか。",
+            translation: "咖啡和紅茶哪一個好？",
+            note: "どちら是主語，所以用が標記。\n疑問詞（どちら・どれ・だれ・どこ）當主語時，固定用が，不用は。\n這裡的いい不是道德上的好，而是合適、中意、想要。",
             origin: "source",
           },
           {
@@ -1572,6 +1685,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             highlightTerms: ["どれ"],
             reading: "のみもの は どれ を ちゅうもんします か。",
             translation: "飲料要點哪一個？",
+            note: "どれ表示三個以上選項中的哪個；\nを標示動作對象。\n注文します是注文する的敬體，表示點餐。",
             origin: "source",
           },
           {
@@ -1580,6 +1694,34 @@ export const n5GrammarSections: N5GrammarSection[] = [
             highlightTerms: ["どちら"],
             reading: "いぬ と ねこ どちら が すき ですか。",
             translation: "狗和貓你喜歡哪一個？",
+            note: "どちら用來問二選一；\n疑問詞當主語時用が標記。",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-wine-question",
+            japanese: "女：これはどこのワインですか。",
+            highlightTerms: ["これ", "どこ"],
+            reading: "おんな：これ は どこ の ワイン ですか。",
+            translation: "女：這是哪裡的葡萄酒？",
+            note: "どこの = どこ + の，の連接來源；\nどこの + 名詞表示「哪裡的～」，用來詢問來源或產地。\nこれ表示靠近女生自己的東西。",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-wine-answer",
+            japanese: "男：それはイタリアのワインです。",
+            highlightTerms: ["それ"],
+            reading: "おとこ：それ は イタリア の ワイン です。",
+            translation: "男：那是義大利的葡萄酒。",
+            note: "女生用これ，因為酒靠近自己；\n男生回應用それ，因為同一瓶酒靠近對方。\n這是こそあど距離邏輯在對話中的實際運用。",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-wine-request",
+            japanese: "じゃあ、このワインをください。",
+            highlightTerms: ["この"],
+            reading: "じゃあ、この ワイン を ください。",
+            translation: "那麼，請給我這瓶葡萄酒。",
+            note: "じゃあ表示「那麼」，承接前文。\nこれをください可以，因為これ是代名詞；\nこのワインをください也可以，因為この後接名詞；\nこのをください不可以，因為この不能直接接助詞。",
             origin: "source",
           },
         ],
@@ -1618,6 +1760,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "number-phone-example",
             japanese: "電話番号は090-1234-5678です。",
+            highlightTerms: ["090-1234-5678"],
             reading: "でんわばんごう は ゼロ きゅう ゼロ、いち に さん よん、ご ろく なな はち です。",
             translation: "電話號碼是 090-1234-5678。",
             note: "電話號碼逐碼讀，0 可讀ゼロ，也常聽到まる。",
@@ -1626,6 +1769,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "number-counter-example",
             japanese: "一回、六回、八回、十回練習します。",
+            highlightTerms: ["一回", "六回", "八回", "十回"],
             reading: "いっかい、ろっかい、はっかい、じゅっかい れんしゅうします。",
             translation: "練習一次、六次、八次、十次。",
             origin: "supplemental",
@@ -1666,6 +1810,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "time-birthday-example",
             japanese: "誕生日は四月二十日です。",
+            highlightTerms: ["四月二十日"],
             reading: "たんじょうび は しがつ はつか です。",
             translation: "生日是四月二十日。",
             origin: "source",
@@ -1673,6 +1818,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "time-weekday-example",
             japanese: "月曜日に日本語を勉強します。",
+            highlightTerms: ["月曜日"],
             reading: "げつようび に にほんご を べんきょうします。",
             translation: "星期一學日文。",
             origin: "supplemental",
@@ -1695,6 +1841,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "time-meeting-example",
             japanese: "午後三時半に会いましょう。",
+            highlightTerms: ["午後三時半"],
             reading: "ごご さんじ はん に あいましょう。",
             translation: "下午三點半見吧。",
             origin: "source",
@@ -1702,6 +1849,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "time-before-example",
             japanese: "授業は九時五分前に始まります。",
+            highlightTerms: ["九時五分前"],
             reading: "じゅぎょう は くじ ごふんまえ に はじまります。",
             translation: "課程九點五分前開始。",
             origin: "supplemental",
@@ -1741,6 +1889,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wa-student-example",
             japanese: "私は学生です。",
+            highlightTerms: ["私は"],
             reading: "わたし は がくせい です。",
             translation: "我是學生。",
             origin: "source",
@@ -1748,6 +1897,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wa-range-fuji",
             japanese: "富士山は日本で一番高い山です。",
+            highlightTerms: ["富士山は"],
             reading: "ふじさん は にほん で いちばん たかい やま です。",
             translation: "富士山是日本最高的山。",
             note: "「(場所 / 範圍) + で + いちばん + 形容詞」可表達某範圍內最……。",
@@ -1756,6 +1906,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wa-range-inside",
             japanese: "富士山は日本の山の中で一番高い山です。",
+            highlightTerms: ["富士山は"],
             reading:
               "ふじさん は にほん の やま の なか で いちばん たかい やま です。",
             translation: "富士山是在日本群山之中最高的山。",
@@ -1775,6 +1926,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wa-subject-same",
             japanese: "妻はお弁当を作りました。",
+            highlightTerms: ["妻は"],
             reading: "つま は おべんとう を つくりました。",
             translation: "太太做了便當。",
             note: "「お弁当」前面的「お」是美化語（敬語前綴），屬於固定用法，讓說法更禮貌。\n「を」是受詞助詞，標示動作的直接對象；「ました」則是ます形的過去敬體。",
@@ -1783,6 +1935,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wa-subject-different",
             japanese: "この弁当は妻が作りました。",
+            highlightTerms: ["この弁当は", "妻が"],
             reading: "この べんとう は つま が つくりました。",
             translation: "這個便當是太太做的。",
             note: "「この弁当」是主題，「妻」才是做便當的人。",
@@ -1801,6 +1954,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wa-omission-1",
             japanese: "明日、何をしますか。",
+            highlightTerms: ["明日"],
             reading: "あした、なに を しますか。",
             translation: "明天要做什麼呢？",
             note: "只有時間詞，沒有再補「は」也完全自然。",
@@ -1809,6 +1963,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wa-omission-2",
             japanese: "明日は、何をしますか。",
+            highlightTerms: ["明日は"],
             reading: "あした は、なに を しますか。",
             translation: "明天要做什麼呢？",
             note: "「は」把「明日」標成主題，句子的焦點變成「至於明天，要做什麼？」",
@@ -1817,6 +1972,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wa-omission-3",
             japanese: "あなたは明日は、何をしますか。",
+            highlightTerms: ["あなたは", "明日は"],
             reading: "あなた は あした は、なに を しますか。",
             translation: "那你明天要做什麼？",
             note: "大主題與小主題並存。\n第一個 は把「你」拉成大方向主題；\n第二個 は再把「明天」拉成這個大主題底下的小焦點",
@@ -1855,6 +2011,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ga-cooking-done",
             japanese: "料理ができました。",
+            highlightTerms: ["料理が"],
             reading: "りょうり が できました。",
             translation: "料理做好了。",
             note: "這裡的「が」標示的是正在被描述的狀態主體，也就是「料理這件事」已經完成了。",
@@ -1863,6 +2020,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ga-sushi-like",
             japanese: "寿司が好きです。",
+            highlightTerms: ["寿司が"],
             reading: "すし が すき です。",
             translation: "喜歡壽司。",
             note: "句子的重點是在說「壽司」這個對象具有「喜歡」的關係，所以常用「が」來標示。",
@@ -1871,6 +2029,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ga-japanese-understand",
             japanese: "日本語が分かります。",
+            highlightTerms: ["日本語が"],
             reading: "にほんご が わかります。",
             translation: "懂日文。",
             note: "「わかる」這類表現也常用「が」來標示被理解的內容。",
@@ -1889,6 +2048,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wa-relative-apartment",
             japanese: "私が住んでいるアパートの大家さんの子供は小学生です。",
+            highlightTerms: ["私が住んでいるアパート"],
             reading:
               "わたし が すんでいる アパート の おおやさん の こども は しょうがくせい です。",
             translation: "我住的公寓房東的小孩是小學生。",
@@ -1922,6 +2082,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wo-movie-watch",
             japanese: "映画を見ます。",
+            highlightTerms: ["映画を"],
             reading: "えいが を みます。",
             translation: "看電影。",
             note: "「映画」是被觀看的對象，所以用「を」標示。",
@@ -1930,6 +2091,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wo-breakfast-eat",
             japanese: "朝ご飯を食べました。",
+            highlightTerms: ["朝ご飯を"],
             reading: "あさごはん を たべました。",
             translation: "吃了早餐。",
             note: "「朝ごはん」是被吃的內容，也就是這個動作直接作用的對象。",
@@ -1938,6 +2100,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wo-cooking-contrast",
             japanese: "料理を作りました。",
+            highlightTerms: ["料理を"],
             reading: "りょうり を つくりました。",
             translation: "做了料理。",
             note: "這句和前面的「料理ができました」剛好能對照來看：前者強調「做了料理」這個動作，後者強調「料理完成了」這個狀態。",
@@ -1960,6 +2123,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wo-chopsticks-rice-example",
             japanese: "日本人は箸でご飯を食べます。",
+            highlightTerms: ["ご飯を"],
             reading: "にほんじん は はし で ごはん を たべます。",
             translation: "日本人用筷子吃飯。",
             note: "箸で是工具；ご飯を是吃的對象。",
@@ -1968,6 +2132,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wo-study-japanese-example",
             japanese: "週に三回、学校で日本語を勉強します。",
+            highlightTerms: ["日本語を"],
             reading: "しゅう に さんかい、がっこう で にほんご を べんきょうします。",
             translation: "一週三次在學校學日文。",
             origin: "source",
@@ -1975,6 +2140,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wo-buy-before-work-example",
             japanese: "毎朝、コンビニでサンドイッチとコーヒーを買ってから、会社へ行きます。",
+            highlightTerms: ["サンドイッチとコーヒーを"],
             reading:
               "まいあさ、コンビニ で サンドイッチ と コーヒー を かってから、かいしゃ へ いきます。",
             translation: "每天早上在便利商店買三明治和咖啡後去公司。",
@@ -1997,6 +2163,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wo-dig-hole-example",
             japanese: "穴を掘ります。",
+            highlightTerms: ["穴を"],
             reading: "あな を ほります。",
             translation: "挖洞。",
             origin: "source",
@@ -2004,6 +2171,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wo-boil-water-example",
             japanese: "お湯を沸かします。",
+            highlightTerms: ["お湯を"],
             reading: "おゆ を わかします。",
             translation: "把水燒開。",
             origin: "source",
@@ -2025,6 +2193,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wo-cross-bridge-example",
             japanese: "橋を渡ります。",
+            highlightTerms: ["橋を"],
             reading: "はし を わたります。",
             translation: "過橋。",
             origin: "source",
@@ -2032,6 +2201,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "wo-leave-classroom-example",
             japanese: "教室を出ます。",
+            highlightTerms: ["教室を"],
             reading: "きょうしつ を でます。",
             translation: "離開教室。",
             origin: "source",
@@ -2112,6 +2282,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "mo-student",
             japanese: "高橋さんは学生です。山田さんも学生です。",
+            highlightTerms: ["山田さんも"],
             reading:
               "たかはしさん は がくせい です。やまださん も がくせい です。",
             translation: "高橋先生是學生，山田先生也是學生。",
@@ -2120,6 +2291,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "mo-like",
             japanese: "寿司が好きです。ラーメンも好きです。",
+            highlightTerms: ["ラーメンも"],
             reading: "すし が すき です。ラーメン も すき です。",
             translation: "喜歡壽司，也喜歡拉麵。",
             origin: "source",
@@ -2140,6 +2312,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "mo-magazine",
             japanese: "新聞を買いました。雑誌も買いました。",
+            highlightTerms: ["雑誌も"],
             reading: "しんぶん を かいました。ざっし も かいました。",
             translation: "買了報紙，也買了雜誌。",
             note: "買う → 買います → 買いました",
@@ -2148,6 +2321,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "mo-nara",
             japanese: "京都へ行きました。奈良へも行きました。",
+            highlightTerms: ["奈良へも"],
             reading: "きょうと へ いきました。なら へも いきました。",
             translation: "去了京都，也去了奈良。",
             note: "行く → 行きます → 行きました",
@@ -2170,6 +2344,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "mo-father",
             japanese: "母にプレゼントをあげました。父にもあげました。",
+            highlightTerms: ["父にも"],
             reading: "はは に プレゼント を あげました。ちち にも あげました。",
             translation: "送了禮物給媽媽，也送給爸爸。",
             origin: "source",
@@ -2177,6 +2352,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "mo-bus",
             japanese: "電車で行くことができます。バスでも行くことができます。",
+            highlightTerms: ["バスでも"],
             reading:
               "でんしゃ で いく こと が できます。バス でも いく こと が できます。",
             translation: "可以搭電車去，也可以搭巴士去。",
@@ -2210,6 +2386,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "no-company",
             japanese: "私はSONYの社員です。",
+            highlightTerms: ["SONYの"],
             reading: "わたし は ソニー の しゃいん です。",
             translation: "我是 SONY 的員工。",
             origin: "source",
@@ -2217,6 +2394,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "no-umbrella",
             japanese: "これは私の傘です。",
+            highlightTerms: ["私の"],
             reading: "これ は わたし の かさ です。",
             translation: "這是我的傘。",
             origin: "source",
@@ -2238,6 +2416,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "no-postbox",
             japanese: "ポストは市役所の前です。",
+            highlightTerms: ["市役所の前"],
             reading: "ポスト は しやくしょ の まえ です。",
             translation: "郵筒在市公所前面。",
             origin: "supplemental",
@@ -2245,6 +2424,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "no-apple",
             japanese: "これは日本のりんごです。",
+            highlightTerms: ["日本の"],
             reading: "これ は にほん の りんご です。",
             translation: "這是日本的蘋果。",
             origin: "source",
@@ -2277,6 +2457,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ni-seven",
             japanese: "7時に起きます。",
+            highlightTerms: ["7時に"],
             reading: "しちじ に おきます。",
             translation: "七點起床。",
             origin: "source",
@@ -2284,6 +2465,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ni-monday",
             japanese: "月曜日に国へ帰ります。",
+            highlightTerms: ["月曜日に"],
             reading: "げつようび に くに へ かえります。",
             translation: "星期一回國。",
             origin: "source",
@@ -2291,6 +2473,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ni-eight-morning",
             japanese: "朝8時に家を出ます。",
+            highlightTerms: ["朝8時に"],
             reading: "あさ はちじ に いえ を でます。",
             translation: "早上八點出門。",
             origin: "source",
@@ -2312,6 +2495,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ni-now-eight",
             japanese: "今、八時です。",
+            highlightTerms: ["今", "八時です"],
             reading: "いま、はちじ です。",
             translation: "現在八點。",
             origin: "source",
@@ -2319,6 +2503,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ni-tomorrow-hospital",
             japanese: "明日、病院へ行きます。",
+            highlightTerms: ["明日"],
             reading: "あした、びょういん へ いきます。",
             translation: "明天去醫院。",
             origin: "source",
@@ -2326,6 +2511,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ni-morning-shower",
             japanese: "朝、シャワーを浴びます。",
+            highlightTerms: ["朝"],
             reading: "あさ、シャワー を あびます。",
             translation: "早上洗澡。",
             note: "「浴びる」在這裡是「沖、淋」的意思。",
@@ -2345,6 +2531,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ni-christmas",
             japanese: "クリスマスに彼女と食事します。",
+            highlightTerms: ["クリスマスに"],
             reading: "クリスマス に かのじょ と しょくじ します。",
             translation: "聖誕節和女朋友一起吃飯。",
             note: "「食事します」是サ變動詞寫法，來自名詞「食事」加上「する」。",
@@ -2353,6 +2540,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ni-bedtime-question",
             japanese: "木村さんは毎晩何時に寝ますか。",
+            highlightTerms: ["何時に"],
             reading: "きむらさん は まいばん なんじ に ねますか。",
             translation: "木村先生每天晚上幾點睡覺？",
             origin: "source",
@@ -2373,6 +2561,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ni-paper-name-phone",
             japanese: "この紙に名前と電話番号を書いてください。",
+            highlightTerms: ["この紙に"],
             reading:
               "この かみ に なまえ と でんわばんごう を かいてください。",
             translation: "請在這張紙上寫姓名和電話號碼。",
@@ -2411,6 +2600,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-kyoto",
             japanese: "京都へ行きます。",
+            highlightTerms: ["京都へ"],
             reading: "きょうと へ いきます。",
             translation: "前往京都。",
             origin: "supplemental",
@@ -2418,6 +2608,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-nara-too",
             japanese: "奈良へも行きました。",
+            highlightTerms: ["奈良へも"],
             reading: "なら へも いきました。",
             translation: "也去了奈良。",
             note: "へ 和 も 可以同時出現",
@@ -2450,6 +2641,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-go-japan",
             japanese: "日本へ行きます。",
+            highlightTerms: ["日本へ"],
             reading: "にほん へ いきます。",
             translation: "去日本。",
             note: "常見搭配：行きます（いきます）",
@@ -2458,6 +2650,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-come-taiwan",
             japanese: "先生は台湾へ来ます。",
+            highlightTerms: ["台湾へ"],
             reading: "せんせい は たいわん へ きます。",
             translation: "老師會來台灣。",
             note: "常見搭配：来ます（きます）",
@@ -2466,6 +2659,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-return-home",
             japanese: "六時に家へ帰ります。",
+            highlightTerms: ["家へ"],
             reading: "ろくじ に うち へ かえります。",
             translation: "六點回家。",
             note: "常見搭配：帰ります（かえります）",
@@ -2474,6 +2668,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-head-to-station",
             japanese: "今、駅へ向かいます。",
+            highlightTerms: ["駅へ"],
             reading: "いま、えき へ むかいます。",
             translation: "現在正朝車站前進。",
             note: "常見搭配：向かいます（むかいます）",
@@ -2482,6 +2677,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-return-company",
             japanese: "昼休みの後で会社へ戻ります。",
+            highlightTerms: ["会社へ"],
             reading: "ひるやすみ の あと で かいしゃ へ もどります。",
             translation: "午休後回公司。",
             note: "常見搭配：戻ります（もどります）",
@@ -2490,6 +2686,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-run-goal",
             japanese: "選手はゴールへ走ります。",
+            highlightTerms: ["ゴールへ"],
             reading: "せんしゅ は ゴール へ はしります。",
             translation: "選手朝終點跑去。",
             note: "常見搭配：走ります（はしります）",
@@ -2498,6 +2695,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-fly-south",
             japanese: "鳥は南へ飛びます。",
+            highlightTerms: ["南へ"],
             reading: "とり は みなみ へ とびます。",
             translation: "鳥往南方飛去。",
             note: "常見搭配：飛びます（とびます）",
@@ -2506,6 +2704,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-typhoon-north",
             japanese: "台風は北へ進んでいます。",
+            highlightTerms: ["北へ"],
             reading: "たいふう は きた へ すすんでいます。",
             translation: "颱風正朝北方前進。",
             note: "常見搭配：進みます（すすみます）",
@@ -2514,6 +2713,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-depart-osaka",
             japanese: "午前七時に大阪へ出発します。",
+            highlightTerms: ["大阪へ"],
             reading: "ごぜん しちじ に おおさか へ しゅっぱつします。",
             translation: "上午七點出發前往大阪。",
             note: "常見搭配：出発します（しゅっぱつします）",
@@ -2522,6 +2722,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-move-tokyo",
             japanese: "来月、東京へ引っ越します。",
+            highlightTerms: ["東京へ"],
             reading: "らいげつ、とうきょう へ ひっこします。",
             translation: "下個月要搬家到東京。",
             note: "常見搭配：引っ越します（ひっこします）",
@@ -2530,6 +2731,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-travel-hokkaido",
             japanese: "夏休みに北海道へ旅行します。",
+            highlightTerms: ["北海道へ"],
             reading: "なつやすみ に ほっかいどう へ りょこうします。",
             translation: "暑假要去北海道旅行。",
             note: "常見搭配：旅行します（りょこうします）",
@@ -2538,6 +2740,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-send-package-japan",
             japanese: "荷物を日本へ送ります。",
+            highlightTerms: ["日本へ"],
             reading: "にもつ を にほん へ おくります。",
             translation: "把包裹寄到日本。",
             note: "常見搭配：送ります（おくります）",
@@ -2559,6 +2762,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-hospital",
             japanese: "明日、病院へ行きます。",
+            highlightTerms: ["病院へ"],
             reading: "あした、びょういん へ いきます。",
             translation: "明天前往醫院。",
             origin: "source",
@@ -2566,6 +2770,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "he-school-ni",
             japanese: "学校に行きます。",
+            highlightTerms: ["学校に"],
             reading: "がっこう に いきます。",
             translation: "去學校。",
             note: "用來對照「へ」較偏方向感，「に」較像把學校當作到達點。",
@@ -2614,6 +2819,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             id: "ka-student",
             japanese:
               "あなたは学生ですか。\nはい、学生です。 / いいえ、学生じゃありません。",
+            highlightTerms: ["ですか"],
             reading:
               "あなた は がくせい ですか。\nはい、がくせい です。 / いいえ、がくせい じゃありません。",
             translation: "你是學生嗎？\n是的，我是學生。／不，我不是學生。",
@@ -2624,6 +2830,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             id: "ka-teacher",
             japanese:
               "あの人は先生ですか。\nはい、先生です。 / いいえ、先生ではありません。",
+            highlightTerms: ["ですか"],
             reading:
               "あの ひと は せんせい ですか。\nはい、せんせい です。 / いいえ、せんせい ではありません。",
             translation: "那個人是老師嗎？\n是的，是老師。／不，不是老師。",
@@ -2648,6 +2855,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ka-what",
             japanese: "これは何ですか。",
+            highlightTerms: ["何", "ですか"],
             reading: "これ は なん ですか。",
             translation: "這是什麼？",
             origin: "supplemental",
@@ -2655,6 +2863,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ka-where",
             japanese: "トイレはどこですか。",
+            highlightTerms: ["どこ", "ですか"],
             reading: "トイレ は どこ ですか。",
             translation: "廁所在哪裡？",
             origin: "supplemental",
@@ -2662,6 +2871,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ka-when",
             japanese: "試験はいつですか。",
+            highlightTerms: ["いつ", "ですか"],
             reading: "しけん は いつ ですか。",
             translation: "考試是什麼時候？",
             origin: "supplemental",
@@ -2686,6 +2896,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ka-duration-understanding",
             japanese: "そうなんですね。どれくらい時間がかかりますか。",
+            highlightTerms: ["どれくらい", "かかりますか"],
             reading: "そう なん です ね。どれ くらい じかん が かかります か。",
             translation: "原來如此。大概要花多久時間呢？",
             note: "把「時間」說出來，句意最完整。\n「そうなんですね」時，語氣像是「我理解了，接著想追問細節」；比起單純驚嘆，更適合作為禮貌追問的起手式。",
@@ -2694,6 +2905,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ka-duration-casual-surprise",
             japanese: "へえ、どのくらいかかりますか。",
+            highlightTerms: ["どのくらい", "かかりますか"],
             reading: "へえ、どの くらい かかります か。",
             translation: "咦，是這樣啊？大概要多久呢？",
             note: "上下文已清楚時可省略「時間」，但整體語氣比「そうなんですね」更口語。",
@@ -2702,6 +2914,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ka-duration-osaka-tokyo",
             japanese: "大阪から東京まで、どのくらい時間がかかりますか。",
+            highlightTerms: ["どのくらい", "かかりますか"],
             reading:
               "おおさか から とうきょう まで、どの くらい じかん が かかります か。",
             translation: "從大阪到東京，大概要花多少時間呢？",
@@ -2711,6 +2924,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ka-duration-work-task",
             japanese: "この仕事はどれくらい時間がかかりますか。",
+            highlightTerms: ["どれくらい", "かかりますか"],
             reading: "この しごと は どれ くらい じかん が かかります か。",
             translation: "這份工作大概要花多久時間呢？",
             note: "這個句型不只用在交通，也能用在作業、流程或等待時間。",
@@ -2719,6 +2933,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "ka-duration-travel-money",
             japanese: "この旅行はどれくらいお金がかかりますか。",
+            highlightTerms: ["どれくらい", "かかりますか"],
             reading: "この りょこう は どれ くらい おかね が かかります か。",
             translation: "這趟旅行大概要花多少錢呢？",
             note: "這裡把「時間」換成「お金」，用來強調「どれくらい」也能接其他名詞。",
@@ -2762,6 +2977,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "to-friend-school",
             japanese: "友達と（一緒に）学校へ行きます。",
+            highlightTerms: ["友達と"],
             reading: "ともだち と （いっしょに） がっこう へ いきます。",
             translation: "和朋友一起去學校。",
             origin: "supplemental",
@@ -2769,6 +2985,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "to-family-together",
             japanese: "家族と一緒に食べました。",
+            highlightTerms: ["家族と"],
             reading: "かぞく と いっしょ に たべました。",
             translation: "和家人一起吃了飯。",
             origin: "supplemental",
@@ -2776,6 +2993,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "to-mother-park-walk",
             japanese: "母と一緒に公園で散歩しました。",
+            highlightTerms: ["母と"],
             reading: "はは と いっしょ に こうえん で さんぽしました。",
             translation: "和媽媽一起在公園散步了。",
             note: "「で」是動作發生的場所，表示在公園內散步。\n「を」表示移動的路線／經過的地方，則更偏把公園當作散步經過的路徑",
@@ -2784,6 +3002,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "to-winter-vacation-ski",
             japanese: "冬休みに友達とスキーをします。",
+            highlightTerms: ["友達と"],
             reading: "ふゆやすみ に ともだち と スキー を します。",
             translation: "寒假要和朋友一起滑雪。",
             note: "冬休み是固定用法",
@@ -2835,6 +3054,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "de-train-company",
             japanese: "電車で会社へ行きます。",
+            highlightTerms: ["電車で"],
             reading: "でんしゃ で かいしゃ へ いきます。",
             translation: "搭火車去公司。",
             origin: "supplemental",
@@ -2842,6 +3062,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "de-bicycle-here",
             japanese: "自転車でここへ来ました。",
+            highlightTerms: ["自転車で"],
             reading: "じてんしゃ で ここ へ きました。",
             translation: "騎腳踏車來到這裡。",
             origin: "supplemental",
@@ -2850,6 +3071,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             id: "de-flight-car-bike",
             japanese:
               "飛行機で行きますか。車で行きますか。それとも、バイクで行きますか。",
+            highlightTerms: ["飛行機で", "車で", "バイクで"],
             reading:
               "ひこうき で いきます か。くるま で いきます か。それとも、バイク で いきます か。",
             translation: "要搭飛機去嗎？還是要搭汽車去呢？還是要搭機車去呢？",
@@ -2858,6 +3080,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "de-taxi-no-time",
             japanese: "もう時間がありませんから、タクシーで行きましょう。",
+            highlightTerms: ["タクシーで"],
             reading:
               "もう じかん が ありません から、タクシー で いきましょう。",
             translation: "因為沒有時間了，搭計程車去吧。",
@@ -2866,6 +3089,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "de-ship-osaka",
             japanese: "私は大阪から船で行きます。",
+            highlightTerms: ["船で"],
             reading: "わたし は おおさか から ふね で いきます。",
             translation: "我要從大阪搭船過去。",
             origin: "supplemental",
@@ -2873,6 +3097,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "de-on-foot",
             japanese: "駅から学校まで徒歩で行きます。",
+            highlightTerms: ["徒歩で"],
             reading: "えき から がっこう まで とほ で いきます。",
             translation: "從車站到學校是徒步走去。",
             note: "這裡用的是名詞「徒歩」，不是動詞て形「歩いて」。",
@@ -2897,6 +3122,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "de-school-study-example",
             japanese: "学校で日本語を勉強します。",
+            highlightTerms: ["学校で"],
             reading: "がっこう で にほんご を べんきょうします。",
             translation: "在學校學日文。",
             origin: "source",
@@ -2904,6 +3130,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "de-store-front-photo-example",
             japanese: "店の前で撮りましょう。",
+            highlightTerms: ["店の前で"],
             reading: "みせ の まえ で とりましょう。",
             translation: "在店前面拍照吧。",
             origin: "source",
@@ -2911,6 +3138,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "de-yurakucho-meet-example",
             japanese: "明日の6時に有楽町駅の中央口で会いましょう。",
+            highlightTerms: ["中央口で"],
             reading:
               "あした の ろくじ に ゆうらくちょうえき の ちゅうおうぐち で あいましょう。",
             translation: "明天六點在有樂町站中央口見吧。",
@@ -2931,6 +3159,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "de-ni-park-car-ni-example",
             japanese: "ここに車を止めてください。",
+            highlightTerms: ["ここに"],
             reading: "ここ に くるま を とめてください。",
             translation: "請把車停在這裡。",
             note: "に 標示放置後的位置，重點是車會停留在這裡。",
@@ -2939,6 +3168,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "de-ni-park-car-de-example",
             japanese: "ここで車を止めてください。",
+            highlightTerms: ["ここで"],
             reading: "ここ で くるま を とめてください。",
             translation: "請在這裡停車。",
             note: "で 標示動作進行地點，重點是停車動作在這裡發生，不把結果停留作為句子的重點。",
@@ -2978,6 +3208,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-work-from-nine-example",
             japanese: "朝9時から仕事をします。",
+            highlightTerms: ["朝9時から"],
             reading: "あさ くじ から しごと を します。",
             translation: "早上九點開始工作。",
             origin: "source",
@@ -2985,6 +3216,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-bank-nine-to-three-example",
             japanese: "銀行は9時から午後3時までです。",
+            highlightTerms: ["9時から", "午後3時まで"],
             reading: "ぎんこう は くじ から ごご さんじ まで です。",
             translation: "銀行是從九點到下午三點。",
             note: "まで表示終點或界限，可理解成「到～、直到～」。",
@@ -2993,6 +3225,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-german-next-month-example",
             japanese: "来月からドイツ語の勉強を始めます。",
+            highlightTerms: ["来月から"],
             reading:
               "らいげつ から ドイツご の べんきょう を はじめます。",
             translation: "下個月開始學德文。",
@@ -3015,6 +3248,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-tokyo-okinawa-he-example",
             japanese: "東京から沖縄へ行きます。",
+            highlightTerms: ["東京から"],
             reading: "とうきょう から おきなわ へ いきます。",
             translation: "從東京去沖繩。",
             note: "東京是出發點，沖縄是移動方向或目的地。",
@@ -3023,6 +3257,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-tokyo-okinawa-example",
             japanese: "東京から沖縄まで飛行機でどのくらいかかりますか。",
+            highlightTerms: ["東京から", "沖縄まで"],
             reading:
               "とうきょう から おきなわ まで ひこうき で どの くらい かかります か。",
             translation: "從東京到沖繩搭飛機要花多久？",
@@ -3045,6 +3280,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-that-door-enter-example",
             japanese: "あそこのドアから入ってください。",
+            highlightTerms: ["ドアから"],
             reading: "あそこ の ドア から はいってください。",
             translation: "請從那邊的門進入。",
             note: "入って是入る的て形；ください表示請求。",
@@ -3053,6 +3289,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-participants-door-enter-example",
             japanese: "参加者はあちらのドアから中に入ってください。",
+            highlightTerms: ["あちらのドアから", "中に"],
             reading:
               "さんかしゃ は あちら の ドア から なか に はいってください。",
             translation: "參加者請從那邊的門進到裡面。",
@@ -3075,6 +3312,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-house-far-from-station-example",
             japanese: "私の家は駅から遠いです。",
+            highlightTerms: ["駅から"],
             reading: "わたし の いえ は えき から とおい です。",
             translation: "我家離車站很遠。",
             note: "以車站為起點來判斷遠近。",
@@ -3083,6 +3321,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-right-read-example",
             japanese: "右から読んでください。",
+            highlightTerms: ["右から"],
             reading: "みぎ から よんでください。",
             translation: "請從右邊開始讀。",
             note: "右邊是閱讀開始的位置。",
@@ -3104,6 +3343,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-friend-mail-example",
             japanese: "友達からメールが来ました。",
+            highlightTerms: ["友達から"],
             reading: "ともだち から メール が きました。",
             translation: "朋友寄了信來。",
             note: "友達から標示信件或訊息的來源。",
@@ -3112,6 +3352,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-teacher-phone-example",
             japanese: "先生から電話がかかりました。",
+            highlightTerms: ["先生から"],
             reading: "せんせい から でんわ が かかりました。",
             translation: "老師打電話來了。",
             note: "此處的から是動作、訊息、聯絡的來源；\n電話がかかる表示電話打來或接通。",
@@ -3133,6 +3374,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-no-time-taxi-reason-example",
             japanese: "もう時間がありませんから、タクシーで行きましょう。",
+            highlightTerms: ["ありませんから"],
             reading:
               "もう じかん が ありません から、タクシー で いきましょう。",
             translation: "因為已經沒有時間了，搭計程車去吧。",
@@ -3142,6 +3384,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-busy-reason-example",
             japanese: "忙しかったですから、どこも行きませんでした。",
+            highlightTerms: ["忙しかったですから"],
             reading: "いそがしかった です から、どこ も いきませんでした。",
             translation: "因為很忙，所以哪裡都沒有去。",
             note: "忙しかったですから表示原因；\nどこも行きませんでした是因此產生的結果。",
@@ -3150,6 +3393,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-sorekara-overtime-example",
             japanese: "休みは日曜日だけですか。はい。それから残業も多いです。",
+            highlightTerms: ["それから"],
             reading:
               "やすみ は にちようび だけ です か。はい。それから ざんぎょう も おおい です。",
             translation: "休假只有星期日嗎？是的。而且加班也很多。",
@@ -3173,6 +3417,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-kakaru-car-money-example",
             japanese: "この車はお金がかかります。",
+            highlightTerms: ["お金がかかります"],
             reading: "この くるま は おかね が かかります。",
             translation: "這台車很花錢。",
             note: "お金がかかります表示花錢、需要費用。",
@@ -3181,6 +3426,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-kakaru-trouble-parent-example",
             japanese: "親に迷惑がかかる。",
+            highlightTerms: ["迷惑がかかる"],
             reading: "おや に めいわく が かかる。",
             translation: "會給父母添麻煩。",
             note: "迷惑がかかる表示麻煩或負擔加到某人身上。",
@@ -3189,6 +3435,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-kakaru-door-lock-example",
             japanese: "ドアに鍵がかかっています。",
+            highlightTerms: ["鍵がかかっています"],
             reading: "ドア に かぎ が かかっています。",
             translation: "門鎖著。",
             note: "鍵がかかっています表示上鎖的狀態掛在門上。",
@@ -3197,6 +3444,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-kakaru-engine-example",
             japanese: "エンジンがかかりません。",
+            highlightTerms: ["エンジンがかかりません"],
             reading: "エンジン が かかりません。",
             translation: "引擎發不起來。",
             note: "エンジンがかかる表示引擎啟動或開始作用。",
@@ -3205,6 +3453,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "kara-kakaru-pressure-example",
             japanese: "強い圧力がかかっています。",
+            highlightTerms: ["圧力がかかっています"],
             reading: "つよい あつりょく が かかっています。",
             translation: "正承受很強的壓力。",
             note: "圧力がかかっています表示壓力施加、覆蓋在某處。",
@@ -3245,6 +3494,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "made-drink-morning-example",
             japanese: "今晩は朝まで飲みましょう。",
+            highlightTerms: ["朝まで"],
             reading: "こんばん は あさ まで のみましょう。",
             translation: "今晚喝到早上吧。",
             note: "朝まで表示時間終點，可理解成「直到早上」。",
@@ -3253,6 +3503,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "made-neighbor-dog-plain-example",
             japanese: "隣りの家の犬が朝から晩まで吠えてうるさいです。",
+            highlightTerms: ["朝から", "晩まで", "うるさいです"],
             reading:
               "となり の いえ の いぬ が あさ から ばん まで ほえて うるさい です。",
             translation: "鄰居家的狗從早到晚叫，很吵。",
@@ -3262,6 +3513,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "made-neighbor-dog-intense-example",
             japanese: "隣の家の犬が朝から晩まで吠えていて、うるさくてたまりません。",
+            highlightTerms: ["朝から", "晩まで", "吠えていて", "うるさくてたまりません"],
             reading:
               "となり の いえ の いぬ が あさ から ばん まで ほえていて、うるさくて たまりません。",
             translation: "鄰居家的狗從早到晚一直在叫，吵得我受不了。",
@@ -3284,6 +3536,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "made-send-station-example",
             japanese: "友達を駅まで車で送ります。",
+            highlightTerms: ["駅まで"],
             reading: "ともだち を えき まで くるま で おくります。",
             translation: "開車送朋友到車站。",
             note: "駅まで標示送達的終點；\n車で標示交通工具或手段；友達を標示動作對象。",
@@ -3305,6 +3558,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
           {
             id: "made-book-limit-example",
             japanese: "一人四冊まで本を借りることができます。",
+            highlightTerms: ["四冊まで"],
             reading: "ひとり よんさつ まで ほん を かりる こと が できます。",
             translation: "一個人最多可以借四本書。",
             note: "一人四冊まで表示每人最多四本；\n借りることができます表示「可以借」。",

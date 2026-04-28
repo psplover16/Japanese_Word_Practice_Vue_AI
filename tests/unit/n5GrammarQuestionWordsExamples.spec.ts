@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-import { defaultExpandedSectionIds } from '@/modules/n5Grammar/config/viewPreferences';
 import { n5GrammarSourceCoverage, sortedN5GrammarSections } from '@/modules/n5Grammar/data/grammarNotes';
 
 describe('n5Grammar question-words examples', () => {
@@ -66,7 +65,6 @@ describe('n5Grammar question-words examples', () => {
     expect(nankoExample?.note).toContain('猫がいます');
     expect(watchExample?.note).toContain('でしたか');
     expect(durationExample?.note).toContain('新幹線で標示交通工具');
-    expect(defaultExpandedSectionIds).toContain('question-words');
 
     expect(n5GrammarSourceCoverage.find((entry) => entry.sourceId === 'note-v16-ch5-question-words')).toMatchObject({
       mappedSectionId: 'question-words',

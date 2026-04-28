@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { N5GrammarExample, N5GrammarSharedNote, N5GrammarTopic } from '@/modules/n5Grammar/types/grammarNotes';
+import { getN5GrammarHighlightedParts } from '@/modules/n5Grammar/utils/highlightParts';
+import type { N5GrammarSharedNote, N5GrammarTopic } from '@/modules/n5Grammar/types/grammarNotes';
 
 const props = defineProps<{
   topics: N5GrammarTopic[];
@@ -13,31 +14,6 @@ function resolveNotes(topic: N5GrammarTopic) {
   return topic.sharedNoteIds.map((id) => notesById.value.get(id)).filter((note): note is N5GrammarSharedNote => Boolean(note));
 }
 
-function getHighlightedParts(example: N5GrammarExample) {
-  const terms = [...(example.highlightTerms ?? [])].filter(Boolean).sort((left, right) => right.length - left.length);
-
-  if (terms.length === 0) {
-    return [{ text: example.japanese, highlighted: false }];
-  }
-
-  const parts: { text: string; highlighted: boolean }[] = [];
-  let cursor = 0;
-
-  while (cursor < example.japanese.length) {
-    const match = terms.find((term) => example.japanese.startsWith(term, cursor));
-
-    if (match) {
-      parts.push({ text: match, highlighted: true });
-      cursor += match.length;
-      continue;
-    }
-
-    parts.push({ text: example.japanese.charAt(cursor), highlighted: false });
-    cursor += 1;
-  }
-
-  return parts;
-}
 </script>
 
 <template>
@@ -62,7 +38,7 @@ function getHighlightedParts(example: N5GrammarExample) {
         <div v-for="example in topic.examples" :key="example.id" class="n5-grammar-example-card">
           <div class="n5-grammar-example-japanese">
             <span
-              v-for="(part, partIndex) in getHighlightedParts(example)"
+              v-for="(part, partIndex) in getN5GrammarHighlightedParts(example)"
               :key="`${example.id}-${partIndex}`"
               :class="{ 'n5-grammar-example-highlight': part.highlighted }"
             >

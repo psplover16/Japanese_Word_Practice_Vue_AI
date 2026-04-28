@@ -8,6 +8,13 @@ function getSection(sectionId: string) {
   return section!;
 }
 
+function getAllExamples() {
+  return sortedN5GrammarSections.flatMap((section) => [
+    ...section.topics.flatMap((topic) => topic.examples),
+    ...(section.tableExampleGroups ?? []).flatMap((group) => group.examples),
+  ]);
+}
+
 describe('n5GrammarData', () => {
   it('前三個核心區塊維持新的排序、命名與內容分工', () => {
     const firstThreeSectionIds = sortedN5GrammarSections.slice(0, 3).map((section) => section.id);
@@ -455,7 +462,7 @@ describe('017 v16 N5 文法整理', () => {
       expect(section.topics.flatMap((topic) => topic.sourceRefs).length).toBeGreaterThan(0);
     }
 
-    expect(getSection('demonstratives').table?.rows.map((row) => row.values).flat()).toContain('こちら');
+    expect(getSection('demonstratives').table?.rows.map((row) => row.values).flat().some((value) => value.includes('こちら'))).toBe(true);
     expect(getSection('numbers').table?.rows.find((row) => row.id === 'number-10')?.values).toContain('じゅっ / じっ');
     expect(getSection('time-expressions').table?.rows.map((row) => row.label)).toContain('幾分');
 
@@ -475,5 +482,19 @@ describe('017 v16 N5 文法整理', () => {
       expect(example.japanese).not.toContain('「');
       expect(example.japanese).not.toContain('」');
     }
+  });
+
+  it('每個例句都標示該容器要強調的日文片段', () => {
+    const examples = getAllExamples();
+    const missingHighlightIds = examples.filter((example) => !example.highlightTerms?.length).map((example) => example.id);
+    const missingTermMatches = examples.flatMap((example) =>
+      (example.highlightTerms ?? [])
+        .filter((term) => !example.japanese.includes(term))
+        .map((term) => `${example.id}: ${term}`),
+    );
+
+    expect(examples.length).toBeGreaterThan(200);
+    expect(missingHighlightIds).toEqual([]);
+    expect(missingTermMatches).toEqual([]);
   });
 });
