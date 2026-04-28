@@ -1,1 +1,1 @@
-export const defaultExpandedSectionIds: string[] = [];
+export const defaultExpandedSectionIds: string[] = ['question-words'];

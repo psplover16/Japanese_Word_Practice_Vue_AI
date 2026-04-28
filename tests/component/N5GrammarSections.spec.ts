@@ -76,12 +76,15 @@ describe('N5GrammarSections', () => {
 
   it('v16 新增 section 預設收合，展開後顯示說明、表格與例句', async () => {
     const { wrapper } = mountWithPracticeSession(N5GrammarView);
-    const targetIds = ['core-term-usage-overview', 'dekiru-ability', 'question-words', 'demonstratives', 'numbers', 'time-expressions'];
+    const targetIds = ['core-term-usage-overview', 'dekiru-ability', 'demonstratives', 'numbers', 'time-expressions'];
 
     for (const id of targetIds) {
       expect(wrapper.get(`[data-testid="n5-grammar-toggle-${id}"]`).attributes('aria-expanded')).toBe('false');
       expect(wrapper.get(`[data-testid="n5-grammar-body-${id}"]`).attributes('style')).toContain('display: none;');
     }
+
+    expect(wrapper.get('[data-testid="n5-grammar-toggle-question-words"]').attributes('aria-expanded')).toBe('true');
+    expect(wrapper.get('[data-testid="n5-grammar-body-question-words"]').attributes('style') ?? '').not.toContain('display: none;');
 
     await wrapper.get('[data-testid="n5-grammar-toggle-core-term-usage-overview"]').trigger('click');
     await wrapper.get('[data-testid="n5-grammar-toggle-dekiru-ability"]').trigger('click');
@@ -93,11 +96,13 @@ describe('N5GrammarSections', () => {
     const dekiruSection = wrapper.get('[data-testid="n5-grammar-section-dekiru-ability"]');
     const demonstrativesSection = wrapper.get('[data-testid="n5-grammar-section-demonstratives"]');
     const numbersSection = wrapper.get('[data-testid="n5-grammar-section-numbers"]');
+    const questionWordsSection = wrapper.get('[data-testid="n5-grammar-section-question-words"]');
     const timeSection = wrapper.get('[data-testid="n5-grammar-section-time-expressions"]');
 
     expect(coreTermSection.find('[data-testid="n5-grammar-compare-table-core-term-usage-overview"]').exists()).toBe(true);
     expect(coreTermSection.text()).toContain('い形容詞');
     expect(dekiruSection.text()).toContain('日本語ができます。');
+    expect(questionWordsSection.text()).toContain('どこに住んでいますか。');
     expect(demonstrativesSection.find('[data-testid="n5-grammar-compare-table-demonstratives"]').exists()).toBe(true);
     expect(demonstrativesSection.text()).toContain('こちら');
     expect(numbersSection.find('[data-testid="n5-grammar-compare-table-numbers"]').exists()).toBe(true);
