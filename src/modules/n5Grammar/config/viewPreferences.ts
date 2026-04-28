@@ -1,1 +1,1 @@
-export const defaultExpandedSectionIds = [];
+export const defaultExpandedSectionIds: string[] = [];

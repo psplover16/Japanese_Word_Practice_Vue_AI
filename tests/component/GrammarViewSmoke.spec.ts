@@ -28,4 +28,19 @@ describe('GrammarView', () => {
     expect(wrapper.text()).toContain('主詞＋動詞＋受詞（SVO）');
     expect(wrapper.text()).toContain('私はリンゴを食べます');
   });
+
+  it('活用表 shell 標題與說明分離，且收合操作維持', async () => {
+    const { wrapper } = mountWithPracticeSession(GrammarView);
+    const kahenToggle = wrapper.get('[data-testid="grammar-toggle-kahen-table"]');
+    const kahenBody = wrapper.get('[data-testid="grammar-table-kahen-table"] tbody');
+
+    expect(kahenToggle.text()).toContain('カ變動詞 (只有来る)');
+    expect(kahenToggle.text()).not.toContain('漢字發音會變動');
+    expect(kahenBody.attributes('style')).toContain('display: none;');
+
+    await kahenToggle.trigger('click');
+
+    expect(kahenBody.attributes('style')).not.toContain('display: none;');
+    expect(wrapper.get('[data-testid="grammar-table-kahen-table"]').text()).toContain('漢字發音會變動，標註在詞尾');
+  });
 });

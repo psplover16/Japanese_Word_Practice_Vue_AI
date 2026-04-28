@@ -19,6 +19,10 @@ test('375px 下的 /grammar 可展開規則表且不破版', async ({ page }) =>
   await page.getByTestId('grammar-toggle-godan-table').click();
   await expect(page.getByText('書く→書き→書い(い音便)→書いて/書いた')).toBeVisible();
 
+  await page.getByTestId('grammar-toggle-sahen-table').click();
+  await expect(page.getByTestId('grammar-inflection-examples-sahen-sanpo-examples')).toContainText('雨の日は散歩しません。');
+  await expect(page.getByTestId('grammar-inflection-examples-sahen-sanpo-examples')).toContainText('昨日は忙しかったので、散歩しませんでした。');
+
   await page.getByTestId('grammar-toggle-pos-conversion').click();
   await expect(page.getByText('V(普通形)＋こと：把『動作／事情』名詞化')).toBeVisible();
 

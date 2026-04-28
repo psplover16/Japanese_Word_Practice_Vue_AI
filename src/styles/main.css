@@ -218,6 +218,39 @@ textarea {
     vertical-align: middle;
   }
 
+  .grammar-inflection-example-cell {
+    @apply border border-gray-300 bg-white p-3 text-left;
+  }
+
+  .grammar-inflection-example-title {
+    @apply mb-2 text-sm font-bold text-black;
+  }
+
+  .grammar-inflection-example-grid {
+    @apply grid gap-2 sm:grid-cols-2;
+  }
+
+  .grammar-inflection-example-card {
+    @apply rounded border border-gray-200 bg-neutral-50 p-2 text-sm text-black;
+  }
+
+  .grammar-inflection-example-form {
+    @apply inline-block rounded bg-neutral-200 px-2 py-0.5 text-xs font-bold text-black;
+  }
+
+  .grammar-inflection-example-japanese {
+    @apply mt-1 font-semibold;
+  }
+
+  .grammar-inflection-example-reading,
+  .grammar-inflection-example-note {
+    @apply mt-1 text-xs text-black/70;
+  }
+
+  .grammar-inflection-example-translation {
+    @apply mt-1 text-sm text-black/85;
+  }
+
   .grammar-toggle-icon {
     @apply absolute right-2 top-1/2 -translate-y-1/2 text-xs text-black;
   }
@@ -481,6 +514,10 @@ textarea {
     @apply text-sm font-semibold text-ink;
     font-size: 1rem;
     white-space: pre-line;
+  }
+
+  .n5-grammar-example-highlight {
+    @apply rounded bg-red-100 px-1 font-bold text-red-700;
   }
 
   .n5-grammar-example-reading {

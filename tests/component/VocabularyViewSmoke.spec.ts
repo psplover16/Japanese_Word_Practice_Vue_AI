@@ -14,7 +14,7 @@ describe('VocabularyViewSmoke', () => {
     const { wrapper } = mountWithPracticeSession(VocabularyView);
 
     expect(wrapper.find('[data-testid="vocabulary-control-bar"]').exists()).toBe(true);
-    expect(wrapper.get('[data-testid="vocabulary-count-summary"]').text()).toContain('1080個單字');
+    expect(wrapper.get('[data-testid="vocabulary-count-summary"]').text()).toContain('1086個單字');
     expect(wrapper.find('[data-testid="vocabulary-table"]').exists()).toBe(true);
   });
 
@@ -70,5 +70,21 @@ describe('VocabularyViewSmoke', () => {
 
     expect(wrapper.find('[data-testid="vocabulary-row-1"]').exists()).toBe(true);
     expect(wrapper.html()).toContain('vocabulary-marked-row');
+  });
+
+  it('可搜尋 v16 新增的四個方位出口詞', async () => {
+    const { wrapper } = mountWithPracticeSession(VocabularyView);
+
+    for (const [term, rowId] of [
+      ['東口', 1083],
+      ['西口', 1084],
+      ['北口', 1085],
+      ['南口', 1086]
+    ] as const) {
+      await wrapper.get('[data-testid="vocabulary-search-input"]').setValue(term);
+
+      expect(wrapper.get('[data-testid="vocabulary-count-summary"]').text()).toContain('1個單字');
+      expect(wrapper.get(`[data-testid="vocabulary-row-${rowId}"]`).text()).toContain(term);
+    }
   });
 });

@@ -7563,6 +7563,48 @@ export const rawVocabularyEntries: RawVocabularyEntry[] = [
     meaning: "居酒屋",
     stage: "Stage1_基礎生活",
   },
+  {
+    text: "たばこ",
+    romanization: "ta-ba-ko",
+    kanji: "煙草",
+    meaning: "香菸",
+    stage: "Stage1_基礎生活",
+  },
+  {
+    text: "しょくじかい",
+    romanization: "sho-ku-ji-ka-i",
+    kanji: "食事会",
+    meaning: "餐會／聚餐",
+    stage: "Stage2_日常強化",
+  },
+  {
+    text: "ひがしぐち",
+    romanization: "hi-ga-shi-gu-chi",
+    kanji: "東口",
+    meaning: "東口／東邊出口",
+    stage: "Stage1_基礎生活",
+  },
+  {
+    text: "にしぐち",
+    romanization: "ni-shi-gu-chi",
+    kanji: "西口",
+    meaning: "西口／西邊出口",
+    stage: "Stage1_基礎生活",
+  },
+  {
+    text: "きたぐち",
+    romanization: "ki-ta-gu-chi",
+    kanji: "北口",
+    meaning: "北口／北邊出口",
+    stage: "Stage1_基礎生活",
+  },
+  {
+    text: "みなみぐち",
+    romanization: "mi-na-mi-gu-chi",
+    kanji: "南口",
+    meaning: "南口／南邊出口",
+    stage: "Stage1_基礎生活",
+  },
 ];
 
 export const vocabularyEntries = normalizeVocabularyEntries(rawVocabularyEntries);

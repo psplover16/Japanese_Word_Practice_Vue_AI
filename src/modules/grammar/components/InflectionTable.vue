@@ -80,6 +80,21 @@ function isKanaSuffixNowrap(sectionId: string, rowIndex: number) {
       </tr>
     </template>
 
+    <tr v-for="group in spec.exampleGroups ?? []" :key="group.id">
+      <td :colspan="spec.columns.length" :data-testid="`grammar-inflection-examples-${group.id}`" class="grammar-inflection-example-cell">
+        <div class="grammar-inflection-example-title">{{ group.title }}</div>
+        <div class="grammar-inflection-example-grid">
+          <article v-for="example in group.examples" :key="example.id" class="grammar-inflection-example-card">
+            <div class="grammar-inflection-example-form">{{ example.form }}</div>
+            <div class="grammar-inflection-example-japanese">{{ example.japanese }}</div>
+            <div v-if="example.reading" class="grammar-inflection-example-reading">{{ example.reading }}</div>
+            <div class="grammar-inflection-example-translation">{{ example.translation }}</div>
+            <div v-if="example.note" class="grammar-inflection-example-note">{{ example.note }}</div>
+          </article>
+        </div>
+      </td>
+    </tr>
+
     <template v-if="spec.footerRows?.length" #footer>
       <template v-for="(row, rowIndex) in spec.footerRows" :key="`${sectionId}-footer-${row.base}`">
         <tr v-for="(pair, pairIndex) in row.suffixAndMeaning" :key="`${row.base}-${pair.suffix}-${pairIndex}`" class="grammar-footer-row">

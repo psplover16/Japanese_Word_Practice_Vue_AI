@@ -16,6 +16,8 @@ export const particleSectionIds = [
   "particle-ka",
   "particle-to",
   "particle-de",
+  "particle-kara",
+  "particle-made",
 ] as const;
 
 const politeOverviewTable: N5GrammarCompareTable = {
@@ -289,7 +291,151 @@ const invitationComparisonExampleGroups: N5GrammarTableExampleGroup[] = [
   },
 ];
 
+const coreTermUsageTable: N5GrammarCompareTable = {
+  columns: ["詞類", "接名詞", "句尾肯定", "句尾否定", "學習提醒"],
+  rows: [
+    {
+      id: "core-term-i-adjective",
+      label: "い形容詞",
+      values: ["暑い日", "暑いです", "暑くないです", "詞尾い會參與變化"],
+    },
+    {
+      id: "core-term-na-adjective",
+      label: "な形容詞",
+      values: ["静かな場所", "静かです", "静かじゃありません", "接名詞時要加な；句尾變化像名詞"],
+    },
+    {
+      id: "core-term-noun",
+      label: "名詞",
+      values: ["日本語の本", "学生です", "学生じゃありません", "接名詞時常用の；句尾用です系統"],
+    },
+    {
+      id: "core-term-verb",
+      label: "動詞",
+      values: ["読む本", "読みます", "読みません", "用活用形表時態、禮貌與否定"],
+    },
+  ],
+};
+
+const demonstrativeTable: N5GrammarCompareTable = {
+  columns: ["距離 / 用途", "指東西", "接名詞", "指地方", "鄭重說法", "口語說法"],
+  rows: [
+    {
+      id: "demonstrative-near-speaker",
+      label: "近自己",
+      values: ["これ", "この", "ここ", "こちら", "こっち"],
+    },
+    {
+      id: "demonstrative-near-listener",
+      label: "近對方",
+      values: ["それ", "その", "そこ", "そちら", "そっち"],
+    },
+    {
+      id: "demonstrative-far",
+      label: "遠方",
+      values: ["あれ", "あの", "あそこ", "あちら", "あっち"],
+    },
+    {
+      id: "demonstrative-question",
+      label: "疑問",
+      values: ["どれ", "どの", "どこ", "どちら", "どっち"],
+    },
+  ],
+};
+
+const numberPronunciationTable: N5GrammarCompareTable = {
+  columns: ["數字", "常用發音", "少用發音", "舊讀 / 促音化", "促音化條件"],
+  rows: [
+    { id: "number-0", label: "0", values: ["ゼロ / れい", "まる", "", ""] },
+    { id: "number-1", label: "1", values: ["いち", "", "いっ", "接か行、さ行、た行、は行助數詞時常促音化"] },
+    { id: "number-2", label: "2", values: ["に", "", "", ""] },
+    { id: "number-3", label: "3", values: ["さん", "", "", ""] },
+    { id: "number-4", label: "4", values: ["よん / よ", "し", "", ""] },
+    { id: "number-5", label: "5", values: ["ご", "", "", ""] },
+    { id: "number-6", label: "6", values: ["ろく", "", "ろっ", "接か行、は行助數詞時常促音化"] },
+    { id: "number-7", label: "7", values: ["なな", "しち", "", ""] },
+    { id: "number-8", label: "8", values: ["はち", "", "はっ", "接か行、さ行、た行、は行助數詞時常促音化"] },
+    { id: "number-9", label: "9", values: ["きゅう", "く", "", ""] },
+    { id: "number-10", label: "10", values: ["じゅう", "", "じゅっ / じっ", "接か行、さ行、た行、は行助數詞時常促音化"] },
+  ],
+};
+
+const timeExpressionTable: N5GrammarCompareTable = {
+  columns: ["類型", "基本形式", "例子", "提醒"],
+  rows: [
+    { id: "time-month", label: "月份", values: ["數字 + 月", "一月、四月、七月、九月", "四月讀しがつ，七月讀しちがつ，九月讀くがつ"] },
+    { id: "time-date", label: "日期", values: ["日期讀法", "一日、二日、三日、十日、二十日", "1到10日與20日有固定特殊讀法"] },
+    { id: "time-weekday", label: "星期", values: ["曜日", "月曜日、火曜日、水曜日", "常搭配に標示具體時間點"] },
+    { id: "time-hour", label: "幾點", values: ["數字 + 時", "一時、四時、七時、九時", "四時讀よじ，七時讀しちじ，九時讀くじ"] },
+    { id: "time-minute", label: "幾分", values: ["數字 + 分", "一分、三分、六分、八分、十分", "分會依前面數字讀ふん或ぷん"] },
+    { id: "time-ampm", label: "上午 / 下午", values: ["午前 / 午後", "午前九時、午後三時半", "半表示三十分；分前表示幾分鐘前"] },
+  ],
+};
+
 export const n5GrammarSections: N5GrammarSection[] = [
+  {
+    id: "core-term-usage-overview",
+    title: "核心詞類用法總覽",
+    description: "整理 note2 的い形容詞、な形容詞、名詞、動詞用法，先建立後續文法閱讀的共同語彙。",
+    presentationMode: "compare-table",
+    order: 0,
+    category: "core",
+    sharedNotes: [
+      {
+        id: "core-term-modifier-note",
+        title: "接名詞時最容易混淆",
+        content:
+          "い形容詞可直接接名詞；な形容詞接名詞要加「な」；名詞接名詞通常用「の」。句尾則是名詞與な形容詞共用「です」系統。",
+      },
+    ],
+    table: coreTermUsageTable,
+    topics: [
+      {
+        id: "core-term-pos-comparison",
+        title: "四種核心詞類的接續差異",
+        summary:
+          "先把「接名詞」與「放句尾」分開看：接名詞時看修飾規則，放句尾時看句尾活用。",
+        details: [
+          "い形容詞：保留詞尾い修飾名詞，例如「暑い日」。",
+          "な形容詞：修飾名詞時加な，例如「静かな場所」。",
+          "名詞：修飾名詞時常用の，例如「日本語の本」。",
+          "動詞：以活用形接句尾或修飾名詞，例如「読みます」「読む本」。",
+        ],
+        sourceRefs: ["note-v16-note2"],
+        sharedNoteIds: ["core-term-modifier-note"],
+        examples: [
+          {
+            id: "core-term-i-adjective-example",
+            japanese: "今日は暑いです。暑い日ですね。",
+            reading: "きょう は あつい です。あつい ひ です ね。",
+            translation: "今天很熱。是很熱的一天呢。",
+            origin: "source",
+          },
+          {
+            id: "core-term-na-adjective-example",
+            japanese: "ここは静かです。静かな場所です。",
+            reading: "ここ は しずか です。しずかな ばしょ です。",
+            translation: "這裡很安靜。是安靜的地方。",
+            origin: "source",
+          },
+          {
+            id: "core-term-noun-example",
+            japanese: "これは日本語の本です。",
+            reading: "これ は にほんご の ほん です。",
+            translation: "這是日文書。",
+            origin: "source",
+          },
+          {
+            id: "core-term-verb-example",
+            japanese: "毎日、本を読みます。",
+            reading: "まいにち、ほん を よみます。",
+            translation: "每天讀書。",
+            origin: "source",
+          },
+        ],
+      },
+    ],
+  },
   {
     id: "polite-overview",
     title: "敬體變化速覽",
@@ -975,6 +1121,389 @@ export const n5GrammarSections: N5GrammarSection[] = [
     ],
   },
   {
+    id: "dekiru-ability",
+    title: "できる：能力、可能與完成",
+    description: "整理 ch0 的「できる」，放在邀約表現後，連接能力、可能與完成語感。",
+    presentationMode: "info-stack",
+    order: 4.5,
+    category: "core",
+    sharedNotes: [
+      {
+        id: "dekiru-possible-note",
+        title: "できる本身就是可能表現",
+        content:
+          "「できる」可表示能力或可能，也能表示某物完成、建成或出生；不需要再把「できる」改成另一個可能形。",
+      },
+    ],
+    topics: [
+      {
+        id: "dekiru-forms",
+        title: "できる的基本形態",
+        summary:
+          "できる可依時態與接續變成「できた」「できない」「できなかった」「できて」「できれば / できたら」。",
+        details: [
+          "現在 / 未來：できる、できます。",
+          "過去：できた、できました。",
+          "否定：できない、できません。",
+          "過去否定：できなかった、できませんでした。",
+          "て形：できて；假定形：できれば / できたら。",
+        ],
+        sourceRefs: ["note-v16-ch0-dekiru"],
+        sharedNoteIds: ["dekiru-possible-note"],
+        examples: [
+          {
+            id: "dekiru-ability-example",
+            japanese: "日本語ができます。",
+            reading: "にほんご が できます。",
+            translation: "會日文。",
+            note: "能力或可行性常用「ができます」。",
+            origin: "source",
+          },
+          {
+            id: "dekiru-completion-example",
+            japanese: "料理ができました。",
+            reading: "りょうり が できました。",
+            translation: "料理做好了。",
+            note: "這裡表示完成。",
+            origin: "source",
+          },
+          {
+            id: "dekiru-negative-example",
+            japanese: "今日は宿題ができませんでした。",
+            reading: "きょう は しゅくだい が できませんでした。",
+            translation: "今天沒能完成作業。",
+            origin: "supplemental",
+          },
+          {
+            id: "dekiru-conditional-example",
+            japanese: "明日できれば、連絡します。",
+            reading: "あした できれば、れんらく します。",
+            translation: "如果明天可以的話，我會聯絡。",
+            origin: "supplemental",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "question-words",
+    title: "常見疑問詞",
+    description: "整理 ch5 的何、どこ、いつ、どうして、どう、どんな、誰、どれ、どちら、いくら等疑問詞。",
+    presentationMode: "bullet-list",
+    order: 7,
+    category: "core",
+    sharedNotes: [
+      {
+        id: "question-teiru-note",
+        title: "住んでいます等ている表現",
+        content:
+          "「住んでいます」「結婚しています」常表示狀態持續；「食べています」則可表示正在吃。ている要依動詞語意判斷是狀態或進行。",
+      },
+    ],
+    topics: [
+      {
+        id: "question-core-words",
+        title: "基本疑問詞：問人、事物、地點、時間與原因",
+        summary:
+          "何問事物，どこ問地點，いつ問時間，どうして / なぜ問原因，誰 / どなた問人。",
+        details: [
+          "どう問方法、狀態或感想；いかが是較禮貌的說法。",
+          "どんな問「什麼樣的」名詞；どうやって問做法或交通方式。",
+          "誰か表示某人，語氣不是直接問「誰」。",
+        ],
+        sourceRefs: ["note-v16-ch5-question-words"],
+        sharedNoteIds: ["question-teiru-note"],
+        examples: [
+          {
+            id: "question-what-example",
+            japanese: "これは何ですか。",
+            reading: "これ は なん ですか。",
+            translation: "這是什麼？",
+            origin: "source",
+          },
+          {
+            id: "question-where-example",
+            japanese: "トイレはどこですか。",
+            reading: "トイレ は どこ ですか。",
+            translation: "廁所在哪裡？",
+            origin: "source",
+          },
+          {
+            id: "question-why-example",
+            japanese: "どうして日本語を勉強しますか。",
+            reading: "どうして にほんご を べんきょうします か。",
+            translation: "為什麼學日文？",
+            origin: "supplemental",
+          },
+        ],
+      },
+      {
+        id: "question-choice-quantity",
+        title: "選擇與數量疑問詞",
+        summary:
+          "どれ問多個物品中的哪一個，どの接名詞，どちら / どっち問方向、場所或二選一，いくら問價格，いくつ問數量或年齡。",
+        details: [
+          "どのくらい / どれくらい可問時間長度、程度或花費量。",
+          "どちら較禮貌，也可用於介紹人或詢問店家方向。",
+        ],
+        sourceRefs: ["note-v16-ch5-question-words"],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: "question-which-drink-example",
+            japanese: "コーヒーと紅茶とどちらがいいですか。",
+            reading: "コーヒー と こうちゃ と どちら が いい ですか。",
+            translation: "咖啡和紅茶哪一個好？",
+            origin: "source",
+          },
+          {
+            id: "question-how-much-example",
+            japanese: "この本はいくらですか。",
+            reading: "この ほん は いくら ですか。",
+            translation: "這本書多少錢？",
+            origin: "supplemental",
+          },
+          {
+            id: "question-how-long-example",
+            japanese: "東京から沖縄まで飛行機でどのくらいかかりますか。",
+            reading:
+              "とうきょう から おきなわ まで ひこうき で どの くらい かかります か。",
+            translation: "從東京到沖繩搭飛機要花多久？",
+            origin: "source",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "demonstratives",
+    title: "指示詞：こそあど系列",
+    description: "將 here.png 的指示詞表轉成可比較表格，並整理 ch6 指定例句。",
+    presentationMode: "compare-table",
+    order: 8,
+    category: "core",
+    sharedNotes: [
+      {
+        id: "demonstrative-distance-note",
+        title: "こ・そ・あ・ど的距離感",
+        content:
+          "こ系列靠近說話者，そ系列靠近聽話者，あ系列離雙方都遠，ど系列用來提問。",
+      },
+    ],
+    table: demonstrativeTable,
+    topics: [
+      {
+        id: "demonstrative-object-place-person",
+        title: "指東西、地方、方向與人",
+        summary:
+          "これ / それ / あれ / どれ單獨指物；この / その / あの / どの後面要接名詞；ここ / そこ / あそこ / どこ指地方；こちら / そちら / あちら / どちら可指方向、場所或人，語氣較鄭重。",
+        details: [
+          "口語常用こっち、そっち、あっち、どっち。",
+          "原始筆記中加引號的重點詞改以資料欄位標記，畫面用紅色醒目顯示，不把引號直接留在例句裡。",
+        ],
+        sourceRefs: ["note-v16-ch6-demonstratives", "note-v16-here-image"],
+        sharedNoteIds: ["demonstrative-distance-note"],
+        examples: [
+          {
+            id: "demonstrative-kore-umbrella",
+            japanese: "これは誰の傘ですか。",
+            highlightTerms: ["これ"],
+            reading: "これ は だれ の かさ ですか。",
+            translation: "這是誰的傘？",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-kono-umbrella",
+            japanese: "この傘はだれのですか。",
+            highlightTerms: ["この"],
+            reading: "この かさ は だれ の ですか。",
+            translation: "這把傘是誰的？",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-kochira-person",
+            japanese: "こちらは山田太郎さんです。",
+            highlightTerms: ["こちら"],
+            reading: "こちら は やまだ たろう さん です。",
+            translation: "這位是山田太郎先生。",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-achira-accounting",
+            japanese: "お会計はあちらでお願いします。",
+            highlightTerms: ["あちら"],
+            reading: "おかいけい は あちら で おねがいします。",
+            translation: "結帳請到那邊。",
+            origin: "source",
+          },
+        ],
+      },
+      {
+        id: "demonstrative-choice-dialogue",
+        title: "選擇、移動與店家對話",
+        summary:
+          "指示詞不只指物，也常出現在選座位、移動到另一邊、詢問營業時間與點餐的對話中。",
+        details: [
+          "「ここはうるさいから、あっちへ行きましょう。」用ここ標示現在位置，用あっち標示移動方向。",
+          "「そちらは何時から何時まで開いていますか。」可禮貌詢問對方店家營業時間。",
+        ],
+        sourceRefs: ["note-v16-ch6-demonstratives"],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: "demonstrative-seat-example",
+            japanese: "この席は狭いですから、あっちの席に座りましょう。",
+            highlightTerms: ["この", "あっち"],
+            reading:
+              "この せき は せまい ですから、あっち の せき に すわりましょう。",
+            translation: "這個座位很窄，我們坐那邊的位子吧。",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-order-example",
+            japanese: "飲み物はどれを注文しますか。",
+            highlightTerms: ["どれ"],
+            reading: "のみもの は どれ を ちゅうもんします か。",
+            translation: "飲料要點哪一個？",
+            origin: "source",
+          },
+          {
+            id: "demonstrative-pet-choice-example",
+            japanese: "犬と猫どちらが好きですか。",
+            highlightTerms: ["どちら"],
+            reading: "いぬ と ねこ どちら が すき ですか。",
+            translation: "狗和貓你喜歡哪一個？",
+            origin: "source",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "numbers",
+    title: "數字與促音讀法",
+    description: "將 number.png 與 number2.png 的數字讀法整理為表格，包含常用、少用與促音條件。",
+    presentationMode: "compare-table",
+    order: 9,
+    category: "core",
+    sharedNotes: [
+      {
+        id: "number-counter-note",
+        title: "數字接助數詞會變音",
+        content:
+          "一、六、八、十接部分か行、さ行、た行、は行開頭的助數詞時常促音化；は行助數詞還可能變成半濁音。",
+      },
+    ],
+    table: numberPronunciationTable,
+    topics: [
+      {
+        id: "number-basic-reading",
+        title: "0 到 10 的常用與少用讀法",
+        summary:
+          "日常先以ゼロ / れい、いち、に、さん、よん、ご、ろく、なな、はち、きゅう、じゅう為核心讀法。",
+        details: [
+          "四的し、七的しち、九的く在月份、時間等固定表現中仍常見。",
+          "電話號碼或逐碼唸數字時，0 也可能唸まる。",
+        ],
+        sourceRefs: ["note-v16-ch7-numbers", "note-v16-number-image", "note-v16-number2-image"],
+        sharedNoteIds: ["number-counter-note"],
+        examples: [
+          {
+            id: "number-phone-example",
+            japanese: "電話番号は090-1234-5678です。",
+            reading: "でんわばんごう は ゼロ きゅう ゼロ、いち に さん よん、ご ろく なな はち です。",
+            translation: "電話號碼是 090-1234-5678。",
+            note: "電話號碼逐碼讀，0 可讀ゼロ，也常聽到まる。",
+            origin: "source",
+          },
+          {
+            id: "number-counter-example",
+            japanese: "一回、六回、八回、十回練習します。",
+            reading: "いっかい、ろっかい、はっかい、じゅっかい れんしゅうします。",
+            translation: "練習一次、六次、八次、十次。",
+            origin: "supplemental",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "time-expressions",
+    title: "時間表現：月日星期與時分",
+    description: "整理 ch8 的月份、日期、星期、幾點、幾分、半、分前、午前與午後。",
+    presentationMode: "compare-table",
+    order: 10,
+    category: "core",
+    sharedNotes: [
+      {
+        id: "time-ni-note",
+        title: "具體時間常搭配に",
+        content:
+          "具體時間點常用「に」，例如「七時に起きます」；但今日、明日、毎日這類相對時間通常不一定加に。",
+      },
+    ],
+    table: timeExpressionTable,
+    topics: [
+      {
+        id: "time-month-date-weekday",
+        title: "月份、日期與星期",
+        summary:
+          "月份用數字加月，星期用曜日；日期有許多特殊讀法，需要當固定表現記住。",
+        details: [
+          "四月、七月、九月分別讀しがつ、しちがつ、くがつ。",
+          "一日到十日與二十日的讀法特別常考。",
+        ],
+        sourceRefs: ["note-v16-ch8-time"],
+        sharedNoteIds: ["time-ni-note"],
+        examples: [
+          {
+            id: "time-birthday-example",
+            japanese: "誕生日は四月二十日です。",
+            reading: "たんじょうび は しがつ はつか です。",
+            translation: "生日是四月二十日。",
+            origin: "source",
+          },
+          {
+            id: "time-weekday-example",
+            japanese: "月曜日に日本語を勉強します。",
+            reading: "げつようび に にほんご を べんきょうします。",
+            translation: "星期一學日文。",
+            origin: "supplemental",
+          },
+        ],
+      },
+      {
+        id: "time-hour-minute",
+        title: "幾點、幾分、半與分前",
+        summary:
+          "幾點用時，幾分用分；半表示三十分，分前表示幾分鐘前。",
+        details: [
+          "四時讀よじ，七時讀しちじ，九時讀くじ。",
+          "一分、三分、四分、六分、八分、十分等會在ふん / ぷん間變化。",
+          "午前與午後放在時間前，用來標示上午與下午。",
+        ],
+        sourceRefs: ["note-v16-ch8-time"],
+        sharedNoteIds: ["time-ni-note"],
+        examples: [
+          {
+            id: "time-meeting-example",
+            japanese: "午後三時半に会いましょう。",
+            reading: "ごご さんじ はん に あいましょう。",
+            translation: "下午三點半見吧。",
+            origin: "source",
+          },
+          {
+            id: "time-before-example",
+            japanese: "授業は九時五分前に始まります。",
+            reading: "じゅぎょう は くじ ごふんまえ に はじまります。",
+            translation: "課程九點五分前開始。",
+            origin: "supplemental",
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: "particle-wa",
     title: "助詞 は：主題標記與句子焦點",
     description: "",
@@ -1207,6 +1736,99 @@ export const n5GrammarSections: N5GrammarSection[] = [
             translation: "做了料理。",
             note: "這句和前面的「料理ができました」剛好能對照來看：前者強調「做了料理」這個動作，後者強調「料理完成了」這個狀態。",
             origin: "supplemental",
+          },
+        ],
+      },
+      {
+        id: "wo-action-object-v16",
+        title: "動作對象：吃、買、學、做的內容",
+        summary:
+          "ch1 補充的核心仍是「動作直接作用的對象」。食べます、買います、勉強します等動詞前的內容常用を標示。",
+        details: [
+          "長句可先找出主要動作，再回頭確認每個を標示的對象。",
+          "「毎朝、コンビニでサンドイッチとコーヒーを買ってから、会社へ行きます。」中，買う的對象是サンドイッチとコーヒー。",
+          "「で」標示購買場所，「へ」標示移動方向；不要把所有資訊都解讀成を的功能。",
+        ],
+        sourceRefs: ["note-v16-ch1-wo"],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: "wo-chopsticks-rice-example",
+            japanese: "日本人は箸でご飯を食べます。",
+            reading: "にほんじん は はし で ごはん を たべます。",
+            translation: "日本人用筷子吃飯。",
+            note: "箸で是工具；ご飯を是吃的對象。",
+            origin: "source",
+          },
+          {
+            id: "wo-study-japanese-example",
+            japanese: "週に三回、学校で日本語を勉強します。",
+            reading: "しゅう に さんかい、がっこう で にほんご を べんきょうします。",
+            translation: "一週三次在學校學日文。",
+            origin: "source",
+          },
+          {
+            id: "wo-buy-before-work-example",
+            japanese: "毎朝、コンビニでサンドイッチとコーヒーを買ってから、会社へ行きます。",
+            reading:
+              "まいあさ、コンビニ で サンドイッチ と コーヒー を かってから、かいしゃ へ いきます。",
+            translation: "每天早上在便利商店買三明治和咖啡後去公司。",
+            origin: "source",
+          },
+        ],
+      },
+      {
+        id: "wo-result-object",
+        title: "結果對象：做出、挖出或煮沸的結果",
+        summary:
+          "有些を標示的是動作產生或改變出的結果，例如挖洞、燒開水。",
+        details: [
+          "這類句子仍可理解成動作直接作用到某個對象，只是該對象同時帶有結果語感。",
+        ],
+        sourceRefs: ["note-v16-ch1-wo"],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: "wo-dig-hole-example",
+            japanese: "穴を掘ります。",
+            reading: "あな を ほります。",
+            translation: "挖洞。",
+            origin: "source",
+          },
+          {
+            id: "wo-boil-water-example",
+            japanese: "お湯を沸かします。",
+            reading: "おゆ を わかします。",
+            translation: "把水燒開。",
+            origin: "source",
+          },
+        ],
+      },
+      {
+        id: "wo-path-departure",
+        title: "經過路徑與離開點",
+        summary:
+          "移動動詞搭配を時，可標示經過的路徑，也可標示離開的場所。",
+        details: [
+          "橋を渡ります：把橋當成經過的路線。",
+          "教室を出ます：把教室當成離開的起點。",
+        ],
+        sourceRefs: ["note-v16-ch1-wo"],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: "wo-cross-bridge-example",
+            japanese: "橋を渡ります。",
+            reading: "はし を わたります。",
+            translation: "過橋。",
+            origin: "source",
+          },
+          {
+            id: "wo-leave-classroom-example",
+            japanese: "教室を出ます。",
+            reading: "きょうしつ を でます。",
+            translation: "離開教室。",
+            origin: "source",
           },
         ],
       },
@@ -1947,8 +2569,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
   },
   {
     id: "particle-de",
-    title: "助詞 で：交通工具或行動手段",
-    description: "",
+    title: "助詞 で：動作場所、工具與手段",
+    description: "整合既有交通工具用法與 ch2 的動作場所、に / で 比較。",
     presentationMode: "info-stack",
     order: 98,
     category: "particle",
@@ -1960,6 +2582,12 @@ export const n5GrammarSections: N5GrammarSection[] = [
           "「で」可與助詞「も」搭配，組成「でも」，" +
           "意思是「即使搭～也」或「用～方式也」。" +
           "詳細用法可參見助詞「も」的說明。",
+      },
+      {
+        id: "de-ni-place-contrast",
+        title: "に 與 で 的地點差異",
+        content:
+          "に多標示存在位置、到達點或放置結果；で多標示動作發生的場所。例：「ここに車を止めてください」偏向停放在此處；「ここで車を止めてください」偏向在這裡把車停下。",
       },
     ],
     topics: [
@@ -2023,8 +2651,224 @@ export const n5GrammarSections: N5GrammarSection[] = [
             origin: "supplemental",
           },
         ],
-        sourceRefs: ["note-v14-ch2"],
+        sourceRefs: ["note-v14-ch2", "note-v16-ch2-de"],
         sharedNoteIds: ["de-with-mo"],
+      },
+      {
+        id: "de-action-place",
+        title: "動作發生的場所",
+        summary:
+          "で可標示動作實際發生的地點，例如在學校學習、在店門口拍照、在某個出口碰面。",
+        details: [
+          "如果句子重點是「在哪裡做某動作」，通常用で。",
+          "公園を散歩します是把公園當作經過路徑；公園で散歩します則是把公園當作散步這個動作發生的場所。",
+        ],
+        sourceRefs: ["note-v16-ch2-de"],
+        sharedNoteIds: ["de-ni-place-contrast"],
+        examples: [
+          {
+            id: "de-school-study-example",
+            japanese: "学校で日本語を勉強します。",
+            reading: "がっこう で にほんご を べんきょうします。",
+            translation: "在學校學日文。",
+            origin: "source",
+          },
+          {
+            id: "de-store-front-photo-example",
+            japanese: "店の前で撮りましょう。",
+            reading: "みせ の まえ で とりましょう。",
+            translation: "在店前面拍照吧。",
+            origin: "source",
+          },
+          {
+            id: "de-yurakucho-meet-example",
+            japanese: "明日の六時に有楽町駅の中央口で会いましょう。",
+            reading:
+              "あした の ろくじ に ゆうらくちょうえき の ちゅうおうぐち で あいましょう。",
+            translation: "明天六點在有樂町站中央口見吧。",
+            origin: "source",
+          },
+        ],
+      },
+      {
+        id: "de-ni-location-contrast",
+        title: "に / で 比較：放置結果 vs 動作發生",
+        summary:
+          "同樣接地點時，に偏結果位置，で偏動作場所；這組差異是 ch2 的重點。",
+        details: [
+          "ここに車を止めてください：請把車停放在這裡。",
+          "ここで車を止めてください：請在這裡把車停下。",
+        ],
+        sourceRefs: ["note-v16-ch2-de"],
+        sharedNoteIds: ["de-ni-place-contrast"],
+        examples: [
+          {
+            id: "de-ni-park-car-ni-example",
+            japanese: "ここに車を止めてください。",
+            reading: "ここ に くるま を とめてください。",
+            translation: "請把車停在這裡。",
+            origin: "source",
+          },
+          {
+            id: "de-ni-park-car-de-example",
+            japanese: "ここで車を止めてください。",
+            reading: "ここ で くるま を とめてください。",
+            translation: "請在這裡停車。",
+            origin: "source",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "particle-kara",
+    title: "助詞 から：起點、來源與理由",
+    description: "整理 ch3 的時間起點、場所起點、路線起點、位置起點與來源語感。",
+    presentationMode: "info-stack",
+    order: 99,
+    category: "particle",
+    sharedNotes: [
+      {
+        id: "kara-made-route-note",
+        title: "から / まで 常成對出現",
+        content:
+          "から標示起點，まで標示終點；兩者常一起界定時間或路程的範圍。",
+      },
+    ],
+    topics: [
+      {
+        id: "kara-time-place-start",
+        title: "時間與場所的起點",
+        summary:
+          "から可表示「從某時間開始」或「從某地點出發」。",
+        details: [
+          "時間：九時から、月曜日から。",
+          "場所：東京から、駅から。",
+          "路線或範圍明確時，常接まで表示終點。",
+        ],
+        sourceRefs: ["note-v16-ch3-kara"],
+        sharedNoteIds: ["kara-made-route-note"],
+        examples: [
+          {
+            id: "kara-class-start-example",
+            japanese: "授業は九時からです。",
+            reading: "じゅぎょう は くじ から です。",
+            translation: "課程從九點開始。",
+            origin: "source",
+          },
+          {
+            id: "kara-tokyo-okinawa-example",
+            japanese: "東京から沖縄まで飛行機でどのくらいかかりますか。",
+            reading:
+              "とうきょう から おきなわ まで ひこうき で どの くらい かかります か。",
+            translation: "從東京到沖繩搭飛機要花多久？",
+            note: "かかる可表示花費時間、金錢或工夫。",
+            origin: "source",
+          },
+        ],
+      },
+      {
+        id: "kara-position-source",
+        title: "位置起點與來源",
+        summary:
+          "から也可標示某物從哪個位置開始，或資訊、材料、動作的來源。",
+        details: [
+          "位置起點可用於「從右邊、從入口」這類說法。",
+          "來源語感可用於收到訊息、材料來源或從某人那裡得到資訊。",
+        ],
+        sourceRefs: ["note-v16-ch3-kara"],
+        sharedNoteIds: [],
+        examples: [
+          {
+            id: "kara-friend-mail-example",
+            japanese: "友達からメールが来ました。",
+            reading: "ともだち から メール が きました。",
+            translation: "朋友寄了信來。",
+            origin: "supplemental",
+          },
+          {
+            id: "kara-right-read-example",
+            japanese: "右から読んでください。",
+            reading: "みぎ から よんでください。",
+            translation: "請從右邊開始讀。",
+            origin: "supplemental",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "particle-made",
+    title: "助詞 まで：終點、界線與上限",
+    description: "整理 ch4 的時間終點、地點終點、範圍界線與數量上限。",
+    presentationMode: "info-stack",
+    order: 100,
+    category: "particle",
+    sharedNotes: [
+      {
+        id: "made-limit-note",
+        title: "まで標示界線",
+        content:
+          "まで不是只表示抵達地點，也能表示時間、數量或程度的界線；依語境可譯為「到……為止」。",
+      },
+    ],
+    topics: [
+      {
+        id: "made-time-place-end",
+        title: "時間與地點的終點",
+        summary:
+          "まで可表示時間持續到某點，或移動、送達的終點。",
+        details: [
+          "朝まで：直到早上。",
+          "駅まで：到車站為止。",
+        ],
+        sourceRefs: ["note-v16-ch4-made"],
+        sharedNoteIds: ["made-limit-note"],
+        examples: [
+          {
+            id: "made-drink-morning-example",
+            japanese: "今晩は朝まで飲みましょう。",
+            reading: "こんばん は あさ まで のみましょう。",
+            translation: "今晚喝到早上吧。",
+            origin: "source",
+          },
+          {
+            id: "made-send-station-example",
+            japanese: "友達を駅まで車で送ります。",
+            reading: "ともだち を えき まで くるま で おくります。",
+            translation: "開車送朋友到車站。",
+            origin: "source",
+          },
+        ],
+      },
+      {
+        id: "made-limit-quantity",
+        title: "數量上限與程度界線",
+        summary:
+          "まで也可用來限定數量上限，例如一次最多能借幾本書。",
+        details: [
+          "「一人四冊まで」表示每人最多四本。",
+          "犬がうるさくてたまりません這類句子可搭配時間範圍說明困擾持續到何時。",
+        ],
+        sourceRefs: ["note-v16-ch4-made"],
+        sharedNoteIds: ["made-limit-note"],
+        examples: [
+          {
+            id: "made-book-limit-example",
+            japanese: "一人四冊まで本を借りることができます。",
+            reading: "ひとり よんさつ まで ほん を かりる こと が できます。",
+            translation: "一個人最多可以借四本書。",
+            origin: "source",
+          },
+          {
+            id: "made-dog-noisy-example",
+            japanese: "隣の犬が夜までうるさくてたまりません。",
+            reading: "となり の いぬ が よる まで うるさくて たまりません。",
+            translation: "隔壁的狗一直吵到晚上，讓人受不了。",
+            note: "～てたまりません表示程度強到難以忍受。",
+            origin: "source",
+          },
+        ],
       },
     ],
   },
@@ -2229,6 +3073,97 @@ export const n5GrammarSourceCoverage: N5GrammarSourceCoverageItem[] = [
     summary: "助詞で：交通工具與手段",
     mappedSectionId: "particle-de",
     mappedTopicIds: ["de-transportation"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-note2",
+    summary: "核心詞類用法：い形容詞、な形容詞、名詞、動詞",
+    mappedSectionId: "core-term-usage-overview",
+    mappedTopicIds: ["core-term-pos-comparison"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-ch0-dekiru",
+    summary: "できる：能力、可能、完成與各形態",
+    mappedSectionId: "dekiru-ability",
+    mappedTopicIds: ["dekiru-forms"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-ch1-wo",
+    summary: "助詞を：動作對象、結果對象、經過路徑與離開點",
+    mappedSectionId: "particle-wo",
+    mappedTopicIds: ["wo-action-object-v16", "wo-result-object", "wo-path-departure"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-ch2-de",
+    summary: "助詞で：動作場所與に / で比較",
+    mappedSectionId: "particle-de",
+    mappedTopicIds: ["de-transportation", "de-action-place", "de-ni-location-contrast"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-ch3-kara",
+    summary: "助詞から：時間、場所、路線、位置與來源起點",
+    mappedSectionId: "particle-kara",
+    mappedTopicIds: ["kara-time-place-start", "kara-position-source"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-ch4-made",
+    summary: "助詞まで：時間、地點、數量與程度界線",
+    mappedSectionId: "particle-made",
+    mappedTopicIds: ["made-time-place-end", "made-limit-quantity"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-ch5-question-words",
+    summary: "常見疑問詞與ている狀態補充",
+    mappedSectionId: "question-words",
+    mappedTopicIds: ["question-core-words", "question-choice-quantity"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-ch6-demonstratives",
+    summary: "指示詞こそあど與例句",
+    mappedSectionId: "demonstratives",
+    mappedTopicIds: ["demonstrative-object-place-person", "demonstrative-choice-dialogue"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-here-image",
+    summary: "here.png 指示詞表格",
+    mappedSectionId: "demonstratives",
+    mappedTopicIds: ["demonstrative-object-place-person"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-ch7-numbers",
+    summary: "數字常用、少用與促音讀法",
+    mappedSectionId: "numbers",
+    mappedTopicIds: ["number-basic-reading"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-number-image",
+    summary: "number.png 數字讀法表",
+    mappedSectionId: "numbers",
+    mappedTopicIds: ["number-basic-reading"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-number2-image",
+    summary: "number2.png 促音條件表",
+    mappedSectionId: "numbers",
+    mappedTopicIds: ["number-basic-reading"],
+    status: "supplemented",
+  },
+  {
+    sourceId: "note-v16-ch8-time",
+    summary: "時間表現：月份、日期、星期、時分、午前午後",
+    mappedSectionId: "time-expressions",
+    mappedTopicIds: ["time-month-date-weekday", "time-hour-minute"],
     status: "supplemented",
   },
 ];

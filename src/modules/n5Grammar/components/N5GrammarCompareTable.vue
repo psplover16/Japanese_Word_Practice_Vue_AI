@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { N5GrammarSection, N5GrammarSharedNote, N5GrammarTableExampleGroup, N5GrammarTopic } from '@/modules/n5Grammar/types/grammarNotes';
+import type {
+  N5GrammarExample,
+  N5GrammarSection,
+  N5GrammarSharedNote,
+  N5GrammarTableExampleGroup,
+  N5GrammarTopic
+} from '@/modules/n5Grammar/types/grammarNotes';
 
 const props = defineProps<{
   section: N5GrammarSection;
@@ -21,6 +27,32 @@ function resolveRowLabel(group: N5GrammarTableExampleGroup) {
 
 function resolveColumnLabel(group: N5GrammarTableExampleGroup) {
   return columnLabels.value[group.columnIndex] ?? `第 ${group.columnIndex + 1} 欄`;
+}
+
+function getHighlightedParts(example: N5GrammarExample) {
+  const terms = [...(example.highlightTerms ?? [])].filter(Boolean).sort((left, right) => right.length - left.length);
+
+  if (terms.length === 0) {
+    return [{ text: example.japanese, highlighted: false }];
+  }
+
+  const parts: { text: string; highlighted: boolean }[] = [];
+  let cursor = 0;
+
+  while (cursor < example.japanese.length) {
+    const match = terms.find((term) => example.japanese.startsWith(term, cursor));
+
+    if (match) {
+      parts.push({ text: match, highlighted: true });
+      cursor += match.length;
+      continue;
+    }
+
+    parts.push({ text: example.japanese.charAt(cursor), highlighted: false });
+    cursor += 1;
+  }
+
+  return parts;
 }
 </script>
 
@@ -70,7 +102,15 @@ function resolveColumnLabel(group: N5GrammarTableExampleGroup) {
         <div class="n5-grammar-example-box">
           <div class="n5-grammar-subheading">例句</div>
           <div v-for="example in group.examples" :key="example.id" class="n5-grammar-example-card">
-            <div class="n5-grammar-example-japanese">{{ example.japanese }}</div>
+            <div class="n5-grammar-example-japanese">
+              <span
+                v-for="(part, partIndex) in getHighlightedParts(example)"
+                :key="`${example.id}-${partIndex}`"
+                :class="{ 'n5-grammar-example-highlight': part.highlighted }"
+              >
+                {{ part.text }}
+              </span>
+            </div>
             <div v-if="example.reading" class="n5-grammar-example-reading">{{ example.reading }}</div>
             <div class="n5-grammar-example-translation">{{ example.translation }}</div>
             <div v-if="example.note" class="n5-grammar-example-note">{{ example.note }}</div>
@@ -97,7 +137,15 @@ function resolveColumnLabel(group: N5GrammarTableExampleGroup) {
       <div class="n5-grammar-example-box">
         <div class="n5-grammar-subheading">例句</div>
         <div v-for="example in topic.examples" :key="example.id" class="n5-grammar-example-card">
-          <div class="n5-grammar-example-japanese">{{ example.japanese }}</div>
+          <div class="n5-grammar-example-japanese">
+            <span
+              v-for="(part, partIndex) in getHighlightedParts(example)"
+              :key="`${example.id}-${partIndex}`"
+              :class="{ 'n5-grammar-example-highlight': part.highlighted }"
+            >
+              {{ part.text }}
+            </span>
+          </div>
           <div v-if="example.reading" class="n5-grammar-example-reading">{{ example.reading }}</div>
           <div class="n5-grammar-example-translation">{{ example.translation }}</div>
           <div v-if="example.note" class="n5-grammar-example-note">{{ example.note }}</div>

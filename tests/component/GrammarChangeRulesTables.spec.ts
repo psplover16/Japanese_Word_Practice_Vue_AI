@@ -19,15 +19,40 @@ describe('Grammar change-rules tables', () => {
     expect(subTable.text()).toContain('以「す」做辭書型詞尾的五段動詞，不發生音便。ex.探す');
   });
 
-  it('カ變動詞與だ助動詞保留多行標題與特殊文字', async () => {
+  it('カ變動詞與だ助動詞保留說明文字，但標題列只顯示標題', async () => {
     const { wrapper } = mountWithPracticeSession(GrammarView);
 
     await wrapper.get('[data-testid="grammar-toggle-kahen-table"]').trigger('click');
     await wrapper.get('[data-testid="grammar-toggle-da-auxiliary-table"]').trigger('click');
 
+    expect(wrapper.get('[data-testid="grammar-toggle-kahen-table"]').text()).toContain('カ變動詞 (只有来る)');
+    expect(wrapper.get('[data-testid="grammar-toggle-kahen-table"]').text()).not.toContain('漢字發音會變動');
+    expect(wrapper.get('[data-testid="grammar-toggle-da-auxiliary-table"]').text()).toContain('だ助動詞');
+    expect(wrapper.get('[data-testid="grammar-toggle-da-auxiliary-table"]').text()).not.toContain('名詞＋だ');
     expect(wrapper.get('[data-testid="grammar-table-kahen-table"]').text()).toContain('漢字發音會變動，標註在詞尾');
     expect(wrapper.get('[data-testid="grammar-table-da-auxiliary-table"]').text()).toContain('名詞＋だ (ex.彼は学生だ)');
     expect(wrapper.get('[data-testid="grammar-table-da-auxiliary-table"]').text()).toContain('被修飾');
+  });
+
+  it('サ變動詞展開後在表格下方顯示散歩例句', async () => {
+    const { wrapper } = mountWithPracticeSession(GrammarView);
+
+    await wrapper.get('[data-testid="grammar-toggle-sahen-table"]').trigger('click');
+
+    const table = wrapper.get('[data-testid="grammar-table-sahen-table"]');
+    const examples = table.get('[data-testid="grammar-inflection-examples-sahen-sanpo-examples"]');
+
+    expect(table.text()).toContain('サ變動詞 (する動詞為結尾的動詞)');
+    expect(table.text()).toContain('辭書形');
+    expect(examples.text()).toContain('散歩する的常用否定與過去例句');
+    expect(examples.text()).toContain('しません');
+    expect(examples.text()).toContain('雨の日は散歩しません。');
+    expect(examples.text()).toContain('しませんでした');
+    expect(examples.text()).toContain('昨日は忙しかったので、散歩しませんでした。');
+    expect(examples.text()).toContain('しない');
+    expect(examples.text()).toContain('今日は散歩しない。');
+    expect(examples.text()).toContain('した');
+    expect(examples.text()).toContain('今朝、公園で散歩した。');
   });
 
   it('ない形容詞與だ助動詞的假名欄維持不換行，且固定兩行欄位仍保留', async () => {

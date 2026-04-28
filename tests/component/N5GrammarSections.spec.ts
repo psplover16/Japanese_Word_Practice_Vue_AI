@@ -8,6 +8,7 @@ describe('N5GrammarSections', () => {
     const toggle = wrapper.get('[data-testid="n5-grammar-toggle-polite-overview"]');
     const body = wrapper.find('[data-testid="n5-grammar-body-polite-overview"]');
 
+    expect(wrapper.get('[data-testid="n5-grammar-title-core-term-usage-overview"]').text()).toBe('核心詞類用法總覽');
     expect(wrapper.get('[data-testid="n5-grammar-title-polite-overview"]').text()).toBe('敬體變化速覽');
     expect(wrapper.get('[data-testid="n5-grammar-title-sentence-basics"]').text()).toBe('敬體句型：現在型與詞類基礎');
     expect(toggle.attributes('aria-expanded')).toBe('false');
@@ -71,5 +72,51 @@ describe('N5GrammarSections', () => {
     expect(naruSection.find('[data-testid="n5-grammar-topic-naru-i-adjective"]').exists()).toBe(true);
     expect(naruSection.text()).toContain('髪が長くなりました。');
     expect(naruSection.text()).toContain('辞める / 止める / やめる');
+  });
+
+  it('v16 新增 section 預設收合，展開後顯示說明、表格與例句', async () => {
+    const { wrapper } = mountWithPracticeSession(N5GrammarView);
+    const targetIds = ['core-term-usage-overview', 'dekiru-ability', 'question-words', 'demonstratives', 'numbers', 'time-expressions'];
+
+    for (const id of targetIds) {
+      expect(wrapper.get(`[data-testid="n5-grammar-toggle-${id}"]`).attributes('aria-expanded')).toBe('false');
+      expect(wrapper.get(`[data-testid="n5-grammar-body-${id}"]`).attributes('style')).toContain('display: none;');
+    }
+
+    await wrapper.get('[data-testid="n5-grammar-toggle-core-term-usage-overview"]').trigger('click');
+    await wrapper.get('[data-testid="n5-grammar-toggle-dekiru-ability"]').trigger('click');
+    await wrapper.get('[data-testid="n5-grammar-toggle-demonstratives"]').trigger('click');
+    await wrapper.get('[data-testid="n5-grammar-toggle-numbers"]').trigger('click');
+    await wrapper.get('[data-testid="n5-grammar-toggle-time-expressions"]').trigger('click');
+
+    const coreTermSection = wrapper.get('[data-testid="n5-grammar-section-core-term-usage-overview"]');
+    const dekiruSection = wrapper.get('[data-testid="n5-grammar-section-dekiru-ability"]');
+    const demonstrativesSection = wrapper.get('[data-testid="n5-grammar-section-demonstratives"]');
+    const numbersSection = wrapper.get('[data-testid="n5-grammar-section-numbers"]');
+    const timeSection = wrapper.get('[data-testid="n5-grammar-section-time-expressions"]');
+
+    expect(coreTermSection.find('[data-testid="n5-grammar-compare-table-core-term-usage-overview"]').exists()).toBe(true);
+    expect(coreTermSection.text()).toContain('い形容詞');
+    expect(dekiruSection.text()).toContain('日本語ができます。');
+    expect(demonstrativesSection.find('[data-testid="n5-grammar-compare-table-demonstratives"]').exists()).toBe(true);
+    expect(demonstrativesSection.text()).toContain('こちら');
+    expect(numbersSection.find('[data-testid="n5-grammar-compare-table-numbers"]').exists()).toBe(true);
+    expect(numbersSection.text()).toContain('じゅっ / じっ');
+    expect(timeSection.find('[data-testid="n5-grammar-compare-table-time-expressions"]').exists()).toBe(true);
+    expect(timeSection.text()).toContain('午後三時半に会いましょう。');
+  });
+
+  it('指示詞例句以 class 標記紅色重點字，標題列不夾帶 description', async () => {
+    const { wrapper } = mountWithPracticeSession(N5GrammarView);
+
+    expect(wrapper.get('[data-testid="n5-grammar-title-demonstratives"]').text()).toBe('指示詞：こそあど系列');
+    expect(wrapper.get('[data-testid="n5-grammar-title-demonstratives"]').text()).not.toContain('here.png');
+
+    await wrapper.get('[data-testid="n5-grammar-toggle-demonstratives"]').trigger('click');
+
+    const section = wrapper.get('[data-testid="n5-grammar-section-demonstratives"]');
+    expect(section.get('[data-testid="n5-grammar-description-demonstratives"]').text()).toContain('here.png');
+    expect(section.findAll('.n5-grammar-example-highlight').map((node) => node.text())).toContain('これ');
+    expect(section.text()).toContain('これは誰の傘ですか。');
   });
 });

@@ -72,28 +72,28 @@ src/
 │  ├─ grammar/ (文法頁模組)
 │  │  ├─ components/
 │  │  │  ├─ GodanVerbTable.vue (五段動詞主表與音便子表；以兩個 accordion table 呈現詞尾母音變化與音便規則)
-│  │  │  ├─ GrammarAccordionTableShell.vue (文法表格共用殼層；提供標題列、展開收合、`data-testid` 與一致表格骨架)
-│  │  │  ├─ InflectionTable.vue (一般活用表 renderer；支援一段、サ變、カ變、形容詞與助動詞等多組列資料)
+│  │  │  ├─ GrammarAccordionTableShell.vue (文法表格共用殼層；提供標題列、展開收合、`data-testid`、標題/說明分離與一致表格骨架)
+│  │  │  ├─ InflectionTable.vue (一般活用表 renderer；支援一段、サ變、カ變、形容詞與助動詞等多組列資料，並可在表格下方顯示例句組)
 │  │  │  ├─ PosConversionTable.vue (詞性變化規則 renderer；顯示分組標題、條列規則與例句)
 │  │  │  ├─ RuleListTable.vue (規則清單表 renderer；顯示編號規則與多行補充說明)
 │  │  │  └─ SystemDifferenceTable.vue (語法系統差異比較表 renderer；顯示系統別對照與備註列)
 │  │  ├─ data/
 │  │  │  └─ changeRules.ts (文法頁 11 個 section 的靜態資料來源；集中管理標題、payload 與穩定 id)
 │  │  ├─ types/
-│  │  │  └─ changeRules.ts (文法表格資料型別定義，例如 section、比較列、活用表與詞性變化結構)
+│  │  │  └─ changeRules.ts (文法表格資料型別定義，例如 section、比較列、活用表、可選例句組與詞性變化結構)
 │  │  └─ views/
 │  │     └─ GrammarView.vue (文法頁畫面；組裝 11 個規則容器並依資料型別切換對應 renderer)
 │  │
 │  ├─ n5Grammar/ (N5 文法學習頁模組)
 │  │  ├─ components/
-│  │  │  ├─ N5GrammarBulletBlock.vue (條列式文法說明 renderer；適合規則重點與例句混合閱讀的群組)
-│  │  │  ├─ N5GrammarCompareTable.vue (差異對照表 renderer；先顯示比較表，再補充每個儲存格例句群組與必要的主題說明/例句)
-│  │  │  ├─ N5GrammarInfoBlock.vue (說明後接例句的 renderer；適合連續閱讀型內容)
+│  │  │  ├─ N5GrammarBulletBlock.vue (條列式文法說明 renderer；適合規則重點與例句混合閱讀的群組，支援例句重點字標記)
+│  │  │  ├─ N5GrammarCompareTable.vue (差異對照表 renderer；先顯示比較表，再補充每個儲存格例句群組與必要的主題說明/例句，支援例句重點字標記)
+│  │  │  ├─ N5GrammarInfoBlock.vue (說明後接例句的 renderer；適合連續閱讀型內容，支援例句重點字標記)
 │  │  │  └─ N5GrammarSectionCard.vue (N5 文法群組容器；提供標題列、右側收合按鈕與標題分離的說明區)
 │  │  ├─ data/
-│  │  │  └─ grammarNotes.ts (N5 文法結構化靜態資料；整理 v11 筆記、排序規則、來源覆蓋、共通註記與敬體總覽儲存格例句)
+│  │  │  └─ grammarNotes.ts (N5 文法結構化靜態資料；整理 v11~v16 筆記、排序規則、來源覆蓋、共通註記、圖片轉表格資料與敬體總覽儲存格例句)
 │  │  ├─ types/
-│  │  │  └─ grammarNotes.ts (N5 文法資料型別定義，例如 section、topic、example、compare table、tableExampleGroups 與來源覆蓋項)
+│  │  │  └─ grammarNotes.ts (N5 文法資料型別定義，例如 section、topic、可標記重點字的 example、compare table、tableExampleGroups 與來源覆蓋項)
 │  │  └─ views/
 │  │     └─ N5GrammarView.vue (N5 文法正式學習頁；依 section 的 presentation mode 組裝 compare/info/bullet 三種 renderer)
 │  │
@@ -136,7 +136,7 @@ src/
 │     ├─ composables/
 │     │  └─ useVocabularySession.ts (單字頁狀態管理；串接 `/practice` 勾選、搜尋條件、註記草稿／持久化與長按揭露)
 │     ├─ data/
-│     │  └─ jpWords.ts (單字靜態資料；將既有字典資料正規化為可渲染結構，並保留 stage 中繼資訊)
+│     │  └─ jpWords.ts (單字靜態資料；將既有字典與 v16 補充詞條正規化為可渲染結構，並保留 stage 中繼資訊)
 │     ├─ storage/
 │     │  └─ vocabularyMarksStorage.ts (單字註記 localStorage 存取與格式驗證)
 │     ├─ types/
@@ -175,17 +175,17 @@ tests/
 │  ├─ AppShellSmoke.spec.ts (AppShell 基本渲染與核心外框 smoke test；驗證 tabs-only header 與四主路由)
 │  ├─ ChoonRuleSection.spec.ts (長音規則大表格的結構與例字三段資訊測試)
 │  ├─ ExamModal.spec.ts (ExamModal 的關鍵互動、題目列顯示與關閉測試)
-│  ├─ GrammarChangeRulesTables.spec.ts (文法頁複雜表格 renderer 測試；驗證五段動詞、活用表與詞性變化內容)
-│  ├─ GrammarViewSmoke.spec.ts (文法頁 11 個規則容器與 accordion 初始狀態 smoke test)
+│  ├─ GrammarChangeRulesTables.spec.ts (文法頁複雜表格 renderer 測試；驗證五段動詞、活用表、サ變例句與詞性變化內容)
+│  ├─ GrammarViewSmoke.spec.ts (文法頁 11 個規則容器、標題/說明分離與 accordion 初始狀態 smoke test)
 │  ├─ LoanwordSection.spec.ts (外來語矩陣的標頭、內容格與假名/羅馬音呈現測試)
-│  ├─ N5GrammarSections.spec.ts (N5 文法群組測試；驗證敬體總覽收合/展開、儲存格例句群組與不同內容模式 renderer)
-│  ├─ N5GrammarViewSmoke.spec.ts (N5 文法正式頁 smoke test；驗證新的前兩個區塊標題、render-safe 初始渲染與無非預期外溢內容)
+│  ├─ N5GrammarSections.spec.ts (N5 文法群組測試；驗證敬體總覽與 v16 新 section 收合/展開、儲存格例句群組、重點字標記與不同內容模式 renderer)
+│  ├─ N5GrammarViewSmoke.spec.ts (N5 文法正式頁 smoke test；驗證核心詞類、敬體與 v16 區塊標題、render-safe 初始渲染與無非預期外溢內容)
 │  ├─ PracticeViewSmoke.spec.ts (PracticeView 的基本渲染、指定假名表字級 class、下半部區塊首屏存在與最近結果清除/捲動測試)
 │  ├─ RouteOwnership.spec.ts (驗證 `/practice`、`/grammar`、`/vocabulary`、`/n5-grammar` 的 feature ownership 與 negative ownership，並確認 N5 文法內容不外溢)
 │  ├─ SelectionDetailPanel.spec.ts (選取明細面板的顯示邏輯測試)
 │  ├─ VocabularyControlBar.spec.ts (單字頁控制區測試；驗證搜尋與 checkbox 疊加控制事件)
 │  ├─ VocabularyStageTable.spec.ts (單字表格測試；驗證欄位保留佔位、註記與長按事件輸出)
-│  ├─ VocabularyViewSmoke.spec.ts (單字頁 smoke test；驗證初始渲染、註記儲存與長按揭露)
+│  ├─ VocabularyViewSmoke.spec.ts (單字頁 smoke test；驗證初始渲染、註記儲存、長按揭露與 v16 方位詞搜尋)
 │  ├─ YoonSections.spec.ts (清音拗音與合拗音矩陣的全表羅馬音測試)
 │  └─ testUtils.ts (元件測試共用 helper；例如先 provide PracticeSession 再 mount，並可傳入額外 mount options)
 ├─ e2e/ (Playwright 端到端測試)
@@ -201,12 +201,12 @@ tests/
 ├─ unit/ (純邏輯單元測試)
 │  ├─ latestUnknownResultStorage.spec.ts (最近不熟結果 storage 的讀寫與驗證測試)
 │  ├─ changeRulesData.spec.ts (文法頁靜態資料測試；驗證 section 數量、id 唯一性與關鍵 payload 完整度)
-│  ├─ n5GrammarData.spec.ts (N5 文法靜態資料測試；驗證前兩個區塊排序、12 組儲存格例句、助詞排序與來源覆蓋)
+│  ├─ n5GrammarData.spec.ts (N5 文法靜態資料測試；驗證核心區塊排序、12 組儲存格例句、v16 來源覆蓋、助詞排序與重點字欄位)
 │  ├─ pwaLifecycleService.spec.ts (PWA 更新流程與 toast 狀態測試)
 │  ├─ questionDeck.spec.ts (洗牌與循環題組工具測試)
 │  ├─ useExamSession.spec.ts (測驗流程狀態機測試)
 │  ├─ usePracticeSession.spec.ts (練習狀態管理測試)
-│  ├─ vocabularyData.spec.ts (單字資料測試；驗證正規化後筆數、id 與 stage 分組順序)
+│  ├─ vocabularyData.spec.ts (單字資料測試；驗證正規化後筆數、id、stage 分組順序與 v16 補充詞條唯一性)
 │  ├─ vocabularyFilters.spec.ts (單字過濾邏輯測試；驗證搜尋與字母條件疊加規則)
 │  └─ vocabularyMarksStorage.spec.ts (單字註記 storage 測試；驗證格式驗證與壞資料清除)
 └─ setup.ts (Vitest 共用初始化；載入 `jest-dom` matcher)
