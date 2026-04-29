@@ -1,2 +1,1 @@
-export const defaultExpandedSectionIds: string[] = ['question-words'];
-// ['question-words', 'demonstratives'];
+export const defaultExpandedSectionIds: string[] = []; // 預設 N5文法打開的容器

@@ -21,6 +21,7 @@ export interface N5GrammarTopic {
   title: string;
   summary: string;
   details: string[];
+  detailHighlightTerms?: string[];
   examples: N5GrammarExample[];
   sourceRefs: string[];
   sharedNoteIds: string[];

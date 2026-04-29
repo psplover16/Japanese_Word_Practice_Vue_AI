@@ -5,18 +5,18 @@ export interface N5GrammarHighlightedPart {
   highlighted: boolean;
 }
 
-export function getN5GrammarHighlightedParts(example: N5GrammarExample): N5GrammarHighlightedPart[] {
-  const terms = [...(example.highlightTerms ?? [])].filter(Boolean).sort((left, right) => right.length - left.length);
+export function getN5GrammarTextHighlightedParts(text: string, highlightTerms?: string[]): N5GrammarHighlightedPart[] {
+  const terms = [...(highlightTerms ?? [])].filter(Boolean).sort((left, right) => right.length - left.length);
 
   if (terms.length === 0) {
-    return [{ text: example.japanese, highlighted: false }];
+    return [{ text, highlighted: false }];
   }
 
   const parts: N5GrammarHighlightedPart[] = [];
   let cursor = 0;
 
-  while (cursor < example.japanese.length) {
-    const match = terms.find((term) => example.japanese.startsWith(term, cursor));
+  while (cursor < text.length) {
+    const match = terms.find((term) => text.startsWith(term, cursor));
 
     if (match) {
       parts.push({ text: match, highlighted: true });
@@ -24,9 +24,13 @@ export function getN5GrammarHighlightedParts(example: N5GrammarExample): N5Gramm
       continue;
     }
 
-    parts.push({ text: example.japanese.charAt(cursor), highlighted: false });
+    parts.push({ text: text.charAt(cursor), highlighted: false });
     cursor += 1;
   }
 
   return parts;
+}
+
+export function getN5GrammarHighlightedParts(example: N5GrammarExample): N5GrammarHighlightedPart[] {
+  return getN5GrammarTextHighlightedParts(example.japanese, example.highlightTerms);
 }

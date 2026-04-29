@@ -487,6 +487,10 @@ textarea {
     white-space: pre-line;
   }
 
+  .n5-grammar-detail-highlight {
+    @apply font-bold text-red-700;
+  }
+
   .n5-grammar-subheading {
     @apply text-xs font-bold uppercase tracking-[0.08em] text-clay;
     font-size: 0.8571428571rem;

@@ -44,7 +44,7 @@ describe('n5GrammarData', () => {
     expect(getSection('past-and-state').title).toBe('敬體句型：過去、狀態與補充表現');
   });
 
-  it('所有教學 topic 都保有摘要、例句與來源對應', () => {
+  it('所有教學 topic 都保有說明內容、例句陣列與來源對應', () => {
     for (const section of sortedN5GrammarSections) {
       if (section.id === 'polite-overview') {
         expect(section.topics).toHaveLength(0);
@@ -54,8 +54,8 @@ describe('n5GrammarData', () => {
       expect(section.topics.length).toBeGreaterThan(0);
 
       for (const topic of section.topics) {
-        expect(topic.summary.length).toBeGreaterThan(0);
-        expect(topic.examples.length).toBeGreaterThan(0);
+        expect(topic.summary.length + topic.details.join('').length).toBeGreaterThan(0);
+        expect(Array.isArray(topic.examples)).toBe(true);
         expect(topic.sourceRefs.length).toBeGreaterThan(0);
       }
     }
@@ -464,11 +464,100 @@ describe('017 v16 N5 文法整理', () => {
 
     expect(getSection('demonstratives').table?.rows.map((row) => row.values).flat().some((value) => value.includes('こちら'))).toBe(true);
     expect(getSection('numbers').table?.rows.find((row) => row.id === 'number-10')?.values).toContain('じゅっ / じっ');
-    expect(getSection('time-expressions').table?.rows.map((row) => row.label)).toContain('幾分');
+    expect(getSection('time-expressions').presentationMode).toBe('info-stack');
+    expect(getSection('time-expressions').table).toBeUndefined();
+    expect(getSection('time-expressions').topics.map((topic) => topic.id)).toEqual([
+      'time-months',
+      'time-dates',
+      'time-weekdays',
+      'time-hours',
+      'time-minutes',
+      'time-common-expressions'
+    ]);
 
     for (const sourceId of requiredCoverageIds) {
       expect(n5GrammarSourceCoverage.find((item) => item.sourceId === sourceId), sourceId).toBeDefined();
     }
+  });
+
+  it('時間表現分成月份、日期、星期、小時、分鐘與其他常用表現', () => {
+    const section = getSection('time-expressions');
+    const byId = new Map(section.topics.map((topic) => [topic.id, topic]));
+    const commonExamples = byId.get('time-common-expressions')?.examples ?? [];
+
+    expect(byId.get('time-months')?.details).toContain('4月 / 四月：しがつ');
+    expect(byId.get('time-months')?.detailHighlightTerms).toEqual(['しがつ', 'しちがつ', 'くがつ']);
+    expect(byId.get('time-months')?.examples).toEqual([]);
+    expect(byId.get('time-months')?.details).toContain('9月 / 九月：くがつ');
+    expect(byId.get('time-dates')?.details).toContain('20日：はつか');
+    expect(byId.get('time-dates')?.detailHighlightTerms).toEqual([
+      'ついたち',
+      'ふつか',
+      'みっか',
+      'よっか',
+      'いつか',
+      'むいか',
+      'なのか',
+      'ようか',
+      'ここのか',
+      'とおか',
+      'じゅうよっか',
+      'はつか',
+      'にじゅうよっか'
+    ]);
+    expect(byId.get('time-dates')?.examples).toEqual([]);
+    expect(byId.get('time-dates')?.details).toContain('31日：さんじゅういちにち');
+    expect(byId.get('time-weekdays')?.details).toContain('星期日 / 日曜日：にちようび');
+    expect(byId.get('time-hours')?.details).toContain('4時 / 四時：よじ');
+    expect(byId.get('time-hours')?.detailHighlightTerms).toEqual(['よじ', 'しちじ', 'くじ']);
+    expect(byId.get('time-hours')?.examples).toEqual([]);
+    expect(byId.get('time-hours')?.details).toContain('9時 / 九時：くじ');
+    expect(byId.get('time-minutes')?.details).toContain('1分 / 一分：いっぷん');
+    expect(byId.get('time-minutes')?.detailHighlightTerms).toContain('いっぷん');
+    expect(byId.get('time-minutes')?.examples).toEqual([]);
+    expect(byId.get('time-minutes')?.details).toContain('10分 / 十分：じゅっぷん');
+    expect(commonExamples.map((example) => example.japanese)).toEqual([
+      '三時半です。',
+      '五分前です。',
+      '午前十時です。',
+      '午後三時です。',
+      '午後三時半です。',
+      '午前九時五分前です。',
+      '午前八時十五分です。'
+    ]);
+    expect(commonExamples.find((example) => example.japanese === '午後三時半です。')?.reading).toBe('ごご さんじはん です。');
+    expect(commonExamples.find((example) => example.japanese === '午前八時十五分です。')?.reading).toBe(
+      'ごぜん はちじ じゅうごふん です。'
+    );
+  });
+
+  it('數字與促音讀法補充一、四、七、九的助數詞與固定時間讀法', () => {
+    const topic = getSection('numbers').topics.find((entry) => entry.id === 'number-basic-reading');
+    const details = topic?.details.join('\n') ?? '';
+    const examples = topic?.examples ?? [];
+
+    expect(details).toContain('一回（いっかい）');
+    expect(details).toContain('一冊（いっさつ）');
+    expect(details).toContain('一点（いってん，考試分數的一分）');
+    expect(details).toContain('一杯（いっぱい，一杯）');
+    expect(details).toContain('四円（よえん）');
+    expect(details).toContain('四年生（よねんせい）');
+    expect(details).toContain('しちがつ じゅうしちにち しちじ ななふん');
+    expect(details).toContain('くがつ じゅうくにち くじ きゅうふん');
+    expect(examples.find((example) => example.id === 'number-one-counter-patterns-example')).toMatchObject({
+      japanese: '一回、一冊、一点、一杯',
+      reading: 'いっかい、いっさつ、いってん、いっぱい'
+    });
+    expect(examples.find((example) => example.id === 'number-four-yo-counter-example')).toMatchObject({
+      japanese: '四円、四年生',
+      reading: 'よえん、よねんせい'
+    });
+    expect(examples.find((example) => example.id === 'number-seven-date-time-example')?.reading).toBe(
+      'しちがつ じゅうしちにち しちじ ななふん です。'
+    );
+    expect(examples.find((example) => example.id === 'number-nine-date-time-example')?.reading).toBe(
+      'くがつ じゅうくにち くじ きゅうふん です。'
+    );
   });
 
   it('指示詞例句使用 highlightTerms，不直接保留來源筆記引號', () => {

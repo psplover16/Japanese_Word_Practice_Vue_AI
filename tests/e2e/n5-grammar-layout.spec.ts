@@ -100,7 +100,7 @@ test('375px 下的 /n5-grammar 可展開 v16 核心區塊且不破版', async ({
   await demonstrativesToggle.click();
   const demonstrativesSection = page.getByTestId('n5-grammar-section-demonstratives');
   await expect(demonstrativesSection.getByTestId('n5-grammar-compare-table-demonstratives')).toBeVisible();
-  await expect(demonstrativesSection.locator('.n5-grammar-example-highlight').getByText('これ', { exact: true })).toBeVisible();
+  await expect(demonstrativesSection.locator('.n5-grammar-example-highlight').getByText('これ', { exact: true }).first()).toBeVisible();
 
   const numbersToggle = page.getByTestId('n5-grammar-toggle-numbers');
   await numbersToggle.scrollIntoViewIfNeeded();
@@ -109,8 +109,22 @@ test('375px 下的 /n5-grammar 可展開 v16 核心區塊且不破版', async ({
 
   const timeToggle = page.getByTestId('n5-grammar-toggle-time-expressions');
   await timeToggle.scrollIntoViewIfNeeded();
-  await timeToggle.click();
-  await expect(page.getByTestId('n5-grammar-section-time-expressions').getByText('午後三時半に会いましょう。')).toBeVisible();
+  if ((await timeToggle.getAttribute('aria-expanded')) === 'false') {
+    await timeToggle.click();
+  }
+  const timeSection = page.getByTestId('n5-grammar-section-time-expressions');
+  await expect(timeSection.getByRole('heading', { name: '月份', exact: true })).toBeVisible();
+  await expect(timeSection.getByRole('heading', { name: '日期', exact: true })).toBeVisible();
+  await expect(timeSection.getByRole('heading', { name: '星期', exact: true })).toBeVisible();
+  await expect(timeSection.getByRole('heading', { name: '小時', exact: true })).toBeVisible();
+  await expect(timeSection.getByRole('heading', { name: '分鐘', exact: true })).toBeVisible();
+  await expect(timeSection.getByRole('heading', { name: '其他常用表現', exact: true })).toBeVisible();
+  await expect(timeSection.getByText('午後三時半です。')).toBeVisible();
+  await expect(timeSection.getByText('午前八時十五分です。')).toBeVisible();
+  await expect(timeSection.locator('.n5-grammar-shared-note-box')).toHaveCount(1);
+  await expect(timeSection.getByTestId('n5-grammar-topic-time-months').locator('.n5-grammar-example-box')).toHaveCount(0);
+  await expect(timeSection.locator('.n5-grammar-detail-highlight').getByText('しがつ', { exact: true })).toBeVisible();
+  await expect(timeSection.locator('.n5-grammar-detail-highlight').getByText('じゅっぷん', { exact: true })).toBeVisible();
 
   const naruToggle = page.getByTestId('n5-grammar-toggle-state-change-naru');
   await naruToggle.scrollIntoViewIfNeeded();

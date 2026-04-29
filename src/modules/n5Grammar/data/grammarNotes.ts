@@ -306,33 +306,40 @@ const invitationComparisonExampleGroups: N5GrammarTableExampleGroup[] = [
 ];
 
 const coreTermUsageTable: N5GrammarCompareTable = {
-  columns: ["詞類", "接名詞", "句尾肯定", "句尾否定", "學習提醒"],
+  columns: ["詞類", "接名詞", "句尾肯定", "句尾否定"],
   rows: [
     {
       id: "core-term-i-adjective",
       label: "い形容詞",
-      values: ["暑い日", "暑いです", "暑くないです", "詞尾い會參與變化"],
+      values: ["暑い日", "暑いです", "暑くないです"],
     },
     {
       id: "core-term-na-adjective",
       label: "な形容詞",
-      values: ["静かな場所", "静かです", "静かじゃありません", "接名詞時要加な；句尾變化像名詞"],
+      values: ["静かな場所", "静かです", "静かじゃありません"],
     },
     {
       id: "core-term-noun",
       label: "名詞",
-      values: ["日本語の本", "学生です", "学生じゃありません", "接名詞時常用の；句尾用です系統"],
+      values: ["日本語の本", "学生です", "学生じゃありません"],
     },
     {
       id: "core-term-verb",
       label: "動詞",
-      values: ["読む本", "読みます", "読みません", "用活用形表時態、禮貌與否定"],
+      values: ["読む本", "読みます", "読みません"],
     },
   ],
 };
 
 const demonstrativeTable: N5GrammarCompareTable = {
-  columns: ["距離 / 用途", "指東西", "接名詞", "指地方", "鄭重說法", "口語說法"],
+  columns: [
+    "距離 / 用途",
+    "指東西",
+    "接名詞",
+    "指地方",
+    "鄭重說法",
+    "口語說法",
+  ],
   rows: [
     {
       id: "demonstrative-near-speaker",
@@ -358,31 +365,35 @@ const demonstrativeTable: N5GrammarCompareTable = {
 };
 
 const numberPronunciationTable: N5GrammarCompareTable = {
-  columns: ["數字", "常用發音", "少用發音", "舊讀 / 促音化", "促音化條件"],
+  columns: ["數字", "常用\n發音", "少用\n發音", "舊讀\n促音化", "促音化條件"],
   rows: [
-    { id: "number-0", label: "0", values: ["ゼロ / れい", "まる", "", ""] },
-    { id: "number-1", label: "1", values: ["いち", "", "いっ", "接か行、さ行、た行、は行助數詞時常促音化"] },
+    { id: "number-0", label: "0", values: ["ゼロ\nれい", "まる", "", ""] },
+    {
+      id: "number-1",
+      label: "1",
+      values: ["いち", "", "いっ", "か行、\nさ行、\nた行、\nは行"],
+    },
     { id: "number-2", label: "2", values: ["に", "", "", ""] },
     { id: "number-3", label: "3", values: ["さん", "", "", ""] },
     { id: "number-4", label: "4", values: ["よん / よ", "し", "", ""] },
     { id: "number-5", label: "5", values: ["ご", "", "", ""] },
-    { id: "number-6", label: "6", values: ["ろく", "", "ろっ", "接か行、は行助數詞時常促音化"] },
+    {
+      id: "number-6",
+      label: "6",
+      values: ["ろく", "", "ろっ", "か行、\nは行"],
+    },
     { id: "number-7", label: "7", values: ["なな", "しち", "", ""] },
-    { id: "number-8", label: "8", values: ["はち", "", "はっ", "接か行、さ行、た行、は行助數詞時常促音化"] },
+    {
+      id: "number-8",
+      label: "8",
+      values: ["はち", "", "はっ", "か行、\nさ行、\nた行、\nは行"],
+    },
     { id: "number-9", label: "9", values: ["きゅう", "く", "", ""] },
-    { id: "number-10", label: "10", values: ["じゅう", "", "じゅっ / じっ", "接か行、さ行、た行、は行助數詞時常促音化"] },
-  ],
-};
-
-const timeExpressionTable: N5GrammarCompareTable = {
-  columns: ["類型", "基本形式", "例子", "提醒"],
-  rows: [
-    { id: "time-month", label: "月份", values: ["數字 + 月", "一月、四月、七月、九月", "四月讀しがつ，七月讀しちがつ，九月讀くがつ"] },
-    { id: "time-date", label: "日期", values: ["日期讀法", "一日、二日、三日、十日、二十日", "1到10日與20日有固定特殊讀法"] },
-    { id: "time-weekday", label: "星期", values: ["曜日", "月曜日、火曜日、水曜日", "常搭配に標示具體時間點"] },
-    { id: "time-hour", label: "幾點", values: ["數字 + 時", "一時、四時、七時、九時", "四時讀よじ，七時讀しちじ，九時讀くじ"] },
-    { id: "time-minute", label: "幾分", values: ["數字 + 分", "一分、三分、六分、八分、十分", "分會依前面數字讀ふん或ぷん"] },
-    { id: "time-ampm", label: "上午 / 下午", values: ["午前 / 午後", "午前九時、午後三時半", "半表示三十分；分前表示幾分鐘前"] },
+    {
+      id: "number-10",
+      label: "10",
+      values: ["じゅう", "", "じゅっ / じっ", "か行、\nさ行、\nた行、\nは行"],
+    },
   ],
 };
 
@@ -390,7 +401,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "core-term-usage-overview",
     title: "核心詞類用法總覽",
-    description: "い形容詞、な形容詞、名詞、動詞用法，先建立後續文法閱讀的共同語彙。",
+    description:
+      "い形容詞、な形容詞、名詞、動詞用法，先建立後續文法閱讀的共同語彙。",
     presentationMode: "compare-table",
     order: 0,
     category: "core",
@@ -1189,7 +1201,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "dekiru-ability",
     title: "できる：能力、可能與完成",
-    description: "整理 ch0 的「できる」，放在邀約表現後，連接能力、可能與完成語感。",
+    description: "放在邀約表現後，連接能力、可能與完成語感。",
     presentationMode: "info-stack",
     order: 4.5,
     category: "core",
@@ -1258,7 +1270,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "question-words",
     title: "常見疑問詞",
-    description: "整理何、どこ、いつ、どうして、なぜ、どう、いかが、どんな、どうやって、誰、どなた、どれ、どの、どちら、いくら、いくつ、何個、どのくらい與どれくらい。",
+    description: "",
     presentationMode: "bullet-list",
     order: 7,
     category: "core",
@@ -1267,7 +1279,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "question-teiru-note",
         title: "住んでいます等ている表現",
         content:
-          "動詞のて形 + いる / います 中，いる是補助動詞，接在て形後表示動作持續中或狀態持續。住んでいます = 住む的て形「住んで」+ いる的丁寧形「います」，表示持續居住的狀態；住んでいる = 住著，食べている = 吃著，結婚している = 已婚的結果狀態。",
+          "\n動詞のて形 + いる / います 中，いる是補助動詞，接在て形後表示動作持續中或狀態持續。\n住んでいます = 住む的て形\n「住んで」+ いる的丁寧形「います」，表示持續居住的狀態；\n住んでいる = 住著，\n食べている = 吃著，\n結婚している = 已婚的結果狀態。",
       },
     ],
     topics: [
@@ -1275,12 +1287,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "question-what-where-when",
         title: "何、どこ、いつ：事物、地點與時間",
         summary:
-          "何問事物或數量，どこ問場所／哪裡，いつ問時間。",
-        details: [
-          "何可讀なに或なん；接です時常讀なん，例如何ですか。",
-          "何回（なんかい）問次數。",
-          "どこに住んでいますか中的に標示存在場所，可理解成「住在哪裡」。",
-        ],
+          "「何」問事物或數量，可讀なに或なん；接です時常讀なん，例如何ですか，何回（なんかい）問次數",
+        details: ["「どこ」問場所／哪裡，", "「いつ」問時間，"],
         sourceRefs: ["note-v16-ch5-question-words"],
         sharedNoteIds: ["question-teiru-note"],
         examples: [
@@ -1317,7 +1325,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             highlightTerms: ["どこ", "に", "住んでいます"],
             reading: "どこ に すんでいます か。",
             translation: "你住在哪裡？",
-            note: "どこ問場所；に標示存在場所「在～」。住んでいます表示持續居住的狀態。",
+            note: "どこ問場所；に標示存在場所「在～」。\n住んでいます表示持續居住的狀態。\nどこに住んでいますか中的に標示存在場所，可理解成「住在哪裡」。",
             origin: "source",
           },
           {
@@ -1333,7 +1341,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
       },
       {
         id: "question-reason-state-method",
-        title: "どうして、なぜ、どう、いかが、どんな、どうやって：原因、狀態與方法",
+        title:
+          "どうして、なぜ、どう、いかが、どんな、どうやって：原因、狀態與方法",
         summary:
           "どうして與なぜ問原因，どう問狀態或方法，いかが是較禮貌說法，どんな問「什麼樣的」，どうやって問做法或交通方式。",
         details: [
@@ -1393,8 +1402,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "question-person",
         title: "誰、誰か、どなた：人物",
-        summary:
-          "誰問人，誰か表示某人或是否有人，どなた是誰的禮貌說法。",
+        summary: "誰問人，誰か表示某人或是否有人，どなた是誰的禮貌說法。",
         details: [
           "誰か在肯定或存在句中常不是直接問姓名，而是表示「某人／有人」。",
         ],
@@ -1664,8 +1672,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             id: "demonstrative-business-hours-example",
             japanese: "そちらは何時から何時まで開いていますか。",
             highlightTerms: ["そちら"],
-            reading:
-              "そちら は なんじ から なんじ まで あいています か。",
+            reading: "そちら は なんじ から なんじ まで あいています か。",
             translation: "請問貴店從幾點營業到幾點？",
             note: "そちら可禮貌指對方店家或所在地。\n何時から的から標示起點「從幾點」；\n何時まで的まで標示終點「到幾點」。\n開いています是開く接ている，表示持續狀態「開著」。",
             origin: "source",
@@ -1731,7 +1738,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "numbers",
     title: "數字與促音讀法",
-    description: "將 number.png 與 number2.png 的數字讀法整理為表格，包含常用、少用與促音條件。",
+    description: "",
     presentationMode: "compare-table",
     order: 9,
     category: "core",
@@ -1751,17 +1758,26 @@ export const n5GrammarSections: N5GrammarSection[] = [
         summary:
           "日常先以ゼロ / れい、いち、に、さん、よん、ご、ろく、なな、はち、きゅう、じゅう為核心讀法。",
         details: [
+          "一接か行、さ行、た行、は行開頭的助數詞時常變成促音「いっ」，\n例如一回（いっかい）、一冊（いっさつ）、一点（いってん，考試分數的一分）、一杯（いっぱい，一杯）。",
+          "四原則上讀よん；\n但若後面接的數量詞開頭發音是あ行或な行，常改讀よ，例如四円（よえん）、四年生（よねんせい）。",
           "四的し、七的しち、九的く在月份、時間等固定表現中仍常見。",
+          "しち很少作為七的一般讀音，但在固定時間日期表現中會出現，\n例如七月十七日七時七分讀「しちがつ じゅうしちにち しちじ ななふん」。",
+          "く很少作為九的一般讀音，但在固定時間日期表現中會出現，\n例如九月十九日九時九分讀「くがつ じゅうくにち くじ きゅうふん」。",
           "電話號碼或逐碼唸數字時，0 也可能唸まる。",
         ],
-        sourceRefs: ["note-v16-ch7-numbers", "note-v16-number-image", "note-v16-number2-image"],
+        sourceRefs: [
+          "note-v16-ch7-numbers",
+          "note-v16-number-image",
+          "note-v16-number2-image",
+        ],
         sharedNoteIds: ["number-counter-note"],
         examples: [
           {
             id: "number-phone-example",
             japanese: "電話番号は090-1234-5678です。",
             highlightTerms: ["090-1234-5678"],
-            reading: "でんわばんごう は ゼロ きゅう ゼロ、いち に さん よん、ご ろく なな はち です。",
+            reading:
+              "でんわばんごう は ゼロ きゅう ゼロ、いち に さん よん、ご ろく なな はち です。",
             translation: "電話號碼是 090-1234-5678。",
             note: "電話號碼逐碼讀，0 可讀ゼロ，也常聽到まる。",
             origin: "source",
@@ -1770,8 +1786,45 @@ export const n5GrammarSections: N5GrammarSection[] = [
             id: "number-counter-example",
             japanese: "一回、六回、八回、十回練習します。",
             highlightTerms: ["一回", "六回", "八回", "十回"],
-            reading: "いっかい、ろっかい、はっかい、じゅっかい れんしゅうします。",
+            reading:
+              "いっかい、ろっかい、はっかい、じゅっかい れんしゅうします。",
             translation: "練習一次、六次、八次、十次。",
+            origin: "supplemental",
+          },
+          {
+            id: "number-one-counter-patterns-example",
+            japanese: "一回、一冊、一点、一杯",
+            highlightTerms: ["一回", "一冊", "一点", "一杯"],
+            reading: "いっかい、いっさつ、いってん、いっぱい",
+            translation: "一次、一冊、一分、一杯。",
+            note: "一点在這裡指考試分數的一分；一杯指一杯飲料或一杯的量。",
+            origin: "supplemental",
+          },
+          {
+            id: "number-four-yo-counter-example",
+            japanese: "四円、四年生",
+            highlightTerms: ["四円", "四年生"],
+            reading: "よえん、よねんせい",
+            translation: "四日圓、四年級生。",
+            note: "四原則讀よん，但接あ行或な行開頭的數量詞時常改讀よ。",
+            origin: "supplemental",
+          },
+          {
+            id: "number-seven-date-time-example",
+            japanese: "7月17日7時7分です。",
+            highlightTerms: ["7月", "17日", "7時", "7分"],
+            reading: "しちがつ じゅうしちにち しちじ ななふん です。",
+            translation: "是 7 月 17 日 7 點 7 分。",
+            note: "しち主要保留在月份、日期與時間等固定讀法；分仍讀ななふん。",
+            origin: "supplemental",
+          },
+          {
+            id: "number-nine-date-time-example",
+            japanese: "9月19日9時9分です。",
+            highlightTerms: ["9月", "19日", "9時", "9分"],
+            reading: "くがつ じゅうくにち くじ きゅうふん です。",
+            translation: "是 9 月 19 日 9 點 9 分。",
+            note: "く主要保留在月份、日期與時間等固定讀法；分讀きゅうふん。",
             origin: "supplemental",
           },
         ],
@@ -1781,8 +1834,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "time-expressions",
     title: "時間表現：月日星期與時分",
-    description: "整理 ch8 的月份、日期、星期、幾點、幾分、半、分前、午前與午後。",
-    presentationMode: "compare-table",
+    description: "",
+    presentationMode: "info-stack",
     order: 10,
     category: "core",
     sharedNotes: [
@@ -1793,28 +1846,105 @@ export const n5GrammarSections: N5GrammarSection[] = [
           "具體時間點常用「に」，例如「七時に起きます」；但今日、明日、毎日這類相對時間通常不一定加に。",
       },
     ],
-    table: timeExpressionTable,
     topics: [
       {
-        id: "time-month-date-weekday",
-        title: "月份、日期與星期",
+        id: "time-months",
+        title: "月份",
         summary:
-          "月份用數字加月，星期用曜日；日期有許多特殊讀法，需要當固定表現記住。",
+          "月份基本規律是「數字 + がつ」，\n但 4 月、7 月、9 月要用固定讀法，不讀よん、なな、きゅう。",
         details: [
-          "四月、七月、九月分別讀しがつ、しちがつ、くがつ。",
-          "一日到十日與二十日的讀法特別常考。",
+          "1月 / 一月：いちがつ",
+          "2月 / 二月：にがつ",
+          "3月 / 三月：さんがつ",
+          "4月 / 四月：しがつ",
+          "5月 / 五月：ごがつ",
+          "6月 / 六月：ろくがつ",
+          "7月 / 七月：しちがつ",
+          "8月 / 八月：はちがつ",
+          "9月 / 九月：くがつ",
+          "10月 / 十月：じゅうがつ",
+          "11月 / 十一月：じゅういちがつ",
+          "12月 / 十二月：じゅうにがつ",
+        ],
+        detailHighlightTerms: ["しがつ", "しちがつ", "くがつ"],
+        sourceRefs: ["note-v16-ch8-time"],
+        sharedNoteIds: ["time-ni-note"],
+        examples: [],
+      },
+      {
+        id: "time-dates",
+        title: "日期",
+        summary:
+          "日期讀音較不規則，尤其 1 到 10 日、14 日、20 日、24 日需要特別記憶。",
+        details: [
+          "1日：ついたち",
+          "2日：ふつか",
+          "3日：みっか",
+          "4日：よっか",
+          "5日：いつか",
+          "6日：むいか",
+          "7日：なのか",
+          "8日：ようか",
+          "9日：ここのか",
+          "10日：とおか",
+          "11日：じゅういちにち",
+          "12日：じゅうににち",
+          "13日：じゅうさんにち",
+          "14日：じゅうよっか",
+          "15日：じゅうごにち",
+          "16日：じゅうろくにち",
+          "17日：じゅうしちにち",
+          "18日：じゅうはちにち",
+          "19日：じゅうくにち",
+          "20日：はつか",
+          "21日：にじゅういちにち",
+          "22日：にじゅうににち",
+          "23日：にじゅうさんにち",
+          "24日：にじゅうよっか",
+          "25日：にじゅうごにち",
+          "26日：にじゅうろくにち",
+          "27日：にじゅうしちにち",
+          "28日：にじゅうはちにち",
+          "29日：にじゅうくにち",
+          "30日：さんじゅうにち",
+          "31日：さんじゅういちにち",
+        ],
+        detailHighlightTerms: [
+          "ついたち",
+          "ふつか",
+          "みっか",
+          "よっか",
+          "いつか",
+          "むいか",
+          "なのか",
+          "ようか",
+          "ここのか",
+          "とおか",
+          "じゅうよっか",
+          "はつか",
+          "にじゅうよっか",
+        ],
+        sourceRefs: ["note-v16-ch8-time"],
+        sharedNoteIds: ["time-ni-note"],
+        examples: [],
+      },
+      {
+        id: "time-weekdays",
+        title: "星期",
+        summary:
+          "星期用「曜日」，從星期一到星期日依序是月、火、水、木、金、土、日。",
+        details: [
+          "星期一 / 月曜日：げつようび",
+          "星期二 / 火曜日：かようび",
+          "星期三 / 水曜日：すいようび",
+          "星期四 / 木曜日：もくようび",
+          "星期五 / 金曜日：きんようび",
+          "星期六 / 土曜日：どようび",
+          "星期日 / 日曜日：にちようび",
         ],
         sourceRefs: ["note-v16-ch8-time"],
         sharedNoteIds: ["time-ni-note"],
         examples: [
-          {
-            id: "time-birthday-example",
-            japanese: "誕生日は四月二十日です。",
-            highlightTerms: ["四月二十日"],
-            reading: "たんじょうび は しがつ はつか です。",
-            translation: "生日是四月二十日。",
-            origin: "source",
-          },
           {
             id: "time-weekday-example",
             japanese: "月曜日に日本語を勉強します。",
@@ -1826,33 +1956,130 @@ export const n5GrammarSections: N5GrammarSection[] = [
         ],
       },
       {
-        id: "time-hour-minute",
-        title: "幾點、幾分、半與分前",
+        id: "time-hours",
+        title: "小時",
         summary:
-          "幾點用時，幾分用分；半表示三十分，分前表示幾分鐘前。",
+          "小時用「時（じ）」。4 時讀よじ、7 時讀しちじ、9 時讀くじ，是需要特別記住的例外。",
         details: [
-          "四時讀よじ，七時讀しちじ，九時讀くじ。",
-          "一分、三分、四分、六分、八分、十分等會在ふん / ぷん間變化。",
-          "午前與午後放在時間前，用來標示上午與下午。",
+          "1時 / 一時：いちじ",
+          "2時 / 二時：にじ",
+          "3時 / 三時：さんじ",
+          "4時 / 四時：よじ",
+          "5時 / 五時：ごじ",
+          "6時 / 六時：ろくじ",
+          "7時 / 七時：しちじ",
+          "8時 / 八時：はちじ",
+          "9時 / 九時：くじ",
+          "10時 / 十時：じゅうじ",
+          "11時 / 十一時：じゅういちじ",
+          "12時 / 十二時：じゅうにじ",
+          "例外：4時讀よじ，不讀しじ；9時讀くじ，不讀きゅうじ。",
+        ],
+        detailHighlightTerms: ["よじ", "しちじ", "くじ"],
+        sourceRefs: ["note-v16-ch8-time"],
+        sharedNoteIds: ["time-ni-note"],
+        examples: [],
+      },
+      {
+        id: "time-minutes",
+        title: "分鐘",
+        summary:
+          "分鐘用「分」。\n1、3、4、6、8、10 分讀ぷん，\n其中 1、6、8、10 會出現促音っ。",
+        details: [
+          "1分 / 一分：いっぷん",
+          "2分 / 二分：にふん",
+          "3分 / 三分：さんぷん",
+          "4分 / 四分：よんぷん",
+          "5分 / 五分：ごふん",
+          "6分 / 六分：ろっぷん",
+          "7分 / 七分：ななふん",
+          "8分 / 八分：はっぷん",
+          "9分 / 九分：きゅうふん",
+          "10分 / 十分：じゅっぷん",
+        ],
+        detailHighlightTerms: [
+          "いっぷん",
+          "さんぷん",
+          "よんぷん",
+          "ろっぷん",
+          "はっぷん",
+          "じゅっぷん",
+        ],
+        sourceRefs: ["note-v16-ch8-time"],
+        sharedNoteIds: ["time-ni-note"],
+        examples: [],
+      },
+      {
+        id: "time-common-expressions",
+        title: "其他常用表現",
+        summary: "",
+        details: [
+          "半（30分）：半，讀はん。\n例：三時半（さんじはん）＝3點半。",
+          "……分前：～ふんまえ。\n例：五分前（ごふんまえ）＝差5分。",
+          "上午：午前，讀ごぜん。\n例：午前十時＝上午10點。",
+          "下午：午後，讀ごご。\n例：午後三時＝下午3點。",
+          "完整時刻可依序組合：\n午前 / 午後 + 幾時 + 幾分 / 半 / 分前。",
+          "正午（しょうご）= 中午 12 點；\n深夜（しんや）= 深夜；\n朝（あさ）= 早上；\n夜（よる）= 晚上。",
+          "今朝（けさ）= 今天早上；\n今晩（こんばん）= 今天晚上；\n毎朝（まいあさ）= 每天早上；\n毎晩（まいばん）= 每天晚上。",
         ],
         sourceRefs: ["note-v16-ch8-time"],
         sharedNoteIds: ["time-ni-note"],
         examples: [
           {
-            id: "time-meeting-example",
-            japanese: "午後三時半に会いましょう。",
+            id: "time-half-example",
+            japanese: "三時半です。",
+            highlightTerms: ["三時半"],
+            reading: "さんじはん です。",
+            translation: "三點半。",
+            origin: "source",
+          },
+          {
+            id: "time-five-minutes-before-example",
+            japanese: "五分前です。",
+            highlightTerms: ["五分前"],
+            reading: "ごふんまえ です。",
+            translation: "差五分。",
+            origin: "source",
+          },
+          {
+            id: "time-morning-ten-example",
+            japanese: "午前十時です。",
+            highlightTerms: ["午前十時"],
+            reading: "ごぜん じゅうじ です。",
+            translation: "上午十點。",
+            origin: "source",
+          },
+          {
+            id: "time-afternoon-three-example",
+            japanese: "午後三時です。",
+            highlightTerms: ["午後三時"],
+            reading: "ごご さんじ です。",
+            translation: "下午三點。",
+            origin: "source",
+          },
+          {
+            id: "time-afternoon-three-thirty-example",
+            japanese: "午後三時半です。",
             highlightTerms: ["午後三時半"],
-            reading: "ごご さんじ はん に あいましょう。",
-            translation: "下午三點半見吧。",
+            reading: "ごご さんじはん です。",
+            translation: "下午三點半。",
             origin: "source",
           },
           {
             id: "time-before-example",
-            japanese: "授業は九時五分前に始まります。",
-            highlightTerms: ["九時五分前"],
-            reading: "じゅぎょう は くじ ごふんまえ に はじまります。",
-            translation: "課程九點五分前開始。",
-            origin: "supplemental",
+            japanese: "午前九時五分前です。",
+            highlightTerms: ["午前九時五分前"],
+            reading: "ごぜん くじ ごふんまえ です。",
+            translation: "上午九點差五分。",
+            origin: "source",
+          },
+          {
+            id: "time-morning-eight-fifteen-example",
+            japanese: "午前八時十五分です。",
+            highlightTerms: ["午前八時十五分"],
+            reading: "ごぜん はちじ じゅうごふん です。",
+            translation: "早上八點十五分。",
+            origin: "source",
           },
         ],
       },
@@ -2133,13 +2360,15 @@ export const n5GrammarSections: N5GrammarSection[] = [
             id: "wo-study-japanese-example",
             japanese: "週に三回、学校で日本語を勉強します。",
             highlightTerms: ["日本語を"],
-            reading: "しゅう に さんかい、がっこう で にほんご を べんきょうします。",
+            reading:
+              "しゅう に さんかい、がっこう で にほんご を べんきょうします。",
             translation: "一週三次在學校學日文。",
             origin: "source",
           },
           {
             id: "wo-buy-before-work-example",
-            japanese: "毎朝、コンビニでサンドイッチとコーヒーを買ってから、会社へ行きます。",
+            japanese:
+              "毎朝、コンビニでサンドイッチとコーヒーを買ってから、会社へ行きます。",
             highlightTerms: ["サンドイッチとコーヒーを"],
             reading:
               "まいあさ、コンビニ で サンドイッチ と コーヒー を かってから、かいしゃ へ いきます。",
@@ -2152,8 +2381,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "wo-result-object",
         title: "結果對象：做出、挖出或煮沸的結果",
-        summary:
-          "有些を標示的是動作產生或改變出的結果，例如挖洞、燒開水。",
+        summary: "有些を標示的是動作產生或改變出的結果，例如挖洞、燒開水。",
         details: [
           "這類句子仍可理解成動作直接作用到某個對象，只是該對象同時帶有結果語感。",
         ],
@@ -2181,8 +2409,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "wo-path-departure",
         title: "經過路徑與離開點",
-        summary:
-          "移動動詞搭配を時，可標示經過的路徑，也可標示離開的場所。",
+        summary: "移動動詞搭配を時，可標示經過的路徑，也可標示離開的場所。",
         details: [
           "橋を渡ります：把橋當成經過的路線。",
           "教室を出ます：把教室當成離開的起點。",
@@ -2213,7 +2440,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "particle-mo",
     title: "助詞 も：也、同樣，與其他助詞的搭配",
-    description: "「も」如何取代或保留原本助詞的規則整理成對照表",
+    description: "「も」如何取代或保留原本助詞的規則對照表",
     presentationMode: "compare-table",
     order: 91,
     category: "particle",
@@ -2550,8 +2777,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "ni-action-landing-point",
         title: "動作的落點與結果到達處",
-        summary:
-          "「に」也能標示動作最後落到的位置，或結果到達的地方。",
+        summary: "「に」也能標示動作最後落到的位置，或結果到達的地方。",
         details: [
           "遇到「書く、置く、止める、貼る」這類會留下結果位置的動詞時，可以留意後面的地點是否用に標示結果落點。",
         ],
@@ -2792,7 +3018,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
         id: "ka-scope",
         title: "這一組先聚焦句尾的 か",
         content:
-          "句尾的「か」是 N5 最核心的疑問句用法；至於句中的「か」，還有選擇、不確定等其他功能，可以之後再分開整理。",
+          "句尾的「か」是 N5 最核心的疑問句用法；至於句中的「か」，還有選擇、不確定等其他功能，可以之後再分開說明。",
       },
       {
         id: "ka-reaction-tone",
@@ -3149,10 +3375,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "de-ni-location-contrast",
         title: "に / で 比較：放置結果 vs 動作發生",
-        summary:
-          "同樣接地點時，に偏結果位置，で偏動作場所。",
-        details: [
-        ],
+        summary: "同樣接地點時，に偏結果位置，で偏動作場所。",
+        details: [],
         sourceRefs: ["note-v16-ch2-de"],
         sharedNoteIds: ["de-ni-place-contrast"],
         examples: [
@@ -3181,7 +3405,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
   {
     id: "particle-kara",
     title: "助詞 から：起點、來源與理由",
-    description: "時間起點、場所起點、路線起點、經由點、位置起點、來源、理由與固定接續詞。",
+    description:
+      "時間起點、場所起點、路線起點、經由點、位置起點、來源、理由與固定接續詞。",
     presentationMode: "info-stack",
     order: 99,
     category: "particle",
@@ -3189,8 +3414,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "kara-made-route-note",
         title: "から / まで 常成對出現",
-        content:
-          "から標示起點，まで標示終點；兩者常一起界定時間或路程的範圍。",
+        content: "から標示起點，まで標示終點；兩者常一起界定時間或路程的範圍。",
       },
     ],
     topics: [
@@ -3199,9 +3423,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
         title: "時間的起點",
         summary:
           "から可表示「從某時間開始」，常和表示開始、營業時間或學習起始的句子一起出現。",
-        details: [
-          "名詞 + から + 動作，可表示動作從該時間開始。",
-        ],
+        details: ["名詞 + から + 動作，可表示動作從該時間開始。"],
         sourceRefs: ["note-v16-ch3-kara"],
         sharedNoteIds: ["kara-made-route-note"],
         examples: [
@@ -3226,8 +3448,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
             id: "kara-german-next-month-example",
             japanese: "来月からドイツ語の勉強を始めます。",
             highlightTerms: ["来月から"],
-            reading:
-              "らいげつ から ドイツご の べんきょう を はじめます。",
+            reading: "らいげつ から ドイツご の べんきょう を はじめます。",
             translation: "下個月開始學德文。",
             note: "「来月から」標示學習從下個月開始。",
             origin: "source",
@@ -3271,9 +3492,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
         title: "經由點與入口",
         summary:
           "から也能標示「從哪個入口、門、通道進入」，語感接近經由點或進入的起點。",
-        details: [
-          "ドアから入る：把門視為進入動作的起點或經由點。",
-        ],
+        details: ["ドアから入る：把門視為進入動作的起點或經由點。"],
         sourceRefs: ["note-v16-ch3-kara"],
         sharedNoteIds: [],
         examples: [
@@ -3301,11 +3520,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "kara-position-distance",
         title: "位置起點與距離感",
-        summary:
-          "から可標示距離、閱讀方向或位置判斷的起點。",
-        details: [
-          "從某個基準位置開始判斷距離、順序或方向時，可以用から。",
-        ],
+        summary: "から可標示距離、閱讀方向或位置判斷的起點。",
+        details: ["從某個基準位置開始判斷距離、順序或方向時，可以用から。"],
         sourceRefs: ["note-v16-ch3-kara"],
         sharedNoteIds: [],
         examples: [
@@ -3332,11 +3548,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "kara-contact-source",
         title: "動作、訊息與聯絡的來源",
-        summary:
-          "から可標示訊息、聯絡或動作從誰那裡來。",
-        details: [
-          "人或組織 + から，可標示訊息、聯絡、取得物或動作的來源。",
-        ],
+        summary: "から可標示訊息、聯絡或動作從誰那裡來。",
+        details: ["人或組織 + から，可標示訊息、聯絡、取得物或動作的來源。"],
         sourceRefs: ["note-v16-ch3-kara"],
         sharedNoteIds: [],
         examples: [
@@ -3365,9 +3578,7 @@ export const n5GrammarSections: N5GrammarSection[] = [
         title: "理由のから與固定接續詞それから",
         summary:
           "から也可接在句子後表示理由；\nそれから則是固定接續詞，整體表示「而且／然後」。",
-        details: [
-          "理由のから可理解成「因為……所以……」。",
-        ],
+        details: ["理由のから可理解成「因為……所以……」。"],
         sourceRefs: ["note-v16-ch3-kara"],
         sharedNoteIds: [],
         examples: [
@@ -3512,8 +3723,14 @@ export const n5GrammarSections: N5GrammarSection[] = [
           },
           {
             id: "made-neighbor-dog-intense-example",
-            japanese: "隣の家の犬が朝から晩まで吠えていて、うるさくてたまりません。",
-            highlightTerms: ["朝から", "晩まで", "吠えていて", "うるさくてたまりません"],
+            japanese:
+              "隣の家の犬が朝から晩まで吠えていて、うるさくてたまりません。",
+            highlightTerms: [
+              "朝から",
+              "晩まで",
+              "吠えていて",
+              "うるさくてたまりません",
+            ],
             reading:
               "となり の いえ の いぬ が あさ から ばん まで ほえていて、うるさくて たまりません。",
             translation: "鄰居家的狗從早到晚一直在叫，吵得我受不了。",
@@ -3525,11 +3742,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "made-place-end",
         title: "場所的終點",
-        summary:
-          "まで可標示移動、送達或陪同到達的場所終點。",
-        details: [
-          "場所名 + まで 表示「到該地點為止」。",
-        ],
+        summary: "まで可標示移動、送達或陪同到達的場所終點。",
+        details: ["場所名 + まで 表示「到該地點為止」。"],
         sourceRefs: ["note-v16-ch4-made"],
         sharedNoteIds: ["made-limit-note"],
         examples: [
@@ -3547,11 +3761,8 @@ export const n5GrammarSections: N5GrammarSection[] = [
       {
         id: "made-quantity-limit",
         title: "數量上限與限制",
-        summary:
-          "まで也可用來限定數量上限，例如一次最多能借幾本書。",
-        details: [
-          "數量 + まで 可表示可允許、可使用或可取得的最高界線。",
-        ],
+        summary: "まで也可用來限定數量上限，例如一次最多能借幾本書。",
+        details: ["數量 + まで 可表示可允許、可使用或可取得的最高界線。"],
         sourceRefs: ["note-v16-ch4-made"],
         sharedNoteIds: ["made-limit-note"],
         examples: [
@@ -3796,14 +4007,22 @@ export const n5GrammarSourceCoverage: N5GrammarSourceCoverageItem[] = [
     sourceId: "note-v16-ch1-wo",
     summary: "助詞を：動作對象、結果對象、經過路徑與離開點",
     mappedSectionId: "particle-wo",
-    mappedTopicIds: ["wo-action-object-v16", "wo-result-object", "wo-path-departure"],
+    mappedTopicIds: [
+      "wo-action-object-v16",
+      "wo-result-object",
+      "wo-path-departure",
+    ],
     status: "supplemented",
   },
   {
     sourceId: "note-v16-ch2-de",
     summary: "助詞で：動作場所與に / で比較",
     mappedSectionId: "particle-de",
-    mappedTopicIds: ["de-transportation", "de-action-place", "de-ni-location-contrast"],
+    mappedTopicIds: [
+      "de-transportation",
+      "de-action-place",
+      "de-ni-location-contrast",
+    ],
     status: "supplemented",
   },
   {
@@ -3845,7 +4064,10 @@ export const n5GrammarSourceCoverage: N5GrammarSourceCoverageItem[] = [
     sourceId: "note-v16-ch6-demonstratives",
     summary: "指示詞こそあど與例句",
     mappedSectionId: "demonstratives",
-    mappedTopicIds: ["demonstrative-object-place-person", "demonstrative-choice-dialogue"],
+    mappedTopicIds: [
+      "demonstrative-object-place-person",
+      "demonstrative-choice-dialogue",
+    ],
     status: "supplemented",
   },
   {
@@ -3880,7 +4102,14 @@ export const n5GrammarSourceCoverage: N5GrammarSourceCoverageItem[] = [
     sourceId: "note-v16-ch8-time",
     summary: "時間表現：月份、日期、星期、時分、午前午後",
     mappedSectionId: "time-expressions",
-    mappedTopicIds: ["time-month-date-weekday", "time-hour-minute"],
+    mappedTopicIds: [
+      "time-months",
+      "time-dates",
+      "time-weekdays",
+      "time-hours",
+      "time-minutes",
+      "time-common-expressions",
+    ],
     status: "supplemented",
   },
 ];

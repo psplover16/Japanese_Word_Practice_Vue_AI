@@ -74,17 +74,20 @@ describe('N5GrammarSections', () => {
     expect(naruSection.text()).toContain('辞める / 止める / やめる');
   });
 
-  it('v16 新增 section 預設收合，展開後顯示說明、表格與例句', async () => {
+  it('v16 新增 section 依預設展開設定顯示說明、表格與例句', async () => {
     const { wrapper } = mountWithPracticeSession(N5GrammarView);
     const targetIds = ['core-term-usage-overview', 'dekiru-ability', 'demonstratives', 'numbers', 'time-expressions'];
 
     for (const id of targetIds) {
-      expect(wrapper.get(`[data-testid="n5-grammar-toggle-${id}"]`).attributes('aria-expanded')).toBe('false');
-      expect(wrapper.get(`[data-testid="n5-grammar-body-${id}"]`).attributes('style')).toContain('display: none;');
+      const toggle = wrapper.get(`[data-testid="n5-grammar-toggle-${id}"]`);
+      const body = wrapper.get(`[data-testid="n5-grammar-body-${id}"]`);
+
+      expect(toggle.attributes('aria-expanded')).toBe('false');
+      expect(body.attributes('style')).toContain('display: none;');
     }
 
-    expect(wrapper.get('[data-testid="n5-grammar-toggle-question-words"]').attributes('aria-expanded')).toBe('true');
-    expect(wrapper.get('[data-testid="n5-grammar-body-question-words"]').attributes('style') ?? '').not.toContain('display: none;');
+    expect(wrapper.get('[data-testid="n5-grammar-toggle-question-words"]').attributes('aria-expanded')).toBe('false');
+    expect(wrapper.get('[data-testid="n5-grammar-body-question-words"]').attributes('style')).toContain('display: none;');
 
     await wrapper.get('[data-testid="n5-grammar-toggle-core-term-usage-overview"]').trigger('click');
     await wrapper.get('[data-testid="n5-grammar-toggle-dekiru-ability"]').trigger('click');
@@ -96,19 +99,32 @@ describe('N5GrammarSections', () => {
     const dekiruSection = wrapper.get('[data-testid="n5-grammar-section-dekiru-ability"]');
     const demonstrativesSection = wrapper.get('[data-testid="n5-grammar-section-demonstratives"]');
     const numbersSection = wrapper.get('[data-testid="n5-grammar-section-numbers"]');
-    const questionWordsSection = wrapper.get('[data-testid="n5-grammar-section-question-words"]');
     const timeSection = wrapper.get('[data-testid="n5-grammar-section-time-expressions"]');
 
     expect(coreTermSection.find('[data-testid="n5-grammar-compare-table-core-term-usage-overview"]').exists()).toBe(true);
     expect(coreTermSection.text()).toContain('い形容詞');
     expect(dekiruSection.text()).toContain('日本語ができます。');
-    expect(questionWordsSection.text()).toContain('どこに住んでいますか。');
     expect(demonstrativesSection.find('[data-testid="n5-grammar-compare-table-demonstratives"]').exists()).toBe(true);
     expect(demonstrativesSection.text()).toContain('こちら');
     expect(numbersSection.find('[data-testid="n5-grammar-compare-table-numbers"]').exists()).toBe(true);
     expect(numbersSection.text()).toContain('じゅっ / じっ');
-    expect(timeSection.find('[data-testid="n5-grammar-compare-table-time-expressions"]').exists()).toBe(true);
-    expect(timeSection.text()).toContain('午後三時半に会いましょう。');
+    expect(timeSection.find('[data-testid="n5-grammar-compare-table-time-expressions"]').exists()).toBe(false);
+    expect(timeSection.text()).toContain('月份');
+    expect(timeSection.text()).toContain('日期');
+    expect(timeSection.text()).toContain('星期');
+    expect(timeSection.text()).toContain('小時');
+    expect(timeSection.text()).toContain('分鐘');
+    expect(timeSection.text()).toContain('其他常用表現');
+    expect(timeSection.text()).toContain('午後三時半です。');
+    expect(timeSection.text()).toContain('午前八時十五分です。');
+    expect(timeSection.findAll('.n5-grammar-shared-note-box')).toHaveLength(1);
+    expect(timeSection.get('[data-testid="n5-grammar-topic-time-months"]').find('.n5-grammar-example-box').exists()).toBe(false);
+    expect(timeSection.get('[data-testid="n5-grammar-topic-time-dates"]').find('.n5-grammar-example-box').exists()).toBe(false);
+    expect(timeSection.get('[data-testid="n5-grammar-topic-time-weekdays"]').find('.n5-grammar-example-box').exists()).toBe(true);
+    expect(timeSection.get('[data-testid="n5-grammar-topic-time-common-expressions"]').find('.n5-grammar-example-box').exists()).toBe(true);
+    expect(timeSection.findAll('.n5-grammar-detail-highlight').map((node) => node.text())).toEqual(
+      expect.arrayContaining(['しがつ', 'しちがつ', 'くがつ', 'よじ', 'くじ', 'いっぷん', 'じゅっぷん'])
+    );
   });
 
   it('指示詞例句以 class 標記紅色重點字，標題列不夾帶 description', async () => {
