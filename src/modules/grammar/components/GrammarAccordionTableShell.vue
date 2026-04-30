@@ -44,13 +44,17 @@ function toggleExpanded() {
         >
           <div class="grammar-title-copy">
             {{ title }}
-            <span v-if="subtitle" class="grammar-subtitle-text">{{ subtitle }}</span>
             <div class="grammar-toggle-icon" aria-hidden="true">{{ expanded ? '▲' : '▼' }}</div>
           </div>
         </component>
       </tr>
     </thead>
     <tbody v-show="expanded">
+      <tr v-if="subtitle">
+        <td :colspan="headerColspan" class="grammar-subtitle-cell">
+          <span class="grammar-title-copy">{{ subtitle }}</span>
+        </td>
+      </tr>
       <slot />
     </tbody>
     <tfoot v-if="expanded && $slots.footer">

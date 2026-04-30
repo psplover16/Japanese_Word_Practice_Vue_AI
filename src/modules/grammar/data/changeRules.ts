@@ -204,10 +204,51 @@ export const inflectionTableSpecs: Record<string, InflectionTableSpec> = {
       { base: '派生被動', baseEnding: 'さ', suffixAndMeaning: [{ suffix: 'れる', meaning: '' }] },
       { base: '派生使役', baseEnding: 'さ', suffixAndMeaning: [{ suffix: 'せる', meaning: '' }] },
       { base: '假定形', baseEnding: 'すれ', suffixAndMeaning: [{ suffix: 'ば', meaning: '' }] }
+    ],
+    exampleGroups: [
+      {
+        id: 'sahen-sanpo-examples',
+        title: '散歩する的常用否定與過去例句',
+        examples: [
+          {
+            id: 'sahen-sanpo-shimasen',
+            form: 'しません',
+            japanese: '雨の日は散歩しません。',
+            reading: 'あめ の ひ は さんぽ しません。',
+            translation: '下雨天不散步。',
+            note: 'ます形否定，語氣禮貌。'
+          },
+          {
+            id: 'sahen-sanpo-shimasendeshita',
+            form: 'しませんでした',
+            japanese: '昨日は忙しかったので、散歩しませんでした。',
+            reading: 'きのう は いそがしかった ので、さんぽ しませんでした。',
+            translation: '昨天因為很忙，所以沒有散步。',
+            note: '敬體過去否定。'
+          },
+          {
+            id: 'sahen-sanpo-shinai',
+            form: 'しない',
+            japanese: '今日は散歩しない。',
+            reading: 'きょう は さんぽ しない。',
+            translation: '今天不散步。',
+            note: '普通形現在否定。'
+          },
+          {
+            id: 'sahen-sanpo-shita',
+            form: 'した',
+            japanese: '今朝、公園で散歩した。',
+            reading: 'けさ、こうえん で さんぽ した。',
+            translation: '今天早上在公園散步了。',
+            note: '普通形過去肯定。'
+          }
+        ]
+      }
     ]
   },
   kahen: {
-    title: 'カ變動詞 (只有来る)\n(漢字發音會變動，標註在詞尾)',
+    title: 'カ變動詞 (只有来る)',
+    subtitle: '漢字發音會變動，標註在詞尾',
     verb: '来',
     columns: ['形態', '詞幹', '詞尾', '接尾', '含意'],
     mainRows: [
@@ -248,7 +289,8 @@ export const inflectionTableSpecs: Record<string, InflectionTableSpec> = {
     ]
   },
   daAuxiliary: {
-    title: 'だ助動詞\n名詞＋だ (ex.彼は学生だ)\nな形容詞＋だ (ex.静かな場所だ)',
+    title: 'だ助動詞',
+    subtitle: '名詞＋だ (ex.彼は学生だ)\nな形容詞＋だ (ex.静かな場所だ)',
     prefix: '好き',
     columns: ['形態', '前置詞', '詞尾', '接尾', '含意'],
     mainRows: [

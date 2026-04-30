@@ -23,4 +23,31 @@ describe('n5Grammar particle-de examples', () => {
     expect(topic!.details.some((detail) => detail.includes('徒歩'))).toBe(true);
     expect(topic!.details.some((detail) => detail.includes('歩いて'))).toBe(true);
   });
+
+  it('keeps the action-place and に / で contrast examples inside particle-de', () => {
+    const section = sortedN5GrammarSections.find((entry) => entry.id === 'particle-de');
+
+    expect(section).toBeDefined();
+
+    const actionPlaceTopic = section!.topics.find((entry) => entry.id === 'de-action-place');
+    const contrastTopic = section!.topics.find((entry) => entry.id === 'de-ni-location-contrast');
+
+    expect(actionPlaceTopic).toBeDefined();
+    expect(contrastTopic).toBeDefined();
+
+    expect(actionPlaceTopic!.examples.map((example) => example.japanese)).toContain(
+      '明日の6時に有楽町駅の中央口で会いましょう。',
+    );
+
+    const niExample = contrastTopic!.examples.find((example) => example.id === 'de-ni-park-car-ni-example');
+    const deExample = contrastTopic!.examples.find((example) => example.id === 'de-ni-park-car-de-example');
+
+    expect(niExample?.japanese).toBe('ここに車を止めてください。');
+    expect(niExample?.translation).toBe('請把車停在這裡。');
+    expect(niExample?.note).toContain('會停留');
+
+    expect(deExample?.japanese).toBe('ここで車を止めてください。');
+    expect(deExample?.translation).toBe('請在這裡停車。');
+    expect(deExample?.note).toContain('動作進行地點');
+  });
 });

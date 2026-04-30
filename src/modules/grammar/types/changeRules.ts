@@ -30,6 +30,21 @@ export interface InflectionSeries {
   suffixAndMeaning: SuffixMeaning[];
 }
 
+export interface InflectionExample {
+  id: string;
+  form: string;
+  japanese: string;
+  reading?: string;
+  translation: string;
+  note?: string;
+}
+
+export interface InflectionExampleGroup {
+  id: string;
+  title: string;
+  examples: InflectionExample[];
+}
+
 export interface SoundChangeRule {
   base: string;
   jisho: string[][];
@@ -58,6 +73,7 @@ export interface InflectionTableSpec {
   columns: string[];
   mainRows: InflectionSeries[];
   footerRows?: InflectionSeries[];
+  exampleGroups?: InflectionExampleGroup[];
 }
 
 export interface PosConversionEntry {

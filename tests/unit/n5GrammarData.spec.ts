@@ -8,13 +8,25 @@ function getSection(sectionId: string) {
   return section!;
 }
 
+function getAllExamples() {
+  return sortedN5GrammarSections.flatMap((section) => [
+    ...section.topics.flatMap((topic) => topic.examples),
+    ...(section.tableExampleGroups ?? []).flatMap((group) => group.examples),
+  ]);
+}
+
 describe('n5GrammarData', () => {
-  it('前兩個核心區塊維持新的排序、命名與內容分工', () => {
-    const firstTwoSectionIds = sortedN5GrammarSections.slice(0, 2).map((section) => section.id);
+  it('前三個核心區塊維持新的排序、命名與內容分工', () => {
+    const firstThreeSectionIds = sortedN5GrammarSections.slice(0, 3).map((section) => section.id);
+    const coreTermOverview = getSection('core-term-usage-overview');
     const politeOverview = getSection('polite-overview');
     const sentenceBasics = getSection('sentence-basics');
 
-    expect(firstTwoSectionIds).toEqual(['polite-overview', 'sentence-basics']);
+    expect(firstThreeSectionIds).toEqual(['core-term-usage-overview', 'polite-overview', 'sentence-basics']);
+
+    expect(coreTermOverview.title).toBe('核心詞類用法總覽');
+    expect(coreTermOverview.presentationMode).toBe('compare-table');
+    expect(coreTermOverview.table?.rows.map((row) => row.label)).toEqual(['い形容詞', 'な形容詞', '名詞', '動詞']);
 
     expect(politeOverview.title).toBe('敬體變化速覽');
     expect(politeOverview.presentationMode).toBe('compare-table');
@@ -32,7 +44,7 @@ describe('n5GrammarData', () => {
     expect(getSection('past-and-state').title).toBe('敬體句型：過去、狀態與補充表現');
   });
 
-  it('所有教學 topic 都保有摘要、例句與來源對應', () => {
+  it('所有教學 topic 都保有說明內容、例句陣列與來源對應', () => {
     for (const section of sortedN5GrammarSections) {
       if (section.id === 'polite-overview') {
         expect(section.topics).toHaveLength(0);
@@ -42,8 +54,8 @@ describe('n5GrammarData', () => {
       expect(section.topics.length).toBeGreaterThan(0);
 
       for (const topic of section.topics) {
-        expect(topic.summary.length).toBeGreaterThan(0);
-        expect(topic.examples.length).toBeGreaterThan(0);
+        expect(topic.summary.length + topic.details.join('').length).toBeGreaterThan(0);
+        expect(Array.isArray(topic.examples)).toBe(true);
         expect(topic.sourceRefs.length).toBeGreaterThan(0);
       }
     }
@@ -63,6 +75,29 @@ describe('n5GrammarData', () => {
     expect(note!.content).toContain('名詞修飾名詞');
     expect(note!.content).toContain('「元気な子供」');
     expect(note!.content).toContain('な形容詞修飾名詞');
+  });
+
+  it('past-and-state 把 する → します → しました 抽成 sharedNote', () => {
+    const section = getSection('past-and-state');
+    const note = section.sharedNotes.find((entry) => entry.id === 'suru-polite-past');
+
+    expect(note).toBeDefined();
+    expect(note!.content).toContain('する');
+    expect(note!.content).toContain('します');
+    expect(note!.content).toContain('しました');
+    expect(section.topics.find((entry) => entry.id === 'verb-past')?.sharedNoteIds).toEqual([]);
+    expect(section.topics.find((entry) => entry.id === 'nominal-past')?.sharedNoteIds).toContain('suru-polite-past');
+  });
+
+  it('i-adjective-past 保留過去形加 から 表示原因的例句', () => {
+    const section = getSection('past-and-state');
+    const topic = section.topics.find((entry) => entry.id === 'i-adjective-past');
+    const example = topic?.examples.find((entry) => entry.id === 'i-past-busy');
+
+    expect(example).toBeDefined();
+    expect(example!.japanese).toContain('ですから');
+    expect(example!.note).toContain('原因');
+    expect(example!.note).toContain('結果');
   });
 
   it('敬體變化速覽的 12 組儲存格例句完整、唯一，且標記為 supplemental', () => {
@@ -236,10 +271,9 @@ describe('015 particle-de（助詞で）', () => {
 });
 
 describe('015 US3 排列順序與來源覆蓋', () => {
-  it('particleSectionIds 末尾依序為 particle-to 然後 particle-de', () => {
+  it('particleSectionIds 末尾依序為 particle-to、particle-de、particle-kara、particle-made', () => {
     const ids = [...particleSectionIds];
-    expect(ids.at(-2)).toBe('particle-to');
-    expect(ids.at(-1)).toBe('particle-de');
+    expect(ids.slice(-4)).toEqual(['particle-to', 'particle-de', 'particle-kara', 'particle-made']);
   });
 
   it('sortedN5GrammarSections 中所有 particle 類別排在所有 core 類別之後，且 particle-to order 小於 particle-de', () => {
@@ -266,19 +300,25 @@ describe('015 US3 排列順序與來源覆蓋', () => {
 });
 
 describe('016 邀約與變化表現 core sections', () => {
-  it('在既有三個 core 區塊後新增 3 個 core sections，且順序正確', () => {
+  it('core sections 依 v16 整理順序排列，且助詞仍排在最後', () => {
     const coreSections = sortedN5GrammarSections.filter((section) => section.category === 'core');
 
     expect(coreSections.map((section) => section.id)).toEqual([
+      'core-term-usage-overview',
       'polite-overview',
       'sentence-basics',
       'past-and-state',
       'invitation-comparison',
+      'dekiru-ability',
       'state-change-naru',
-      'state-change-suru'
+      'state-change-suru',
+      'question-words',
+      'demonstratives',
+      'numbers',
+      'time-expressions'
     ]);
 
-    expect(coreSections.map((section) => section.order)).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(coreSections.map((section) => section.order)).toEqual([0, 1, 2, 3, 4, 4.5, 5, 6, 7, 8, 9, 10]);
   });
 
   it('invitation-comparison 合併比較表與 ～ましょう 補充，並保留兩邊例句', () => {
@@ -363,5 +403,187 @@ describe('016 邀約與變化表現 core sections', () => {
       mappedTopicIds: ['invitation-core-difference', 'mashou-plain-volitional'],
       status: 'supplemented'
     });
+  });
+});
+
+describe('017 v16 N5 文法整理', () => {
+  it('できる位於 invitation-comparison 後，並包含指定形態與例句', () => {
+    const invitation = getSection('invitation-comparison');
+    const dekiru = getSection('dekiru-ability');
+    const topic = dekiru.topics.find((entry) => entry.id === 'dekiru-forms');
+
+    expect(dekiru.order).toBeGreaterThan(invitation.order);
+    expect(dekiru.order).toBeLessThan(getSection('state-change-naru').order);
+    expect(topic).toBeDefined();
+    expect(topic!.details.join(' ')).toContain('できる、できます');
+    expect(topic!.details.join(' ')).toContain('できた、できました');
+    expect(topic!.details.join(' ')).toContain('できない、できません');
+    expect(topic!.details.join(' ')).toContain('できて');
+    expect(topic!.details.join(' ')).toContain('できれば / できたら');
+    expect(topic!.examples.map((example) => example.japanese)).toContain('日本語ができます。');
+    expect(topic!.examples.map((example) => example.japanese)).toContain('料理ができました。');
+  });
+
+  it('を、で、から、まで 都是助詞群組，且助詞仍排在所有 core 後方', () => {
+    const targetIds = ['particle-wo', 'particle-de', 'particle-kara', 'particle-made'];
+    const lastCoreOrder = Math.max(...sortedN5GrammarSections.filter((section) => section.category === 'core').map((section) => section.order));
+
+    for (const id of targetIds) {
+      const section = getSection(id);
+      expect(section.category).toBe('particle');
+      expect(section.order).toBeGreaterThan(lastCoreOrder);
+      expect(section.topics.length).toBeGreaterThan(0);
+    }
+
+    expect(particleSectionIds.slice(-4)).toEqual(['particle-to', 'particle-de', 'particle-kara', 'particle-made']);
+  });
+
+  it('疑問詞、指示詞、數字、時間表現都有表格或 topic、例句與 source coverage', () => {
+    const requiredCoverageIds = [
+      'note-v16-note2',
+      'note-v16-ch0-dekiru',
+      'note-v16-ch1-wo',
+      'note-v16-ch2-de',
+      'note-v16-ch3-kara',
+      'note-v16-ch4-made',
+      'note-v16-ch5-question-words',
+      'note-v16-ch6-demonstratives',
+      'note-v16-here-image',
+      'note-v16-ch7-numbers',
+      'note-v16-number-image',
+      'note-v16-number2-image',
+      'note-v16-ch8-time'
+    ];
+
+    for (const id of ['question-words', 'demonstratives', 'numbers', 'time-expressions']) {
+      const section = getSection(id);
+      expect(section.topics.length).toBeGreaterThan(0);
+      expect(section.topics.flatMap((topic) => topic.examples).length).toBeGreaterThan(0);
+      expect(section.topics.flatMap((topic) => topic.sourceRefs).length).toBeGreaterThan(0);
+    }
+
+    expect(getSection('demonstratives').table?.rows.map((row) => row.values).flat().some((value) => value.includes('こちら'))).toBe(true);
+    expect(getSection('numbers').table?.rows.find((row) => row.id === 'number-10')?.values).toContain('じゅっ / じっ');
+    expect(getSection('time-expressions').presentationMode).toBe('info-stack');
+    expect(getSection('time-expressions').table).toBeUndefined();
+    expect(getSection('time-expressions').topics.map((topic) => topic.id)).toEqual([
+      'time-months',
+      'time-dates',
+      'time-weekdays',
+      'time-hours',
+      'time-minutes',
+      'time-common-expressions'
+    ]);
+
+    for (const sourceId of requiredCoverageIds) {
+      expect(n5GrammarSourceCoverage.find((item) => item.sourceId === sourceId), sourceId).toBeDefined();
+    }
+  });
+
+  it('時間表現分成月份、日期、星期、小時、分鐘與其他常用表現', () => {
+    const section = getSection('time-expressions');
+    const byId = new Map(section.topics.map((topic) => [topic.id, topic]));
+    const commonExamples = byId.get('time-common-expressions')?.examples ?? [];
+
+    expect(byId.get('time-months')?.details).toContain('4月 / 四月：しがつ');
+    expect(byId.get('time-months')?.detailHighlightTerms).toEqual(['しがつ', 'しちがつ', 'くがつ']);
+    expect(byId.get('time-months')?.examples).toEqual([]);
+    expect(byId.get('time-months')?.details).toContain('9月 / 九月：くがつ');
+    expect(byId.get('time-dates')?.details).toContain('20日：はつか');
+    expect(byId.get('time-dates')?.detailHighlightTerms).toEqual([
+      'ついたち',
+      'ふつか',
+      'みっか',
+      'よっか',
+      'いつか',
+      'むいか',
+      'なのか',
+      'ようか',
+      'ここのか',
+      'とおか',
+      'じゅうよっか',
+      'はつか',
+      'にじゅうよっか'
+    ]);
+    expect(byId.get('time-dates')?.examples).toEqual([]);
+    expect(byId.get('time-dates')?.details).toContain('31日：さんじゅういちにち');
+    expect(byId.get('time-weekdays')?.details).toContain('星期日 / 日曜日：にちようび');
+    expect(byId.get('time-hours')?.details).toContain('4時 / 四時：よじ');
+    expect(byId.get('time-hours')?.detailHighlightTerms).toEqual(['よじ', 'しちじ', 'くじ']);
+    expect(byId.get('time-hours')?.examples).toEqual([]);
+    expect(byId.get('time-hours')?.details).toContain('9時 / 九時：くじ');
+    expect(byId.get('time-minutes')?.details).toContain('1分 / 一分：いっぷん');
+    expect(byId.get('time-minutes')?.detailHighlightTerms).toContain('いっぷん');
+    expect(byId.get('time-minutes')?.examples).toEqual([]);
+    expect(byId.get('time-minutes')?.details).toContain('10分 / 十分：じゅっぷん');
+    expect(commonExamples.map((example) => example.japanese)).toEqual([
+      '三時半です。',
+      '五分前です。',
+      '午前十時です。',
+      '午後三時です。',
+      '午後三時半です。',
+      '午前九時五分前です。',
+      '午前八時十五分です。'
+    ]);
+    expect(commonExamples.find((example) => example.japanese === '午後三時半です。')?.reading).toBe('ごご さんじはん です。');
+    expect(commonExamples.find((example) => example.japanese === '午前八時十五分です。')?.reading).toBe(
+      'ごぜん はちじ じゅうごふん です。'
+    );
+  });
+
+  it('數字與促音讀法補充一、四、七、九的助數詞與固定時間讀法', () => {
+    const topic = getSection('numbers').topics.find((entry) => entry.id === 'number-basic-reading');
+    const details = topic?.details.join('\n') ?? '';
+    const examples = topic?.examples ?? [];
+
+    expect(details).toContain('一回（いっかい）');
+    expect(details).toContain('一冊（いっさつ）');
+    expect(details).toContain('一点（いってん，考試分數的一分）');
+    expect(details).toContain('一杯（いっぱい，一杯）');
+    expect(details).toContain('四円（よえん）');
+    expect(details).toContain('四年生（よねんせい）');
+    expect(details).toContain('しちがつ じゅうしちにち しちじ ななふん');
+    expect(details).toContain('くがつ じゅうくにち くじ きゅうふん');
+    expect(examples.find((example) => example.id === 'number-one-counter-patterns-example')).toMatchObject({
+      japanese: '一回、一冊、一点、一杯',
+      reading: 'いっかい、いっさつ、いってん、いっぱい'
+    });
+    expect(examples.find((example) => example.id === 'number-four-yo-counter-example')).toMatchObject({
+      japanese: '四円、四年生',
+      reading: 'よえん、よねんせい'
+    });
+    expect(examples.find((example) => example.id === 'number-seven-date-time-example')?.reading).toBe(
+      'しちがつ じゅうしちにち しちじ ななふん です。'
+    );
+    expect(examples.find((example) => example.id === 'number-nine-date-time-example')?.reading).toBe(
+      'くがつ じゅうくにち くじ きゅうふん です。'
+    );
+  });
+
+  it('指示詞例句使用 highlightTerms，不直接保留來源筆記引號', () => {
+    const examples = getSection('demonstratives').topics.flatMap((topic) => topic.examples);
+    const highlighted = examples.filter((example) => example.highlightTerms?.length);
+
+    expect(highlighted.length).toBeGreaterThanOrEqual(4);
+    expect(highlighted.find((example) => example.id === 'demonstrative-kore-umbrella')?.highlightTerms).toEqual(['これ']);
+    for (const example of highlighted) {
+      expect(example.japanese).not.toContain('"');
+      expect(example.japanese).not.toContain('「');
+      expect(example.japanese).not.toContain('」');
+    }
+  });
+
+  it('每個例句都標示該容器要強調的日文片段', () => {
+    const examples = getAllExamples();
+    const missingHighlightIds = examples.filter((example) => !example.highlightTerms?.length).map((example) => example.id);
+    const missingTermMatches = examples.flatMap((example) =>
+      (example.highlightTerms ?? [])
+        .filter((term) => !example.japanese.includes(term))
+        .map((term) => `${example.id}: ${term}`),
+    );
+
+    expect(examples.length).toBeGreaterThan(200);
+    expect(missingHighlightIds).toEqual([]);
+    expect(missingTermMatches).toEqual([]);
   });
 });

@@ -3,6 +3,7 @@ export type N5GrammarPresentationMode = 'bullet-list' | 'info-stack' | 'compare-
 export interface N5GrammarExample {
   id: string;
   japanese: string;
+  highlightTerms?: string[];
   reading?: string;
   translation: string;
   note?: string;
@@ -20,6 +21,7 @@ export interface N5GrammarTopic {
   title: string;
   summary: string;
   details: string[];
+  detailHighlightTerms?: string[];
   examples: N5GrammarExample[];
   sourceRefs: string[];
   sharedNoteIds: string[];

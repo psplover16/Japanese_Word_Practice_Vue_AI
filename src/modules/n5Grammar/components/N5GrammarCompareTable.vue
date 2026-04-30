@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { N5GrammarSection, N5GrammarSharedNote, N5GrammarTableExampleGroup, N5GrammarTopic } from '@/modules/n5Grammar/types/grammarNotes';
+import { getN5GrammarHighlightedParts, getN5GrammarTextHighlightedParts } from '@/modules/n5Grammar/utils/highlightParts';
+import type {
+  N5GrammarSection,
+  N5GrammarSharedNote,
+  N5GrammarTableExampleGroup,
+  N5GrammarTopic
+} from '@/modules/n5Grammar/types/grammarNotes';
 
 const props = defineProps<{
   section: N5GrammarSection;
@@ -10,9 +16,25 @@ const notesById = computed(() => new Map(props.section.sharedNotes.map((note) =>
 const columnLabels = computed(() => props.section.table?.columns.slice(1) ?? []);
 const rowLabels = computed(() => new Map((props.section.table?.rows ?? []).map((row) => [row.id, row.label])));
 const tableExampleGroups = computed(() => props.section.tableExampleGroups ?? []);
+const firstTopicIdByNoteId = computed(() => {
+  const topicIdByNoteId = new Map<string, string>();
+
+  for (const topic of props.section.topics) {
+    for (const id of topic.sharedNoteIds) {
+      if (!topicIdByNoteId.has(id)) {
+        topicIdByNoteId.set(id, topic.id);
+      }
+    }
+  }
+
+  return topicIdByNoteId;
+});
 
 function resolveNotes(topic: N5GrammarTopic) {
-  return topic.sharedNoteIds.map((id) => notesById.value.get(id)).filter((note): note is N5GrammarSharedNote => Boolean(note));
+  return topic.sharedNoteIds
+    .filter((id) => firstTopicIdByNoteId.value.get(id) === topic.id)
+    .map((id) => notesById.value.get(id))
+    .filter((note): note is N5GrammarSharedNote => Boolean(note));
 }
 
 function resolveRowLabel(group: N5GrammarTableExampleGroup) {
@@ -22,6 +44,7 @@ function resolveRowLabel(group: N5GrammarTableExampleGroup) {
 function resolveColumnLabel(group: N5GrammarTableExampleGroup) {
   return columnLabels.value[group.columnIndex] ?? `第 ${group.columnIndex + 1} 欄`;
 }
+
 </script>
 
 <template>
@@ -67,10 +90,18 @@ function resolveColumnLabel(group: N5GrammarTableExampleGroup) {
 
         <div v-if="group.note" class="n5-grammar-table-example-note">{{ group.note }}</div>
 
-        <div class="n5-grammar-example-box">
+        <div v-if="group.examples.length" class="n5-grammar-example-box">
           <div class="n5-grammar-subheading">例句</div>
           <div v-for="example in group.examples" :key="example.id" class="n5-grammar-example-card">
-            <div class="n5-grammar-example-japanese">{{ example.japanese }}</div>
+            <div class="n5-grammar-example-japanese">
+              <span
+                v-for="(part, partIndex) in getN5GrammarHighlightedParts(example)"
+                :key="`${example.id}-${partIndex}`"
+                :class="{ 'n5-grammar-example-highlight': part.highlighted }"
+              >
+                {{ part.text }}
+              </span>
+            </div>
             <div v-if="example.reading" class="n5-grammar-example-reading">{{ example.reading }}</div>
             <div class="n5-grammar-example-translation">{{ example.translation }}</div>
             <div v-if="example.note" class="n5-grammar-example-note">{{ example.note }}</div>
@@ -84,7 +115,15 @@ function resolveColumnLabel(group: N5GrammarTableExampleGroup) {
       <p class="n5-grammar-topic-summary">{{ topic.summary }}</p>
 
       <ul v-if="topic.details.length" class="n5-grammar-detail-list">
-        <li v-for="detail in topic.details" :key="detail" class="n5-grammar-detail-item">{{ detail }}</li>
+        <li v-for="(detail, detailIndex) in topic.details" :key="`${topic.id}-${detailIndex}`" class="n5-grammar-detail-item">
+          <span
+            v-for="(part, partIndex) in getN5GrammarTextHighlightedParts(detail, topic.detailHighlightTerms)"
+            :key="`${topic.id}-${detailIndex}-${partIndex}`"
+            :class="{ 'n5-grammar-detail-highlight': part.highlighted }"
+          >
+            {{ part.text }}
+          </span>
+        </li>
       </ul>
 
       <div v-if="resolveNotes(topic).length" class="n5-grammar-shared-note-box">
@@ -94,10 +133,18 @@ function resolveColumnLabel(group: N5GrammarTableExampleGroup) {
         </div>
       </div>
 
-      <div class="n5-grammar-example-box">
+      <div v-if="topic.examples.length" class="n5-grammar-example-box">
         <div class="n5-grammar-subheading">例句</div>
         <div v-for="example in topic.examples" :key="example.id" class="n5-grammar-example-card">
-          <div class="n5-grammar-example-japanese">{{ example.japanese }}</div>
+          <div class="n5-grammar-example-japanese">
+            <span
+              v-for="(part, partIndex) in getN5GrammarHighlightedParts(example)"
+              :key="`${example.id}-${partIndex}`"
+              :class="{ 'n5-grammar-example-highlight': part.highlighted }"
+            >
+              {{ part.text }}
+            </span>
+          </div>
           <div v-if="example.reading" class="n5-grammar-example-reading">{{ example.reading }}</div>
           <div class="n5-grammar-example-translation">{{ example.translation }}</div>
           <div v-if="example.note" class="n5-grammar-example-note">{{ example.note }}</div>
